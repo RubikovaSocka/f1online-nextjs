@@ -1,0 +1,68 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    font-family: 'HK Grotesk';
+    font-size: 13px;
+}
+.venueBlock {
+    margin-left: 10px;
+    padding: 5px;
+
+    .venueTitle {
+        margin: 0;
+
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .venueDate {
+        margin: 0;
+
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.65);
+    }
+}
+.resultsRow {
+    margin: 0;
+    padding: 6px 5px;
+
+    border-top: 1px solid #eceff2;
+    color: black;
+
+    &.noBorder {
+        margin-top: 0;
+        border: none;
+    }
+
+    &.header {
+        text-align: start;
+        height: 20px;
+        color: #000;
+        font-weight: 600;
+        background-color: #eceff2;
+    }
+    .position {
+        padding-left: 5px;
+        width: 30px;
+
+        text-align: center;
+        display: inline-block;
+        font-weight: 600;
+        color: #000;
+
+        &.header {
+            text-align: start;
+        }
+    }
+    .driver {
+        display: inline-block;
+        font-weight: 600;
+        color: #000;
+        width: 150px;
+    }
+    .time {
+        display: inline-block;
+        width: 110px;
+    }
+}

@@ -1,0 +1,27 @@
+.titleContainer {
+    font-family: 'Cabin','Source Sans Pro';
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+
+    .title {
+        margin: 0px;
+        padding: 5px;
+        font-size: 24px;
+    }
+}
+
+@media only screen and (min-width: 1366px) {
+    .titleContainer {
+        font-family: 'Cabin','Source Sans Pro';
+        font-weight: 700;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    
+        .title {
+            margin: 0px;
+            padding: 5px;
+            font-size: 26px;
+        }
+    }
+}

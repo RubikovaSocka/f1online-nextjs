@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'HK Grotesk';
+    font-style: normal;
+    font-weight: 400;  
+    src: url("./fonts/HKGrotesk/hkgrotesk-regular-webfont.ttf") format('truetype'),
+    url("./fonts/HKGrotesk/hkgrotesk-regular-webfont.woff") format("woff"),
+    url("./fonts/HKGrotesk/hkgrotesk-regular-webfont.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'HK Grotesk';
+    font-weight: 600;  
+    src: url("./fonts/HKGrotesk/hkgrotesk-semibold-webfont.ttf") format('truetype'),
+    url("./fonts/HKGrotesk/hkgrotesk-semibold-webfont.woff") format("woff"),
+    url("./fonts/HKGrotesk/hkgrotesk-semibold-webfont.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'HK Grotesk';
+    font-style: bold;
+    font-weight: 700; 
+    src: url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.ttf") format('truetype'),
+    url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.woff") format("woff"),
+    url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.woff2") format("woff2");
+}
+
+html, body{
+    margin: 0;
+    height: 100%;
+}
+#__next {
+    min-height: calc(100% - 60px);
+    padding-bottom: 60px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+*, input, button {outline:none !important;}
+.noOutline {
+    text-decoration: none;
+    outline: none;
+}
+
+#__gatsby {
+    min-height: calc(100% - 60px);
+    padding-bottom: 60px;
+    position: relative;
+}
+
+/* LAYOUT */
+
+.contentsPage {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.page {
+    width: 100%;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+}
+.mainContent {
+    padding: 20px;
+    /*width: 100%;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.sideBar {
+    padding: 15px;
+    margin-top: 0px;
+}
+
+/*@media only screen and (min-width: 1366px) {*/
+    .page{
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: auto 673px 38px 320px auto; 
+    }
+    .mainContent {
+        padding: 0;
+        grid-column: 2 / span 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .sideBar {
+        padding: 0;
+        margin-top: 0px;
+        grid-column: 4 / span 1;
+    }
+/*}*/
+
+
+.blackBotGradient {
+    background: linear-gradient(0deg, 
+    rgba(1,1,1,0.95) 0%, 
+    rgba(1,1,1,0.75) 20%, 
+    rgba(0,0,0,0.50) 75%,
+    rgba(0,0,0,0.00) 100%);
+}
+
+
+/* EXPORT */
+.basicButton {
+    margin: auto;
+    height: 40px;
+    width: 140px;
+    border: 1px solid black;
+    border-radius: 0px;
+    font-family: 'HK Grotesk','Source Sans Pro';
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    transition: ease-in-out 0.2s;
+}
+
+.basicButton:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}

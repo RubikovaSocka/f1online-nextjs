@@ -1,0 +1,124 @@
+.container {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+
+}
+.navbar {
+    width: 30px;
+    height: 30px;
+
+    /*overflow: hidden;*/
+    background-image: url(./menu-button-small.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+
+    a{
+        /*padding: 7px 19px;*/
+        display: none;
+        height: 30px;
+        margin: 0 11px;
+    
+        /*display: flex;*/
+        /*align-items: center;*/
+    
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-family: 'HK Grotesk','Source Sans Pro';
+        font-weight: 700;
+        font-size: 14px;
+        color: white;
+    
+        border-bottom: 4px solid transparent;
+        border-top: 4px solid transparent;
+        outline: none;
+
+        span {
+            padding: 0 9px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        &.selected {
+            border-bottom-color: white;
+        }
+        &::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 4px;
+            background: white;
+            transition: width .3s;
+        }
+        &:hover::after {
+            width: 100%;
+            /*transition: width .3s;*/
+        }
+    }
+}
+
+@media only screen and (min-width: 1366px) {
+    .container {
+        width: 100%;
+        background-color: yellowgreen;
+    }
+    .navbar {
+        width: 100%;
+        height: 38px;
+    
+        /*overflow: hidden;*/
+        background: none;
+        background-color: #e10600;
+        box-shadow: 0 0px 8px rgba(0, 0, 0, 0.25);
+    
+        a{
+            /*padding: 7px 19px;*/
+            height: 30px;
+            margin: 0 11px;
+            display: inline-block;
+            /*display: flex;*/
+            /*align-items: center;*/
+        
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: 'HK Grotesk','Source Sans Pro';
+            font-weight: 700;
+            font-size: 14px;
+            color: white;
+        
+            border-bottom: 4px solid transparent;
+            border-top: 4px solid transparent;
+            outline: none;
+    
+            span {
+                padding: 0 9px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+            }
+    
+            &.selected {
+                border-bottom-color: white;
+            }
+            &::after {
+                content: '';
+                display: block;
+                width: 0;
+                height: 4px;
+                background: white;
+                transition: width .3s;
+            }
+            &:hover::after {
+                width: 100%;
+                /*transition: width .3s;*/
+            }
+        }
+    }
+}

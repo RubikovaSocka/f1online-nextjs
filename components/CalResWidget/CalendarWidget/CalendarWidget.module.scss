@@ -1,0 +1,122 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    font-family: 'HK Grotesk';
+    font-size: 13px;
+}
+.venueBlock {
+    margin-left: 5px;
+    padding: 5px;
+
+    .venueTitle {
+        margin: 0;
+
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .venueDate {
+        margin: 0;
+
+        font-size: 14px;
+        color: black;
+    }
+}
+.calendarRow {
+    margin: 0;
+    padding: 6px 5px;
+
+    border-top: 1px solid #eceff2;
+    color: #606060;
+
+    &.noBorder {
+        margin-top: 0;
+        border: none;
+    }
+    
+    &.header {
+        height: 20px;
+        color: #000;
+        font-weight: 600;
+        background-color: #eceff2;
+    }
+    .event {
+        padding-left: 5px;
+        width: 80px;
+
+        display: inline-block;
+        font-weight: 600;
+        color: #000;
+    }
+    .time {
+        display: inline-block;
+        width: 103px;
+    }
+    .tv {
+        display: inline-block;
+        width: 110px;
+    }
+}
+@media only screen and (min-width: 1366px) {
+    .content{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        font-family: 'HK Grotesk';
+        font-size: 13px;
+    }
+    .venueBlock {
+        margin-left: 5px;
+        padding: 5px;
+
+        .venueTitle {
+            margin: 0;
+
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .venueDate {
+            margin: 0;
+
+            font-size: 14px;
+            color: black;
+        }
+    }
+    .calendarRow {
+        margin: 0;
+        padding: 6px 5px;
+
+        border-top: 1px solid #eceff2;
+        color: black;
+
+        &.noBorder {
+            margin-top: 0;
+            border: none;
+        }
+        
+        &.header {
+            height: 20px;
+            color: #000;
+            font-weight: 600;
+            background-color: #eceff2;
+        }
+        .event {
+            padding-left: 5px;
+            width: 80px;
+
+            display: inline-block;
+            font-weight: 600;
+            color: #000;
+        }
+        .time {
+            display: inline-block;
+            width: 103px;
+        }
+        .tv {
+            display: inline-block;
+            width: 110px;
+        }
+    }
+}
