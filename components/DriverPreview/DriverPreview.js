@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styles from './DriverPreview.module.scss'
-
 import Link from 'next/link'
 
 function getCName(team) {

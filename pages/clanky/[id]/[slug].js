@@ -1,12 +1,9 @@
-import { Component, Fragment, useEffect } from 'react'
+import { Fragment } from 'react'
 import axios from 'axios'
 import EmbedContainer from 'react-oembed-container'
 
 import Head from 'next/head'
-import Date from '../../../components/date'
-import utilStyles from '../../../styles/utils.module.css'
 import formatDate from '../../../utils/dateFormatter.js';
-import Fonts from '../../../utils/Fonts'
 
 import QuickNews from '../../../components/QuickNews/QuickNews'
 import RPanel from '../../../components/RPanel'
@@ -15,11 +12,6 @@ import CalResWidget from '../../../components/CalResWidget/CalResWidget'
 import styles from './Post.module.scss'
 
 export default function Post({ postData }) {
-    //Fonts()
-
-    useEffect(() => {
-        Fonts()
-    }, []);
 
     let post = (
         <Fragment>
@@ -45,10 +37,11 @@ export default function Post({ postData }) {
         <Fragment>
             <Head>
                 <title>{postData.title.rendered} | F1online.sk</title>
-                <meta name="og:type" content="article" />
-                <meta name="og:title" content={`${postData.title.rendered} | F1online.sk`} />
-                <meta name="og:description" content={`${postData.excerpt.rendered}`} />
-                <meta name="og:url" content={`/clanky/${postData.id}/${postData.slug}`} />
+                <meta property="og:type" content="article" />
+                <meta property="og:title" content={`${postData.title.rendered} | F1online.sk`} />
+                <meta property="og:description" content={`${postData.excerpt.rendered}`} />
+                <meta property="og:url" content={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`} />
+                <meta property="og:image" content={`${postData.better_featured_image.source_url}`} />
             </Head>
             <main className="contentsPage">
                 <div className="page">

@@ -56,14 +56,14 @@ export class TeamPreview extends Component {
                     {
                         constructor.Drivers.map(driver => {
                             return (
-                            <Link href='piloti/[id]' as={`/piloti/${driver.driverId}`}> 
-                                    <a className={`noOutline ${styles.driverBoxLine}`} style={{borderColor: constructor.teamColor}}>
+                            <Link href='piloti/[id]' as={`/piloti/${driver.driverId}`} passHref> 
+                                    <div className={`noOutline ${styles.driverBoxLine}`} style={{borderColor: constructor.teamColor}}>
                                     <div className={`${styles.driverBox}`}>
                                         <a className={`${styles.name} ${styles.slider} ${getCName(constructor.name)}`} 
                                             title={`${driver.givenName} ${driver.familyName}`}
                                             style={{borderColor: constructor.teamColor}} />
                                     </div>
-                                    </a>
+                                    </div>
                             </Link>
                             )
                         })

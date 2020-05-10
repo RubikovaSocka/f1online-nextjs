@@ -18,7 +18,7 @@ function CalendarRow(props) {
         <div className={`${styles.calendarRow} ${props.event === "1. tréning" ? styles.noBorder : ""}`}>
             <span className={styles.event}>{props.event}</span>
             <span className={styles.time}>{props.time}</span>
-            <span className={styles.tv}>{props.tv}</span>
+            <span className={styles.tv}>{props.tv ? props.tv : 'doplníme...'}</span>
         </div>
     )
 }

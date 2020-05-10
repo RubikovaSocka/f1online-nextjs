@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
-
 import formatDate from '../../utils/dateFormatter.js';
-
 import styles from './ArticlePreview.module.scss'
 
 export default class ArticlePreview extends Component {

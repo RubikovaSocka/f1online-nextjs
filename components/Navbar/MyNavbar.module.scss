@@ -2,7 +2,7 @@
     width: 40px;
     display: flex;
     flex-direction: column;
-
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.25);
 }
 .navbar {
     width: 30px;
@@ -44,7 +44,7 @@
             display: flex;
             align-items: center;
         }
-
+/*
         &.selected {
             border-bottom-color: white;
         }
@@ -58,8 +58,8 @@
         }
         &:hover::after {
             width: 100%;
-            /*transition: width .3s;*/
-        }
+           
+        }*/
     }
 }
 
@@ -79,7 +79,7 @@
     
         a{
             /*padding: 7px 19px;*/
-            height: 30px;
+            height: 38px;
             margin: 0 11px;
             display: inline-block;
             /*display: flex;*/
@@ -93,32 +93,51 @@
             font-size: 14px;
             color: white;
         
-            border-bottom: 4px solid transparent;
-            border-top: 4px solid transparent;
             outline: none;
-    
+            position: relative;
+            overflow: hidden;
+
             span {
                 padding: 0 9px;
                 height: 30px;
                 display: flex;
                 align-items: center;
             }
-    
-            &.selected {
-                border-bottom-color: white;
+            .bottomLine {
+                height: 4px;
+                width: 100%;
+                right: 100%;
+
+                position: absolute;
+                bottom: 4px;
+                background-color: white;
+                transition: ease-in-out .25s;
             }
+            &:hover .bottomLine{
+                right: 0;
+            }
+    
+            &.selected .bottomLine{
+                height: 4px;
+                width: 100%;
+                right: 0;
+
+                position: absolute;
+                bottom: 4px;
+                background-color: white;
+            }/*
             &::after {
-                content: '';
+                
                 display: block;
                 width: 0;
                 height: 4px;
                 background: white;
+                transition-delay: 0.02s;
                 transition: width .3s;
             }
             &:hover::after {
-                width: 100%;
-                /*transition: width .3s;*/
-            }
+                width: 100%;                
+            }*/
         }
     }
 }

@@ -13,7 +13,7 @@ class TitleArea extends Component {
                 <div className={styles.container}>
                     {this.props.posts.map(article => (
                         <div>
-                            <MainArticlePreview post={article}/>
+                            <TitleArticlePreview post={article}/>
                         </div>
                     ))}
                 </div>

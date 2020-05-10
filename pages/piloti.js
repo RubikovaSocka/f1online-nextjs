@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import axios from 'axios'
-import Fonts from '../utils/Fonts'
 
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import RPanel from "../components/RPanel.js";
@@ -13,45 +12,38 @@ import LoadingSpinner from '../components/LoadingSpinner.js';
 
 import styles from './scss/piloti.module.scss'
 
-export default class Drivers extends Component {
+export default function Drivers({ teamsData }) {
     
-    componentDidMount() {
-        Fonts()
-    }
-
-    render() {
-        const { teamsData } = this.props
-        let dataBlock  = teamsData.ConstructorTable.Constructors.map((constructor) => {
-            return (
-                constructor.Drivers.map(driver => {
-                    return (
-                        <DriverPreview driver={driver} 
-                            team={constructor.name} 
-                            teamColor={constructor.teamColor}/>
-                    )
-                })
-            )
-        })
-
+    let dataBlock  = teamsData.ConstructorTable.Constructors.map((constructor) => {
         return (
-            <main className="contentsPage">
-                <div className="page">
-                    <div className="mainContent">
-                        <SectionTitle title="Piloti"/>
-                        <Divider height='20px' />
-                        <div className={styles.driversContainer}>
-                            {dataBlock}
-                        </div>
-                    </div>
-                    <aside className="sideBar">
-                        <QuickNews />
-                        <RPanel />
-                        <CalResWidget />
-                    </aside>
-                </div>
-            </main>
+            constructor.Drivers.map(driver => {
+                return (
+                    <DriverPreview driver={driver} 
+                        team={constructor.name} 
+                        teamColor={constructor.teamColor}/>
+                )
+            })
         )
-    }
+    })
+
+    return (
+        <main className="contentsPage">
+            <div className="page">
+                <div className="mainContent">
+                    <SectionTitle title="Piloti"/>
+                    <Divider height='20px' />
+                    <div className={styles.driversContainer}>
+                        {dataBlock}
+                    </div>
+                </div>
+                <aside className="sideBar">
+                    <QuickNews />
+                    <RPanel />
+                    <CalResWidget />
+                </aside>
+            </div>
+        </main>
+    )
 }
 
 export async function getServerSideProps(context) {

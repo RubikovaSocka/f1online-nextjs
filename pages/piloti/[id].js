@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment } from 'react'
 import axios from 'axios'
-import Fonts from '../../utils/Fonts'
+import NProgress from 'nprogress'
 import QuickNews from "../../components/QuickNews/QuickNews.js";
 import RPanel from "../../components/RPanel.js";
 import CalResWidget from '../../components/CalResWidget/CalResWidget.js';
@@ -15,10 +15,6 @@ import ImageGallery from '../../components/react-image-gallery/src/ImageGallery'
 
 export default function DriverPage({ driverData, team}) {
 
-    useEffect(() => {
-        Fonts()
-    }, []);
-    
     let driverBioData = (
         <Fragment>
             <SectionTitle title={`${driverData.givenName} ${driverData.familyName}`}/>
@@ -95,6 +91,8 @@ export default function DriverPage({ driverData, team}) {
             thumbnail: 'https://wpadmin.f1online.sk/wp-content/uploads/haas-003-300x188.jpg',
         },
     ];
+
+    NProgress.done()
 
     return (
         <main className="contentsPage">

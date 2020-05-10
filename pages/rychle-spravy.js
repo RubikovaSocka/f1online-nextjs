@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
-import Fonts from '../utils/Fonts'
 
 import RPanel from '../components/RPanel';
 import CalResWidget from '../components/CalResWidget/CalResWidget';
@@ -22,7 +21,6 @@ export class QuickNewsPage extends Component {
     }
 
     componentDidMount() {
-        Fonts()
         axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/rychle_spravy?per_page=12`)
             //.then(res => console.log(res))
             .then(res => this.setState({

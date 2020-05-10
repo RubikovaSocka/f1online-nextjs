@@ -17,9 +17,8 @@ class Results extends Component {
             isLoaded: false
         }
     }
-
+/*
     componentDidMount() {
-        Fonts()
         axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar?per_page=1`)
             .then(res => {
                 this.setState({
@@ -29,14 +28,17 @@ class Results extends Component {
             })
             .catch(err => console.log(err))
     }
-
+*/
     render() {
         let contentData;
-        if(this.state.isLoaded) {
+        //if(this.state.isLoaded) {
             contentData = (
-                <span>{`Štartujeme ${this.state.calendarData.acf.venue_date}`}</span>
+                <div className={styles.container}>
+                    <img className={styles.annLogo} alt="logo f1online.sk" src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg"/> 
+                    <span className={styles.announcement}>{`Štartujeme 5. júla na Red Bull Ringu!`}</span>
+                </div>
             )
-        }
+        //}
 
         return (
             <main className="contentsPage">

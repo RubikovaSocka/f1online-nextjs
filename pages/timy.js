@@ -1,6 +1,5 @@
-import React, { Component, useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
-import Fonts from '../utils/Fonts'
 
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import RPanel from "../components/RPanel.js";
@@ -12,10 +11,6 @@ import SectionTitle from '../components/SectionTitle/SectionTitle.js';
 import styles from './scss/timy.module.scss'
 
 export default function Teams({ teamsData }) {
-
-    useEffect(() => {
-        Fonts()
-    }, []);
 
     let dataBlock = teamsData.ConstructorTable.Constructors.map((constructor) => {
         return (

@@ -13,7 +13,7 @@ function RenderCalendarItem(props) {
             <span className={styles.event}>{props.event}</span>
             <div className={styles.inRow}>
                 <span className={styles.time}>{props.time}</span>
-                <span className={styles.tvStations}>vysiela {props.tv}</span>
+                <span className={styles.tvStations}>{props.tv}</span>
             </div>
         </div>
     )
@@ -53,25 +53,25 @@ class CalendarLarge extends Component {
                                     <RenderCalendarItem 
                                         event="1. tréning" 
                                         time={`${venueData.acf.fp1_time} - ${format(addMinutes(parse(venueData.acf.fp1_time, 'HH:mm', new Date()), 90), "HH:mm")}` }
-                                        tv={venueData.acf.fp1_tv}/>
+                                        tv={`vysiela${venueData.acf.fp1_tv ? (' ' + venueData.acf.fp1_tv) : ": doplníme..."}`}/>
                                     <RenderCalendarItem 
                                         event="2. tréning" 
                                         time={`${venueData.acf.fp2_time} - ${format(addMinutes(parse(venueData.acf.fp2_time, 'HH:mm', new Date()), 90), "HH:mm")}` }
-                                        tv={venueData.acf.fp2_tv}/>
+                                        tv={`vysiela${venueData.acf.fp2_tv ? (' ' + venueData.acf.fp2_tv) : ": doplníme..."}`}/>
                                     <RenderCalendarItem 
                                         event="3. tréning" 
                                         time={`${venueData.acf.fp3_time} - ${format(addMinutes(parse(venueData.acf.fp3_time, 'HH:mm', new Date()), 60), "HH:mm")}` }
-                                        tv={venueData.acf.fp3_tv}/>
+                                        tv={`vysiela${venueData.acf.fp3_tv ? (' ' + venueData.acf.fp3_tv) : ": doplníme..."}`}/>
                                 </div>
                                 <div className={styles.col2}>
                                     <RenderCalendarItem 
                                         event="Kvalifikácia" 
                                         time={`${venueData.acf.q_time} - ${format(addMinutes(parse(venueData.acf.q_time, 'HH:mm', new Date()), 60), "HH:mm")}` }
-                                        tv={venueData.acf.q_tv}/>
+                                        tv={`vysiela${venueData.acf.q_tv ? (' ' + venueData.acf.q_tv) : ": doplníme..."}`}/>
                                     <RenderCalendarItem 
                                         event="Preteky" 
                                         time={`${venueData.acf.r_time}` }
-                                        tv={venueData.acf.r_tv}/>
+                                        tv={`vysiela${venueData.acf.r_tv ? (' ' + venueData.acf.r_tv) : ": doplníme..."}`}/>
                                 </div>
                             </div>
                         </div>
