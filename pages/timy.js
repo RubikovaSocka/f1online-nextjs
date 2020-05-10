@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import axios from 'axios'
 import Fonts from '../utils/Fonts'
 
@@ -11,42 +11,38 @@ import SectionTitle from '../components/SectionTitle/SectionTitle.js';
 
 import styles from './scss/timy.module.scss'
 
-export default class Teams extends Component {
+export default function Teams({ teamsData }) {
 
-    componentDidMount() {
+    useEffect(() => {
         Fonts()
-    }
+    }, []);
 
-    render() {
-        const { teamsData } = this.props
-        let dataBlock = teamsData.ConstructorTable.Constructors.map((constructor) => {
-            return (
-                <TeamPreview constructor={constructor}/>
-            )
-        })
-        
+    let dataBlock = teamsData.ConstructorTable.Constructors.map((constructor) => {
         return (
-            <main className="contentsPage">
-                <div className="page">
-                    <div className="mainContent">
-                        <SectionTitle title="Tímy"/>
-                        <Divider height='20px' />
-                        {/*<img className={styles.image} src='' />*/}
-                        
-                        <div className={styles.container}>
-                            {dataBlock}
-                        </div>
-                    </div>
-                    <aside className="sideBar">
-                        <QuickNews />
-                        <RPanel />
-                        <CalResWidget />
-                    </aside>
-                </div>
-            </main>
-            
+            <TeamPreview constructor={constructor}/>
         )
-    }
+    })
+    
+    return (
+        <main className="contentsPage">
+            <div className="page">
+                <div className="mainContent">
+                    <SectionTitle title="Tímy"/>
+                    <Divider height='20px' />
+                    {/*<img className={styles.image} src='' />*/}
+                    
+                    <div className={styles.container}>
+                        {dataBlock}
+                    </div>
+                </div>
+                <aside className="sideBar">
+                    <QuickNews />
+                    <RPanel />
+                    <CalResWidget />
+                </aside>
+            </div>
+        </main>
+    )
 }
 
 export async function getServerSideProps(context) {

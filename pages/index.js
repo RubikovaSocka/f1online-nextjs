@@ -1,4 +1,4 @@
-import { Component, Fragment } from 'react'
+import { Component, Fragment, useEffect } from 'react'
 import Head from 'next/head'
 import axios from 'axios'
 import Layout, { siteTitle } from '../components/layout'
@@ -14,7 +14,6 @@ import CalResWidget from "../components/CalResWidget/CalResWidget.js";
 
 import Fonts from '../utils/Fonts'
 import CalendarLarge from "../components/CalendarLarge/CalendarLarge.js";
-import ResultsLarge from "../components/ResultsLarge/ResultsLarge.js";
 
 import SideSectionTitle from "../components/SideSectionTitle/SideSectionTitle.js";
 
@@ -23,54 +22,47 @@ import LoadingSpinner from "../components/LoadingSpinner.js";
 
 import Divider from '../components/Divider.js'
 
-export default class Home extends Component {
+export default function Home ({ postsData }) {
 
-    componentDidMount() {
+    useEffect(() => {
         Fonts()
-    }
+    }, []);
 
-    render() {
-        let titleSection, otherArticlesSection, largeWidgets
-        const { postsData } = this.props
-
-        titleSection = <TitleArea posts={postsData.slice(0, 5)}/>
-        
-        
-        otherArticlesSection = 
-            <Fragment>
-                <SectionTitle title="Ďalšie správy" />
-                <div className='basicButtonContainer'>
-                    <ArticlesPanel posts={postsData.slice(5, 11)}/>
-                    {<Link href="/clanky" as="/clanky"><a className="basicButton">Pozrieť všetky</a></Link>}
-                </div>
-            </Fragment>
-
-        largeWidgets = 
-            <div>
-                <Divider height="30px"/>
-                <SectionTitle title="Boxová tabuľa" />
-                <Divider height="15px"/>
-                <CalendarLarge/> 
-                <ResultsLargeWrapper />
+    let titleSection = <TitleArea posts={postsData.slice(0, 5)}/>   
+    let otherArticlesSection = 
+        <Fragment>
+            <SectionTitle title="Ďalšie správy" />
+            <div className='basicButtonContainer'>
+                <ArticlesPanel posts={postsData.slice(5, 11)}/>
+                {<Link href="/clanky" as="/clanky"><a className="basicButton">Pozrieť všetky</a></Link>}
             </div>
+        </Fragment>
+    let largeWidgets = 
+        <div>
+            <Divider height="30px"/>
+            <SectionTitle title="Boxová tabuľa" />
+            <Divider height="15px"/>
+            <CalendarLarge/> 
+            <ResultsLargeWrapper />
+        </div>
 
-        return (
-            <main className="contentsPage">
-                {titleSection}
-                <div className="page">
-                    <div className="mainContent">
-                        {otherArticlesSection}
-                        {largeWidgets}
-                    </div>
-                    <aside className="sideBar">
-                        <QuickNews />
-                        <Divider height="30px" />
-                        <CalResWidget />
-                    </aside>
+    return (
+        <main className="contentsPage">
+            {titleSection}
+            <div className="page">
+                <div className="mainContent">
+                    {otherArticlesSection}
+                    {largeWidgets}
                 </div>
-            </main>
-          )
-    }
+                <aside className="sideBar">
+                    <QuickNews />
+                    <Divider height="30px" />
+                    <CalResWidget />
+                </aside>
+            </div>
+        </main>
+        )
+    
 }
 
 export async function getServerSideProps(context) {
@@ -83,18 +75,7 @@ export async function getServerSideProps(context) {
         method: 'get',
         url: 'https://wpadmin.f1online.sk/wp-json/wp/v2/posts?sticky=false&per_page=11'
         //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-    })/*
-    const calendarResponse = await axios({
-        method: 'get',
-        url: 'https://wpadmin.f1online.sk/wp-json/wp/v2/calendar?per_page=1'
-        //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
     })
-    const resultsResponse = await axios({
-        method: 'get',
-        url: 'https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=1'
-        //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-    })
-    */
 
     return {
         props: {

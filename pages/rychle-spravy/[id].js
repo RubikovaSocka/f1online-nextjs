@@ -1,4 +1,4 @@
-import React, { Component,Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import formatDate from '../../utils/dateFormatter';
@@ -16,51 +16,48 @@ import Divider from '../../components/Divider';
 import EmbedContainer from 'react-oembed-container';
 import styles from './QuickNewsPage.module.scss'
 
-export default class QuickNewsPage extends Component {
+export default function QuickNewsPage ({ postsData }) {
 
-    componentDidMount() {
+    useEffect(() => {
         Fonts()
-    }
+    }, []);
 
-    render() {
-        const{ postsData } = this.props
-        let news = (
-            <Fragment>
-                <SectionTitle title='Rýchle správy' />
-                <Divider height='20px' />
-                <div className={styles.newsBlock}>
-                    {postsData.map(newsItem => (
-                        <div className={styles.newsItemContainer}>
-                            <span className={styles.date}>{formatDate(newsItem.date)}</span>
-                            <div className={styles.text} 
-                                dangerouslySetInnerHTML={{__html: newsItem.acf.obsah_rychlej_spravy}} />
-                            <EmbedContainer markup={newsItem.acf.embed_zo_socialnych_sieti}>
-                                <div className={styles.embed} 
-                                    dangerouslySetInnerHTML={{__html: newsItem.acf.embed_zo_socialnych_sieti}}></div>
-                            </EmbedContainer>
-                        </div>
-                    ))
-                    }
-                    <Link href="/rychle-spravy"><a className="basicButton" style={{marginTop: '10px', width:'200px'}}>Viac rýchlych správ</a></Link>
-                </div>
-            </Fragment>
-        )
-
-        return (
-            <main className="contentsPage">
-                <div className="page">
-                    <div className="mainContent">
-                        {/*<img className={styles.image} src='' />*/}
-                        {news}
+    let news = (
+        <Fragment>
+            <SectionTitle title='Rýchle správy' />
+            <Divider height='20px' />
+            <div className={styles.newsBlock}>
+                {postsData.map(newsItem => (
+                    <div className={styles.newsItemContainer}>
+                        <span className={styles.date}>{formatDate(newsItem.date)}</span>
+                        <div className={styles.text} 
+                            dangerouslySetInnerHTML={{__html: newsItem.acf.obsah_rychlej_spravy}} />
+                        <EmbedContainer markup={newsItem.acf.embed_zo_socialnych_sieti}>
+                            <div className={styles.embed} 
+                                dangerouslySetInnerHTML={{__html: newsItem.acf.embed_zo_socialnych_sieti}}></div>
+                        </EmbedContainer>
                     </div>
-                    <aside className="sideBar">
-                        <RPanel />
-                        <CalResWidget />
-                    </aside>
+                ))
+                }
+                <Link href="/rychle-spravy"><a className="basicButton" style={{marginTop: '10px', width:'200px'}}>Viac rýchlych správ</a></Link>
+            </div>
+        </Fragment>
+    )
+
+    return (
+        <main className="contentsPage">
+            <div className="page">
+                <div className="mainContent">
+                    {/*<img className={styles.image} src='' />*/}
+                    {news}
                 </div>
-            </main>
-        )
-    }
+                <aside className="sideBar">
+                    <RPanel />
+                    <CalResWidget />
+                </aside>
+            </div>
+        </main>
+    )
 }
 
 export async function getServerSideProps({ params }) {

@@ -1,3 +1,5 @@
+$rowsDivider: 1px solid #e0e0e0;
+
 .content{
     display: flex;
     flex-direction: column;
@@ -27,7 +29,7 @@
     margin: 0;
     padding: 6px 5px;
 
-    border-top: 1px solid #eceff2;
+    border-top: $rowsDivider;
     color: black;
 
     &.noBorder {
@@ -40,7 +42,8 @@
         height: 20px;
         color: #000;
         font-weight: 600;
-        background-color: #eceff2;
+        background-color: #f2f2f2;
+        border: none;
     }
     .position {
         padding-left: 5px;
