@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-//import { Link } from "gatsby"
+import Link from "next/link"
 import styles from './QuickNews.module.scss'
 import formatDate from '../../utils/dateFormatter';
 import SideSectionTitle from '../SideSectionTitle/SideSectionTitle';
-//import LinkAsButton from '../LinkAsButton/LinkAsButton';
+import LinkAsButton from '../LinkAsButton/LinkAsButton';
 import LoadingSpinner from '../LoadingSpinner';
 import { Fragment } from 'react';
 
@@ -15,9 +15,9 @@ function OneLineNews(props) {
             <div className={`${styles.messageContainer}`}>
                 <div>
                     <div className={styles.message} dangerouslySetInnerHTML={{__html: props.content}} />
-                    {/*
+                    {
                         props.embed.length > 0 ? <LinkAsButton className={`${styles.linkStyle} ${styles.clickable}`} target={`/rychle-spravy/${props.id}`} title={'Zobraziť'}/> : ''
-                    */}
+                    }
                 </div>
             </div>
         </div>
@@ -57,8 +57,7 @@ class QuickNews extends Component {
                         />
                     ))
                     }
-                    {/*<Link className="basicButton" style={{marginTop: '10px', width:'80%'}} to="/rychle-spravy">Viac rýchlych správ</Link>*/}
-                    Viac rýchlych správ
+                    <Link href="/rychle-spravy"><a className="basicButton" style={{marginTop: '10px', width:'80%'}}>Viac rýchlych správ</a></Link>
                 </Fragment>
             )
         } else {

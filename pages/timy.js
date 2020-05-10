@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Fonts from './Fonts'
+import Fonts from '../utils/Fonts'
 
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import RPanel from "../components/RPanel.js";
@@ -11,39 +11,20 @@ import SectionTitle from '../components/SectionTitle/SectionTitle.js';
 
 import styles from './scss/timy.module.scss'
 
-class Teams extends Component {
-
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            teamsData: {},
-            isLoaded: false
-        }
-    }
+export default class Teams extends Component {
 
     componentDidMount() {
         Fonts()
-        axios.get(`https://wpadmin.f1online.sk/wp-content/uploads/teams.json`)
-            //.then(res => console.log(res))
-            .then(res => {
-                this.setState({
-                    teamsData: res.data,
-                    isLoaded: true
-                })
-            })
-            .catch(err => console.log(err))
     }
 
     render() {
-        let dataBlock;
-            if(this.state.isLoaded) {
-                dataBlock = this.state.teamsData.ConstructorTable.Constructors.map((constructor) => {
-                    return (
-                        <TeamPreview constructor={constructor}/>
-                    )
-                })
-            }
+        const { teamsData } = this.props
+        let dataBlock = teamsData.ConstructorTable.Constructors.map((constructor) => {
+            return (
+                <TeamPreview constructor={constructor}/>
+            )
+        })
+        
         return (
             <main className="contentsPage">
                 <div className="page">
@@ -67,4 +48,17 @@ class Teams extends Component {
         )
     }
 }
-export default Teams
+
+export async function getServerSideProps(context) {
+    const response = await axios({
+        method: 'get',
+        url: 'https://wpadmin.f1online.sk/wp-content/uploads/teams.json'
+        //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
+    })
+
+    return {
+        props: {
+            teamsData: response.data
+        }
+    }
+}

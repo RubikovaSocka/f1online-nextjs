@@ -1,0 +1,28 @@
+.newsBlock {
+
+    .newsItemContainer {
+
+        font-family: 'HK Grotesk';
+        font-size: 15px;
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
+        margin: 0 0;
+
+        &:first-of-type {
+            border-top: none;
+        }
+        
+        padding: 10px;
+
+        .date {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .text {
+            line-height: 24px;    
+        
+        }
+        .embed {
+            width: 100%;
+        }
+    }
+}

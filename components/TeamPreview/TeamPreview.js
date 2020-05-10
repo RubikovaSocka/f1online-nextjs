@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './TeamPreview.module.scss'
 import DriverPreview from '../DriverPreview/DriverPreview';
-import { Link } from 'next/link'
+import Link from 'next/link'
 
 function getCName(team) {
     switch(team) {
@@ -46,32 +46,25 @@ export class TeamPreview extends Component {
 
         return (
             <div className={styles.container}>
-                {/*<Link
-                        to={`/timy/${constructor.slug}`} 
-                        className={`noOutline`} 
-                style={{marginBottom: '5px'}}>*/}
-                    <a><span className={styles.teamName}>{constructor.name}</span></a>
-                {/*</Link>
-                <Link
-                        to={`/timy/${constructor.slug}`} 
-                className={`noOutline ${styles.logoContainer}`}>*/}
-                    <a><img className={styles.teamLogo} alt={`Logo tímu ${constructor.name}`} src={constructor.img800} /></a>
-                {/*</Link>*/}
+                <Link href='timy/[id]' as={`/timy/${constructor.slug}`} >
+                    <a className={`noOutline`} style={{marginBottom: '5px'}}><span className={styles.teamName}>{constructor.name}</span></a>
+                </Link>
+                <Link href='timy/[id]' as={`/timy/${constructor.slug}`} >
+                    <a className={`noOutline ${styles.logoContainer}`} style={{marginBottom: '5px'}}><img className={styles.teamLogo} alt={`Logo tímu ${constructor.name}`} src={constructor.img800} /></a>
+                </Link>
                 <div className={styles.driverRow}>
                     {
                         constructor.Drivers.map(driver => {
                             return (
-                            /*<Link
-                                    to={{
-                                        pathname: `/piloti/${driver.driverId}`,
-                                        
-                                }} className={`noOutline ${styles.driverBoxLine}`} style={{borderColor: constructor.teamColor}}>*/ 
+                            <Link href='piloti/[id]' as={`/piloti/${driver.driverId}`}> 
+                                    <a className={`noOutline ${styles.driverBoxLine}`} style={{borderColor: constructor.teamColor}}>
                                     <div className={`${styles.driverBox}`}>
                                         <a className={`${styles.name} ${styles.slider} ${getCName(constructor.name)}`} 
                                             title={`${driver.givenName} ${driver.familyName}`}
                                             style={{borderColor: constructor.teamColor}} />
                                     </div>
-                            /*</Link>*/
+                                    </a>
+                            </Link>
                             )
                         })
                     }

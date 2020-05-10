@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Fonts from './Fonts'
+import Fonts from '../utils/Fonts'
 
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import RPanel from "../components/RPanel.js";
@@ -13,46 +13,25 @@ import LoadingSpinner from '../components/LoadingSpinner.js';
 
 import styles from './scss/piloti.module.scss'
 
-class Drivers extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            teamsData: {},
-            isLoaded: false
-        }
-    }
-
+export default class Drivers extends Component {
+    
     componentDidMount() {
         Fonts()
-        axios.get(`https://wpadmin.f1online.sk/wp-content/uploads/teams.json`)
-            //.then(res => console.log(res))
-            .then(res => {
-                this.setState({
-                    teamsData: res.data,
-                    isLoaded: true
-                })
-            })
-            .catch(err => console.log(err))
     }
 
     render() {
-        let dataBlock;
-        if(this.state.isLoaded) {
-            dataBlock = this.state.teamsData.ConstructorTable.Constructors.map((constructor) => {
-                return (
-                    constructor.Drivers.map(driver => {
-                        return (
-                            <DriverPreview driver={driver} 
-                                team={constructor.name} 
-                                teamColor={constructor.teamColor}/>
-                        )
-                    })
-                )
-            })
-        } else {
-            dataBlock = <LoadingSpinner />
-        }
+        const { teamsData } = this.props
+        let dataBlock  = teamsData.ConstructorTable.Constructors.map((constructor) => {
+            return (
+                constructor.Drivers.map(driver => {
+                    return (
+                        <DriverPreview driver={driver} 
+                            team={constructor.name} 
+                            teamColor={constructor.teamColor}/>
+                    )
+                })
+            )
+        })
 
         return (
             <main className="contentsPage">
@@ -74,4 +53,17 @@ class Drivers extends Component {
         )
     }
 }
-export default Drivers
+
+export async function getServerSideProps(context) {
+    const response = await axios({
+        method: 'get',
+        url: 'https://wpadmin.f1online.sk/wp-content/uploads/teams.json'
+        //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
+    })
+
+    return {
+        props: {
+            teamsData: response.data
+        }
+    }
+}

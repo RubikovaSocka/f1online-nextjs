@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-//import LinkAsButton from '../LinkAsButton/LinkAsButton';
+import LinkAsButton from '../LinkAsButton/LinkAsButton';
 
 import styles from './CalendarLarge.module.scss'
 import SideSectionTitle from '../SideSectionTitle/SideSectionTitle';
@@ -42,7 +42,7 @@ class CalendarLarge extends Component {
                 <div>
                     <SideSectionTitle title="Najbližšie preteky" />
                     <div className={styles.container}>
-                        <img className={styles.image} src="imgs/straya.png" />
+                        <img className={styles.image} src="./images/straya.png" />
                         <div className={styles.dataContainer}>
                             <div className={styles.venueTitleContainer}>
                                 <p className={styles.venueName}>VC {venueData.acf.venue_name}</p>
@@ -76,7 +76,7 @@ class CalendarLarge extends Component {
                             </div>
                         </div>
                         <div className={styles.button}>
-                            {/*<LinkAsButton target={'/f1online-dev/kalendar'} title={'Celý kalendár'}/>   */}
+                            <LinkAsButton target={'/kalendar'} title={'Celý kalendár'}/>
                         </div>
                         
                     </div>

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'next/link'
+import Link from 'next/link'
 import axios from 'axios'
-import Fonts from './Fonts'
+import Fonts from '../utils/Fonts'
 
 import RPanel from '../components/RPanel';
 import CalResWidget from '../components/CalResWidget/CalResWidget';
@@ -34,20 +34,6 @@ export class QuickNewsPage extends Component {
 
     render() {
         
-        /*new Embedo({
-            /*facebook: {
-                appId: '2583504588587008', // Enable facebook SDK
-                version: 'v2.10'
-    },
-                twitter: true,  // Enable twitter SDK
-                instagram: true,  // Enable instagram SDK
-                reddit: true,
-                youtube: true
-            });*/
-
-        //let elem = <div></div>;
-        //let my_embedo = embedo.load(elem, 'https://twitter.com/SoyMotor/status/1257739209810550785')
-
         let news;
         if(this.state.isLoaded) {
             news = (
@@ -67,7 +53,7 @@ export class QuickNewsPage extends Component {
                             </div>
                         ))
                         }
-                        {/*<Link className="basicButton" style={{marginTop: '10px', width:'200px'}} to="/rychle-spravy">Viac rýchlych správ</Link>*/}
+                        <Link href="/rychle-spravy"><a className="basicButton" style={{marginTop: '10px', width:'200px'}}>Viac rýchlych správ</a></Link>
                     </div>
                 </Fragment>
             )

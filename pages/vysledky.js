@@ -5,7 +5,7 @@ import QuickNews from "../components/QuickNews/QuickNews.js";
 import RPanel from "../components/RPanel.js";
 
 import SectionTitle from '../components/SectionTitle/SectionTitle.js';
-import Fonts from './Fonts'
+import Fonts from '../utils/Fonts'
 import styles from './scss/vysledky.module.scss'
 
 class Results extends Component {

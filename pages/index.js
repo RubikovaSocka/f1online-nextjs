@@ -12,10 +12,9 @@ import SectionTitle from "../components/SectionTitle/SectionTitle.js"
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import CalResWidget from "../components/CalResWidget/CalResWidget.js";
 
-import Fonts from './Fonts'
+import Fonts from '../utils/Fonts'
 import CalendarLarge from "../components/CalendarLarge/CalendarLarge.js";
 import ResultsLarge from "../components/ResultsLarge/ResultsLarge.js";
-
 
 import SideSectionTitle from "../components/SideSectionTitle/SideSectionTitle.js";
 
@@ -74,7 +73,7 @@ export default class Home extends Component {
     }
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(context) {
     const responseSticky = await axios({
         method: 'get',
         url: 'https://wpadmin.f1online.sk/wp-json/wp/v2/posts?sticky=true&per_page=3'
@@ -84,7 +83,18 @@ export async function getStaticProps() {
         method: 'get',
         url: 'https://wpadmin.f1online.sk/wp-json/wp/v2/posts?sticky=false&per_page=11'
         //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
+    })/*
+    const calendarResponse = await axios({
+        method: 'get',
+        url: 'https://wpadmin.f1online.sk/wp-json/wp/v2/calendar?per_page=1'
+        //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
     })
+    const resultsResponse = await axios({
+        method: 'get',
+        url: 'https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=1'
+        //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
+    })
+    */
 
     return {
         props: {
