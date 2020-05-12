@@ -16,7 +16,8 @@ function OneLineNews(props) {
                 <div>
                     <div className={styles.message} dangerouslySetInnerHTML={{__html: props.content}} />
                     {
-                        props.embed.length > 0 ? <LinkAsButton className={`${styles.linkStyle} ${styles.clickable}`} target={`/rychle-spravy/${props.id}`} title={'Zobraziť'}/> : ''
+                        //props.embed.length > 0 ? <LinkAsButton className={`${styles.linkStyle} ${styles.clickable}`} target={`/rychle-spravy/${props.id}`} title={'Zobraziť'}/> : ''
+                        <LinkAsButton className={`${styles.linkStyle} ${styles.clickable}`} target={`/rychle-spravy/${props.id}#anch`} title={'Zobraziť'}/>
                     }
                 </div>
             </div>
@@ -24,7 +25,7 @@ function OneLineNews(props) {
     )
 }
 
-class QuickNews extends Component {
+export default class QuickNews extends Component {
 
     state = {
         newsArray: [],
@@ -76,4 +77,17 @@ class QuickNews extends Component {
     }
 }
 
-export default QuickNews
+export async function getServerSideProps({ params }) {
+    console.log(params)
+    const response = await axios({
+        method: 'get',
+        url: `https://wpadmin.f1online.sk/wp-json/wp/v2/rychle_spravy?per_page=15`
+    })
+
+    return {
+        props: {
+            id: params.id,
+            postsData: response.data
+        }
+    }
+}

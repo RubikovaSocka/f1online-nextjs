@@ -1,7 +1,7 @@
 .container {
     width: 100%;
     margin-top: 10px;
-
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -20,7 +20,9 @@
     .container {
         width: 100%;
         margin-top: 20px;
-    
+        margin-bottom: initial;
+        height: initial;
+
         display: flex;
         flex-direction: row;
         justify-content: space-between;

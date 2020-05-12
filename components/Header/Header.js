@@ -1,9 +1,10 @@
 import React from "react"
+import Link from "next/link"
 
 import MyNavbar from "../Navbar/MyNavbar"
 import SocialMediaBasicPlugin from '../SocialMediaPlugin/SocialMediaPlugin'
 import SearchBar from '../SearchBar/SearchBar'
-import Link from "next/link"
+
 import styles from './Header.module.scss'
 
 class Header extends React.Component {
@@ -11,15 +12,18 @@ class Header extends React.Component {
     render() {
         return (
             <div className={styles.container}>
-                <div className={styles.whiteBack}>
-                    <div className={styles.headerPanel}>
-                        <SocialMediaBasicPlugin />
-                        <Link className="noOutline" href="/"><a><img className={styles.logo} alt="logo F1online.sk" src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg" /></a></Link>
-                        <SearchBar />
-                    </div>
+                <div className={styles.shadowHide}/>
+                <div className={styles.innerContainer}>
+                    <div className={styles.whiteBack}>
+                        <div className={styles.headerPanel}>
+                            <SocialMediaBasicPlugin />
+                            <Link href="/"><a><img className={styles.logo} alt="logo F1online.sk" src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg" /></a></Link>
+                            <SearchBar />
+                        </div>
+                    </div>   
+                    <MyNavbar/>
                 </div>
-                
-                <MyNavbar/>
+                <div className={styles.shadow}/>
             </div>
         )
     }

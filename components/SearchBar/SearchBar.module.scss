@@ -16,7 +16,30 @@
         display: none;
 
         &.show {
+            height: 30px;
+            width: 120px;
+            
+            font-family: 'HK Grotesk';
             display: inline-block;
+            border: solid 1px #c0c0c0; 
+            border-radius: 30px;
+            padding: 0 40px 0 15px;
+
+            font-size: 14px;
+            font-weight: 400;
+            color: #5e6b6e; 
+            background-color: white;
+        }
+
+        &.show + .buttonContent{
+            width: 16px;
+            height: 16px;            
+            margin-left: -30px;
+            
+            background-image: url('./magglass.png');
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: center;
         }
     }
     button{
@@ -37,6 +60,7 @@
         background-position: center;
     }
 }
+
 
 @media only screen and (min-width: 1366px) {
     .container {

@@ -14,11 +14,12 @@ import styles from './scss/piloti.module.scss'
 
 export default function Drivers({ teamsData }) {
     
-    let dataBlock  = teamsData.ConstructorTable.Constructors.map((constructor) => {
+    let dataBlock  = teamsData.ConstructorTable.Constructors.map((constructor, index) => {
         return (
-            constructor.Drivers.map(driver => {
+            constructor.Drivers.map((driver, index2) => {
                 return (
-                    <DriverPreview driver={driver} 
+                    <DriverPreview key={`${index}-${index2}`}
+                        driver={driver} 
                         team={constructor.name} 
                         teamColor={constructor.teamColor}/>
                 )

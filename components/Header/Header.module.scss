@@ -1,28 +1,22 @@
+$shadow-mobile: 0 0px 8px rgba(0, 0, 0, 0.25);
+$shadow-pc: 0 0px 8px rgba(0, 0, 0, 0.4);
+
 .container {
-    //width: calc(100%-30px);
-    //width: 100%;
-    padding: 0px 15px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
+    width: 100%;
+    //padding: 0px 15px;
+    padding-top: 0px;
     z-index: 14;
     background-color: white;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 13;
     
     position: sticky;
     top: 0;
-
-    .whiteBack {
-        width: 100%;
-        background-color: white;
-        z-index: 13;
-        
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+    margin-top: -2px;
     
     .headerPanel {
         padding-top: 3px;
@@ -34,6 +28,7 @@
         flex-direction: row-reverse;
         justify-content: flex-end;
         z-index: 13;
+
         a {
             align-self: center;
             margin: auto;
@@ -43,11 +38,46 @@
         }
     }
 }
+.whiteBack {
+    width: calc(100% - 30px);
+    background-color: white;
+    z-index: 13;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.shadowHide {
+    width: 100%;
+    height: 8px;
+    background-color: white;
+    z-index: 11;
+}
+.innerContainer {
+    height: 61px;
+    width: calc(100% - 40px);
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 20px;
+
+   box-shadow: $shadow-mobile;
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+}
 
 @media only screen and (min-width: 1366px) {
+    .innerContainer {
+        box-shadow: $shadow-pc;
+    }
     .container {
         width: 100%;
         padding: 0;
+        height: 101px;
 
         display: flex;
         flex-direction: column;
@@ -59,6 +89,7 @@
 
         position: sticky;
         top: 0;
+        box-shadow: none;
 
         .headerPanel {
             width: 1030px;
@@ -72,5 +103,26 @@
         .logo {
             height: 42px;
         }
+    }
+    .shadow{
+        display: none;
+    }
+    .innerContainer {
+        display: initial;
+        width: 100%;
+        padding: 0;
+        box-shadow: none;
+    }
+    .whiteBack {
+        width: 100%;
+        position: relative;
+        z-index: 16;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .shadowHide {
+        display: none;
     }
 }

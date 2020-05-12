@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import NProgress from 'nprogress'
@@ -9,7 +9,6 @@ import CalResWidget from '../../components/CalResWidget/CalResWidget.js';
 import SectionTitle from '../../components/SectionTitle/SectionTitle.js';
 import Divider from '../../components/Divider.js';
 import LoadingSpinner from '../../components/LoadingSpinner.js'
-
 import styles from './TeamPage.module.scss'
 import ArchivArticles from '../../components/ArchivArticles/ArchivArticles.js';
 

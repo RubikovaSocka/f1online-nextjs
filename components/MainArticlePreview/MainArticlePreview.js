@@ -2,25 +2,20 @@ import React, { Component } from 'react'
 import Link from "next/link"
 import styles from './MainArticlePreview.module.scss'
 
-class MainArticlePreview extends Component {
+export default function MainArticlePreview({post}){
     
-    render() {
-        const { id, slug } = this.props.post
-        console.log('INCOMING')
-        console.log(this.props.post)
-        return (
-            <div className={`${styles.container} zoomImageContainer`}>
-                <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}><a>    
-                    <img alt={`${this.props.post.better_featured_image.title ? this.props.post.better_featured_image.title: ''}`} src={this.props.post.better_featured_image.media_details.sizes.medium_large.source_url}/>
-                    <div className={`${styles.titleContainer} blackBotGradient`}>
-                        <a className={styles.title}>
-                            {this.props.post.title.rendered}
-                        </a>
+    return (
+        <div className={`${styles.container} zoomImageContainer`}>
+            <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${post.id}/${post.slug}`}>
+            <a>    
+                <img alt={`${post.better_featured_image.title ? post.better_featured_image.title: ''}`} src={post.better_featured_image.media_details.sizes.medium_large.source_url}/>
+                <div className={`${styles.titleContainer} blackBotGradient`}>
+                    <div className={styles.title}>
+                        {post.title.rendered}
                     </div>
-                </a></Link>
-            </div>
-        )
-    }
+                </div>
+            </a>
+            </Link>
+        </div>
+    )   
 }
-
-export default MainArticlePreview

@@ -9,17 +9,21 @@ export default class ArticlePreview extends Component {
         return (
             <div className={styles.container}>
                 <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
-                    <a><img alt={`${this.props.post.better_featured_image.title ? this.props.post.better_featured_image.title: ''}`} src={this.props.post.better_featured_image.media_details.sizes.medium.source_url}/></a>
+                    <a>
+                        <div className={styles.imgContainer}>
+                        <img alt={`${this.props.post.better_featured_image.title ? this.props.post.better_featured_image.title: ''}`} 
+                            src={this.props.post.better_featured_image.media_details.sizes.medium.source_url}
+                            onError={this.addDefaultImgSource}/>
+                        </div>
+                    </a>    
                 </Link>
                 <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
-                    <div className={`${styles.titleContainer}`}>
-                        <a>
-                            <h3 className={styles.title}>{this.props.post.title.rendered}</h3>
-                        </a>
+                    <a className={`${styles.titleContainer}`}>
+                        <h3 className={styles.title}>{this.props.post.title.rendered}</h3>
                         <span className={styles.date}>
                             {formatDate(this.props.post.date)}
                         </span>
-                    </div>
+                    </a>
                 </Link>
             </div>
         )

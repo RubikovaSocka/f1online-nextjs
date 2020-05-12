@@ -1,7 +1,7 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import axios from 'axios'
 import EmbedContainer from 'react-oembed-container'
-
+import ReactGA from 'react-ga'
 import Head from 'next/head'
 import formatDate from '../../../utils/dateFormatter.js';
 
@@ -13,13 +13,15 @@ import styles from './Post.module.scss'
 
 export default function Post({ postData }) {
 
+    
+
     let post = (
         <Fragment>
             <div className={styles.title}>
                 <h1>{postData.title.rendered}</h1>
             </div>
             <div className={styles.imageContainer}>
-                <img alt={`${postData.better_featured_image.title}`} src={postData.better_featured_image.media_details.sizes.large.source_url} />
+                <img alt={`${postData.better_featured_image.title}`} src={postData.better_featured_image.source_url} />
                 <span>zdroj: {postData.better_featured_image.caption}</span>
             </div>
             <div className={styles.authorContainer}>

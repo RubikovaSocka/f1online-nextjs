@@ -11,8 +11,8 @@ class TitleArea extends Component {
             //show for mobile version
             return (
                 <div className={styles.container}>
-                    {this.props.posts.map(article => (
-                        <div>
+                    {this.props.posts.map((article, index) => (
+                        <div key={index}>
                             <TitleArticlePreview post={article}/>
                         </div>
                     ))}
@@ -30,10 +30,10 @@ class TitleArea extends Component {
                         <TitleArticlePreview post={this.props.posts[1]}/>
                     </div>
                     <div className={styles.art02}>
-                        <TitleArticlePreview post={this.props.posts[2]}/>
+                        <TitleArticlePreview post={this.props.posts[3]}/>
                     </div>
                     <div className={styles.art03}>
-                        <TitleArticlePreview post={this.props.posts[3]}/>
+                        <TitleArticlePreview post={this.props.posts[2]}/>
                     </div>
                     <div className={styles.art04}>
                         <TitleArticlePreview post={this.props.posts[4]}/>

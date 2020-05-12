@@ -69,3 +69,27 @@ $rowsDivider: 1px solid #e0e0e0;
         width: 110px;
     }
 }
+
+@media only screen and (min-width: 400px) {
+    .resultsRow {
+        .driver {
+            padding-left: 10px;
+            width: 190px;
+        }
+    }
+}
+
+@media only screen and (min-width: 1366px) {
+    .resultsRow {
+
+        .driver {
+            width: 190px;
+        }
+    }
+}
+
+@media only screen and (min-width: 1366px) {
+    .driver {
+        width: 150px;
+    }
+}

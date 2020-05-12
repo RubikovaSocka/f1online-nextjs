@@ -108,6 +108,28 @@ $table-circle-color: #4a4a4a;
 
 }
 
+.portraitContainer {
+    width: 40%;
+    margin: 0 5%;
+    font-family: 'HK Grotesk';
+    cursor: pointer;
+
+    span, a{
+        margin: 0px;
+        padding: 0;
+        display: block;
+        font-size: 14px;
+        text-align: center;
+        color: black;
+        font-weight: 600;
+    }
+}
+.portrait{
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
 @media only screen and (min-width: 1366px) {
 
     .logo {
@@ -166,30 +188,32 @@ $table-circle-color: #4a4a4a;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
+
+    .portraitContainer {
+        width: 28%;
+        margin: 0 5%;
+        font-family: 'HK Grotesk';
+        cursor: pointer;
+    
+        span, a{
+            margin: 0px;
+            padding: 0;
+            display: block;
+            font-size: 14px;
+            text-align: center;
+            color: black;
+            font-weight: 600;
+        }
+    }
+    .portrait{
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
     
 }
 
-.portraitContainer {
-    width: 28%;
-    margin: 0 5%;
-    font-family: 'HK Grotesk';
-    cursor: pointer;
 
-    span, a{
-        margin: 0px;
-        padding: 0;
-        display: block;
-        font-size: 14px;
-        text-align: center;
-        color: black;
-        font-weight: 600;
-    }
-}
-.portrait{
-    width: 100%;
-    height: auto;
-    margin: auto;
-}
 
 
 

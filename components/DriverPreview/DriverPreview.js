@@ -40,10 +40,10 @@ export class DriverPreview extends Component {
                     <div className={`${styles.driverBoxLine}`} style={{borderColor: teamColor}}>
                         <div className={`${styles.driverBox}`}>
                         
-                            <a className={`${styles.name} ${styles.slider} ${getCName(team)}`} 
+                            <div className={`${styles.name} ${styles.slider} ${getCName(team)}`} 
                                 title={`${driver.givenName} ${driver.familyName}`}
                                 style={{borderColor: teamColor}} />
-                            <a className={`${styles.team} ${styles.slider} ${getCName(team)}`} 
+                            <div className={`${styles.team} ${styles.slider} ${getCName(team)}`} 
                                 title={`${team}`}
                                 style={{borderColor: teamColor}} />
                                         
