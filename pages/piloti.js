@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-
+import Head from 'next/head'
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import RPanel from "../components/RPanel.js";
 import CalResWidget from '../components/CalResWidget/CalResWidget.js';
