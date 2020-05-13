@@ -1,6 +1,6 @@
 import React, { Component, Fragment, useMountEffect, useEffect, useRef } from 'react'
 import axios from 'axios'
-import Link from 'next/link'
+import Head from 'next/head'
 import formatDate from '../../utils/dateFormatter';
 
 import QuickNews from '../../components/QuickNews/QuickNews';
@@ -54,6 +54,15 @@ export default class QuickNewsPage extends Component {
         const { items, id } = this.state
         
         return (
+            <>
+            <Head>
+                <title>Rýchle správy | F1online.sk</title>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={`Rýchle správy | F1online.sk`} />
+                <meta property="og:description" content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`} />
+                <meta property="og:url" content={`https://f1online.sk/rychle-spravy`} />
+                <meta property="og:image" content={`https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png`} />
+            </Head>
             <main className="contentsPage">
                 <div className="page">
                     <div className="mainContent">
@@ -92,17 +101,15 @@ export default class QuickNewsPage extends Component {
                      </InfiniteScroll>
                     </div>
                     <aside className="sideBar">
+                        <Divider height="50px" />
                         <RPanel />
                         <CalResWidget />
                     </aside>
                 </div>
             </main>
-            
-            
+            </>
         )
     }
-
-    
 }
 
 export async function getServerSideProps({ params }) {

@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import ImageGallery from '../../components/react-image-gallery/src/ImageGallery';
-
+import Head from 'next/head'
 
 import QuickNews from "../../components/QuickNews/QuickNews.js";
 import RPanel from "../../components/RPanel.js";
@@ -152,6 +152,15 @@ export default class TeamPage extends Component {
         )
 
         return (
+            <>
+            <Head>
+                <title>{`${teamData.name} | F1online.sk`}</title>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={`${teamData.name} | F1online.sk`} />
+                <meta property="og:description" content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`} />
+                <meta property="og:url" content={`https://wpadmin.f1online.sk/wp-content/uploads/logo-${teamData.slug}.jpg`} />
+                <meta property="og:image" content={`${teamData.img800}`} />
+            </Head>
             <main className="contentsPage">
                 <div className="page">
                     <div className="mainContent">
@@ -190,12 +199,16 @@ export default class TeamPage extends Component {
                         </div>
                     </div>
                     <aside className="sideBar">
+                        <Divider height='50px' />
                         <QuickNews />
+                        <Divider height='15px' />
                         <RPanel />
+                        <Divider height='15px' />
                         <CalResWidget />
                     </aside>
                 </div>
             </main>
+            </>
         )
     }
 }

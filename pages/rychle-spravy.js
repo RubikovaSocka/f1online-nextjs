@@ -59,6 +59,15 @@ export class QuickNewsPage extends Component {
         }
 
         return (
+            <>
+            <Head>
+                <title>Rýchle správy | F1online.sk</title>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={`Rýchle správy | F1online.sk`} />
+                <meta property="og:description" content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`} />
+                <meta property="og:url" content={`https://f1online.sk/rychle-spravy`} />
+                <meta property="og:image" content={`https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png`} />
+            </Head>
             <main className="contentsPage">
                 <div className="page">
                     <div className="mainContent">
@@ -66,11 +75,13 @@ export class QuickNewsPage extends Component {
                         {news}
                     </div>
                     <aside className="sideBar">
+                        <Divider height="50px" />
                         <RPanel />
                         <CalResWidget />
                     </aside>
                 </div>
             </main>
+            </>
         )
     }
 }

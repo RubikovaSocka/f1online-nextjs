@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-
+import Head from 'next/head'
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import RPanel from "../components/RPanel.js";
 import SectionTitle from '../components/SectionTitle/SectionTitle.js';
-
+import Divider from '../components/Divider.js'
 import styles from './scss/vysledky.module.scss'
 
 class Results extends Component {
@@ -40,6 +40,15 @@ class Results extends Component {
         //}
 
         return (
+            <>
+            <Head>
+                <title>Výsledky | F1online.sk</title>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={`Výsledky | F1online.sk`} />
+                <meta property="og:description" content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`} />
+                <meta property="og:url" content={`https://f1online.sk/vysledky`} />
+                <meta property="og:image" content={`https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png`} />
+            </Head>
             <main className="contentsPage">
                 <div className="page">
                     <div className="mainContent">
@@ -47,11 +56,13 @@ class Results extends Component {
                         {contentData}
                     </div>
                     <aside className="sideBar">
+                        <Divider height="50px" />
                         <QuickNews />
                         <RPanel />
                     </aside>
                 </div>
             </main>
+            </>
         )
     }
 }

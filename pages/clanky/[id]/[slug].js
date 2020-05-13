@@ -14,7 +14,7 @@ import styles from './Post.module.scss'
 export default function Post({ postData }) {
 
     let post = (
-        <Fragment>
+        <>
             <div className={styles.title}>
                 <h1>{postData.title.rendered}</h1>
             </div>
@@ -30,16 +30,18 @@ export default function Post({ postData }) {
             <EmbedContainer markup={postData.content.rendered}>
                 <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: postData.content.rendered}} />
             </EmbedContainer>
-        </Fragment>
+        </>
     )
 
+    const regex = /(<([^>]+)>)/ig;
+
     return (
-        <Fragment>
+        <>
             <Head>
                 <title>{postData.title.rendered} | F1online.sk</title>
                 <meta property="og:type" content="article" />
                 <meta property="og:title" content={`${postData.title.rendered} | F1online.sk`} />
-                <meta property="og:description" content={`${postData.excerpt.rendered}`} />
+                <meta property="og:description" content={`${postData.excerpt.rendered.replace(regex, '')}`} />
                 <meta property="og:url" content={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`} />
                 <meta property="og:image" content={`${postData.better_featured_image.source_url}`} />
             </Head>
@@ -55,7 +57,7 @@ export default function Post({ postData }) {
                     </aside>
                 </div>
             </main>
-        </Fragment>
+        </>
     )
 }
 

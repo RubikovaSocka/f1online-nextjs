@@ -4,7 +4,6 @@ import Router from 'next/router';
 import ReactGA from 'react-ga'
 import Header from '../components/Header/Header'
 import Footer from "../components/Footer/Footer";
-import Fonts from '../utils/Fonts'
 import Ads from '../components/Ads/HeaderRePanel'
 import CookieBanner from 'react-cookie-banner';
 
@@ -12,7 +11,6 @@ import '../components/react-image-gallery/styles/scss/image-gallery.scss';
 import './index.css'
 import NProgress from '../components/nprogress'
 import '../components/nprogress/nprogress.css';
-import { Z_FIXED } from 'zlib';
 
 import cstyles from './scss/cookiestyle.module.scss'
 
@@ -68,14 +66,13 @@ export default function App({ Component, pageProps }) {
     useEffect(() => {
         const trackingId = "UA-166048655-1";
         ReactGA.initialize(trackingId);
-        Fonts()
     }, []);
 
     return (
         <>
             <Head>
-                <link rel="shortcut icon" href="./public/favicon.ico" />
-                {/*<meta property="og:image" content={`${postData.better_featured_image.source_url}`} />*/}
+                <link rel="shortcut icon" href="/favicon.ico" />
+                <meta property="og:image" content={`https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png`} />
             </Head>
             <div className={cstyles.cookieContainer}>
                 <CookieBanner

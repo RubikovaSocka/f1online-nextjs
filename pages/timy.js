@@ -22,12 +22,12 @@ export default function Teams({ teamsData }) {
     return (
         <>
             <Head>
-                <title>F1online.sk</title>
+                <title>Tímy | F1online.sk</title>
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content={`F1online.sk`} />
+                <meta property="og:title" content={`Tímy | F1online.sk`} />
                 <meta property="og:description" content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`} />
                 <meta property="og:url" content={`https://f1online.sk/timy`} />
-                {/*<meta property="og:image" content={`${postData.better_featured_image.source_url}`} />*/}
+                <meta property="og:image" content={`https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png`} />
             </Head>
         <main className="contentsPage">
             <div className="page">
@@ -41,10 +41,11 @@ export default function Teams({ teamsData }) {
                     </div>
                 </div>
                 <aside className="sideBar">
-                    <Divider height='15px' />
+                    <Divider height='50px' />
                     <QuickNews />
                     <Divider height='15px' />
                     <RPanel />
+                    <Divider height='15px' />
                     <CalResWidget />
                 </aside>
             </div>

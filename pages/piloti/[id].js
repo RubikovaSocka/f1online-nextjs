@@ -6,7 +6,7 @@ import CalResWidget from '../../components/CalResWidget/CalResWidget.js';
 import SectionTitle from '../../components/SectionTitle/SectionTitle.js';
 import Divider from '../../components/Divider.js';
 import LoadingSpinner from '../../components/LoadingSpinner.js'
-
+import Head from 'next/head'
 import styles from './DriverPage.module.scss'
 import ArchivArticles from '../../components/ArchivArticles/ArchivArticles.js';
 
@@ -97,6 +97,15 @@ export default class DriverPage extends Component {
         
 
         return (
+            <>
+            <Head>
+                <title>{`${driverData.givenName} ${driverData.familyName} | F1online.sk`}</title>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={`${driverData.givenName} ${driverData.familyName} | F1online.sk`} />
+                <meta property="og:description" content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`} />
+                <meta property="og:url" content={`https://f1online.sk/piloti/${driverData.slug}`} />
+                <meta property="og:image" content={`${driverData.img800}`} />
+            </Head>
             <main className="contentsPage">
                 <div className="page">
                     <div className="mainContent">
@@ -140,13 +149,16 @@ export default class DriverPage extends Component {
                         </div>
                     </div>
                     <aside className="sideBar">
+                        <Divider height='50px' />
                         <QuickNews />
+                        <Divider height='15px' />
                         <RPanel />
+                        <Divider height='15px' />
                         <CalResWidget />
                     </aside>
                 </div>
             </main>
-        
+            </>
         )
     }
 
