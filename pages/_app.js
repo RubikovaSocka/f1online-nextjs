@@ -74,7 +74,7 @@ export default function App({ Component, pageProps }) {
     return (
         <>
             <Head>
-                <link rel="shortcut icon" href="./favicon.ico" />
+                <link rel="shortcut icon" href="./public/favicon.png" />
                 {/*<meta property="og:image" content={`${postData.better_featured_image.source_url}`} />*/}
             </Head>
             <div className={cstyles.cookieContainer}>
