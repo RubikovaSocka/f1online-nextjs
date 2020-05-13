@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
-
+import Head from 'next/head'
 import RPanel from '../components/RPanel';
 import CalResWidget from '../components/CalResWidget/CalResWidget';
 import formatDate from '../utils/dateFormatter';
