@@ -23,14 +23,17 @@ function DriverDataItem(props) {
 class ResultsLarge extends Component {
 
     render() {
+
+
+
         if(this.props.renderID === 'gp') {
             console.log(this.props.data)
             return (
                 <div>
-                    <SideSectionTitle title={`Výsledky: VC ${this.props.venueName}`} />
+                    <SideSectionTitle title={`Výsledky poslednej VC`} />
                     <div className={styles.container}>
                         {
-                            this.props.data.RaceTable.Races[0].Results.slice(0, 5).map((positionData, index) => (
+                            /*this.props.data.RaceTable.Races[0].Results.slice(0, 5).map((positionData, index) => (
                                 <DriverDataItem 
                                     key={index}
                                     renderID={this.props.renderID}
@@ -42,24 +45,27 @@ class ResultsLarge extends Component {
                                             `${positionData.Time.time.replace('.', ',')}${positionData.position > 1 ? 's' : ''}` :
                                             positionData.status.replace("Laps", "kolá").replace("Lap", "kolo").replace("Retired", "Nedokončil")
                                 }/>
-                            ))
+                            ))*/
+                            <div className={styles.temporaryPanel}>
+                                <img alt="logo" src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg"></img>
+                                <span>Štartujeme 5. júla na Red Bull Ringu!</span>
+                            </div>
                         }
                         <Divider height="10px" />
                         <LinkAsButton 
-                            target='/f1online-dev/vysledky'
+                            target='/vysledky'
                             title='Kompletné výsledky pretekov'/>
                     </div>  
                 </div>
-                
             )
         }
         else if (this.props.renderID === 'champ') {
             return (
                 <div>
-                    <SideSectionTitle title={`Šampionát po VC ${this.props.venueName}`} />
+                    <SideSectionTitle title={`Šampionát po poslednej VC`} />
                     <div className={styles.container}>
                         {
-                            this.props.data.StandingsTable.StandingsLists[0].DriverStandings.slice(0, 5).map((positionData, index) => (
+                            /*this.props.data.StandingsTable.StandingsLists[0].DriverStandings.slice(0, 5).map((positionData, index) => (
                                 <DriverDataItem 
                                     key={index}
                                     renderID={this.props.renderID}
@@ -68,11 +74,15 @@ class ResultsLarge extends Component {
                                     team={positionData.Constructors[positionData.Constructors.length - 1].name}
                                     time={`${positionData.points}b`}
                                 />
-                            ))
+                            ))*/
+                            <div className={styles.temporaryPanel}>
+                                <img alt="logo" src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg"></img>
+                                <span>Štartujeme 5. júla na Red Bull Ringu!</span>
+                            </div>
                         }
                         <Divider height="10px" />
                         <LinkAsButton 
-                            target='/f1online-dev/vysledky'
+                            target='/vysledky'
                             title='Priebežné poradie šampionátu'/>
                     </div>  
                 </div>

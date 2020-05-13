@@ -8,23 +8,7 @@ $rowsDivider: 1px solid #e0e0e0;
     font-family: 'HK Grotesk';
     font-size: 13px;
 }
-.venueBlock {
-    margin-left: 5px;
-    padding: 5px;
 
-    .venueTitle {
-        margin: 0;
-
-        font-size: 16px;
-        font-weight: 600;
-    }
-    .venueDate {
-        margin: 0;
-
-        font-size: 14px;
-        color: black;
-    }
-}
 .calendarRow {
     margin: 0;
     padding: 6px 5px;
@@ -54,72 +38,98 @@ $rowsDivider: 1px solid #e0e0e0;
     }
     .time {
         display: inline-block;
-        width: 103px;
+        width: 100px;
     }
     .tv {
         display: inline-block;
-        width: 110px;
+        width: 80px;
+    }
+}
+
+.venueBlock {
+    margin-left: 5px;
+    padding: 5px;
+
+    .venueTitle {
+        margin: 0;
+
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .venueDate {
+        margin: 0;
+
+        font-size: 14px;
+        color: black;
+    }
+}
+
+@media only screen and (min-width: 360px) {
+    .calendarRow {
+        .event {
+            width: 90px;
+        }
+        .time {
+            width: 110px;
+        }
+        .tv {
+            width: 100px;
+        }
+    }
+}
+
+@media only screen and (min-width: 410px) {
+    .calendarRow {
+        .event {
+            width: 110px;
+        }
+        .time {
+            width: 120px;
+        }
+        .tv {
+            width: 110px;
+        }
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .calendarRow {
+        .event {
+            width: 100px;
+        }
+        .time {
+            width: 130px;
+        }
+        .tv {
+            width: 110px;
+        }
+    }
+}
+@media only screen and (min-width: 760px) {
+    
+}
+@media only screen and (min-width: 1024px) {
+    .calendarRow {
+        .event {
+            width: 80px;
+        }
+        .time {
+            width: 100px;
+        }
+        .tv {
+            width: 80px;
+        }
     }
 }
 @media only screen and (min-width: 1366px) {
-    .content{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-
-        font-family: 'HK Grotesk';
-        font-size: 13px;
-    }
-    .venueBlock {
-        margin-left: 5px;
-        padding: 5px;
-
-        .venueTitle {
-            margin: 0;
-
-            font-size: 16px;
-            font-weight: 600;
-        }
-        .venueDate {
-            margin: 0;
-
-            font-size: 14px;
-            color: black;
-        }
-    }
     .calendarRow {
-        margin: 0;
-        padding: 6px 5px;
-
-        border-top: 1px solid $rowsDivider;
-        color: black;
-
-        &.noBorder {
-            margin-top: 0;
-            border: none;
-        }
-        
-        &.header {
-            height: 20px;
-            color: #000;
-            font-weight: 600;
-            background-color: #f2f2f2;
-            border: none;
-        }
         .event {
-            padding-left: 5px;
             width: 80px;
-
-            display: inline-block;
-            font-weight: 600;
-            color: #000;
         }
         .time {
-            display: inline-block;
             width: 103px;
         }
         .tv {
-            display: inline-block;
             width: 110px;
         }
     }

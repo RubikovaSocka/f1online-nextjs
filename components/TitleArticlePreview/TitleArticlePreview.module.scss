@@ -15,7 +15,7 @@
     }
 
     .titleContainer {
-        height: 70px;
+        height: 72px;
         bottom: 0px;
         margin: 0;
         width: 100%;
@@ -40,9 +40,9 @@
     }
 }
 
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: 1024px) {
     .container {
-        height: 150px;
+        height: 141px;
         position: relative;
         overflow: hidden;
         text-decoration: none;
@@ -57,7 +57,7 @@
         }
 
         .titleContainer {
-            height: 70px;
+            height: 72px;
             bottom: 0px;
             margin: 0;
             width: 100%;
@@ -70,7 +70,8 @@
             .title {
                 padding: 10px 10px;
                 margin: 0;
-                overflow: auto;
+                overflow: hidden;
+                //scroll-behavior: none;
 
                 font-size: 14px;
                 font-family: 'Cabin', 'Source Sans Pro';
@@ -80,5 +81,10 @@
 
             }
         }
+    }
+}
+@media only screen and (min-width: 1280px) {
+    .container {
+        height: 150px;
     }
 }

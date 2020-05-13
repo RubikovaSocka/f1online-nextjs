@@ -39,7 +39,9 @@ export default function Drivers({ teamsData }) {
                 </div>
                 <aside className="sideBar">
                     <QuickNews />
+                    <Divider height="15px" />
                     <RPanel />
+                    <Divider height="15px" />
                     <CalResWidget />
                 </aside>
             </div>

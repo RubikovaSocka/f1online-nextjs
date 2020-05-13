@@ -3,6 +3,8 @@ import RPanel from "../components/RPanel.js";
 import SectionTitle from '../components/SectionTitle/SectionTitle.js';
 import ArchivArticles from '../components/ArchivArticles/ArchivArticles.js';
 import QuickNews from '../components/QuickNews/QuickNews.js';
+import CalResWidget from "../components/CalResWidget/CalResWidget.js";
+
 
 export default function Archiv() {
     return (
@@ -14,7 +16,8 @@ export default function Archiv() {
                     </div>
                 <aside className="sideBar">
                     <QuickNews />
-                    <RPanel />
+                    {/*<RPanel />*/}
+                    <CalResWidget />
                 </aside>
             </div>
         </main>

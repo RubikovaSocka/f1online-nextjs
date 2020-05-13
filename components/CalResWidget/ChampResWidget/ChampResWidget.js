@@ -6,7 +6,7 @@ function ResultsHeaderRow(props) {
     return (
         <div className={`${styles.resultsRow} ${styles.header}`}>
             <span className={`${styles.position} ${styles.header}`}>Poz.</span>
-            <span className={styles.driver}>Jazdec</span>
+            <span className={styles.driver}>Pilot</span>
             <span className={styles.time}>Body</span>
         </div>
     )
@@ -36,10 +36,10 @@ class ChampResWidget extends Component {
         return (
             <div className={styles.content}>
                 <div className={styles.venueBlock}>
-                    <p className={styles.venueTitle}>Poradie po VC {this.props.venueName}</p>
+                    <p className={styles.venueTitle}>Poradie po VC Rakúska</p>
                 </div>
                 <ResultsHeaderRow />
-                {
+                {/*
                     this.props.data.StandingsTable.StandingsLists[0].DriverStandings.slice(0, 10).map(positionData => (
                         <ResultsRow 
                             pos={positionData.position} 
@@ -47,6 +47,11 @@ class ChampResWidget extends Component {
                             points={positionData.points}
                         />
                     ))
+                */
+                    <div className={styles.temporaryPanel}>
+                        <img alt="logo" src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg"></img>
+                        <span>Štartujeme 5. júla na Red Bull Ringu!</span>
+                    </div>
                 }
             </div>
         )

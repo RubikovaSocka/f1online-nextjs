@@ -7,7 +7,7 @@ import SectionTitle from '../components/SectionTitle/SectionTitle.js';
 
 import styles from './scss/vysledky.module.scss'
 
-class Results extends Component {
+export default class Calendar extends Component {
 
     constructor(props) {
         super(props)
@@ -34,7 +34,7 @@ class Results extends Component {
             contentData = (
                 <div className={styles.container}>
                     <img className={styles.annLogo} alt="logo f1online.sk" src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg"/> 
-                    <span className={styles.announcement}>{`Štartujeme 5. júla na Red Bull Ringu!`}</span>
+                    <span className={styles.announcement}>{`Zverejníme po aktualizácii kalendára na rok 2020`}</span>
                 </div>
             )
         //}
@@ -43,7 +43,7 @@ class Results extends Component {
             <main className="contentsPage">
                 <div className="page">
                     <div className="mainContent">
-                        <SectionTitle title='Výsledky' />
+                        <SectionTitle title='Kalendár' />
                         {contentData}
                     </div>
                     <aside className="sideBar">
@@ -55,4 +55,3 @@ class Results extends Component {
         )
     }
 }
-export default Results

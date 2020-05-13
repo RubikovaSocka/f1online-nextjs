@@ -37,7 +37,44 @@
     }
 }
 
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: 1024px) {
+    .container {
+        position: relative;
+        overflow: hidden;
+        height: 302px;
+        z-index: 0;
+        margin: 0;
+
+        img {
+            min-width: 100%;
+            min-height: 100%;
+            margin: auto;
+        }
+
+        .titleContainer {
+            height: 56px;
+            width: calc(100% - 30px);
+            padding: 5px 15px; 
+            position: relative;
+            bottom: 0px;
+            margin-top: -66px;
+            overflow: hidden;
+
+            .title {
+                margin: 0;
+                
+                font-size: 20px;
+                font-family: 'Cabin', 'Source Sans Pro';
+
+                text-align: start;
+                color: white;
+                text-shadow: 2px 2px 2px black;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1280px) {
     .container {
         position: relative;
         overflow: hidden;

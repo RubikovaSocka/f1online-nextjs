@@ -1,0 +1,20 @@
+.cookieContainer {
+    position: fixed;
+    bottom: 0;
+    ///height: 75px; 
+    width: 100%;
+    z-index: 200;
+    font-size: 12px;
+}
+
+@media only screen and (min-width: 1366px) {
+    
+    .cookieContainer {
+        position: fixed;
+        bottom: 0;
+        height: 45px; 
+        z-index: 200;
+        //width: 60%;
+    }
+
+}

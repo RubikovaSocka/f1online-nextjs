@@ -18,7 +18,7 @@ export class ResultsLargeWrapper extends Component {
     }
 
     componentDidMount() {
-        axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=1`)
+        /*axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=1`)
         .then(res => {
             const venueName = res.data[0].acf.venue_name
             const venue = axios.get(res.data[0].acf.results_json)
@@ -37,24 +37,11 @@ export class ResultsLargeWrapper extends Component {
                 })
             })
         })
-        .catch(err => console.log(err))/*
-        axios.get(`https://wpadmin.f1online.sk/wp-content/plugins/json-transient/get.php?type=results&per_page=1&page=1`)
-        .then(res => {
-            const venueName = res.data.posts_array[0].acf.venue_name
-            const venue = axios.get(res.data.posts_array[0].acf.results_json)
-            const champ = axios.get(res.data.posts_array[0].acf.cd_results_json)
-            
-            Promise.all([venue, champ]).then(res => {
-                
-                this.setState({
-                    lastVenueName: venueName,
-                    lastVenueData: res[0].data.MRData,
-                    lastVenueConstructorData: res[1].data.MRData,
-                    isLoaded: true
-                })
-            })
+        .catch(err => console.log(err))
+        */this.setState({
+            isLoaded: true
         })
-        .catch(err => console.log(err))*/
+        
     }
 
     render() {

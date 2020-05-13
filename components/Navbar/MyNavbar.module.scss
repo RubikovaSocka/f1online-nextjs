@@ -38,7 +38,7 @@
             a{
                 /*padding: 7px 19px;*/
                 height: 30px;
-                margin: 5px 25px;
+                margin: 8px 25px;
             
                 display: initial;
             
@@ -46,7 +46,7 @@
                 text-decoration: none;
                 text-transform: uppercase;
                 font-family: 'HK Grotesk','Source Sans Pro';
-                font-weight: 700;
+                font-weight: 600;
                 font-size: 16px;
                 color: white;
             
@@ -136,7 +136,8 @@
     background-size: 100%;
     background-position: center;
 }
-@media only screen and (min-width: 1366px) {
+
+@media only screen and (min-width: 1024px) {
     .button {
         display: none;
     }
@@ -160,7 +161,7 @@
         opacity: 1;
         background: none;
         background-color: rgb(225, 6, 0);
-        box-shadow: 0 0px 8px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0px 8px rgba(0, 0, 0, 0.4);
     
         a{
             /*padding: 7px 19px;*/

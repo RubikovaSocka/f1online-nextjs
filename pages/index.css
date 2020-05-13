@@ -79,9 +79,34 @@ html, body{
 .sideBar {
     padding: 15px;
     margin-top: 0px;
+    margin-bottom: 30px;
 }
 
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: 1024px) {
+    .page{
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: auto 635px 45px 292px auto; 
+    }
+    .mainContent {
+        padding: 0;
+        grid-column: 2 / span 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .sideBar {
+        padding: 0;
+        margin-top: 0px;
+        margin-bottom: 20px;
+        grid-column: 4 / span 1;
+    }
+    .contentsPage {
+        margin-bottom: 100px;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
     .page{
         margin-top: 30px;
         display: grid;
@@ -97,7 +122,11 @@ html, body{
     .sideBar {
         padding: 0;
         margin-top: 0px;
+        margin-bottom: 5px;
         grid-column: 4 / span 1;
+    }
+    .contentsPage {
+        margin-bottom: 100px;
     }
 }
 

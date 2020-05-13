@@ -17,33 +17,42 @@ import LoadingSpinner from "../components/LoadingSpinner.js";
 import Divider from '../components/Divider.js'
 import Media from 'react-media';
 
+import styles from './scss/main.module.scss'
+
 export default function Home ({ postsData }) {
-    const [titleSection, setTitleSection] = useState(<TitleArea posts={postsData.slice(0, 3)}/>);
+    const [titleSection, setTitleSection] = useState(
+        <TitleArea posts={postsData.slice(0, 3)}/>
+    );
+    const [articlesSection, setArticlesSection] = useState(
+        <ArticlesPanel posts={postsData.slice(3, 9)}/>
+    );
+
+    useEffect(() => {
+        if(window.innerWidth > 1023 ) {
+            setTitleSection(<TitleArea posts={postsData.slice(0, 5)}/>)
+            setArticlesSection(<ArticlesPanel posts={postsData.slice(5, 11)}/>)
+        }
+    }, []);
     
     let otherArticlesSection = 
         <>
         <SectionTitle title="Ďalšie správy" />
+        <Divider height="10px"/>
         <div className='basicButtonContainer'>
-            <Media query={{ maxWidth: 1023 }}>
-            { matches => matches ? (
-                    <ArticlesPanel posts={postsData.slice(3, 9)}/>
-                ) : (
-                    <ArticlesPanel posts={postsData.slice(5, 11)}/>
-                )
-            }
-            </Media>
-            {<Link href="/clanky" as="/clanky"><a className="basicButton">Pozrieť všetky</a></Link>}
+            { articlesSection }
+            {<Link href="/clanky" as="/clanky"><a className="basicButton" style={{marginTop: '25px'}}>Pozrieť všetky</a></Link>}
         </div>
         </>
 
     let largeWidgets = 
         <>
-        <Divider height="30px"/>
+        
         <Media query={{ maxWidth: 1023 }}>
         { matches => matches ? (
             ''
             ) : (
                 <>
+                    <Divider height="30px"/>
                     <SectionTitle title="Boxová tabuľa" />
                     <Divider height="15px"/>
                     <CalendarLarge/> 
@@ -53,12 +62,6 @@ export default function Home ({ postsData }) {
         }
         </Media>
         </>
-
-    useEffect(() => {
-        if(window.innerWidth > 1024 ) {
-            setTitleSection(<TitleArea posts={postsData.slice(0, 5)}/>)
-        }
-    }, []);
 
     return (
         <>
@@ -77,15 +80,17 @@ export default function Home ({ postsData }) {
                     {otherArticlesSection}
                     {largeWidgets}
                 </div>
-                <aside className="sideBar">
+                <aside className={`sideBar ${styles.stickySideBar}`}>
                     <QuickNews />
-                    <Divider height="30px" />
-                    <CalResWidget />
+                    {/*<Divider height="30px" />*/}
+                    {/*<CalResWidget />*/}
+
                 </aside>
             </div>
         </main>
         </>
     )
+    
 }
 
 export async function getServerSideProps(context) {

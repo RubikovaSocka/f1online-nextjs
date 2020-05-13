@@ -14,10 +14,12 @@ import NProgress from '../components/nprogress'
 import '../components/nprogress/nprogress.css';
 import { Z_FIXED } from 'zlib';
 
+import cstyles from './scss/cookiestyle.module.scss'
+
 const styles = {
     banner: {
       fontFamily: 'HK Grotesk',
-      height: 57,
+      height: '100%',
       background: 'rgba(25, 25, 25, 0.8) url(/cookie.png) 20px 50% no-repeat',
       backgroundSize: '30px 30px',
       backgroundColor: '',
@@ -26,24 +28,25 @@ const styles = {
     },
     button: {
       border: '1px solid white',
-      borderRadius: 4,
+      borderRadius: 0,
       width: '90px',
       height: 32,
-      lineHeight: '32px',
+      lineHeight: '30px',
       background: 'transparent',
       color: 'white',
       fontSize: '14px',
       fontWeight: 600,
       opacity: 1,
       right: 20,
-      marginTop: -18
+      marginTop: -18,
+      fontFamily: 'HK Grotesk'
     },
     message: {
       display: 'block',
-      padding: '9px 67px',
+      padding: '13px 25px',
       lineHeight: 1.3,
       textAlign: 'left',
-      marginRight: 244,
+      marginRight: 100,
       color: 'white',
       fontWeight: '600'
     },
@@ -73,15 +76,15 @@ export default function App({ Component, pageProps }) {
 
     return (
         <Fragment>
-            <div style={{position: 'fixed', bottom: '0', height: '0', zIndex: '200'}}>
+            <div className={cstyles.cookieContainer}>
                 <CookieBanner
                     styles={styles}
-                    message="Na zlepšenie našich služieb používame súbory cookies. Prehliadaním webu súhlasíte s ich využitím."
+                    message="Na zlepšenie našich služieb používame súbory cookies. Viac v časti Zásady ochrany údajov."
                     //onAccept={() => {}}
                     buttonMessage='Súhlasím'
-                    dismissOnScroll={true}
+                    dismissOnScroll={false}
                     dismissOnClick={true}
-                    cookie="user-has-accepted-cookies" />
+                    cookie="user-cookies" />
             </div>
             <Ads />
             <Head>

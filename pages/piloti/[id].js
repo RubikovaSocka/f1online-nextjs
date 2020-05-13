@@ -22,20 +22,27 @@ export default class DriverPage extends Component {
     }
 
     componentDidMount() {
-        axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/media?search=${this.props.driverData.givenName}+${this.props.driverData.familyName}&per_page=18`)
+        console.log(`https://wpadmin.f1online.sk/wp-json/wp/v2/media?search=${this.props.driverData.givenName}+${this.props.driverData.familyName}&per_page=15`)
+        axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/media?search=${this.props.driverData.givenName}+${this.props.driverData.familyName}&per_page=15`)
             .then(res => {
                 let imagesLoaded = res.data.map(item => {
-                    return {
-                        original: item.media_details.sizes.large ? item.media_details.sizes.large.source_url : item.source_url,
-                        thumbnail: item.media_details.sizes.medium ? item.media_details.sizes.medium.source_url : item.source_url,
-                    }
+                    if(Object.keys(item.media_details).length > 0) {
+                        return {
+                            original: item.media_details.sizes.large ? item.media_details.sizes.large.source_url : item.source_url,
+                            thumbnail: item.media_details.sizes.medium ? item.media_details.sizes.medium.source_url : item.source_url,
+                        }
+                    } 
+                    return null
                 })
-                console.log(imagesLoaded)
+                var filtered = imagesLoaded.filter(function (el) {
+                    return el != null;
+                  });
                 this.setState({
-                    images: imagesLoaded
+                    images: filtered,
                 })
             })
             .catch(err => console.log(err))
+
     }
 
     render() {
@@ -85,10 +92,10 @@ export default class DriverPage extends Component {
                 </div>
             </Fragment>
         )
-
         let driverPosts = (
-            <ArchivArticles asArchive={false} perpage='3' />
+            <ArchivArticles tagSlug={driverData.slug} asArchive={false} perpage='3' />
         )
+        
 
         return (
             <main className="contentsPage">
@@ -105,19 +112,25 @@ export default class DriverPage extends Component {
                                 <h2 className={styles.title}>Najnovšie články</h2>
                             </div>
                             {driverPosts}
-                            <div className={styles.titleContainer}>
-                                <h2 className={styles.title}>Biografia</h2>
-                            </div>
-                            <article className={styles.biography}>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a sem sit amet nibh fermentum condimentum id id justo. Morbi placerat leo sit amet elementum ultricies. Pellentesque mattis massa vitae augue tincidunt bibendum. Etiam consequat tincidunt egestas. Fusce eleifend sit amet ex fringilla euismod.</p>
-                                <p>Sed faucibus volutpat gravida. Duis eget tortor sed libero suscipit elementum nec ut dui. Quisque vitae enim ut ante gravida egestas. Phasellus risus ipsum, suscipit congue lectus eget, eleifend venenatis dolor. Sed nec tellus eget justo rhoncus congue.</p>
-                                <p>Mauris porttitor tristique purus, vel rhoncus turpis placerat vel. Nulla quam arcu, porta eget neque in, fermentum iaculis ipsum. Quisque venenatis velit et quam posuere, in sagittis risus rhoncus.</p>
-                                <p>Mauris posuere justo eget nunc bibendum mollis. Duis nec tellus vel felis blandit iaculis. Proin imperdiet vitae purus nec bibendum. Vestibulum id eros sed urna mattis tempor. Donec elementum tincidunt mauris, nec viverra ipsum ullamcorper in.</p>
-                                <p>Morbi id purus urna. Sed finibus eget lacus sed blandit. Aenean et volutpat orci, sagittis ornare mi. Aenean eget finibus magna, eu feugiat sapien. Etiam aliquam, urna eu consequat semper, elit sem fringilla nulla, eget varius metus augue a massa.</p>
-                            </article>
-                                
                             
+                            {
+                                driverData.about ? (
+                                    <>
+                                        <Divider height='15px' />
+                                        <div className={styles.titleContainer}>
+                                            <h2 className={styles.title}>Profil</h2>
+                                        </div>
+                                        <article className={styles.biography}>
+                                            <div dangerouslySetInnerHTML={{ __html: driverData.about}} />
+                                        </article>
+                                    </>
+                                ) : (
+                                    ""
+                                )
+                            }
+
                             <div className={styles.titleContainer}>
+                                <Divider height='25px' />
                                 <h2 className={styles.title}>Najnovšie v galérii</h2>
                                 <Divider height='15px' />
                                 <div style={{width: '100%'}}>
@@ -158,7 +171,7 @@ export async function getServerSideProps({ params }) {
     return {
         props: {
             driverData: responseDriverData.data,
-            postsData: responseDriverPosts.data
+            postsData: responseDriverPosts.data,
         }
     }
 }

@@ -5,8 +5,8 @@ function ResultsHeaderRow(props) {
     return (
         <div className={`${styles.resultsRow} ${styles.header}`}>
             <span className={`${styles.position} ${styles.header}`}>Poz.</span>
-            <span className={styles.driver}>Jazdec</span>
-            <span className={styles.time}>Strata</span>
+            <span className={styles.driver}>Pilot</span>
+            <span className={styles.time}>Čas/strata</span>
         </div>
     )
 }
@@ -28,10 +28,10 @@ class LastVenueWidget extends Component {
         return (
             <div className={styles.content}>
                 <div className={styles.venueBlock}>
-                    <p className={styles.venueTitle}>VC {venueName}</p>
+                    <p className={styles.venueTitle}>VC Rakúska</p>
                 </div>
                 <ResultsHeaderRow />
-                {
+                {/*
                     data.RaceTable.Races[0].Results.slice(0, 10).map(positionData => (
                         <ResultsRow 
                             pos={positionData.position} 
@@ -41,7 +41,11 @@ class LastVenueWidget extends Component {
                                     `${positionData.Time.time.replace('.', ',')}${positionData.position > 1 ? 's' : ''}` :
                                     positionData.status.replace("Laps", "kolá").replace("Lap", "kolo").replace("Retired", "Nedokončil")
                             }/>
-                    ))
+                    ))*/
+                    <div className={styles.temporaryPanel}>
+                        <img alt="logo" src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg"></img>
+                        <span>Štartujeme 5. júla na Red Bull Ringu!</span>
+                    </div>
                 }
         
             </div>

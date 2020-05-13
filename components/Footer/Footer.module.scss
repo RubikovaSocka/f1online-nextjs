@@ -1,24 +1,68 @@
-.container{
-    margin-top: 20px;
 
-    width: 100%;
+.container{
+    margin-top: 50px;
+
+    width: calc(100% - 20px);
     position:absolute;
     bottom:0;
+    padding: 17px 10px 13px 10px;
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    align-items: center;
 
-    height: 30px;
-    background-color: #cdcdd0;
-}
-.copyright {
-    display: block;
-    text-align: center;
-    margin-bottom: 5px;
+    height: 65px;
+    background-color: #202020;
+    color: #f0f0f0;
+
     font-family: 'HK Grotesk';
     font-weight: 400;
-    color: #1a1a1a;
-    
     font-size: 13px;
+    span {
+        padding: 0 10px;
+        color: #f0f0f0;
+    }
+}
+.firstRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+
+    
+    a {
+        color: #f0f0f0;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+@media only screen and (min-width: 375px) {
+    .container {
+        width: calc(100% - 20px);
+        align-items: center;
+        span {
+            padding: 0 10px;
+            color: #f0f0f0;
+        }
+    }
+    .firstRow {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    
+        
+        a {
+            color: #f0f0f0;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }

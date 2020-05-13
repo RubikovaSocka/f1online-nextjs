@@ -31,7 +31,9 @@ export default function Teams({ teamsData }) {
                     </div>
                 </div>
                 <aside className="sideBar">
+                    <Divider height='15px' />
                     <QuickNews />
+                    <Divider height='15px' />
                     <RPanel />
                     <CalResWidget />
                 </aside>

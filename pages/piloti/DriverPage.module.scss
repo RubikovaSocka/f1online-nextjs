@@ -95,27 +95,18 @@ $table-circle-color: #4a4a4a;
     line-height: 24px;
 }
 
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: 1024px) {
 
     .driverPortrait {
-        width: 44%;
-        width: 260px;
-        height: 260px;
+        width: 240px;
+        height: 240px;
     }
     .tableContainer {
         margin-top: 0;
         margin-left: 6%;
         justify-content: flex-end;
-        width: calc(94% - 260px);
+        width: calc(94% - 240px);
     
-        .table {
-            background-color: $table-back-color;
-            padding: 25px;
-            color: white;
-            box-shadow: $table-shadow;
-            position: relative;
-            overflow: hidden;
-        }
     }
 
     .numberContainer {
@@ -154,4 +145,15 @@ $table-circle-color: #4a4a4a;
         box-sizing: border-box;
     }
     
+}
+
+@media only screen and (min-width: 1366px) {
+
+    .driverPortrait {
+        width: 260px;
+        height: 260px;
+    }
+    .tableContainer {
+        width: calc(94% - 260px);
+    }   
 }
