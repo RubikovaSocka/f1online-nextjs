@@ -48,7 +48,6 @@ export default class TeamPage extends Component {
     }
 
     componentDidMount() {
-        console.log(`https://wpadmin.f1online.sk/wp-json/wp/v2/media?search=${this.props.teamData.name}&per_page=14`)
         axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/media?search=${this.props.teamData.name}&per_page=14`)
             .then(res => {
                 let imagesLoaded = res.data.map(item => {
@@ -58,8 +57,6 @@ export default class TeamPage extends Component {
                             thumbnail: item.media_details.sizes.medium ? item.media_details.sizes.medium.source_url : item.source_url,
                         }
                     } 
-                    console.log("zly item")
-                    console.log(item)
                     return null
                 })
                 var filtered = imagesLoaded.filter(function (el) {
@@ -68,10 +65,8 @@ export default class TeamPage extends Component {
                 this.setState({
                     images: filtered,
                 })
-                console.log("vsetky obraztoky")
-                console.log(this.state.images)
             })
-            .catch(err => console.log(err))
+            //.catch(err => console.log(err))
     }
 
     render() {

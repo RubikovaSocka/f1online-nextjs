@@ -19,6 +19,15 @@ export default function Teams({ teamsData }) {
     })
     
     return (
+        <>
+            <Head>
+                <title>F1online.sk</title>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={`F1online.sk`} />
+                <meta property="og:description" content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`} />
+                <meta property="og:url" content={`https://f1online.sk/timy`} />
+                {/*<meta property="og:image" content={`${postData.better_featured_image.source_url}`} />*/}
+            </Head>
         <main className="contentsPage">
             <div className="page">
                 <div className="mainContent">
@@ -39,6 +48,7 @@ export default function Teams({ teamsData }) {
                 </aside>
             </div>
         </main>
+        </>
     )
 }
 

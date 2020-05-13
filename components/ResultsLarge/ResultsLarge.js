@@ -23,11 +23,7 @@ function DriverDataItem(props) {
 class ResultsLarge extends Component {
 
     render() {
-
-
-
         if(this.props.renderID === 'gp') {
-            console.log(this.props.data)
             return (
                 <div>
                     <SideSectionTitle title={`Výsledky poslednej VC`} />

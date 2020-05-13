@@ -13,8 +13,6 @@ import styles from './Post.module.scss'
 
 export default function Post({ postData }) {
 
-    
-
     let post = (
         <Fragment>
             <div className={styles.title}>

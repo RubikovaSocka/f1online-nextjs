@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Component } from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -19,77 +19,100 @@ import Media from 'react-media';
 
 import styles from './scss/main.module.scss'
 
-export default function Home ({ postsData }) {
-    const [titleSection, setTitleSection] = useState(
-        <TitleArea posts={postsData.slice(0, 3)}/>
-    );
-    const [articlesSection, setArticlesSection] = useState(
-        <ArticlesPanel posts={postsData.slice(3, 9)}/>
-    );
-
-    useEffect(() => {
-        if(window.innerWidth > 1023 ) {
-            setTitleSection(<TitleArea posts={postsData.slice(0, 5)}/>)
-            setArticlesSection(<ArticlesPanel posts={postsData.slice(5, 11)}/>)
-        }
-    }, []);
+export default class Home extends Component {
     
-    let otherArticlesSection = 
-        <>
-        <SectionTitle title="Ďalšie správy" />
-        <Divider height="10px"/>
-        <div className='basicButtonContainer'>
-            { articlesSection }
-            {<Link href="/clanky" as="/clanky"><a className="basicButton" style={{marginTop: '25px'}}>Pozrieť všetky</a></Link>}
-        </div>
-        </>
+    constructor(props) {
+        super(props)
 
-    let largeWidgets = 
-        <>
-        
-        <Media query={{ maxWidth: 1023 }}>
-        { matches => matches ? (
-            ''
-            ) : (
-                <>
-                    <Divider height="30px"/>
-                    <SectionTitle title="Boxová tabuľa" />
-                    <Divider height="15px"/>
-                    <CalendarLarge/> 
-                    <ResultsLargeWrapper />
-                </>
-            )
+        this.state = {
+            width: 1280
         }
-        </Media>
-        </>
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+    }
 
-    return (
-        <>
-        <Head>
-            <title>F1online.sk</title>
-            <meta property="og:type" content="website" />
-            <meta property="og:title" content={`F1online.sk`} />
-            <meta property="og:description" content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`} />
-            <meta property="og:url" content={`https://f1online.sk/`} />
-            {/*<meta property="og:image" content={`${postData.better_featured_image.source_url}`} />*/}
-        </Head>
-        <main className="contentsPage">
-            {titleSection}
-            <div className="page">
-                <div className="mainContent">
-                    {otherArticlesSection}
-                    {largeWidgets}
-                </div>
-                <aside className={`sideBar ${styles.stickySideBar}`}>
-                    <QuickNews />
-                    {/*<Divider height="30px" />*/}
-                    {/*<CalResWidget />*/}
+    componentDidMount() {
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
+    }
 
-                </aside>
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+    
+    updateWindowDimensions() {
+        this.setState({
+            width: window.innerWidth, 
+        });
+    }
+    
+    render() {
+        let titleSection, articlesSection
+        const { postsData } = this.props
+
+        if(this.state.width < 1024) {
+            titleSection = <TitleArea posts={postsData.slice(0, 3)}/>
+            articlesSection = <ArticlesPanel posts={postsData.slice(3, 9)}/>
+        } else {
+            titleSection = <TitleArea posts={postsData.slice(0, 5)}/>
+            articlesSection = <ArticlesPanel posts={postsData.slice(5, 11)}/>
+        }
+    
+        let otherArticlesSection = 
+            <>
+            <SectionTitle title="Ďalšie správy" />
+            <Divider height="10px"/>
+            <div className='basicButtonContainer'>
+                { articlesSection }
+                {<Link href="/clanky" as="/clanky"><a className="basicButton" style={{marginTop: '25px'}}>Pozrieť všetky</a></Link>}
             </div>
-        </main>
-        </>
-    )
+            </>
+
+        let largeWidgets = 
+            <>
+            <Media query={{ maxWidth: 1023 }}>
+            { matches => matches ? (
+                ''
+                ) : (
+                    <>
+                        <Divider height="30px"/>
+                        <SectionTitle title="Boxová tabuľa" />
+                        <Divider height="15px"/>
+                        <CalendarLarge/> 
+                        <ResultsLargeWrapper />
+                    </>
+                )
+            }
+            </Media>
+            </>
+
+        return (
+            <>
+            <Head>
+                <title>F1online.sk</title>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={`F1online.sk`} />
+                <meta property="og:description" content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`} />
+                <meta property="og:url" content={`https://f1online.sk/`} />
+                {/*<meta property="og:image" content={`${postData.better_featured_image.source_url}`} />*/}
+            </Head>
+            <main className="contentsPage">
+                {titleSection}
+                <div className="page">
+                    <div className="mainContent">
+                        {otherArticlesSection}
+                        {largeWidgets}
+                    </div>
+                    <aside className={`sideBar ${styles.stickySideBar}`}>
+                        <QuickNews />
+                        {/*<Divider height="30px" />*/}
+                        {/*<CalResWidget />*/}
+
+                    </aside>
+                </div>
+            </main>
+            </>
+        )
+    }
     
 }
 

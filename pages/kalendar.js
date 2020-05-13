@@ -5,7 +5,7 @@ import QuickNews from "../components/QuickNews/QuickNews.js";
 import RPanel from "../components/RPanel.js";
 import SectionTitle from '../components/SectionTitle/SectionTitle.js';
 
-import styles from './scss/vysledky.module.scss'
+import styles from './scss/kalendar.module.scss'
 
 export default class Calendar extends Component {
 

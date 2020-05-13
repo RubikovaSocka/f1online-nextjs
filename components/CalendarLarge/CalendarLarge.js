@@ -42,7 +42,7 @@ class CalendarLarge extends Component {
                 <div>
                     <SideSectionTitle title="Najbližšie preteky" />
                     <div className={styles.container}>
-                        <img className={styles.image} src="./images/straya.png" />
+                        <img className={styles.image} alt="VC Rakúska" src="https://wpadmin.f1online.sk/wp-content/uploads/2020/04/bresized003-768x480.jpg" />
                         <div className={styles.dataContainer}>
                             <div className={styles.venueTitleContainer}>
                                 <p className={styles.venueName}>VC {venueData.acf.venue_name}</p>

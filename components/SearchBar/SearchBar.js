@@ -28,11 +28,9 @@ export default class SearchBar extends Component {
             width: window.innerWidth, 
             height: window.innerHeight 
         });
-        console.log(this.state)
     }
 
     openSearchBar() {
-        console.log("Open Search Bar clicked " + this.state.width)
         this.setState((prev) => {
             return {
                 showFormClicked: !prev.showFormClicked
@@ -43,8 +41,8 @@ export default class SearchBar extends Component {
     render() {
         let button;
         
-        if(this.state.width < 1366) {   //mobile
-            button = <div onClick={this.openSearchBar} className={styles.buttonContent}></div>
+        if(this.state.width < 1024) {   //mobile
+            button = <div /*onClick={this.openSearchBar}*/ className={styles.buttonContent}></div>
         } else {    //desktop
             button = <button type="submit"><div className={styles.buttonContent}></div></button>
         }

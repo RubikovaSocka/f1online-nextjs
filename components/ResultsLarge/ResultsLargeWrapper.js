@@ -46,9 +46,6 @@ export class ResultsLargeWrapper extends Component {
 
     render() {
         if(this.state.isLoaded) {
-            console.log('this...')
-                console.log(this.state.lastVenueData)
-                console.log(this.state.lastVenueConstructorData)
             return (
                 <div style={styles}>
                     <ResultsLarge 

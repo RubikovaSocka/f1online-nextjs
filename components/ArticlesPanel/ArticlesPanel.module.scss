@@ -52,29 +52,6 @@
         flex-wrap: wrap;
     
         .item {
-            width: 200px;
-            margin-bottom: 20px;
-        }
-    
-        i {
-            width: 200px;
-        }
-    }
-}
-
-@media only screen and (min-width: 1366px) {
-    .container {
-        width: 100%;
-        margin-top: 20px;
-        margin-bottom: initial;
-        height: initial;
-
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    
-        .item {
             width: 211px;
             margin-bottom: 20px;
         }

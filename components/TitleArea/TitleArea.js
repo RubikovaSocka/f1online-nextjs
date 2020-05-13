@@ -20,7 +20,6 @@ class TitleArea extends Component {
             )
         } else if (this.props.posts.length === 5) {
            //show desktop version
-           console.log(this.props.posts)
             return (
                 <div className={styles.container}>
                     <div className={styles.art00}>

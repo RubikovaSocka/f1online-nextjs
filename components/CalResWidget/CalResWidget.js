@@ -35,16 +35,14 @@ class CalResWidget extends Component {
                     calendarIsLoaded: true
                 })
             })
-            .catch(err => console.log(err))
+            //.catch(err => console.log(err))
 
         axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=1`)
             .then(res => {
                 const venueName = res.data[0].acf.venue_name
                 const venue = axios.get(res.data[0].acf.results_json)
                 const champ = axios.get(res.data[0].acf.cd_results_json)
-                console.log(`bla: ${res.data[0].acf.results_json}`)
-                console.log(`bla2: ${res.data[0].acf.cd_results_json}`)
-                Promise.all([venue, champ]).then(res => {
+               Promise.all([venue, champ]).then(res => {
                     
                     this.setState({
                         lastVenueName: venueName,

@@ -27,11 +27,10 @@ export class QuickNewsPage extends Component {
                 newsArray: res.data,
                 isLoaded: true
             }))
-            .catch(err => console.log(err))
+            //.catch(err => console.log(err))
     }
 
     render() {
-        
         let news;
         if(this.state.isLoaded) {
             news = (

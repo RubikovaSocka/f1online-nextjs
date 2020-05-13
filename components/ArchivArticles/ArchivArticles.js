@@ -22,26 +22,19 @@ export class ArchivArticles extends Component {
     loadPostsFromServer() {
         
         if(this.props.tagSlug) {
-            console.log('zistujem tag pre slug:')
-            console.log(this.props.tagSlug)
             axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/tags?slug=${this.props.tagSlug}&per_page=1`)
             .then(res => {
-                console.log("dostal som tag id:")
-                console.log(res.data[0].id)
-                console.log("volam")
-                console.log(`https://wpadmin.f1online.sk/wp-json/wp/v2/posts?tag=${res.data[0].id}&per_page=${this.props.perpage}&offset=${this.props.perpage*(this.state.offset-1)}`)
                 axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/posts?tags=${res.data[0].id}&per_page=${this.props.perpage}&offset=${this.props.perpage*(this.state.offset-1)}`)
                     .then(res => {
                         this.setState({
                             posts: res.data,
                             isLoaded: true
                         })
-                        console.log("fetched")
-                        console.log(res)
+                        
                     })
-                    .catch(err => console.log(err))
+                    //.catch(err => console.log(err))
             })
-            .catch(err => console.log(err))
+            //.catch(err => console.log(err))
         } else {
             axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/posts?per_page=${this.props.perpage}&offset=${this.props.perpage*(this.state.offset-1)}`)
                 .then(res => this.setState({
@@ -49,9 +42,8 @@ export class ArchivArticles extends Component {
                     pageCount: Math.ceil(res.headers['x-wp-total'] / this.props.perpage),
                     isLoaded: true
                 }))
-                .catch(err => console.log(err))
+                //.catch(err => console.log(err))
         }
-        
     }
 
     componentDidMount() {
@@ -62,14 +54,12 @@ export class ArchivArticles extends Component {
         window.scrollTo(0,0)
         let selected = data.selected;
         let offset = selected + 1;
-        console.log(selected + 1)
         this.setState({ offset: offset }, () => {
             this.loadPostsFromServer();
         });
     };
 
     render() {
-        console.log(this.state.posts)
         let articles, paginateSection;
 
         if(this.state.isLoaded) {
@@ -107,10 +97,9 @@ export class ArchivArticles extends Component {
         return (
             <div className={styles.container}>
                 {articles}
-                {/*<div className={styles.paginateContainer}>*/}
-                { paginateSection }
-                    
-                {/*</div>*/}
+                <div className={styles.paginateContainer}>
+                    { paginateSection }  
+                </div>
             </div>
         )
     }

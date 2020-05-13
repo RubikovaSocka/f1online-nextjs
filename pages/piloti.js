@@ -28,24 +28,34 @@ export default function Drivers({ teamsData }) {
     })
 
     return (
-        <main className="contentsPage">
-            <div className="page">
-                <div className="mainContent">
-                    <SectionTitle title="Piloti"/>
-                    <Divider height='20px' />
-                    <div className={styles.driversContainer}>
-                        {dataBlock}
+            <>
+            <Head>
+                <title>F1online.sk</title>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={`F1online.sk`} />
+                <meta property="og:description" content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`} />
+                <meta property="og:url" content={`https://f1online.sk/`} />
+                {/*<meta property="og:image" content={`${postData.better_featured_image.source_url}`} />*/}
+            </Head>
+            <main className="contentsPage">
+                <div className="page">
+                    <div className="mainContent">
+                        <SectionTitle title="Piloti"/>
+                        <Divider height='20px' />
+                        <div className={styles.driversContainer}>
+                            {dataBlock}
+                        </div>
                     </div>
+                    <aside className="sideBar">
+                        <QuickNews />
+                        <Divider height="15px" />
+                        <RPanel />
+                        <Divider height="15px" />
+                        <CalResWidget />
+                    </aside>
                 </div>
-                <aside className="sideBar">
-                    <QuickNews />
-                    <Divider height="15px" />
-                    <RPanel />
-                    <Divider height="15px" />
-                    <CalResWidget />
-                </aside>
-            </div>
-        </main>
+            </main>
+            </>
     )
 }
 

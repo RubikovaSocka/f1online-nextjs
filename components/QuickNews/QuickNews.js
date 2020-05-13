@@ -33,14 +33,14 @@ export default class QuickNews extends Component {
     }
 
     componentDidMount() {
-        console.log("quicknews")
+        //console.log("quicknews")
         axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/rychle_spravy?per_page=12`)
             //.then(res => console.log(res))
             .then(res => this.setState({
                 newsArray: res.data,
                 isLoaded: true
             }))
-            .catch(err => console.log(err))
+            //.catch(err => console.log(err))
     }
 
     render() {
@@ -78,7 +78,6 @@ export default class QuickNews extends Component {
 }
 
 export async function getServerSideProps({ params }) {
-    console.log(params)
     const response = await axios({
         method: 'get',
         url: `https://wpadmin.f1online.sk/wp-json/wp/v2/rychle_spravy?per_page=15`

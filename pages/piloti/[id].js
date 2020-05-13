@@ -22,7 +22,6 @@ export default class DriverPage extends Component {
     }
 
     componentDidMount() {
-        console.log(`https://wpadmin.f1online.sk/wp-json/wp/v2/media?search=${this.props.driverData.givenName}+${this.props.driverData.familyName}&per_page=15`)
         axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/media?search=${this.props.driverData.givenName}+${this.props.driverData.familyName}&per_page=15`)
             .then(res => {
                 let imagesLoaded = res.data.map(item => {
@@ -41,7 +40,7 @@ export default class DriverPage extends Component {
                     images: filtered,
                 })
             })
-            .catch(err => console.log(err))
+            //.catch(err => console.log(err))
 
     }
 

@@ -30,12 +30,8 @@ function getCName(team) {
 
 export class TeamPreview extends Component {
 
-
     render() {
-        
         const { constructor } = this.props
-        console.log(constructor.img800)
-
         let drivers = constructor.Drivers.map(driver => {
             return (
                 <DriverPreview driver={driver} 

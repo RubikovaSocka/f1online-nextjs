@@ -68,14 +68,15 @@ export default function App({ Component, pageProps }) {
     useEffect(() => {
         const trackingId = "UA-166048655-1";
         ReactGA.initialize(trackingId);
-        if (Object.keys(window.location.pathname).length != 0) {
-            //ReactGA.viewpage(window.location.pathname + window.location.search);
-        }
         Fonts()
     }, []);
 
     return (
-        <Fragment>
+        <>
+            <Head>
+                <link rel="shortcut icon" href="/favicon.ico" />
+                {/*<meta property="og:image" content={`${postData.better_featured_image.source_url}`} />*/}
+            </Head>
             <div className={cstyles.cookieContainer}>
                 <CookieBanner
                     styles={styles}
@@ -95,6 +96,6 @@ export default function App({ Component, pageProps }) {
             <Component {...pageProps} />
             <Footer />
             
-        </Fragment>
+        </>
     )
 }
