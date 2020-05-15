@@ -1,49 +1,46 @@
-import React from 'react'
-import axios from 'axios'
-import Head from 'next/head'
+import React from "react";
+import axios from "axios";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import RPanel from "../components/RPanel.js";
-import Divider from '../components/Divider.js'
-import styles from './scss/zasady.module.scss'
+import Divider from "../components/Divider.js";
+import styles from "../styles/zasady.module.scss";
 
 const style = {
-    fontFamily: 'HK Grotesk',
-    fontSize: '14px',
-}
+  fontFamily: "HK Grotesk",
+  fontSize: "14px"
+};
 
-export default function privacy({pageData}) {
-    return (
-        <>
-        <Head>
-            <title>F1online.sk</title>
-            <link rel="shortcut icon" href="/favicon.ico" />
-            <meta property="og:image" content={`https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png`} />
-        </Head>
-        <main className="contentsPage">
-            <div className="page">
-                <div className="mainContent">
-                    <div style={style}/*className={styles.articleContent}*/ dangerouslySetInnerHTML={{ __html: pageData.content.rendered}} />
-                </div>
-                <aside className={`sideBar ${styles.stickySideBar}`}>
-                    <Divider height="50px" />
-                    <QuickNews />
-                    <RPanel />
-                </aside>
-            </div>
-        </main>
-        </>
-    )
+export default function privacy({ pageData }) {
+  return (
+      <main className="contentsPage">
+        <div className="page">
+          <div className="mainContent">
+            <div
+              style={style}
+              /*className={styles.articleContent}*/ dangerouslySetInnerHTML={{
+                __html: pageData.content.rendered
+              }}
+            />
+          </div>
+          <aside className={`sideBar ${styles.stickySideBar}`}>
+            <Divider height="50px" />
+            <QuickNews />
+            <RPanel />
+          </aside>
+        </div>
+      </main>
+  );
 }
 
 export async function getServerSideProps(context) {
-    const response = await axios({
-        method: 'get',
-        url: 'https://wpadmin.f1online.sk/wp-json/wp/v2/pages?per_page=1'
-        //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-    })
-    return {
-        props: {
-            pageData: response.data[0]
-        }
+  const response = await axios({
+    method: "get",
+    url: "https://wpadmin.f1online.sk/wp-json/wp/v2/pages?per_page=1"
+    //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
+  });
+  return {
+    props: {
+      pageData: response.data[0]
     }
+  };
 }

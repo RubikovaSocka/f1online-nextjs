@@ -12,7 +12,7 @@
     justify-content: flex-start;
     align-items: center;
 
-    height: 65px;
+    height: 90px;
     background-color: #202020;
     color: #f0f0f0;
 
@@ -46,6 +46,7 @@
     .container {
         width: calc(100% - 20px);
         align-items: center;
+        height: 65px;
         span {
             padding: 0 10px;
             color: #f0f0f0;

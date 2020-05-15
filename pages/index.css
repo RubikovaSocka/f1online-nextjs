@@ -145,6 +145,7 @@ html, body{
     }
     .sideBar {
         padding: 0;
+        padding-top: 10px;
         margin-top: 0px;
         margin-bottom: 5px;
         grid-column: 4 / span 1;
