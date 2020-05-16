@@ -102,10 +102,10 @@ export default class Home extends Component {
               {otherArticlesSection}
               {largeWidgets}
             </div>
-            <aside className={`sideBar ${styles.stickyWidget}`}>
-              {/*<Divider height="15px" />
+            <aside className={`sideBar`}>{/*${styles.stickyWidget}*/}
+              <Divider height="15px" />
               <SideRePanel />
-              <Divider height="25px" />*/}
+              <Divider height="25px" />
               <QuickNews />
             </aside>
           </div>

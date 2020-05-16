@@ -12,8 +12,54 @@ import styles from "./Post.module.scss";
 import SideRePanel from "../../../components/Ads/SideRePanel/SideRePanel.js";
 import Divider from "../../../components/Divider.js";
 import getImagePreview from "../../../utils/getImagePreview";
+import ArtRePanel from "../../../components/Ads/ArtRePanel/ArtRePanel.js";
+import Media from "react-media";
 
 export default function Post({ postData }) {
+  let article = postData.content.rendered;
+  let upperPart, lowerPart, articleContentFull;
+  let paraNum = (article.match(/<p>/g) || []).length
+  
+  if (paraNum > 6) {
+    let delimiter = "<p>";
+    let start = paraNum > 10 ? 7 : 5;
+
+    let tokens2 = article.split(delimiter).slice(0, start);
+    let tokens = article.split(delimiter).slice(start);
+
+    upperPart = tokens2.join(delimiter);
+    lowerPart = "<p>" + tokens.join(delimiter);
+    articleContentFull = (
+      <>
+        <div
+          className={styles.articleContentUpper}
+          dangerouslySetInnerHTML={{ __html: upperPart }}
+        />
+        <Media query={{ maxWidth: 1023 }}>
+          {matches =>
+            matches ? (
+              <SideRePanel />
+            ) : (
+              <ArtRePanel />
+            )
+          }
+        </Media>
+        
+        <div
+          className={styles.articleContentLower}
+          dangerouslySetInnerHTML={{ __html: lowerPart }}
+        />
+      </>
+    );
+  } else {
+    articleContentFull = (
+      <div
+        className={styles.articleContentUpper}
+        dangerouslySetInnerHTML={{ __html: article }}
+      />
+    );
+  }
+
   let post = (
     <>
       <div className={styles.title}>
@@ -37,10 +83,7 @@ export default function Post({ postData }) {
         <span>{formatDate(postData.date)}</span>
       </div>
       <EmbedContainer markup={postData.content.rendered}>
-        <div
-          className={styles.articleContent}
-          dangerouslySetInnerHTML={{ __html: postData.content.rendered }}
-        />
+        {articleContentFull}
       </EmbedContainer>
     </>
   );
@@ -83,9 +126,10 @@ export default function Post({ postData }) {
           <aside className="sideBar">
             <QuickNews />
             <Divider height="15px" />
-            {/*<SideRePanel />
-            <Divider height="15px" />*/}
             <CalResWidget />
+            <div className={`${styles.stickyWidget}`}>
+              <SideRePanel />
+            </div>
           </aside>
         </div>
       </main>

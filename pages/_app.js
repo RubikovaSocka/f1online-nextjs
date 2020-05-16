@@ -5,7 +5,7 @@ import ReactGA from "react-ga";
 
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import Ads from "../components/Ads/HeaderRePanel/HeaderRePanel";
+import HeaderRePanel from "../components/Ads/HeaderRePanel/HeaderRePanel";
 import CookieBanner from "react-cookie-banner";
 
 import "../components/react-image-gallery/styles/scss/image-gallery.scss";
@@ -115,7 +115,7 @@ export default class App extends Component {
             cookie="user-cookies"
           />
         </div>
-        {/*<Ads />*/}
+        <HeaderRePanel />
         <Header />
         <Component {...pageProps} />
         <Footer />
