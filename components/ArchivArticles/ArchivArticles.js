@@ -81,10 +81,7 @@ export class ArchivArticles extends Component {
       if (this.state.posts.length === 0) {
         articles = (
           <div className={styles.noneFoundPanel}>
-            <img
-              alt="logo"
-              src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg"
-            ></img>
+            <img alt="logo"></img>
             <span>Nenašli sme žiadne články</span>
           </div>
         );

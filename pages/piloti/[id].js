@@ -70,7 +70,7 @@ export default class DriverPage extends Component {
               <div className={styles.numberContainer}>
                 <img
                   alt={`Číslo ${driverData.permanentNumber}`}
-                  src={`https://wpadmin.f1online.sk/wp-content/uploads/${driverData.permanentNumber}.jpg`}
+                  src={`https://wpadmin.f1online.sk/wp-content/uploads/${driverData.permanentNumber}.png`}
                 />
               </div>
             }
@@ -113,6 +113,7 @@ export default class DriverPage extends Component {
         </div>
       </Fragment>
     );
+    console.log(driverData.slug)
     let driverPosts = (
       <ArchivArticles tagSlug={driverData.slug} asArchive={false} perpage="3" />
     );

@@ -43,7 +43,7 @@ class LastVenueWidget extends Component {
                             }/>
                     ))*/
                     <div className={styles.temporaryPanel}>
-                        <img alt="logo" src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg"></img>
+                        <img alt="logo"></img>
                         <span>Štartujeme 5. júla na Red Bull Ringu!</span>
                     </div>
                 }

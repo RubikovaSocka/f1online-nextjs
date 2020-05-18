@@ -1,90 +1,88 @@
 .container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+
+  margin-bottom: 20px;
+
+  img {
     width: 100%;
+    vertical-align: middle;
+  }
+  &:hover img {
+    transform: scale(1.05);
+  }
+
+  .titleContainer {
+    height: 72px;
+    bottom: 0px;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+
+    .title {
+      padding: 10px 10px;
+      margin: 0;
+      overflow: auto;
+
+      font-size: 17px;
+      font-family: "Cabin", "Source Sans Pro";
+
+      color: white;
+      text-shadow: black 1px 1px 2px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    height: 141px;
     position: relative;
     overflow: hidden;
     text-decoration: none;
 
-    margin-bottom: 20px;
-
     img {
-        width: 100%;
-        vertical-align: middle;
+      min-height: 100%;
+      min-width: 100%;
+      margin: auto;
     }
-    &:hover img{
-        transform: scale(1.05);
+    &:hover img {
+      transform: scale(1.05);
     }
 
     .titleContainer {
-        height: 72px;
-        bottom: 0px;
+      height: 72px;
+      bottom: 0px;
+      margin: 0;
+      width: 100%;
+      position: absolute;
+
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+
+      .title {
+        padding: 10px 10px;
         margin: 0;
-        width: 100%;
-        position: absolute;
-
-        display: flex;
-        justify-content: flex-end;
-        flex-direction: column;
-
-        .title {
-            padding: 10px 10px;
-            margin: 0;
-            overflow: auto;
-
-            font-size: 17px;
-            font-family: 'Cabin', 'Source Sans Pro';
-
-            color: white;
-            text-shadow: black 1px 1px 2px;
-
-        }
-    }
-}
-
-@media only screen and (min-width: 1024px) {
-    .container {
-        height: 141px;
-        position: relative;
         overflow: hidden;
-        text-decoration: none;
+        //scroll-behavior: none;
 
-        img {
-            min-height: 100%;
-            min-width: 100%;
-            margin: auto;
-        }
-        &:hover img{
-            transform: scale(1.05);
-        }
+        font-size: 14px;
+        font-family: "Cabin", "Source Sans Pro";
 
-        .titleContainer {
-            height: 72px;
-            bottom: 0px;
-            margin: 0;
-            width: 100%;
-            position: absolute;
-
-            display: flex;
-            justify-content: flex-end;
-            flex-direction: column;
-
-            .title {
-                padding: 10px 10px;
-                margin: 0;
-                overflow: hidden;
-                //scroll-behavior: none;
-
-                font-size: 14px;
-                font-family: 'Cabin', 'Source Sans Pro';
-
-                color: white;
-                text-shadow: black 1px 1px 2px;
-
-            }
-        }
+        color: white;
+        text-shadow: black 1px 1px 2px;
+      }
     }
+  }
 }
 @media only screen and (min-width: 1280px) {
-    .container {
-        height: 150px;
-    }
+  .container {
+    height: 150px;
+  }
 }

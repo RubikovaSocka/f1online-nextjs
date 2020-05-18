@@ -1,106 +1,105 @@
 .container {
-    //width: 40px;
+  //width: 40px;
 
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .searchForm {
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    display: none;
+    background-color: var(--basic-back-color);
+    &.show {
+      height: 30px;
+      width: 120px;
+
+      font-family: "HK Grotesk";
+      display: inline-block;
+      border: solid 1px #c0c0c0;
+      border-radius: 30px;
+      padding: 0 40px 0 15px;
+
+      font-size: 14px;
+      font-weight: 400;
+      color: #5e6b6e;
+      background-color: white;
+    }
+
+    &.show + .buttonContent {
+      width: 16px;
+      height: 16px;
+      margin-left: -30px;
+
+      background-image: url("./magglass.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+    }
+  }
+  button {
+    padding: auto 10px;
+
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  .buttonContent {
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+
+    background-image: url("./magglass-black.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    width: 170px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .searchForm {
     float: right;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    input{
-        display: none;
+    input {
+      height: 30px;
+      width: 120px;
 
-        &.show {
-            height: 30px;
-            width: 120px;
-            
-            font-family: 'HK Grotesk';
-            display: inline-block;
-            border: solid 1px #c0c0c0; 
-            border-radius: 30px;
-            padding: 0 40px 0 15px;
+      font-family: "HK Grotesk";
+      display: inline-block;
+      border: solid 1px #c0c0c0;
+      border-radius: 30px;
+      padding: 0 40px 0 15px;
 
-            font-size: 14px;
-            font-weight: 400;
-            color: #5e6b6e; 
-            background-color: white;
-        }
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--searchbar-text-color);
 
-        &.show + .buttonContent{
-            width: 16px;
-            height: 16px;            
-            margin-left: -30px;
-            
-            background-image: url('./magglass.png');
-            background-repeat: no-repeat;
-            background-size: 100%;
-            background-position: center;
-        }
-    }
-    button{
-        padding: auto 10px;
-    
-        border:none;
-        cursor: pointer;
-        background-color: transparent;
+      background-color: var(--basic-back-color);
     }
     .buttonContent {
-        cursor: pointer;
-        width: 22px;
-        height: 22px;
+      width: 16px;
+      height: 16px;
+      margin-left: -45px;
 
-        background-image: url('./magglass-black.png');
-        background-repeat: no-repeat;
-        background-size: 100%;
-        background-position: center;
+      background-image: url("./magglass.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
     }
-}
-
-
-@media only screen and (min-width: 1024px) {
-    .container {
-        width: 170px;
-        float: right;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .searchForm {
-        float: right;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    
-        input{
-            height: 30px;
-            width: 120px;
-        
-            font-family: 'HK Grotesk';
-            display: inline-block;
-            border: solid 1px #c0c0c0; 
-            border-radius: 30px;
-            padding: 0 40px 0 15px;
-
-            font-size: 14px;
-            font-weight: 400;
-            color: #5e6b6e; 
-            background-color: white;
-            
-        }
-        .buttonContent{
-            width: 16px;
-            height: 16px;
-            margin-left: -45px;
-
-            background-image: url('./magglass.png');
-            background-repeat: no-repeat;
-            background-size: 100%;
-            background-position: center;
-        }
-    }
+  }
 }

@@ -1,0 +1,28 @@
+.button {
+  margin: auto;
+  margin-top: 25px;
+  height: 40px;
+  width: 140px;
+  border: 1px solid var(--basic-text-color);
+  border-radius: 0px;
+  font-family: "HK Grotesk", "Source Sans Pro";
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--basic-text-color);
+  background-color: var(--basic-back-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  transition: ease-in-out 0.2s;
+}
+
+.button:hover {
+  background-color: var(--basic-text-color);
+  color: var(--basic-back-color);
+  cursor: pointer;
+}

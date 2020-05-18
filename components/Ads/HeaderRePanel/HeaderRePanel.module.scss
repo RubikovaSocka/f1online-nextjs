@@ -26,8 +26,9 @@
     margin: 0;
     width: 100%;
     height: 110px;
-    background-color: #f2f2f2;
+    //background-color: #f2f2f2;
 
+    background-color: var(--topbanner-back-color);
     display: flex;
     flex-direction: column;
     align-items: center;

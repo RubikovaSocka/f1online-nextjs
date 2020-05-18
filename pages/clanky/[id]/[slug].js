@@ -35,12 +35,12 @@ export default function Post({ postData }) {
           className={styles.articleContentUpper}
           dangerouslySetInnerHTML={{ __html: upperPart }}
         />
-        <Media query={{ maxWidth: 1023 }}>
+        <Media query={{ minWidth: 1023 }}>
           {matches =>
             matches ? (
-              <SideRePanel />
-            ) : (
               <ArtRePanel />
+            ) : (
+              ""
             )
           }
         </Media>

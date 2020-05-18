@@ -1,143 +1,141 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin: 0 2.5%;
-    width: 45%;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0 2.5%;
+  width: 45%;
+  cursor: pointer;
 
-    font-family: 'HK Grotesk';
-    .portrait{
-        width: 90%;
-        height: auto;
-        margin: 0 5%;
+  font-family: "HK Grotesk";
+  .portrait {
+    width: 90%;
+    height: auto;
+    margin: 0 5%;
+  }
+
+  span,
+  a {
+    margin: 0px;
+    padding: 0;
+    display: block;
+    font-size: 13px;
+    color: var(--basic-text-color);
+  }
+  .driverBoxLine {
+    margin: 10px 0;
+    height: 40px;
+    border-left: 3px solid black;
+    padding-left: 4px;
+    transition-delay: 0.27s;
+  }
+
+  .driverBox {
+    height: 40px;
+    //border-left: 3px solid #00D2BE;
+    //padding-left: 3px;
+    transition-delay: 0.27s;
+
+    .name {
+      text-transform: uppercase;
+      height: 20px;
+      font-weight: 700;
+      overflow: hidden;
+      color: var(--basic-text-color);
     }
-
-    span, a{
-        margin: 0px;
-        padding: 0;
-        display: block;
-        font-size: 13px;
+    .team {
+      height: 20px;
+      color: var(--basic-text-color);
     }
-    .driverBoxLine {
-        margin: 10px 0;
-        height: 40px;
-        border-left: 3px solid black;
-        padding-left: 4px;
-        transition-delay: 0.2s;
-        
-    }
-    
+  }
 
-    .driverBox {
-        height: 40px;
-        //border-left: 3px solid #00D2BE;
-        //padding-left: 3px;
-        transition-delay: 0.2s;
-
-        .name {
-            text-transform: uppercase;
-            height: 20px;
-            font-weight: 700;
-            overflow: hidden;
-        }
-        .team {
-            height: 20px;
-
-        }
-    }
-
-    .slider::before{
-        content: attr(title);
-        color: black;
-    }
+  .slider::before {
+    content: attr(title);
+    color: var(--basic-text-color);
+  }
 }
 
 @media only screen and (min-width: 1024px) {
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        margin: 0 1%;
-        width: 23%;
-        cursor: pointer;
-        
-        :hover .driverBoxLine{
-            border-left: 7px solid black;
-            padding-left: 0px;
-            transition-delay: 0s;
-        }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 1%;
+    width: 23%;
+    cursor: pointer;
 
-        .slider{
-            position: relative;
-        }
-        .slider:hover{
-
-        }
-        &:hover .slider::after{
-            width: 100%;
-            //padding-left: 6px;
-        }
-        &:hover .driverBox {
-            border-left-width: 0px;
-            padding-left: 0;
-            transition-delay: 0s;
-        }
-
-        .slider::after{
-            content: attr(title);
-            position: absolute;
-            padding-left: 0;
-            left: 0px;
-            width: 0;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            color: black;
-            transition: width 0.28s ease-out;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-
-
-
-        .slider00D2BE::after {
-            background-color: #00D2BE;
-            color: white;
-        }
-        .sliderDC0000::after {
-            background-color: #DC0000;
-            color: white;
-        }
-        .slider0600EF::after {
-            background-color: #0600EF;
-            color: white;
-        }
-        .sliderFFF500::after {
-            background-color: #FFF500;
-        }
-        .sliderFF8700::after {
-            background-color: #FF8700;
-            color: white;
-        }
-        .sliderF596C8::after {
-            background-color: #F596C8;
-            color: white;
-        }
-        .slider960000::after {
-            background-color: #960000;
-            color: white;
-        }
-        .sliderE0E0E0::after {
-            background-color: #E0E0E0;
-        }
-        .slider787878::after {
-            background-color: #787878;
-            color: white;
-        }
-        .slider0082FA::after {
-            background-color: #0082FA;
-            color: white;
-        }
+    :hover .driverBoxLine {
+      border-left: 7px solid black;
+      padding-left: 0px;
+      transition-delay: 0s;
     }
+
+    .slider {
+      position: relative;
+    }
+    .slider:hover {
+    }
+    &:hover .slider::after {
+      width: 100%;
+      //padding-left: 6px;
+    }
+    &:hover .driverBox {
+      border-left-width: 0px;
+      padding-left: 0;
+      transition-delay: 0s;
+    }
+
+    .slider::after {
+      content: attr(title);
+      position: absolute;
+      padding-left: 0;
+      left: 0px;
+      width: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      color: black;
+      transition: width 0.28s ease-out;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .slider00D2BE::after {
+      background-color: #00d2be;
+      color: white;
+    }
+    .sliderDC0000::after {
+      background-color: #dc0000;
+      color: white;
+    }
+    .slider0600EF::after {
+      background-color: #0600ef;
+      color: white;
+    }
+    .sliderFFF500::after {
+      background-color: #fff500;
+    }
+    .sliderFF8700::after {
+      background-color: #ff8700;
+      color: white;
+    }
+    .sliderF596C8::after {
+      background-color: #f596c8;
+      color: white;
+    }
+    .slider960000::after {
+      background-color: #960000;
+      color: white;
+    }
+    .sliderE0E0E0::after {
+      background-color: #e0e0e0;
+    }
+    .slider787878::after {
+      background-color: #787878;
+      color: white;
+    }
+    .slider0082FA::after {
+      background-color: #0082fa;
+      color: white;
+    }
+  }
 }

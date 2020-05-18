@@ -7,6 +7,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import HeaderRePanel from "../components/Ads/HeaderRePanel/HeaderRePanel";
 import CookieBanner from "react-cookie-banner";
+import ThemeSwitcher from "../components/ThemeSwitcher/ThemeSwitcher.js";
 
 import "../components/react-image-gallery/styles/scss/image-gallery.scss";
 import "./index.css";
@@ -82,6 +83,7 @@ export default class App extends Component {
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
           />
+          <link key="meta_style" rel="stylesheet" href="/light-theme.css" />
           <meta
             key="meta_ogtitle"
             property="og:title"
@@ -117,6 +119,7 @@ export default class App extends Component {
         </div>
         <HeaderRePanel />
         <Header />
+        <ThemeSwitcher />
         <Component {...pageProps} />
         <Footer />
       </Provider>

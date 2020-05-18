@@ -1,32 +1,42 @@
 .container {
-    display:none;
+  display: none;
 }
 
 @media only screen and (min-width: 1024px) {
-    .container {
-        height: 20px;
-        width: 170px;
-    
-        display: flex;
-        flex-direction: row;
-    
-        .item {
-            height: 18px;
-            margin: 0 2px;
-            transition: ease 0.2s;
-    
-            img {
-                position: relative;
-                height: 15px;
-                margin: 0 2px;
-                margin-top: 3px;
-                transition: ease 0.3s;
-    
-                &:hover {
-                    cursor: pointer;
-                    margin-top: -3px;
-                }
-            }
+  .container {
+    height: 20px;
+    width: 170px;
+
+    display: flex;
+    flex-direction: row;
+
+    .item {
+      height: 18px;
+      //width: 18px;
+      margin: 0 2px;
+      transition: ease 0.2s;
+
+      img {
+        position: relative;
+        height: 15px;
+        margin: 0 2px;
+        margin-top: 3px;
+        display: inline-block;
+
+        &:hover {
+          cursor: pointer;
+          margin-top: -3px;
         }
+
+        &.fbImg {
+          
+          content: var(--fb-img-url);
+        }
+        &.instaImg {
+          content: var(--insta-img-url);
+        }
+      }
     }
+  }
 }
+

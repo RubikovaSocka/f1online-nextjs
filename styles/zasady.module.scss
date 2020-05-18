@@ -1,10 +1,16 @@
+.container {
+  color: var(--sub-title-color);
+  font-family: "HK Grotesk";
+  font-size: 14px;
+}
+
 @media only screen and (min-width: 1024px) {
-    .stickySideBar {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 120px;
-        margin-bottom: 10px;
-        height: calc(100vh - 120px);
-        //height: calc(100% - )
-    }
+  .stickySideBar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+    margin-bottom: 10px;
+    height: calc(100vh - 120px);
+    //height: calc(100% - )
+  }
 }

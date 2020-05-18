@@ -1,82 +1,84 @@
 @media only screen and (min-width: 1280px) {
-    .container {
-        
-    }
+  .container {
+  }
 }
 
 .container {
-    width: 320px;
+  width: 320px;
 
-    .dataItem {
-        font-family: 'HK Grotesk','Source Sans Pro';
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
+  .dataItem {
+    font-family: "HK Grotesk", "Source Sans Pro";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 
-        font-size: 14px;
-        margin: 0;
-        margin-top: 10px;
-        padding-left: 10px;
-        width: 100%;
-
-        display: flex;
-        flex-direction: row;
-
-        span{
-            margin: 0px;
-            padding: 0px 5px;
-            display: block;
-        }
-        .position {
-            font-weight: 600;
-        }
-        .driverBox {
-            margin: 0px;
-            margin-right: 10px;
-            height: 36px;
-            border-left: 3px solid #d4d4d4;
-            &.red {
-                border-left: 3px solid #e10600;
-            }
-
-            .name {
-                height: 18px;
-                font-weight: 600;
-            }
-            .team {
-                height: 18px;
-                color: #606060;
-                color: black;
-
-            }
-        }
-        
-    }
-}
-.driverBoxWidthLV {
-    width: 170px;
-}
-.driverBoxWidthC {
-    width: 220px;
-}
-.temporaryPanel {
-    background-color: white;
-    height: 220px;
-    width: calc(100% - 30px);
-    margin: 15px;
-    margin-right: 0;
-
-    border: 1px solid #2a2a2a;
-    font-family: 'HK Grotesk';
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+    margin-top: 10px;
+    padding-left: 10px;
+    width: 100%;
 
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
 
-    img {
-        width: 45%;
-        height: auto;
+    span {
+      margin: 0px;
+      padding: 0px 5px;
+      display: block;
     }
+    .position {
+      font-weight: 600;
+    }
+    .driverBox {
+      margin: 0px;
+      margin-right: 10px;
+      height: 36px;
+      border-left: 3px solid #d4d4d4;
+      &.red {
+        border-left: 3px solid #e10600;
+      }
+
+      .name {
+        height: 18px;
+        font-weight: 600;
+      }
+      .team {
+        height: 18px;
+        color: #606060;
+        color: black;
+      }
+    }
+  }
+}
+.driverBoxWidthLV {
+  width: 170px;
+}
+.driverBoxWidthC {
+  width: 220px;
+}
+.temporaryPanel {
+  background-color: white;
+  background-color: var(--basic-back-color);
+  height: 220px;
+  width: calc(100% - 30px);
+  margin: 15px;
+  margin-right: 0;
+
+  border: 1px solid #2a2a2a;
+  font-family: "HK Grotesk";
+  font-size: 13px;
+  font-weight: 600;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 45%;
+    height: auto;
+    content: var(--logo-url);
+  }
+  span {
+    color: var(--basic-text-color);
+  }
 }

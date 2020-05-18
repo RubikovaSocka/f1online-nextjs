@@ -1,136 +1,136 @@
-$rowsDivider: 1px solid #e0e0e0;
+$rowsDivider: 1px solid var(--widget-line-divider-color);
 
-.content{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 
-    font-family: 'HK Grotesk';
-    font-size: 13px;
+  font-family: "HK Grotesk";
+  font-size: 13px;
 }
 
 .calendarRow {
-    margin: 0;
-    padding: 6px 5px;
+  margin: 0;
+  padding: 6px 5px;
 
-    border-top: $rowsDivider;
-    color: #606060;
+  border-top: $rowsDivider;
+  color: var(--sub-title-color);
 
-    &.noBorder {
-        margin-top: 0;
-        border: none;
-    }
-    
-    &.header {
-        height: 20px;
-        color: #000;
-        font-weight: 600;
-        background-color: #f2f2f2;
-        border: none;
-    }
-    .event {
-        padding-left: 5px;
-        width: 80px;
+  &.noBorder {
+    margin-top: 0;
+    border: none;
+  }
 
-        display: inline-block;
-        font-weight: 600;
-        color: #000;
-    }
-    .time {
-        display: inline-block;
-        width: 100px;
-    }
-    .tv {
-        display: inline-block;
-        width: 80px;
-    }
+  &.header {
+    height: 20px;
+    color: var(--basic-text-color);
+    font-weight: 600;
+    background-color: var(--widget-noselect-back-color);
+    border: none;
+  }
+  .event {
+    padding-left: 5px;
+    width: 80px;
+
+    display: inline-block;
+    font-weight: 600;
+    color: var(--basic-text-color);
+  }
+  .time {
+    display: inline-block;
+    width: 100px;
+  }
+  .tv {
+    display: inline-block;
+    width: 80px;
+  }
 }
 
 .venueBlock {
-    margin-left: 5px;
-    padding: 5px;
+  margin-left: 5px;
+  padding: 5px;
 
-    .venueTitle {
-        margin: 0;
+  .venueTitle {
+    margin: 0;
 
-        font-size: 16px;
-        font-weight: 600;
-    }
-    .venueDate {
-        margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--basic-text-color);
+  }
+  .venueDate {
+    margin: 0;
 
-        font-size: 14px;
-        color: black;
-    }
+    font-size: 14px;
+    color: var(--basic-text-color);
+  }
 }
 
 @media only screen and (min-width: 360px) {
-    .calendarRow {
-        .event {
-            width: 90px;
-        }
-        .time {
-            width: 110px;
-        }
-        .tv {
-            width: 100px;
-        }
+  .calendarRow {
+    .event {
+      width: 90px;
     }
+    .time {
+      width: 110px;
+    }
+    .tv {
+      width: 100px;
+    }
+  }
 }
 
 @media only screen and (min-width: 410px) {
-    .calendarRow {
-        .event {
-            width: 110px;
-        }
-        .time {
-            width: 120px;
-        }
-        .tv {
-            width: 110px;
-        }
+  .calendarRow {
+    .event {
+      width: 110px;
     }
+    .time {
+      width: 120px;
+    }
+    .tv {
+      width: 110px;
+    }
+  }
 }
 
 @media only screen and (min-width: 600px) {
-    .calendarRow {
-        .event {
-            width: 100px;
-        }
-        .time {
-            width: 130px;
-        }
-        .tv {
-            width: 110px;
-        }
+  .calendarRow {
+    .event {
+      width: 100px;
     }
+    .time {
+      width: 130px;
+    }
+    .tv {
+      width: 110px;
+    }
+  }
 }
 @media only screen and (min-width: 760px) {
-    
 }
 @media only screen and (min-width: 1024px) {
-    .calendarRow {
-        .event {
-            width: 80px;
-        }
-        .time {
-            width: 100px;
-        }
-        .tv {
-            width: 80px;
-        }
+  .calendarRow {
+    .event {
+      width: 80px;
     }
+    .time {
+      width: 100px;
+    }
+    .tv {
+      width: 80px;
+    }
+  }
 }
 @media only screen and (min-width: 1366px) {
-    .calendarRow {
-        .event {
-            width: 80px;
-        }
-        .time {
-            width: 103px;
-        }
-        .tv {
-            width: 110px;
-        }
+  .calendarRow {
+    .event {
+      width: 80px;
     }
+    .time {
+      width: 103px;
+    }
+    .tv {
+      width: 110px;
+    }
+  }
 }

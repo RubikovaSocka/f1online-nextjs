@@ -5,30 +5,25 @@ import RPanel from "../components/RPanel.js";
 import Divider from "../components/Divider.js";
 import styles from "../styles/zasady.module.scss";
 
-const style = {
-  fontFamily: "HK Grotesk",
-  fontSize: "14px"
-};
-
 export default function privacy({ pageData }) {
   return (
-      <main className="contentsPage">
-        <div className="page">
-          <div className="mainContent">
-            <div
-              style={style}
-              /*className={styles.articleContent}*/ dangerouslySetInnerHTML={{
-                __html: pageData.content.rendered
-              }}
-            />
-          </div>
-          <aside className={`sideBar ${styles.stickySideBar}`}>
-            <Divider height="50px" />
-            <QuickNews />
-            <RPanel />
-          </aside>
+    <main className="contentsPage">
+      <div className="page">
+        <div className="mainContent">
+          <div
+            className={styles.container}
+            /*className={styles.articleContent}*/ dangerouslySetInnerHTML={{
+              __html: pageData.content.rendered
+            }}
+          />
         </div>
-      </main>
+        <aside className={`sideBar ${styles.stickySideBar}`}>
+          <Divider height="50px" />
+          <QuickNews />
+          <RPanel />
+        </aside>
+      </div>
+    </main>
   );
 }
 

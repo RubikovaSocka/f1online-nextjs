@@ -3,7 +3,8 @@
 
   font-family: "Cabin";
   font-size: 18px;
-  color: black;
+  color: var(--basic-text-color);
+
 }
 .imageContainer {
   font-family: "HK Grotesk";
@@ -17,20 +18,20 @@
     margin-right: 0;
 
     font-size: 12px;
-    color: #606060;
+    color: var(--sub-title-color);
   }
 }
 .authorContainer {
   font-family: "HK Grotesk";
   font-size: 14px;
-  color: #606060;
+  color: var(--sub-title-color);
 }
 .articleContentUpper,
 .articleContentLower {
   font-family: "HK Grotesk";
   font-size: 16px;
   line-height: 28px;
-
+  color: var(--article-text-color);
   p {
     padding: 3px 0;
   }

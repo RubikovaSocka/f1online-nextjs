@@ -8,11 +8,12 @@ import ArticlesPanel from "../components/ArticlesPanel/ArticlesPanel";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import CalResWidget from "../components/CalResWidget/CalResWidget.js";
-
+import ThemeSwitcher from "../components/ThemeSwitcher/ThemeSwitcher.js";
 import CalendarLarge from "../components/CalendarLarge/CalendarLarge.js";
 import SideSectionTitle from "../components/SideSectionTitle/SideSectionTitle.js";
 import ResultsLargeWrapper from "../components/ResultsLarge/ResultsLargeWrapper.js";
 import LoadingSpinner from "../components/LoadingSpinner.js";
+import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import SideRePanel from "../components/Ads/SideRePanel/SideRePanel.js";
 import Divider from "../components/Divider.js";
 import Media from "react-media";
@@ -63,11 +64,11 @@ export default class Home extends Component {
         <div className="basicButtonContainer">
           {articlesSection}
           {
-            <Link href="/clanky" as="/clanky">
-              <a className="basicButton" style={{ marginTop: "25px" }}>
-                Pozrieť všetky
-              </a>
-            </Link>
+            <ButtonWB
+              hrefProp="/clanky"
+              asProp="/clanky"
+              title="Pozrieť všetky"
+            />
           }
         </div>
       </>
@@ -97,12 +98,14 @@ export default class Home extends Component {
       <>
         <main className="contentsPage">
           {titleSection}
+          <Divider height="15px" />
           <div className="page">
             <div className="mainContent">
               {otherArticlesSection}
               {largeWidgets}
             </div>
-            <aside className={`sideBar`}>{/*${styles.stickyWidget}*/}
+            <aside className={`sideBar`}>
+              {/*${styles.stickyWidget}*/}
               <Divider height="15px" />
               <SideRePanel />
               <Divider height="25px" />

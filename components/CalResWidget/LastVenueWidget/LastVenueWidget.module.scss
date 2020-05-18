@@ -1,127 +1,132 @@
-$rowsDivider: 1px solid #e0e0e0;
+$rowsDivider: 1px solid var(--widget-line-divider-color);
 
-.content{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 
-    font-family: 'HK Grotesk';
-    font-size: 13px;
+  font-family: "HK Grotesk";
+  font-size: 13px;
 }
 .venueBlock {
-    margin-left: 10px;
-    padding: 5px;
+  margin-left: 10px;
+  padding: 5px;
+  
+  .venueTitle {
+    margin: 0;
 
-    .venueTitle {
-        margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--basic-text-color);
+  }
+  .venueDate {
+    margin: 0;
 
-        font-size: 16px;
-        font-weight: 600;
-    }
-    .venueDate {
-        margin: 0;
-
-        font-size: 14px;
-        //color: black;
-    }
+    font-size: 14px;
+    color: var(--basic-text-color);
+    //color: black;
+  }
 }
 .resultsRow {
-    margin: 0;
-    padding: 6px 5px;
+  margin: 0;
+  padding: 6px 5px;
 
-    border-top: $rowsDivider;
-    color: black;
+  border-top: $rowsDivider;
+  color: var(--basic-text-color);
 
-    &.noBorder {
-        margin-top: 0;
-        border: none;
-    }
+  &.noBorder {
+    margin-top: 0;
+    border: none;
+  }
+
+  &.header {
+    text-align: start;
+    height: 20px;
+    color: var(--basic-text-color);
+    font-weight: 600;
+    background-color: var(--widget-noselect-back-color);
+    border: none;
+  }
+  .position {
+    padding-left: 5px;
+    width: 30px;
+
+    text-align: center;
+    display: inline-block;
+    font-weight: 600;
+    color: var(--basic-text-color);
 
     &.header {
-        text-align: start;
-        height: 20px;
-        color: #000;
-        font-weight: 600;
-        background-color: #f2f2f2;
-        border: none;
+      text-align: start;
     }
-    .position {
-        padding-left: 5px;
-        width: 30px;
-
-        text-align: center;
-        display: inline-block;
-        font-weight: 600;
-        color: #000;
-
-        &.header {
-            text-align: start;
-        }
-    }
-    .driver {
-        display: inline-block;
-        font-weight: 600;
-        color: #000;
-        width: 100px;
-    }
-    .time {
-        display: inline-block;
-        width: 80px;
-    }
+  }
+  .driver {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--basic-text-color);
+    width: 100px;
+  }
+  .time {
+    display: inline-block;
+    width: 80px;
+  }
 }
 
 @media only screen and (min-width: 380px) {
-    .resultsRow {
-        .driver {
-            padding-left: 10px;
-            width: 190px;
-        }
+  .resultsRow {
+    .driver {
+      padding-left: 10px;
+      width: 190px;
     }
+  }
 }
 
 @media only screen and (min-width: 1024px) {
-    .resultsRow {
-        .driver {
-            width: 130px;
-        }
-        .time {
-            width: 80px;
-        }
+  .resultsRow {
+    .driver {
+      width: 130px;
     }
+    .time {
+      width: 80px;
+    }
+  }
 }
 
 @media only screen and (min-width: 1366px) {
-    .resultsRow .driver {
-        display: inline-block;
-        font-weight: 600;
-        color: #000;
-        width: 140px;
-    }
-    .time {
-        display: inline-block;
-        width: 50px;
-    }
+  .resultsRow .driver {
+    display: inline-block;
+    font-weight: 600;
+    width: 140px;
+  }
+  .time {
+    display: inline-block;
+    width: 50px;
+  }
 }
 
 .temporaryPanel {
-    background-color: white;
-    height: 230px;
-    width: calc(100% - 30px);
-    margin: 15px;
-    margin-right: 0;
+  background-color: var(--basic-back-color);
+  height: 230px;
+  width: calc(100% - 30px);
+  margin: 15px;
+  margin-right: 0;
 
-    border: 1px solid #2a2a2a;
-    font-family: 'HK Grotesk';
-    font-size: 13px;
-    font-weight: 600;
+  border: 1px solid #2a2a2a;
+  font-family: "HK Grotesk";
+  font-size: 13px;
+  font-weight: 600;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    img {
-        width: 45%;
-        height: auto;
-    }
+  img {
+    width: 45%;
+    height: auto;
+    content: var(--logo-url);
+  }
+  span {
+    color: var(--basic-text-color);
+  }
 }

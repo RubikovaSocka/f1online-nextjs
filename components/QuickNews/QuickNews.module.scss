@@ -1,67 +1,66 @@
 .quickNewsBlock {
-    margin-top: 5px;   
+  margin-top: 5px;
 }
 .scrollableBlock {
-    height: 440px;
-    padding: 10px;
-    padding-top: 0px;
-    margin-bottom: 25px;
-    overflow-y: scroll;
+  height: 440px;
+  padding: 10px;
+  padding-top: 0px;
+  margin-bottom: 25px;
+  overflow-y: scroll;
 }
 
 .newsItemContainer {
-    z-index: 5;
-    color: #606060;
+  z-index: 5;
+  color: var(--sub-title-color);
 
-    .date {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        padding: 0 6px;
+  .date {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0 6px;
 
-        position: relative;
-        margin-bottom: -7px;
-        margin-left: 15px;
-        margin-right: auto;
+    position: relative;
+    margin-bottom: -7px;
+    margin-left: 15px;
+    margin-right: auto;
 
-        z-index: 3;
-        font-family: 'HK Grotesk';
-        font-size: 12px;
-        background-color: white;
+    z-index: 3;
+    font-family: "HK Grotesk";
+    font-size: 12px;
+    background-color: var(--basic-back-color);
+  }
+  .messageContainer {
+    border: 1px solid var(--lines-color);
+    padding-bottom: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+    color: var(--basic-text-color);
+
+    .linkStyle {
+      text-decoration: none;
+      color: var(--basic-text-color);
     }
-    .messageContainer {
-        border: 1px solid rgba(0, 0, 0, 0.3);
-        padding-bottom: 5px;
-        padding-right: 5px;
-        text-decoration:  none;
-        color: black;
-        
-        .linkStyle {
-            text-decoration:  none;
-            color: black;
-        }
 
-        .clickable:hover {
-            text-decoration:  underline;
-        }
-
-        .message {
-            padding: 0 8px;
-            font-family: 'HK Grotesk';
-            font-size: 13px;
-            z-index: 0;
-
-            p {
-                margin-bottom: 3px;
-            }
-            
-        }
-        .showMoreButton {
-            width: 100%;
-            padding: 0 8px;
-            font-family: 'HK Grotesk';
-            font-size: 13px;
-            z-index: 0;
-        }
+    .clickable:hover {
+      text-decoration: underline;
     }
+
+    .message {
+      padding: 0 8px;
+      font-family: "HK Grotesk";
+      font-size: 13px;
+      z-index: 0;
+
+      p {
+        margin-bottom: 3px;
+      }
+    }
+    .showMoreButton {
+      width: 100%;
+      padding: 0 8px;
+      font-family: "HK Grotesk";
+      font-size: 13px;
+      z-index: 0;
+    }
+  }
 }

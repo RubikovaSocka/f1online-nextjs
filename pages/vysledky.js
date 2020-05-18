@@ -35,7 +35,6 @@ class Results extends Component {
         <img
           className={styles.annLogo}
           alt="logo f1online.sk"
-          src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg"
         />
         <span
           className={styles.announcement}

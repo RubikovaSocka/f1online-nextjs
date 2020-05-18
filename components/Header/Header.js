@@ -17,7 +17,7 @@ class Header extends React.Component {
                     <div className={styles.whiteBack}>
                         <div className={styles.headerPanel}>
                             <SocialMediaBasicPlugin />
-                            <Link href="/"><a><img className={styles.logo} alt="logo F1online.sk" src="https://wpadmin.f1online.sk/wp-content/uploads/logo-medium.jpg" /></a></Link>
+                            <Link href="/"><a><img className={styles.logo} alt="-"/></a></Link>
                             <SearchBar />
                         </div>
                     </div>   
