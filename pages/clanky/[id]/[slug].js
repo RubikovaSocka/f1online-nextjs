@@ -63,7 +63,8 @@ export default function Post({ postData }) {
   let post = (
     <>
       <div className={styles.title}>
-        <h1>{postData.title.rendered}</h1>
+        {/*<h1>{postData.title.rendered}</h1>*/}
+        <h1 dangerouslySetInnerHTML={{__html: postData.title.rendered}} />
       </div>
       <div className={styles.imageContainer}>
         {getImagePreview({

@@ -13,7 +13,8 @@ export default function MainArticlePreview({ id, slug, better_featured_image, ti
             imgSize: "medium_large"
           })}
           <div className={`${styles.titleContainer} blackBotGradient`}>
-            <div className={styles.title}>{title.rendered}</div>
+            {/*<div className={styles.title}>{title.rendered}</div>*/}
+            <div className={styles.title} dangerouslySetInnerHTML={{__html: title.rendered}} />
           </div>
         </a>
       </Link>
