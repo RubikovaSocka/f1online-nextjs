@@ -64,16 +64,8 @@
 @media only screen and (min-width: 1024px) {
   .container {
     width: 170px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
   .searchForm {
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     input {
       height: 30px;
@@ -97,9 +89,6 @@
       margin-left: -45px;
 
       background-image: url("./magglass.png");
-      background-repeat: no-repeat;
-      background-size: 100%;
-      background-position: center;
     }
   }
 }

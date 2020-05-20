@@ -4,22 +4,15 @@
   flex-direction: column;
   justify-content: center;
   padding: 0 20px 0 20px;
-
-  /*div {
-        width: calc(100% - 20px);
-    }*/
 }
 
 @media only screen and (min-width: 1024px) {
   .container {
-    padding: 30px 20px 0 20px;
     width: initial;
     display: grid;
-    grid-template-columns: auto 223px 18px 223px 18px 218px 18px 218px auto;
-    grid-template-rows: 36px 136px 18px 136px;
-
+    
     grid-template-columns: auto 232px 19px 232px 19px 226px 19px 226px auto;
-    grid-template-rows: 18px 141px 19px 141px;
+    grid-template-rows: 0 141px 19px 141px;
 
     .art00 {
       grid-column: 2 / span 3;
@@ -46,9 +39,6 @@
 
 @media only screen and (min-width: 1280px) {
   .container {
-    width: initial;
-    display: grid;
-    padding-top: 0;
     grid-template-columns: auto 246px 20px 246px 20px 240px 20px 240px auto;
     grid-template-rows: 0 150px 20px 150px;
   }

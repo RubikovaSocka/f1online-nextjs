@@ -2,6 +2,7 @@
   width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,13 +13,12 @@
     margin-bottom: 5px;
   }
   i {
-    width: 211px;
+    width: 100%;
   }
 }
 
 @media only screen and (min-width: 1024px) {
   .container {
-    width: 100%;
     margin-top: 20px;
     margin-bottom: initial;
     height: initial;
@@ -29,31 +29,22 @@
     flex-wrap: wrap;
 
     .item {
-      width: 192px;
+      width: 198px;
       margin-bottom: 20px;
     }
 
     i {
-      width: 192px;
+      width: 198px;
     }
   }
 }
 
 @media only screen and (min-width: 1280px) {
   .container {
-    width: 100%;
     margin-top: 20px;
-    margin-bottom: initial;
-    height: initial;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
 
     .item {
       width: 211px;
-      margin-bottom: 20px;
     }
 
     i {

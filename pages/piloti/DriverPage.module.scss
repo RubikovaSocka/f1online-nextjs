@@ -1,6 +1,8 @@
 $table-back-color: var(--table-back-color);
 $table-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
 $table-circle-color: #4a4a4a;
+$radius-mobile: 300px;
+$radius-pc: 380px;
 
 .briefInfoContainer {
   display: flex;
@@ -75,12 +77,12 @@ $table-circle-color: #4a4a4a;
   left: 45%;
   top: 5%;
 
-  width: 300px;
-  height: 300px;
-  border-top-left-radius: 300px;
-  border-top-right-radius: 300px;
-  border-bottom-left-radius: 300px;
-  border-bottom-right-radius: 300px;
+  width: $radius-mobile;
+  height: $radius-mobile;
+  border-top-left-radius: $radius-mobile;
+  border-top-right-radius: $radius-mobile;
+  border-bottom-left-radius: $radius-mobile;
+  border-bottom-right-radius: $radius-mobile;
   border: 45px solid $table-circle-color;
   z-index: 1;
 
@@ -125,22 +127,18 @@ $table-circle-color: #4a4a4a;
   }
 
   .halfCircle {
-    position: absolute;
     left: 38%;
     top: 11%;
 
-    width: 380px;
-    height: 380px;
-    border-top-left-radius: 380px;
-    border-top-right-radius: 380px;
-    border-bottom-left-radius: 380px;
-    border-bottom-right-radius: 380px;
+    width: $radius-pc;
+    height: $radius-pc;
+    border-top-left-radius: $radius-pc;
+    border-top-right-radius: $radius-pc;
+    border-bottom-left-radius: $radius-pc;
+    border-bottom-right-radius: $radius-pc;
     border: 45px solid $table-circle-color;
     z-index: 1;
 
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
   }
 }
 

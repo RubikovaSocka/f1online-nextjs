@@ -31,8 +31,6 @@
 
   .driverBox {
     height: 40px;
-    //border-left: 3px solid #00D2BE;
-    //padding-left: 3px;
     transition-delay: 0.27s;
 
     .name {
@@ -56,9 +54,6 @@
 
 @media only screen and (min-width: 1024px) {
   .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
     margin: 0 1%;
     width: 23%;
     cursor: pointer;
