@@ -19,7 +19,6 @@ class SideRePanel extends Component {
   }
 
   handleClick(link) {
-    console.log("clicked " + link);
     ReactGA.event({
       category: "partnerClick",
       action: "click-pc-side",
