@@ -3,30 +3,52 @@ import { Provider, connect } from "react-redux";
 import PropTypes from "prop-types";
 import { fetchPanels } from "../../../redux/actions/panelsActions";
 import styles from "./SideRePanel.module.scss";
+import ReactGA from "react-ga";
 
 class SideRePanel extends Component {
-  componentDidMount() {
-    if (!this.props.loaded) this.props.fetchPanels();
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
   }
+
+  componentDidMount() {
+    if (!this.props.loaded) {
+      this.props.fetchPanels();
+    }
+  }
+
+  handleClick(link) {
+    console.log("clicked " + link);
+    ReactGA.event({
+      category: "partnerClick",
+      action: "click-pc-side",
+      label: link
+    });
+  }
+
   render() {
     const { panelsJSON } = this.props;
 
-    let panelBlock, panelLink;
+    let panelBlock;
     if (this.props.loaded) {
       let partnerPick =
-        panelsJSON.partners[
-          Math.floor(Math.random() * panelsJSON.partners.length)
-        ];
+        panelsJSON.bSide[Math.floor(Math.random() * panelsJSON.bSide.length)];
       let panelPick =
-        partnerPick.bSide[Math.floor(Math.random() * partnerPick.bSide.length)];
+        partnerPick.banners[
+          Math.floor(Math.random() * partnerPick.banners.length)
+        ];
       panelBlock = (
         <a
-          href={panelPick.link ? panelPick.link : partnerPick.link}
+          href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
           rel="noreferrer"
           target="_blank"
+          onClick={() => {
+            this.handleClick(panelPick.linkTo);
+          }}
         >
           <div className={styles.panel}>
-            <img src={panelPick.src} />
+            <img src={panelPick.imgSrc} />
           </div>
         </a>
       );
@@ -41,7 +63,8 @@ SideRePanel.propTypes = {
 
 const mapStateToProps = state => ({
   panelsJSON: state.panels.data,
-  loaded: state.panels.loaded
+  loaded: state.panels.loaded,
+  userLoaded: true
 });
 
 export default connect(

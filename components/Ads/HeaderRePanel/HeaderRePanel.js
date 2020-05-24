@@ -4,27 +4,31 @@ import PropTypes from "prop-types";
 import { fetchPanels } from "../../../redux/actions/panelsActions";
 import styles from "./HeaderRePanel.module.scss";
 import Router from "next/router";
-/*
-Router.events.on("routeChangeComplete", () => {
-  ReactGA.pageview(window.location.pathname);
-  NProgress.done();
-});
-*/
+import ReactGA from "react-ga";
+
 class HeaderRePanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      refresh: true
+      userLoaded: false
     };
   }
 
   componentDidMount() {
-    if (!this.props.loaded) this.props.fetchPanels();
-    /* TODO WHEN MULTIPLE BANNERS
-    this.interval = setInterval(
-      () => this.setState({ time: Date.now() }),
-      30000
-    );*/
+    this.setState({
+      userLoaded: true
+    });
+    if (!this.props.loaded) {
+      this.props.fetchPanels();
+    }
+  }
+
+  handleClick(link) {
+    ReactGA.event({
+      category: "partnerClick",
+      action: "click-pc-top",
+      label: link
+    });
   }
 
   render() {
@@ -33,19 +37,22 @@ class HeaderRePanel extends Component {
     let panelBlock;
     if (this.props.loaded) {
       let partnerPick =
-        panelsJSON.partners[
-          Math.floor(Math.random() * panelsJSON.partners.length)
-        ];
+        panelsJSON.bTop[Math.floor(Math.random() * panelsJSON.bTop.length)];
       let panelPick =
-        partnerPick.bTop[Math.floor(Math.random() * partnerPick.bTop.length)];
+        partnerPick.banners[
+          Math.floor(Math.random() * partnerPick.banners.length)
+        ];
       panelBlock = (
         <a
-          href={panelPick.link ? panelPick.link : partnerPick.link}
+          href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
           rel="noreferrer"
           target="_blank"
+          onClick={() => {
+            this.handleClick(panelPick.linkTo);
+          }}
         >
           <div className={styles.panel}>
-            <img src={panelPick.src} />
+            <img src={panelPick.imgSrc} />
           </div>
         </a>
       );

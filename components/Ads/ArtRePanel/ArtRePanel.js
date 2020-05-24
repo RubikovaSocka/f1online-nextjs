@@ -3,34 +3,60 @@ import { Provider, connect } from "react-redux";
 import PropTypes from "prop-types";
 import { fetchPanels } from "../../../redux/actions/panelsActions";
 import styles from "./ArtRePanel.module.scss";
+import ReactGA from "react-ga";
 
 class ArtRePanel extends Component {
-  componentDidMount() {
-    if (!this.props.loaded) this.props.fetchPanels();
+  constructor(props) {
+    super(props);
+    this.state = {
+      userLoaded: false
+    };
   }
+  
+  componentDidMount() {
+    this.setState({
+      userLoaded: true
+    });
+    if (!this.props.loaded) {
+      this.props.fetchPanels();
+    }
+  }
+
+  handleClick(link) {
+    ReactGA.event({
+      category: "partnerClick",
+      action: "click-pc-art",
+      label: link
+    });
+  }
+
   render() {
     const { panelsJSON } = this.props;
 
     let panelBlock, panelLink;
     if (this.props.loaded) {
       let partnerPick =
-        panelsJSON.partners[
-          Math.floor(Math.random() * panelsJSON.partners.length)
-        ];
+        panelsJSON.bArt[Math.floor(Math.random() * panelsJSON.bArt.length)];
       let panelPick =
-        partnerPick.bArt[Math.floor(Math.random() * partnerPick.bArt.length)];
+        partnerPick.banners[
+          Math.floor(Math.random() * partnerPick.banners.length)
+        ];
       panelBlock = (
         <a
-          href={panelPick.link ? panelPick.link : partnerPick.link}
+          href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
           rel="noreferrer"
           target="_blank"
+          onClick={() => {
+            this.handleClick(panelPick.linkTo);
+          }}
         >
           <div className={styles.panel}>
-            <img src={panelPick.src} />
+            <img src={panelPick.imgSrc} />
           </div>
         </a>
       );
     }
+
     return <div className={styles.container}>{panelBlock}</div>;
   }
 }

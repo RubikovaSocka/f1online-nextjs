@@ -6,10 +6,10 @@ export const fetchPanels = () => (dispatch, state) => {
     dispatch({
       type: FETCH_PANELS,
       payload: state.panelsJSON
-    })
+    });
   } else {
     axios
-      .get("https://wpadmin.f1online.sk/wp-content/uploads/parts.json")
+      .get("https://wpadmin.f1online.sk/wp-content/uploads/partners.json")
       .then(panels =>
         dispatch({
           type: FETCH_PANELS,
