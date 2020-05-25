@@ -7,7 +7,7 @@ export default function PanelManager() {
 export async function getServerSideProps(context) {
   const response = await axios({
     method: "get",
-    url: "https://wpadmin.f1online.sk/wp-content/uploads/partners.json"
+    url: "https://wpadmin.f1online.sk/wp-content/uploads/parts.json"
     //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
   });
 

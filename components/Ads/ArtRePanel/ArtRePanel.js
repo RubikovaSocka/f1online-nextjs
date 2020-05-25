@@ -4,22 +4,24 @@ import PropTypes from "prop-types";
 import { fetchPanels } from "../../../redux/actions/panelsActions";
 import styles from "./ArtRePanel.module.scss";
 import ReactGA from "react-ga";
+import Media from "react-media";
 
 class ArtRePanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userLoaded: false
+      runningOnClient: false
     };
   }
-  
+
   componentDidMount() {
-    this.setState({
-      userLoaded: true
-    });
     if (!this.props.loaded) {
       this.props.fetchPanels();
     }
+
+    this.setState({
+      runningOnClient: true
+    });
   }
 
   handleClick(link) {
@@ -31,33 +33,44 @@ class ArtRePanel extends Component {
   }
 
   render() {
-    const { panelsJSON } = this.props;
+    if (this.state.runningOnClient) {
+      let panelBlock;
+      const { panelsJSON } = this.props;
 
-    let panelBlock, panelLink;
-    if (this.props.loaded) {
-      let partnerPick =
-        panelsJSON.bArt[Math.floor(Math.random() * panelsJSON.bArt.length)];
-      let panelPick =
-        partnerPick.banners[
-          Math.floor(Math.random() * partnerPick.banners.length)
-        ];
-      panelBlock = (
-        <a
-          href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
-          rel="noreferrer"
-          target="_blank"
-          onClick={() => {
-            this.handleClick(panelPick.linkTo);
-          }}
-        >
-          <div className={styles.panel}>
-            <img src={panelPick.imgSrc} />
-          </div>
-        </a>
-      );
-    }
+      if (this.props.loaded) {
+        let partnerPick =
+          window.innerWidth < 1024
+            ? panelsJSON.bArtMob[
+                Math.floor(Math.random() * panelsJSON.bArtMob.length)
+              ]
+            : (partnerPick =
+                panelsJSON.bArt[
+                  Math.floor(Math.random() * panelsJSON.bArt.length)
+                ]);
 
-    return <div className={styles.container}>{panelBlock}</div>;
+        console.log(partnerPick);
+        let panelPick =
+          partnerPick.banners[
+            Math.floor(Math.random() * partnerPick.banners.length)
+          ];
+        panelBlock = (
+          <a
+            href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
+            rel="noreferrer"
+            target="_blank"
+            onClick={() => {
+              this.handleClick(panelPick.linkTo);
+            }}
+          >
+            <div className={styles.panel}>
+              <img src={panelPick.imgSrc} />
+            </div>
+          </a>
+        );
+      }
+
+      return <div className={styles.container}>{panelBlock}</div>;
+    } else return null;
   }
 }
 
