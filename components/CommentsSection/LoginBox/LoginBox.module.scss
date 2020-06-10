@@ -1,0 +1,411 @@
+.bbutton {
+  margin: 5px;
+  //height: 40px;
+  padding: 6px 12px;
+  //width: 150px;
+  border: 1px solid var(--basic-text-color);
+  border-radius: 0px;
+  font-family: "HK Grotesk", "Source Sans Pro";
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--basic-text-color);
+  background-color: var(--basic-back-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  transition: ease-in-out 0.2s;
+
+  &:hover {
+    background-color: var(--basic-text-color);
+    color: var(--basic-back-color);
+    cursor: pointer;
+  }
+  a {
+    color: var(--basic-text-color);
+    font-family: "HK Grotesk";
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.topLevelAnswerBoxContainer {
+  margin-top: 25px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.profileContainer {
+  margin-bottom: -4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .buttonsBlock {
+    padding-right: 5px;
+  }
+  .textBlock span {
+    margin: 0;
+  }
+
+  a {
+    color: var(--basic-text-color);
+    font-family: "HK Grotesk";
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    margin: 0 1px;
+    height: 20px;
+  }
+  .username {
+    font-weight: 600;
+    color: var(--basic-text-color);
+  }
+}
+.answerBoxRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+
+  .editorBoxContainer {
+    width: calc(100% - 65px);
+  }
+}
+.logoutButton {
+  margin-left: 10px;
+  height: 20px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  position: relative;
+  color: var(--basic-text-color);
+  font-family: "HK Grotesk";
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.imageButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 250px;
+  button {
+    width: calc(50% - 5px);
+  }
+}
+.imageErrorMessageContainer {
+  text-align: center;
+}
+//-----------
+.userImageContainer {
+  margin-top: 10px;
+  margin-right: 15px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+
+  &:hover .userImageOverlay {
+    opacity: 1;
+  }
+}
+
+.userImage {
+  display: block;
+  width: 50px;
+  height: auto;
+}
+
+.userImageOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.25s ease;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.userImageOverlayText {
+  color: white;
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.uploadSection {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+//***************
+.loginBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+
+  > .loginBoxContainer {
+    margin: 0;
+    width: calc(50% - 7px);
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    &.withBorder {
+      height: 25px;
+    }
+
+    span {
+      color: var(--basic-text-color);
+    }
+  }
+}
+
+.popupContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--basic-back-color);
+  color: var(--basic-text-color);
+  width: 290px;
+  width: calc(100vw - 80px);
+  //height: 250px;
+  padding: 40px 15px 35px 15px;
+
+  a {
+    color: var(--basic-text-color);
+    font-family: "HK Grotesk";
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.form {
+  //display: sticky;
+  //position: absolute;
+  margin-top: 35px;
+  width: 100%;
+
+  //margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .formInput {
+    border: none;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0 8px;
+
+    color: var(--sub-title-color);
+
+    width: calc(240px - 16px);
+    height: 30px;
+    font-family: "HK Grotesk";
+    font-size: 13px;
+    background-color: var(--widget-noselect-back-color);
+    //border-left: 1px solid var(--lines-color);
+  }
+}
+.loginFormButtons {
+  width: 240px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  .loginFormConfirmButton {
+    margin: 0;
+    width: 160px;
+    font-size: 12px;
+    border: 1px solid var(--basic-text-color);
+    background-color: var(--basic-back-color);
+    color: var(--basic-text-color);
+
+    &:hover {
+      background-color: var(--basic-text-color);
+      color: var(--basic-back-color);
+    }
+  }
+
+  .forgotButton {
+    width: 80px;
+    display: inline-block;
+    margin: 3px 0;
+    border: none;
+    text-transform: none;
+    color: var(--sub-title-color);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: var(--basic-back-color);
+      color: var(--basic-text-color);
+    }
+    &:hover span {
+      color: var(--basic-text-color);
+      text-decoration: underline;
+    }
+    i {
+      padding: 0 5px;
+    }
+  }
+}
+
+.withBorder {
+  border: 1px solid var(--basic-text-color);
+}
+.loginBoxContainer {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  transition: ease-in-out 0.22s;
+
+  &:hover {
+    background-color: var(--basic-text-color);
+  }
+  span {
+    transition: ease-in-out 0.22s;
+  }
+  &:hover span {
+    color: var(--basic-back-color);
+  }
+}
+.loadingBox {
+  width: 240px;
+  height: 100px;
+  margin: 0;
+  border: 1px solid var(--lines-color);
+  color: var(--basic-text-color);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.popupContainer > .popupCloseButton {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 6px 8px;
+  line-height: 20px;
+  right: 0;
+  top: -0;
+  font-size: 24px;
+  background: none;
+
+  //border-radius: 18px;
+  //border: 1px solid #cfcece;
+  color: var(--sub-title-color);
+
+  &:hover {
+    //transition: ease-in-out 0.2s;
+    color: var(--basic-text-color);
+    text-decoration: none;
+  }
+}
+.answerMessageContainer {
+  margin-top: 25px;
+  font-family: "HK Grotesk";
+  font-size: 13px;
+  text-align: center;
+
+  span {
+    margin: 5px 0;
+    display: inline-block;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--basic-text-color);
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.popupLoadingContainer {
+  height: 100px;
+  width: 130px;
+}
+
+.guidelinesContainer {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  padding: 0 10px 10px 10px;
+  font-family: "HK Grotesk";
+
+  line-height: 22px;
+  border: 1px solid var(--lines-color);
+  color: var(--basic-text-color);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  a {
+    color: #e10600;
+  }
+}
+.confirmGuidelinesButton {
+  align-self: flex-end;
+  margin: 0 10px;
+}
+
+@media only screen and (min-width: 360px) {
+  .profileContainer {
+    padding-right: 10px;
+    margin-left: 65px;
+    width: calc(100% - 65px);
+  }
+}
+
+@media only screen and (min-width: 420px) {
+  .popupContainer {
+    display: flex;
+    width: 290px;
+  }
+}

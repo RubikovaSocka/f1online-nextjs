@@ -30,12 +30,12 @@ export default function privacy({ pageData }) {
 export async function getServerSideProps(context) {
   const response = await axios({
     method: "get",
-    url: "https://wpadmin.f1online.sk/wp-json/wp/v2/pages?per_page=1"
+    url: "https://wpadmin.f1online.sk/wp-json/wp/v2/pages/3"
     //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
   });
   return {
     props: {
-      pageData: response.data[0]
+      pageData: response.data
     }
   };
 }

@@ -1,0 +1,256 @@
+.button {
+  margin: auto;
+  margin-top: 25px;
+  height: 40px;
+  width: 140px;
+  border: 1px solid var(--basic-text-color);
+  border-radius: 0px;
+  font-family: "HK Grotesk", "Source Sans Pro";
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--basic-text-color);
+  background-color: var(--basic-back-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  transition: ease-in-out 0.2s;
+
+  &:hover {
+    background-color: var(--basic-text-color);
+    color: var(--basic-back-color);
+    cursor: pointer;
+  }
+}
+
+.container {
+  width: 100%;
+  margin-bottom: 50px;
+  font-family: "HK Grotesk";
+  font-size: 13px;
+}
+
+.leftMargin {
+  margin-left: 20px;
+}
+
+.threadContainer {
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  .commentContainer {
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+.commentMainBody {
+  width: calc(100% - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 10px;
+}
+.userImage {
+  width: 50px;
+  height: 50px;
+}
+
+.commentHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 49px;
+  border-bottom: 1px solid var(--lines-color);
+
+  span {
+    display: inline-block;
+  }
+}
+.authorName {
+  color: var(--basic-text-color);
+  font-weight: 600;
+}
+.parentAuthorName {
+  color: var(--sub-title-color);
+  margin-left: 3px;
+  //font-style: italic;
+  font-weight: 400;
+}
+.arrowIcon {
+  color: var(--sub-title-color);
+  margin-left: 12px;
+  font-size: 10px;
+}
+.date {
+  color: var(--sub-title-color);
+  margin-left: 0;
+}
+.commentBody {
+  color: var(--basic-text-color);
+  font-size: 14px;
+
+  p,
+  li,
+  blockquote {
+    margin: 5px 0;
+    line-height: 22px;
+  }
+  blockquote {
+    margin: 15px 25px;
+    border-left: 3px solid var(--calendar-verline-color);
+    > * {
+      margin-left: 5px;
+    }
+  }
+}
+.mainCommentSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: -60px;
+}
+.answerBoxContainer {
+  margin-left: -60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.buttonsRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-left: -60px;
+}
+.openReactBoxButton {
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--sub-title-color);
+
+  &:hover span {
+    text-decoration: underline;
+  }
+  span {
+    font-family: "HK Grotesk";
+  }
+}
+.editorBoxHeader {
+  margin-top: 5px;
+  margin-left: 0;
+  span {
+    margin-left: 4px;
+  }
+  span,
+  i {
+    color: var(--sub-title-color);
+  }
+}
+.dot {
+  color: var(--sub-title-color);
+  font-size: 4px;
+  height: 4px;
+  padding: 0 10px;
+}
+.timeBlock {
+  color: var(--sub-title-color);
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  i {
+    display: none;
+    font-size: 10px;
+  }
+}
+
+.authorsHeaderBlock {
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  i {
+    font-size: 9px;
+  }
+}
+.flexRow {
+  flex-direction: row;
+}
+.flexCol {
+  flex-direction: column;
+}
+.ref {
+  width: 0;
+  height: 0;
+}
+.buttonsTopRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.reportedCommentsBox {
+  margin: 15px 0;
+}
+.reportedCommentSpan {
+  font-family: "HK Grotesk";
+  font-size: 14px;
+  padding: 10px 5px;
+  color: var(--basic-text-color);
+}
+@media only screen and (min-width: 420px) {
+  .commentHeader {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 25px;
+  }
+  .timeBlock {
+    i {
+      display: inline-block;
+      margin: 1px 5px 0 5px;
+    }
+  }
+  .editorBoxHeader {
+    margin: 0;
+    margin-left: 25px;
+  }
+  .buttonsRow {
+    margin-left: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .authorsHeaderBlock {
+    height: 100%;
+  }
+  .mainCommentSection {
+    margin-left: 0;
+  }
+  .answerBoxContainer {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .leftMargin {
+    margin-left: 30px;
+  }
+}

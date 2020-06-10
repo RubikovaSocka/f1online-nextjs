@@ -48,7 +48,6 @@ class ArtRePanel extends Component {
                   Math.floor(Math.random() * panelsJSON.bArt.length)
                 ]);
 
-        console.log(partnerPick);
         let panelPick =
           partnerPick.banners[
             Math.floor(Math.random() * partnerPick.banners.length)

@@ -1,0 +1,208 @@
+.resetForm {
+  margin-top: 10px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .formInput {
+    width: 80%;
+    padding: 5px 10px;
+    height: 25px;
+    margin-top: 10px;
+    border: none;
+    font-family: "HK Grotesk";
+    font-size: 13px;
+    background-color: var(--widget-noselect-back-color);
+    color: var(--sub-title-color);
+  }
+  .button {
+    //height: 40px;
+    margin-top: 10px;
+    padding: 6px 12px;
+    height: 35px;
+    //width: 150px;
+    border: 1px solid var(--basic-text-color);
+    border-radius: 0px;
+    font-family: "HK Grotesk", "Source Sans Pro";
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--basic-text-color);
+    background-color: var(--basic-back-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    transition: ease-in-out 0.2s;
+
+    &:hover {
+      background-color: var(--basic-text-color);
+      color: var(--basic-back-color);
+      cursor: pointer;
+    }
+    a {
+      color: var(--basic-text-color);
+      font-family: "HK Grotesk";
+      font-weight: 600;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.text {
+  margin-top: 40px;
+  font-size: 14px;
+  font-family: "HK Grotesk";
+  color: var(--basic-text-color);
+}
+.resetMessage {
+  margin: 10px auto;
+}
+.form {
+  //margin-top: 10px;
+  margin: 15px auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .formInput {
+    width: calc(100% - 20px);
+    padding: 5px 10px;
+    height: 25px;
+    margin-top: 10px;
+    border: none;
+    font-family: "HK Grotesk";
+    font-size: 13px;
+    background-color: var(--widget-noselect-back-color);
+    color: var(--sub-title-color);
+  }
+  .checkboxContainer {
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    a {
+      padding: 3px;
+      font-family: "HK Grotesk";
+      font-size: 13px;
+      color: var(--basic-text-color);
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .checkbox {
+    width: 15px;
+    height: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  label {
+    font-family: "HK Grotesk";
+    font-size: 13px;
+    color: var(--basic-text-color);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .button {
+    margin: 5px;
+    //height: 40px;
+    padding: 6px 12px;
+    //width: 150px;
+    align-self: center;
+    border: 1px solid var(--basic-text-color);
+    border-radius: 0px;
+    font-family: "HK Grotesk", "Source Sans Pro";
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--basic-text-color);
+    background-color: var(--basic-back-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    transition: ease-in-out 0.2s;
+
+    &:hover {
+      background-color: var(--basic-text-color);
+      color: var(--basic-back-color);
+      cursor: pointer;
+    }
+    a {
+      color: var(--basic-text-color);
+      font-family: "HK Grotesk";
+      font-weight: 600;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.fullpage {
+  width: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+@media only screen and (min-width: 720px) {
+  .fullpage {
+    width: 400px;
+    margin-bottom: 70px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .fullpage {
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width: 1260px) {
+  .fullpage {
+    width: 1032px;
+  }
+
+  .form {
+    //margin-top: 10px;
+    margin: 40px auto;
+    width: 35%;
+  }
+  .resetForm {
+    margin-top: 10px;
+    width: 40%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .formInput {
+      width: 80%;
+      padding: 5px 10px;
+      height: 25px;
+    }
+  }
+}

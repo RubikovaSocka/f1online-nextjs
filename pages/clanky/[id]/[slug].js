@@ -14,6 +14,7 @@ import Divider from "../../../components/Divider.js";
 import getImagePreview from "../../../utils/getImagePreview";
 import ArtRePanel from "../../../components/Ads/ArtRePanel/ArtRePanel.js";
 import Media from "react-media";
+import CommentsSection from "../../../components/CommentsSection/CommentsSection.js";
 
 export default class Post extends Component {
   constructor(props) {
@@ -94,7 +95,14 @@ export default class Post extends Component {
     let pageFull = (
       <main className="contentsPage">
         <div className="page">
-          <div className="mainContent">{post}</div>
+          <div className="mainContent">
+            {post}
+            <Divider height="10px" />
+            <CommentsSection
+              articleID={postData.id}
+              articleUrl={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`}
+            />
+          </div>
           <aside className="sideBar">
             <QuickNews />
             <Divider height="15px" />
@@ -136,6 +144,10 @@ export default class Post extends Component {
             property="og:url"
             content={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`}
           />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          ></link>
           <meta
             key="meta_image"
             property="og:image"

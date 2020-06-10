@@ -4,7 +4,6 @@
   font-family: "Cabin";
   font-size: 18px;
   color: var(--basic-text-color);
-
 }
 .imageContainer {
   font-family: "HK Grotesk";
@@ -39,6 +38,31 @@
     text-decoration: none;
     color: #e10600;
   }
+  figure {
+    width: 100%;
+    margin: 25px 0;
+
+    img {
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
+    figcaption {
+      font-family: "HK Grotesk";
+      font-size: 12px;
+      line-height: 18px;
+      color: var(--sub-title-color);
+      text-align: right;
+    }
+  }
+  iframe {
+    width: 100%;
+    margin: 0;
+    min-height: 380px;
+  }
+  twitter-widget {
+    margin: 10px auto;
+  }
 }
 .articleContentUpper p:first-of-type {
   font-weight: 600;
@@ -46,11 +70,11 @@
 
 @media only screen and (min-width: 1024px) {
   .stickyWidget {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 120px;
-        margin-bottom: 10px;
-        height: calc(100vh - 120px);
-        //height: calc(100% - )
-    }
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+    margin-bottom: 10px;
+    height: calc(100vh - 120px);
+    //height: calc(100% - )
+  }
 }

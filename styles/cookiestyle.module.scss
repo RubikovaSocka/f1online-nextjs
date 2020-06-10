@@ -1,20 +1,22 @@
 .cookieContainer {
-    position: fixed;
-    bottom: 0;
-    ///height: 75px; 
-    width: 100%;
-    z-index: 200;
-    font-size: 12px;
+  display: initial;
+  
+  ///height: 75px;
+  //height: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 200;
+  font-size: 12px;
 }
 
 @media only screen and (min-width: 1366px) {
-    
-    .cookieContainer {
-        position: fixed;
-        bottom: 0;
-        height: 45px; 
-        z-index: 200;
-        //width: 60%;
-    }
-
+  .cookieContainer {
+    height: 45px;
+    //height: 0;
+    //width: 60%;
+  }
+}
+.displayNone {
+  display: none;
 }
