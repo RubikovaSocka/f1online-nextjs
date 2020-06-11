@@ -44,6 +44,7 @@
     "react-oembed-container": "^1.0.0",
     "react-paginate": "^6.3.2",
     "react-redux": "^7.2.0",
+    "react-share": "^4.2.0",
     "reactjs-popup": "^1.5.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",

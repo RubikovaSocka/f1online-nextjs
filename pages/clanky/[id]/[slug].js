@@ -16,6 +16,10 @@ import ArtRePanel from "../../../components/Ads/ArtRePanel/ArtRePanel.js";
 import Media from "react-media";
 import CommentsSection from "../../../components/CommentsSection/CommentsSection.js";
 
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { FacebookIcon, TwitterIcon } from "react-share";
+import { FacebookShareCount } from "react-share";
+
 export default class Post extends Component {
   constructor(props) {
     super(props);
@@ -86,6 +90,7 @@ export default class Post extends Component {
           <br />
           <span>{formatDate(postData.date)}</span>
         </div>
+
         <EmbedContainer markup={this.props.postData.content.rendered}>
           {articleContentFull}
         </EmbedContainer>
@@ -97,6 +102,22 @@ export default class Post extends Component {
         <div className="page">
           <div className="mainContent">
             {post}
+            <Divider height="10px" />
+            <div className={styles.shareButtonRow}>
+              <span>Zdieľať</span>
+              <FacebookShareButton
+                url={`https://f1online.sk/clanky/${this.props.postData.id}/${this.props.postData.slug}`}
+              >
+                <FacebookIcon size={25} />
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={`https://f1online.sk/clanky/${this.props.postData.id}/${this.props.postData.slug}`}
+              >
+                {" "}
+                <TwitterIcon size={25} />
+              </TwitterShareButton>
+            </div>
+
             <Divider height="10px" />
             <CommentsSection
               articleID={postData.id}

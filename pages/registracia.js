@@ -42,38 +42,59 @@ class Registracia extends Component {
       return;
     }
 
-    const userData = { username: name, email: email, password: pass };
+    axios
+      .get("https://wpadmin.f1online.sk/wp-content/uploads/emails.json")
+      .then(res => {
+        let ok = true;
 
-    axios({
-      method: "post",
-      url: "https://wpadmin.f1online.sk/wp-json/wp/v2/users/register",
-      /*data: {
-        name: name,
-        email: email,
-        password: pass
-      },*/
-      data: userData,
-      headers: { "Content-Type": "application/json" }
-    })
-      .then(response => {
-        //handle success
-        this.setState({
-          registrationResultMessage: response.data.message,
-          loading: false
+        res.data.list.map((element, i) => {
+          if (email.includes(element.domain)) {
+            ok = false;
+          }
+          return null;
         });
-      })
-      .catch(error => {
-        //handle error
-        this.setState({
-          registrationResultMessage: error.response.data.message,
-          loading: false
-        });
+        
+        if (!ok) {
+          this.setState({
+            registrationResultMessage:
+              "Registrácia z uvedenej domény nie je možná, vyberte si, prosím, iný email.",
+            loading: false
+          });
+        } else {
+          const userData = { username: name, email: email, password: pass };
+
+          axios({
+            method: "post",
+            url: "https://wpadmin.f1online.sk/wp-json/wp/v2/users/register",
+            /*data: {
+              name: name,
+              email: email,
+              password: pass
+            },*/
+            data: userData,
+            headers: { "Content-Type": "application/json" }
+          })
+            .then(response => {
+              //handle success
+              this.setState({
+                registrationResultMessage: response.data.message,
+                loading: false
+              });
+            })
+            .catch(error => {
+              //handle error
+              this.setState({
+                registrationResultMessage: error.response.data.message,
+                loading: false
+              });
+            });
+        }
       });
   }
 
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
-    }
+  }
 
   render() {
     return (
@@ -108,7 +129,7 @@ class Registracia extends Component {
                 required
               />
               <input
-              className={styles.formInput}
+                className={styles.formInput}
                 type="email"
                 placeholder="Email"
                 id="email"
@@ -116,7 +137,7 @@ class Registracia extends Component {
                 required
               />
               <input
-              className={styles.formInput}
+                className={styles.formInput}
                 type="password"
                 placeholder="Heslo"
                 id="pass"
@@ -124,7 +145,7 @@ class Registracia extends Component {
                 required
               />
               <input
-              className={styles.formInput}
+                className={styles.formInput}
                 type="password"
                 placeholder="Overenie hesla"
                 id="pass2"

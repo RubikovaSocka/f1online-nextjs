@@ -45,7 +45,8 @@ export default class CommentsSection extends Component {
       commentsLoaded: false,
       commentsLoadingStarted: false,
       loggedIn: false,
-      reported: false
+      reported: false,
+      nrComments: 0
     };
     this.openSectionClicked = this.openSectionClicked.bind(this);
     this.reloadComments = this.reloadComments.bind(this);
@@ -53,9 +54,16 @@ export default class CommentsSection extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      loggedIn: localStorage.getItem("f1online-user-token") !== null
-    });
+    axios
+      .get(
+        `https://wpadmin.f1online.sk/wp-json/wp/v2/comments?post=${this.props.articleID}&per_page=1`
+      )
+      .then(res => {
+        this.setState({
+          loggedIn: localStorage.getItem("f1online-user-token") !== null,
+          nrComments: res.headers["x-wp-total"]
+        });
+      });
   }
 
   openSectionClicked() {
@@ -86,6 +94,7 @@ export default class CommentsSection extends Component {
         `https://wpadmin.f1online.sk/wp-json/wp/v2/comments?post=${this.props.articleID}&per_page=100`
       )
       .then(res => {
+        console.log(res);
         this.setState({
           comments: nestComments(res.data.reverse()),
           commentsLoaded: true
@@ -156,7 +165,7 @@ export default class CommentsSection extends Component {
             this.openSectionClicked();
           }}
         >
-          <span>Komentáre</span>
+          <span>Komentáre ({this.state.nrComments})</span>
         </div>
       </div>
     );

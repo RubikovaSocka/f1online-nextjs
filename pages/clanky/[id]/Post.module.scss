@@ -67,6 +67,31 @@
 .articleContentUpper p:first-of-type {
   font-weight: 600;
 }
+.shareButtonRow {
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  button {
+    margin: 0 3px;
+    height: 100%;
+    transition: ease-in-out 0.1s;
+    &:hover {
+      margin-bottom: 4px;
+    }
+  }
+  span {
+    font-family: "HK Grotesk";
+    font-size: 14px;
+    line-height: 25px;
+    color: var(--basic-text-color);
+    text-align: right;
+    padding-right: 5px;
+    padding-bottom: 4px;
+  }
+}
 
 @media only screen and (min-width: 1024px) {
   .stickyWidget {
