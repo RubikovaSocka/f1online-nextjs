@@ -95,7 +95,7 @@ export class ArchivArticles extends Component {
               breakLabel={"..."}
               breakClassName={"break-me"}
               pageCount={this.state.pageCount}
-              marginPagesDisplayed={3}
+              marginPagesDisplayed={1}
               pageRangeDisplayed={3}
               onPageChange={this.handlePageClick}
               containerClassName={styles.paginateContainer}
