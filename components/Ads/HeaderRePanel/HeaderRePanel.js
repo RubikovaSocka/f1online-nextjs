@@ -41,7 +41,7 @@ class HeaderRePanel extends Component {
       let panelPick =
         partnerPick.banners[
           Math.floor(Math.random() * partnerPick.banners.length)
-        ];
+        ]; 
       panelBlock = (
         <a
           href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}

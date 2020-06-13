@@ -32,7 +32,7 @@ const mobileStyles = {
     bottom: "0",
     width: "100%",
     zIndex: "200",
-    height: "80px",
+    height: "80px"
   },
   button: {
     border: "1px solid white",
@@ -77,7 +77,7 @@ const styles = {
     bottom: "0",
     width: "100%",
     zIndex: "200",
-    height: "45px",
+    height: "45px"
   },
   button: {
     border: "1px solid white",

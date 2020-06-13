@@ -5,6 +5,7 @@ import { fetchPanels } from "../../../redux/actions/panelsActions";
 import styles from "./ArtRePanel.module.scss";
 import ReactGA from "react-ga";
 import Media from "react-media";
+import AdBlockDetect from "react-ad-block-detect";
 
 class ArtRePanel extends Component {
   constructor(props) {
@@ -52,22 +53,58 @@ class ArtRePanel extends Component {
           partnerPick.banners[
             Math.floor(Math.random() * partnerPick.banners.length)
           ];
-        panelBlock = (
-          <a
-            href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
-            rel="noreferrer"
-            target="_blank"
-            onClick={() => {
-              this.handleClick(panelPick.linkTo);
-            }}
-          >
-            <div className={styles.panel}>
-              <img src={panelPick.imgSrc} />
-            </div>
-          </a>
-        );
-      }
 
+        let x = Math.floor(Math.random() * 2);
+        console.log("kontrola");
+        console.log(x);
+        if (x > 0) {
+          panelBlock = (
+            <>
+              <AdBlockDetect>
+                <a
+                  href={
+                    panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo
+                  }
+                  rel="noreferrer"
+                  target="_blank"
+                  onClick={() => {
+                    this.handleClick(panelPick.linkTo);
+                  }}
+                >
+                  <div className={styles.panel}>
+                    <img src={panelPick.imgSrc} />
+                  </div>
+                </a>
+              </AdBlockDetect>
+              <ins
+                className={`adsbygoogle ${styles.panel}`}
+                data-ad-layout="in-article"
+                data-ad-format="fluid"
+                data-ad-client="ca-pub-2681240380511410"
+                data-ad-slot="7293745168"
+              ></ins>
+              <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </>
+          );
+        } else {
+          panelBlock = (
+            <a
+              href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
+              rel="noreferrer"
+              target="_blank"
+              onClick={() => {
+                this.handleClick(panelPick.linkTo);
+              }}
+            >
+              <div className={styles.panel}>
+                <img src={panelPick.imgSrc} />
+              </div>
+            </a>
+          );
+        }
+      }
       return <div className={styles.container}>{panelBlock}</div>;
     } else return null;
   }

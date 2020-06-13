@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { fetchPanels } from "../../../redux/actions/panelsActions";
 import styles from "./SideRePanel.module.scss";
 import ReactGA from "react-ga";
+import AdBlockDetect from "react-ad-block-detect";
 
 class SideRePanel extends Component {
   constructor(props) {
@@ -37,21 +38,55 @@ class SideRePanel extends Component {
         partnerPick.banners[
           Math.floor(Math.random() * partnerPick.banners.length)
         ];
-      panelBlock = (
-        <a
-          href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
-          rel="noreferrer"
-          target="_blank"
-          onClick={() => {
-            this.handleClick(panelPick.linkTo);
-          }}
-        >
-          <div className={styles.panel}>
-            <img src={panelPick.imgSrc} />
-          </div>
-        </a>
-      );
+      let x = Math.floor(Math.random() * 3);
+      console.log("kontrola");
+      console.log(x);
+      if (x > 0) {
+        panelBlock = (
+          <>
+            <AdBlockDetect>
+              <a
+                href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
+                rel="noreferrer"
+                target="_blank"
+                onClick={() => {
+                  this.handleClick(panelPick.linkTo);
+                }}
+              >
+                <div className={styles.panel}>
+                  <img src={panelPick.imgSrc} />
+                </div>
+              </a>
+            </AdBlockDetect>
+            
+            <ins
+              className={`adsbygoogle ${styles.container}`}
+              data-ad-client="ca-pub-2681240380511410"
+              data-ad-slot="9306692655"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            ></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({})</script>
+          </>
+        );
+      } else {
+        panelBlock = (
+          <a
+            href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
+            rel="noreferrer"
+            target="_blank"
+            onClick={() => {
+              this.handleClick(panelPick.linkTo);
+            }}
+          >
+            <div className={styles.panel}>
+              <img src={panelPick.imgSrc} />
+            </div>
+          </a>
+        );
+      }
     }
+
     return <div className={styles.container}>{panelBlock}</div>;
   }
 }
