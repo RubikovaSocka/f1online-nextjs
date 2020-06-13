@@ -17,7 +17,7 @@ class SideRePanel extends Component {
     if (!this.props.loaded) {
       this.props.fetchPanels();
     }
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    //(adsbygoogle = window.adsbygoogle || []).push({});
   }
 
   handleClick(link) {
