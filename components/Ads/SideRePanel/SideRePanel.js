@@ -17,6 +17,7 @@ class SideRePanel extends Component {
     if (!this.props.loaded) {
       this.props.fetchPanels();
     }
+    (adsbygoogle = window.adsbygoogle || []).push({});
   }
 
   handleClick(link) {
@@ -39,8 +40,6 @@ class SideRePanel extends Component {
           Math.floor(Math.random() * partnerPick.banners.length)
         ];
       let x = Math.floor(Math.random() * 3);
-      console.log("kontrola");
-      console.log(x);
       if (x > 0) {
         panelBlock = (
           <>
@@ -58,7 +57,7 @@ class SideRePanel extends Component {
                 </div>
               </a>
             </AdBlockDetect>
-            
+
             <ins
               className={`adsbygoogle ${styles.container}`}
               data-ad-client="ca-pub-2681240380511410"
@@ -66,7 +65,6 @@ class SideRePanel extends Component {
               data-ad-format="auto"
               data-full-width-responsive="true"
             ></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({})</script>
           </>
         );
       } else {

@@ -23,6 +23,8 @@ class ArtRePanel extends Component {
     this.setState({
       runningOnClient: true
     });
+
+    (adsbygoogle = window.adsbygoogle || []).push({});
   }
 
   handleClick(link) {
@@ -81,9 +83,6 @@ class ArtRePanel extends Component {
                 data-ad-client="ca-pub-2681240380511410"
                 data-ad-slot="7293745168"
               ></ins>
-              <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-              </script>
             </>
           );
         } else {
