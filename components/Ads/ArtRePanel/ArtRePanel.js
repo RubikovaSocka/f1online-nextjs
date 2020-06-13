@@ -23,8 +23,8 @@ class ArtRePanel extends Component {
     this.setState({
       runningOnClient: true
     });
-
-    //(adsbygoogle = window.adsbygoogle || []).push({});
+    let adsbygoogle;
+    (adsbygoogle = window.adsbygoogle || []).push({});
   }
 
   handleClick(link) {
