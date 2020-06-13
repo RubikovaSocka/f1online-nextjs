@@ -34,6 +34,7 @@
     "public-ip": "^4.0.1",
     "react": "16.13.1",
     "react-ad-block-detect": "^1.0.1",
+    "react-adsense": "^0.1.0",
     "react-bootstrap": "^1.0.1",
     "react-cookie-banner": "^4.1.0",
     "react-dom": "16.13.1",

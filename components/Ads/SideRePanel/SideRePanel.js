@@ -5,6 +5,7 @@ import { fetchPanels } from "../../../redux/actions/panelsActions";
 import styles from "./SideRePanel.module.scss";
 import ReactGA from "react-ga";
 import AdBlockDetect from "react-ad-block-detect";
+import AdSense from "react-adsense";
 
 class SideRePanel extends Component {
   constructor(props) {
@@ -17,8 +18,8 @@ class SideRePanel extends Component {
     if (!this.props.loaded) {
       this.props.fetchPanels();
     }
-    let adsbygoogle;
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    //let adsbygoogle;
+    //(adsbygoogle = window.adsbygoogle || []).push({});
   }
 
   handleClick(link) {
@@ -58,14 +59,23 @@ class SideRePanel extends Component {
                 </div>
               </a>
             </AdBlockDetect>
-
+{/*
             <ins
               className={`adsbygoogle ${styles.container}`}
               data-ad-client="ca-pub-2681240380511410"
               data-ad-slot="9306692655"
               data-ad-format="auto"
               data-full-width-responsive="true"
-            ></ins>
+            ></ins>*/}
+            <div className={styles.panel}>
+                <AdSense.Google
+                  client="ca-pub-2681240380511410"
+                  slot="9306692655"
+                  style={{ display: "inline-block", width: "300px", height: "250px"}}
+                  layout="in-article"
+                  format="auto"
+                />
+              </div>
           </>
         );
       } else {

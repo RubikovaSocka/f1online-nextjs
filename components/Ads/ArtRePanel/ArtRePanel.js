@@ -6,6 +6,7 @@ import styles from "./ArtRePanel.module.scss";
 import ReactGA from "react-ga";
 import Media from "react-media";
 import AdBlockDetect from "react-ad-block-detect";
+import AdSense from "react-adsense";
 
 class ArtRePanel extends Component {
   constructor(props) {
@@ -23,8 +24,8 @@ class ArtRePanel extends Component {
     this.setState({
       runningOnClient: true
     });
-    let adsbygoogle;
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    //let adsbygoogle;
+    //(adsbygoogle = window.adsbygoogle || []).push({});
   }
 
   handleClick(link) {
@@ -76,13 +77,24 @@ class ArtRePanel extends Component {
                   </div>
                 </a>
               </AdBlockDetect>
+              {/*
               <ins
                 className={`adsbygoogle ${styles.panel}`}
                 data-ad-layout="in-article"
                 data-ad-format="fluid"
                 data-ad-client="ca-pub-2681240380511410"
                 data-ad-slot="7293745168"
-              ></ins>
+              ></ins>*/}
+              <div className={styles.panel}>
+                <AdSense.Google
+                  client="ca-pub-2681240380511410"
+                  slot="7293745168"
+                  style={{ display: "inline-block", width: "650px", height: "120px"}}
+                  layout="in-article"
+                  format="fluid"
+                />
+              </div>
+              
             </>
           );
         } else {
