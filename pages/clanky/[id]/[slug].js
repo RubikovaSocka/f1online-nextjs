@@ -128,9 +128,10 @@ export default class Post extends Component {
             <QuickNews />
             <Divider height="15px" />
             <CalResWidget />
-            <div className={`${styles.stickyWidget}`}>
+
+            {/*<div className={`${styles.stickyWidget}`}>*/}
               <SideRePanel />
-            </div>
+            {/*</div>*/}
           </aside>
         </div>
       </main>
