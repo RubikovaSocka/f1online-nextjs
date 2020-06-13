@@ -55,8 +55,6 @@ class ArtRePanel extends Component {
           ];
 
         let x = Math.floor(Math.random() * 2);
-        console.log("kontrola");
-        console.log(x);
         if (x > 0) {
           panelBlock = (
             <>
