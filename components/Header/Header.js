@@ -16,9 +16,9 @@ class Header extends React.Component {
           <div className={styles.whiteBack}>
             <div className={styles.headerPanel}>
               <SocialMediaBasicPlugin />
-              <Link href="/" as="/">
+              <Link href="/">
                 <a>
-                  <img className={styles.logo} alt="-" />
+                  <img className={styles.logo} src={this.props.logoSrc} alt="-"></img>
                 </a>
               </Link>
               <SearchBar />

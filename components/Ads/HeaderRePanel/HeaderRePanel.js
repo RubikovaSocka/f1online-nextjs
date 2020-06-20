@@ -10,7 +10,8 @@ class HeaderRePanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userLoaded: false
+      userLoaded: false,
+      renderAds: false
     };
   }
 
@@ -41,21 +42,21 @@ class HeaderRePanel extends Component {
       let panelPick =
         partnerPick.banners[
           Math.floor(Math.random() * partnerPick.banners.length)
-        ]; 
-      panelBlock = (
-        <a
-          href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
-          rel="noreferrer"
-          target="_blank"
-          onClick={() => {
-            this.handleClick(panelPick.linkTo);
-          }}
-        >
-          <div className={styles.panel}>
-            <img src={panelPick.imgSrc} />
-          </div>
-        </a>
-      );
+        ];
+        panelBlock = (
+          <a
+            href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
+            rel="noreferrer"
+            target="_blank"
+            onClick={() => {
+              this.handleClick(panelPick.linkTo);
+            }}
+          >
+            <div className={styles.panel}>
+              <img src={panelPick.imgSrc} />
+            </div>
+          </a>
+        );
     }
 
     return <div className={styles.container}>{panelBlock}</div>;

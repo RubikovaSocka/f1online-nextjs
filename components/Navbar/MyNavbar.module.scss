@@ -12,7 +12,7 @@
   top: 0;
   right: 0;
 
-  z-index: 30;
+  z-index: 0;
   opacity: 0;
 
   display: flex;
@@ -23,6 +23,7 @@
   &.opened {
     opacity: 1;
     display: flex;
+    z-index: 30;
 
     .navbar {
       width: 100%;

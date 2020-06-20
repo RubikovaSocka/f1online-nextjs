@@ -121,7 +121,8 @@ export default class App extends Component {
     super(props);
     this.state = {
       showCookieBanner: false,
-      cookieBanner: {}
+      cookieBanner: {},
+      logoUrl: ""
     };
     this.removeCookieBar = this.removeCookieBar.bind(this);
   }
@@ -129,12 +130,21 @@ export default class App extends Component {
   componentDidMount() {
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
-
     //localStorage.removeItem("f1online-cookie-ok");
     if (localStorage.getItem("f1online-cookie-ok") === "suhlasOK") {
+      this.setState({
+        logoUrl:
+          window.localStorage.getItem("theme-name") === "dark"
+            ? "/images/logo-dark.png"
+            : "/images/logo-light.png"
+      });
     } else {
       this.setState({
         showCookieBanner: true,
+        logoUrl:
+          window.localStorage.getItem("theme-name") === "dark"
+            ? "/images/logo-dark.png"
+            : "/images/logo-light.png",
         cookieBanner: (
           /*<div >*/
           <CookieBanner
@@ -162,6 +172,12 @@ export default class App extends Component {
       cookieBanner: {}
     });
   }
+
+  setTheme = logoSrc => {
+    this.setState({
+      logoUrl: logoSrc
+    });
+  };
 
   render() {
     const { Component, pageProps } = this.props;
@@ -204,8 +220,8 @@ export default class App extends Component {
         </Head>
         {this.state.showCookieBanner ? this.state.cookieBanner : ""}
         <HeaderRePanel />
-        <Header />
-        <ThemeSwitcher />
+        <Header logoSrc={this.state.logoUrl} />
+        <ThemeSwitcher setTheme={this.setTheme} />
         <Component {...pageProps} />
         <Footer />
       </Provider>

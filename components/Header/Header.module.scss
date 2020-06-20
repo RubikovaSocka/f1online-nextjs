@@ -34,11 +34,11 @@ $shadow-pc: 0 0px 8px rgba(0, 0, 0, 0.4);
       align-self: center;
       margin: auto;
       height: 42px;
+      z-index: 15;
     }
     .logo {
       height: 42px;
       display: inline-block;
-      content: var(--logo-url);
       /*content: "";
       background: var(--logo-url) no-repeat 0 0;
       background-size: 100%;*/
