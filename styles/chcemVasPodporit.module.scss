@@ -1,0 +1,56 @@
+.fullpage {
+  width: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 70px;
+  font-family: "HK Grotesk";
+  font-size: 14px;
+  color: var(--article-text-color);
+}
+
+.donateButtonContainer {
+  margin-top: 15px;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.donateImage {
+  width: 150px;
+  padding: 5px 25px;
+  border: 1px solid var(--lines-color);
+  &:hover {
+    border: 1px solid var(--basic-text-color);
+    //background-color: black;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .fullpage {
+    width: 400px;
+    margin-bottom: 40px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .fullpage {
+    margin-bottom: 30px;
+    padding-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 1260px) {
+  .fullpage {
+    width: 800px;
+  }
+
+  .form {
+    //margin-top: 10px;
+    margin: 40px auto;
+    width: 35%;
+  }
+}

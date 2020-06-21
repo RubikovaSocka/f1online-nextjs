@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Head from "next/head";
-
+import Link from "next/link";
 import styles from "./ThemeSwitcher.module.scss";
+import ReactGA from "react-ga";
 
 export default class ThemeSwitcher extends Component {
   constructor(props) {
@@ -39,6 +40,14 @@ export default class ThemeSwitcher extends Component {
       themeName === "dark" ? "/images/logo-dark.png" : "/images/logo-light.png"
     );
   };
+
+  handleClick() {
+    ReactGA.event({
+      category: "donate",
+      action: "donation-link-clicked",
+      label: "donation"
+    });
+  }
 
   render() {
     let themeHeader;
@@ -89,7 +98,14 @@ export default class ThemeSwitcher extends Component {
     return (
       <>
         {themeHeader}
-        <div className={styles.container}>{switcher}</div>
+        <div className={styles.container}>
+          <Link href="/chcem-vas-podporit">
+            <a onClick={() => {
+                    this.handleClick();
+                  }} className={styles.donateButton}>Chcem podporiť F1online.sk</a>
+          </Link>
+          {switcher}
+        </div>
       </>
     );
   }
