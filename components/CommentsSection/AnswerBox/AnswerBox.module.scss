@@ -19,6 +19,8 @@
     height: 100%;
     resize: none;
     padding: 5px;
+    background-color: var(--basic-back-color);
+    color: var(--basic-text-color);
   }
 }
 .answerAuthorDetailsContainer {
@@ -133,4 +135,5 @@
   font-family: "HK Grotesk";
   font-size: 13px;
   color: var(--basic-text-color);
+  background-color: var(--basic-back-color);
 }
