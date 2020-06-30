@@ -6,6 +6,9 @@ import SocialMediaBasicPlugin from "../SocialMediaPlugin/SocialMediaPlugin";
 import SearchBar from "../SearchBar/SearchBar";
 
 import styles from "./Header.module.scss";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { changeTheme } from "../../redux/actions/themeActions";
 
 class Header extends React.Component {
   render() {
@@ -18,7 +21,15 @@ class Header extends React.Component {
               <SocialMediaBasicPlugin />
               <Link href="/">
                 <a>
-                  <img className={styles.logo} src={this.props.logoSrc} alt="-"></img>
+                  <img
+                    className={styles.logo}
+                    src={
+                      this.props.isThemeLight
+                        ? this.props.lightTheme.logoSrc
+                        : this.props.darkTheme.logoSrc
+                    }
+                    alt="-"
+                  ></img>
                 </a>
               </Link>
               <SearchBar />
@@ -32,4 +43,17 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+Header.propTypes = {
+  changeTheme: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  isThemeLight: state.theme.isThemeLight,
+  lightTheme: state.theme.lightTheme,
+  darkTheme: state.theme.darkTheme
+});
+
+export default connect(
+  mapStateToProps,
+  { changeTheme }
+)(Header);

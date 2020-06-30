@@ -1,24 +1,20 @@
-import { Fragment, useEffect, Component } from "react";
+import { Component } from "react";
 import axios from "axios";
 import EmbedContainer from "react-oembed-container";
-import ReactGA from "react-ga";
 import Head from "next/head";
 import formatDate from "../../../utils/dateFormatter.js";
 
 import QuickNews from "../../../components/QuickNews/QuickNews";
-import RPanel from "../../../components/RPanel";
 import CalResWidget from "../../../components/CalResWidget/CalResWidget";
 import styles from "./Post.module.scss";
 import SideRePanel from "../../../components/Ads/SideRePanel/SideRePanel.js";
 import Divider from "../../../components/Divider.js";
 import getImagePreview from "../../../utils/getImagePreview";
 import ArtRePanel from "../../../components/Ads/ArtRePanel/ArtRePanel.js";
-import Media from "react-media";
 import CommentsSection from "../../../components/CommentsSection/CommentsSection.js";
 
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon } from "react-share";
-import { FacebookShareCount } from "react-share";
 
 export default class Post extends Component {
   constructor(props) {

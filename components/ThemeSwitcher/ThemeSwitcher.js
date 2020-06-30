@@ -3,42 +3,35 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "./ThemeSwitcher.module.scss";
 import ReactGA from "react-ga";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { changeTheme } from "../../redux/actions/themeActions";
 
-export default class ThemeSwitcher extends Component {
+class ThemeSwitcher extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      themeName: "",
-      memoryLoaded: false,
-      isClient: false
+      isThemeLight: true
     };
     this.changeTheme = this.changeTheme.bind(this);
   }
 
   componentDidMount() {
-    let themeName = window.localStorage.getItem("theme-name");
-    this.setState({
-      themeName: themeName,
-      memoryLoaded: true,
-      isClient: true
+    this.props.changeTheme({
+      themeName: window.localStorage.getItem("theme-name")
+        ? window.localStorage.getItem("theme-name")
+        : "light"
     });
   }
 
-  changeTheme() {
-    this.setState(({ themeName }) => {
-      window.localStorage.setItem(
-        "theme-name",
-        themeName === "dark" ? "light" : "dark"
-      );
-      this.notifyParent(themeName === "dark" ? "light" : "dark");
-      return { themeName: themeName === "dark" ? "light" : "dark" };
-    });
-  }
-
-  notifyParent = themeName => {
-    this.props.setTheme(
-      themeName === "dark" ? "/images/logo-dark.png" : "/images/logo-light.png"
+  changeTheme = () => {
+    window.localStorage.setItem(
+      "theme-name",
+      this.props.isThemeLight ? "dark" : "light"
     );
+    this.props.changeTheme({
+      themeName: this.props.isThemeLight ? "dark" : "light"
+    });
   };
 
   handleClick() {
@@ -50,63 +43,89 @@ export default class ThemeSwitcher extends Component {
   }
 
   render() {
-    let themeHeader;
-    let switcher;
-    if (this.state.memoryLoaded) {
-      if (this.state.themeName === "dark") {
-        themeHeader = (
-          <Head>
-            <link key="meta_style" rel="stylesheet" href="/dark-theme.css" />
-          </Head>
-        );
-      } else {
-        themeHeader = (
-          <Head>
-            <link key="meta_style" rel="stylesheet" href="/light-theme.css" />
-          </Head>
-        );
-      }
-
-      switcher = (
-        <div
-          onClick={this.changeTheme}
-          className={styles.themeSwitcherContainer}
-        >
-          {/*</div>*<style>.bmc-button img{height: 34px !important;width: 35px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{padding: 7px 15px 7px 10px !important;line-height: 35px !important;height:51px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFDD00 !important;border-radius: 5px !important;border: 1px solid transparent !important;padding: 7px 15px 7px 10px !important;font-size: 20px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style>*/}
-          <link
-            href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext"
-            rel="stylesheet"
-          />
-          {/*<a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/F1online"><img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Chcem vás podporiť!" /><span>Chcem vás podporiť!</span></a>
-           */}
-          <img
-            className={`${styles.lightThemeImg} ${
-              this.state.themeName === "light" ? styles.selected : ""
-            }`}
-            alt="."
-          />
-          <img
-            className={`${styles.darkThemeImg} ${
-              this.state.themeName === "dark" ? styles.selected : ""
-            }`}
-            alt="."
-          />
-        </div>
-      );
-    }
+    const { isThemeLight } = this.props;
 
     return (
       <>
-        {themeHeader}
+        <Head>
+          <link
+            key="meta_style"
+            rel="stylesheet"
+            href={`/${isThemeLight ? "light" : "dark"}-theme.css`}
+          />
+        </Head>
         <div className={styles.container}>
           <Link href="/chcem-vas-podporit">
-            <a onClick={() => {
-                    this.handleClick();
-                  }} className={styles.donateButton}>Chcem podporiť F1online.sk</a>
-          </Link>
-          {switcher}
+            <a className={styles.donateButton}>
+              Chcem podporiť F1online.sk
+            </a>
+          </Link>{/*
+          <div className={styles.donateButtonContainer}>
+            <form
+              action="https://www.paypal.com/cgi-bin/webscr"
+              method="post"
+              target="_blank"
+            >
+              <input type="hidden" name="cmd" value="_s-xclick" />
+              <input
+                type="hidden"
+                name="hosted_button_id"
+                value="JKBMX6G3DWTRQ"
+              />
+              <input
+                className={styles.donateButtonSmall}
+                type="image"
+                src="/images/donate-button-small.png"
+                border="0"
+                name="submit"
+                title="Podporiť F1online.sk cez PayPal alebo kreditnú kartu"
+                alt="Donate with PayPal button"
+              />
+              <img
+                alt=""
+                border="0"
+                src="https://www.paypal.com/en_SK/i/scr/pixel.gif"
+                width="1"
+                height="1"
+              />
+            </form>
+          </div>*/}
+          <div
+            onClick={this.changeTheme}
+            className={styles.themeSwitcherContainer}
+          >
+            <link
+              href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext"
+              rel="stylesheet"
+            />
+            <img
+              className={`${styles.lightThemeImg} ${
+                this.state.isThemeLight ? styles.selected : ""
+              }`}
+              alt="."
+            />
+            <img
+              className={`${styles.darkThemeImg} ${
+                this.state.isThemeLight ? "" : styles.selected
+              }`}
+              alt="."
+            />
+          </div>
         </div>
       </>
     );
   }
 }
+
+ThemeSwitcher.propTypes = {
+  changeTheme: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  isThemeLight: state.theme.isThemeLight
+});
+
+export default connect(
+  mapStateToProps,
+  { changeTheme }
+)(ThemeSwitcher);

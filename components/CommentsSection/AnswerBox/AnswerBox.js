@@ -2,7 +2,6 @@ import React, { Component, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import styles from "./AnswerBox.module.scss";
 import { Button } from "react-bootstrap";
-import EditorBox, { getRenderedContent, getPlainContent } from "./EditorBox.js";
 import LoadingSpinner from "../../LoadingSpinner";
 
 export default class AnswerBox extends Component {
@@ -11,16 +10,11 @@ export default class AnswerBox extends Component {
     this.state = {
       author_email: "",
       author_ip: "",
-      content: [
-        {
-          type: "paragraph",
-          children: [{ text: "" }]
-        }
-      ],
       errorMessage: "",
       showErrorMessage: false,
       sending: false,
-      editorBox: <EditorBox />
+      inputText: ""
+      //editorBox: <EditorBox key={1564853155} />
     };
   }
 
@@ -35,8 +29,7 @@ export default class AnswerBox extends Component {
       }
     };
 
-    const postPlainContent = getPlainContent();
-    if (postPlainContent === undefined || postPlainContent.trim() === "") {
+    if (this.state.inputText === undefined || this.state.inputText.trim() === "") {
       this.setState({
         errorMessage: "Nie je možné odoslať prázdny komentár.",
         showErrorMessage: true,
@@ -50,7 +43,7 @@ export default class AnswerBox extends Component {
       author_name: localStorage.getItem("f1online-username"),
       author_email: localStorage.getItem("f1online-userEmail"),
       parent: this.props.comment ? this.props.comment.id : "0",
-      content: getRenderedContent()
+      content: this.state.inputText.trim()
     };
 
     axios
@@ -65,7 +58,7 @@ export default class AnswerBox extends Component {
           showErrorMessage: false,
           sending: false
         });
-        this.props.callback({loggedIn: true, reported: false});
+        this.props.callback({ loggedIn: true, reported: false });
       })
       .catch(error => {
         this.setState({
@@ -74,13 +67,6 @@ export default class AnswerBox extends Component {
           sending: false
         });
       });
-/*
-    const publicIp = require("public-ip");
-    (async () => {
-      await publicIp.v4().then(ip => {
-        
-      });
-    })();*/
   };
 
   update = newValue => {
@@ -95,14 +81,25 @@ export default class AnswerBox extends Component {
     });
   };
 
+  handleChange = (event) => {
+    this.setState({
+      inputText: event.target.value
+    })
+  }
+
   render() {
     const { comment, level, articleID } = this.props;
     //const editor = useMemo(() => withReact(createEditor()), [])
-
+    console.log("rendering answerbox");
     return (
       <>
-        <div className={styles.editorBoxContainer}>
-          {this.state.editorBox}
+        <form className={styles.editorBoxContainer}>
+          {/*{this.state.editorBox}*/}
+          {/*<EditorBox />*/}
+          <textarea className={styles.textArea} 
+          name="inputtext" type="textarea" rows="4" value={this.state.inputText} 
+          placeholder="Tvoj názor..."
+          onChange={this.handleChange}></textarea>
           <div className={styles.answerBoxFooter}>
             {this.state.sending ? (
               <div className={styles.loadingSpinnerContainer}>
@@ -112,14 +109,13 @@ export default class AnswerBox extends Component {
               ""
             )}
 
-            <Button
+            <input type="submit" value="Odoslať"
               className={styles.reactButton}
               onClick={() => this.sendAnswer()}
             >
-              <span>Odoslať</span>
-            </Button>
+            </input>
           </div>
-        </div>
+        </form>
         {this.state.showErrorMessage ? (
           <div className={styles.errorMessageContainer}>
             <span>{this.state.errorMessage}</span>

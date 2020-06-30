@@ -98,7 +98,7 @@ export default class Home extends Component {
       <>
         <main className="contentsPage">
           {titleSection}
-          <Divider height="15px" />
+          <Divider height="25px" />
           <div className="page">
             <div className="mainContent">
               {otherArticlesSection}

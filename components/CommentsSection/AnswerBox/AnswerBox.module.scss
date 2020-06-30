@@ -52,7 +52,7 @@
 .editorBoxContainer {
   border: 1px solid var(--lines-color);
   padding: 10px;
-  padding-top: 7px;
+  padding-top: 12px;
   padding-bottom: 0;
   overflow: hidden;
   margin: 10px 0 10px 0;
@@ -83,6 +83,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  border-top: 1px solid #e1e1e1;
 
   span {
     padding: 10px 5px;
@@ -122,4 +123,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.textArea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  border: none;
+  background-color: none;
+  font-family: "HK Grotesk";
+  font-size: 13px;
+  color: var(--basic-text-color);
 }

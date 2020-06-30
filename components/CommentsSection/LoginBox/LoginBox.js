@@ -7,7 +7,6 @@ import Link from "next/link";
 import LoadingSpinner from "../../LoadingSpinner";
 import SectionTitle from "../../SectionTitle/SectionTitle";
 import Popup from "reactjs-popup";
-import ImageUploading from "react-images-uploading";
 import Divider from "../../Divider";
 
 export default class LoginBox extends Component {
