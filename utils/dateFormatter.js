@@ -29,3 +29,9 @@ function formatDate(dateInISO) {
   });
 }
 export default formatDate;
+
+export function formatDateToTime(dateInISO) {
+  return format(parseISO(dateInISO), "HH:mm", {
+    locale: sk
+  });
+}

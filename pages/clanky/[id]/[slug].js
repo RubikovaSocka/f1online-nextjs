@@ -12,9 +12,10 @@ import Divider from "../../../components/Divider.js";
 import getImagePreview from "../../../utils/getImagePreview";
 import ArtRePanel from "../../../components/Ads/ArtRePanel/ArtRePanel.js";
 import CommentsSection from "../../../components/CommentsSection/CommentsSection.js";
-
+import PostsBlock from "../../../components/PostsBlock/PostsBlock";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon } from "react-share";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle.js";
 
 export default class Post extends Component {
   constructor(props) {
@@ -25,8 +26,11 @@ export default class Post extends Component {
   }
 
   componentDidMount() {
+    this.setState({
+      windowWidth: window.innerWidth
+    });
     let article = this.props.postData.content.rendered;
-    let upperPart, lowerPart, articleContentFull;
+    let upperPart, lowerPart, articleContentFull, onlineNews;
     let paraNum = (article.match(/<p>/g) || []).length;
 
     if (paraNum > 6) {
@@ -63,6 +67,15 @@ export default class Post extends Component {
 
     const { postData } = this.props;
 
+    if (postData.acf.start_time && postData.acf.end_time) {
+      onlineNews = (
+        <PostsBlock
+          start={postData.acf.start_time.replace(" ", "T")}
+          end={postData.acf.end_time.replace(" ", "T")}
+        />
+      );
+    }
+
     let post = (
       <>
         <div className={styles.title}>
@@ -90,6 +103,16 @@ export default class Post extends Component {
         <EmbedContainer markup={this.props.postData.content.rendered}>
           {articleContentFull}
         </EmbedContainer>
+        {onlineNews ? (
+          <>
+            <Divider height="100px" />
+            <SectionTitle title="Príspevky z onlinu:" />{" "}
+            <Divider height="30px" />
+            {onlineNews}
+          </>
+        ) : (
+          ""
+        )}
       </>
     );
 
@@ -126,7 +149,7 @@ export default class Post extends Component {
             <CalResWidget />
 
             {/*<div className={`${styles.stickyWidget}`}>*/}
-              <SideRePanel />
+            <SideRePanel />
             {/*</div>*/}
           </aside>
         </div>
