@@ -17,6 +17,7 @@
   font-weight: 600;
   width: 40px;
   flex-shrink: 0;
+  color: var(--basic-text-color);
 }
 .postTextContent {
   width: calc(100% - 40px);
