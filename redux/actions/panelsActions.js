@@ -9,7 +9,7 @@ export const fetchPanels = () => (dispatch, state) => {
     });
   } else {
     axios
-      .get("https://wpadmin.f1online.sk/wp-content/uploads/parts.json")
+      .get("https://wpadmin.f1online.sk/wp-content/uploads/parts2.json")
       .then(panels =>
         dispatch({
           ...state,
