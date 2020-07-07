@@ -111,6 +111,19 @@ export default class Home extends Component {
               <Divider height="25px" />
               <QuickNews />
             </aside>
+
+            <Media query={{ maxWidth: 1023 }}>
+              {matches =>
+                matches ? (
+                  <div className="mainContent">
+                    <CalResWidget />
+                    <Divider height="110px" />
+                  </div>
+                ) : (
+                  ""
+                )
+              }
+            </Media>
           </div>
         </main>
       </>

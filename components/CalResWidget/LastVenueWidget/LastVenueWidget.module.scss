@@ -64,7 +64,7 @@ $rowsDivider: 1px solid var(--widget-line-divider-color);
     display: inline-block;
     font-weight: 600;
     color: var(--basic-text-color);
-    width: 100px;
+    width: 140px;
   }
   .time {
     display: inline-block;
@@ -72,14 +72,39 @@ $rowsDivider: 1px solid var(--widget-line-divider-color);
   }
 }
 
-@media only screen and (min-width: 380px) {
+@media only screen and (min-width: 340px) {
+  .resultsRow {
+    .driver {
+      width: 150px;
+    }
+  }
+}
+
+@media only screen and (min-width: 360px) {
   .resultsRow {
     .driver {
       padding-left: 10px;
+      width: 155px;
+    }
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  .resultsRow {
+    .driver {
+      width: 170px;
+    }
+  }
+}
+
+@media only screen and (min-width: 420px) {
+  .resultsRow {
+    .driver {
       width: 190px;
     }
   }
 }
+
 
 @media only screen and (min-width: 1024px) {
   .resultsRow {

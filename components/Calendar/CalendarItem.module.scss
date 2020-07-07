@@ -1,0 +1,182 @@
+.container {
+  width: 100%;
+  margin-bottom: 10px;
+  overflow: hidden;
+  &.opened {
+    background-color: var(--table-back-color);
+    color: white;
+  }
+}
+.date {
+  display: inline-block;
+  width: 120px;
+}
+.venueName {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.venueName,
+.date {
+  font-family: "HK Grotesk";
+}
+.raceTime {
+  font-family: "HK Grotesk";
+  display: none;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 15px;
+  background-color: var(--calendar-header-color);
+  //border: 1px solid var(--lines-color);
+  //border-bottom: none;
+
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--basic-text-color);
+  //font-family: "HK Grotesk"
+  transition-delay: 0.1s;
+  i {
+    margin-right: 15px;
+  }
+
+  &:hover,
+  &.opened {
+    background-color: var(--table-back-color);
+    color: white;
+  }
+  &.opened {
+    border-bottom: none;
+    padding-bottom: 30px;
+  }
+}
+.contentBox {
+  overflow: scroll;
+  padding-left: 15px;
+  background-color: var(--table-back-color);
+  transition: ease-in-out 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  //align-items: center;
+  justify-content: space-between;
+
+  &.opened {
+    //display: flex;
+    height: 180px;
+    //transition: ease-in-out 0.2s;
+  }
+  &.closed {
+    //display: none;
+    height: 0px;
+    //transition: ease-in-out 0.2s;
+  }
+}
+.circuitContainer {
+  width: calc(100% - 390px - 90px);
+  height: auto;
+  margin-right: 55px;
+
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+    max-height: 100px;
+  }
+  span {
+    max-height: 100%;
+    width: 100%;
+    text-align: center;
+    font-family: "HK Grotesk";
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+.table {
+
+}
+.timesRow {
+  height: 25px;
+  width: 390px;
+
+  span {
+    font-family: "HK Grotesk";
+    font-size: 15px;
+    display: inline-block;
+  }
+  .session {
+    width: 110px;
+  }
+  .sessionTime {
+    width: 130px;
+  }
+  .sessionTv {
+    width: 150px;
+  }
+}
+.timesRowHeader {
+  span {
+    font-weight: 600;
+  }
+}
+.venueHeaderDate {
+  display: inline-block;
+  width: 100%;
+}
+.venueName, .date {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+  .header {
+    justify-content: flex-start;
+  }
+  .venueName, .date {
+    width: initial;
+  }
+  .contentBox {
+    padding-left: 45px;
+    overflow: hidden;
+  }
+  .date {
+    width: 120px;
+  }
+  .raceTime {
+    display: inline-block;
+  }
+  .venueHeaderDate {
+    display: inline-block;
+    width: initial;
+  }
+  .venueName {
+    width: calc(100% - 230px);
+  }
+  .circuitContainer {
+    display: flex;
+  }
+  .timesRow {
+    height: 25px;
+    width: initial;
+    span {
+      font-family: "HK Grotesk";
+      font-size: 15px;
+      display: inline-block;
+    }
+    .session {
+      width: 110px;
+    }
+    .sessionTime {
+      width: 130px;
+    }
+    .sessionTv {
+      width: 150px;
+    }
+  }
+}

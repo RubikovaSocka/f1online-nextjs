@@ -204,6 +204,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }
 .reportedCommentsBox {
   margin: 15px 0;

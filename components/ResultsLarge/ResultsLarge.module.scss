@@ -1,8 +1,3 @@
-@media only screen and (min-width: 1280px) {
-  .container {
-  }
-}
-
 .container {
   width: 320px;
 
@@ -24,14 +19,17 @@
       margin: 0px;
       padding: 0px 5px;
       display: block;
+      color: var(--basic-text-color);
     }
     .position {
       font-weight: 600;
+      //color: var(--basic-text-color);
     }
     .driverBox {
       margin: 0px;
       margin-right: 10px;
       height: 36px;
+      //color: var(--basic-text-color);
       border-left: 3px solid #d4d4d4;
       &.red {
         border-left: 3px solid #e10600;
@@ -43,8 +41,6 @@
       }
       .team {
         height: 18px;
-        color: #606060;
-        color: black;
       }
     }
   }

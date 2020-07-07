@@ -176,15 +176,15 @@ export default class Comment extends Component {
                     <span>{this.state.boxOpened ? "Zrušiť" : "Reagovať"}</span>
                   </Button>
 
-                  <i className={`fas fa-circle ${styles.dot}`}></i>
-                  <Button
+                  {/*<i className={`fas fa-circle ${styles.dot}`}></i>*/}
+                  {/*<Button
                     className={styles.openReactBoxButton}
                     onClick={() => {
                       this.reportComment();
                     }}
                   >
                     <span>Nahlásiť</span>
-                  </Button>
+                  </Button>*/}
                 </div>
                 {comment && this.state.boxOpened ? (
                   <div className={styles.editorBoxHeader}>

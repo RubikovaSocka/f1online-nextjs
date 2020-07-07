@@ -31,29 +31,20 @@ class ResultsLarge extends Component {
     if (this.props.renderID === "gp") {
       return (
         <div>
-          <SideSectionTitle title={`Výsledky poslednej VC`} />
+          <SideSectionTitle title={`Výsledky VC ${this.props.venueName}`} />
           <div className={styles.container}>
-            {
-              /*this.props.data.RaceTable.Races[0].Results.slice(0, 5).map((positionData, index) => (
-                    <DriverDataItem 
-                        key={index}
-                        renderID={this.props.renderID}
-                        pos={positionData.position} 
-                        name={`${positionData.Driver.givenName} ${positionData.Driver.familyName}`} 
-                        team={positionData.Constructor.name}
-                        time={
-                            positionData.status === "Finished" ? 
-                                `${positionData.Time.time.replace('.', ',')}${positionData.position > 1 ? 's' : ''}` :
-                                positionData.status.replace("Laps", "kolá").replace("Lap", "kolo").replace("Retired", "Nedokončil")
-                    }/>
-                ))*/
-              <div className={styles.temporaryPanel}>
-                <img
-                  alt="logo"
-                ></img>
-                <span>Štartujeme 5. júla na Red Bull Ringu!</span>
-              </div>
-            }
+            {this.props.data.slice(1, 6)
+                  .map((positionData, index) => (
+                    <DriverDataItem
+                      key={index}
+                      renderID={this.props.renderID}
+                      pos={positionData.position}
+                      name={positionData.driverName}
+                      team={positionData.teamName}
+                      time={positionData.split}
+                    />
+                  ))
+              }
             <Divider height="10px" />
             <LinkAsButton
               target="/vysledky"
@@ -63,28 +54,24 @@ class ResultsLarge extends Component {
         </div>
       );
     } else if (this.props.renderID === "champ") {
+      console.log(this.props.data);
       return (
         <div>
-          <SideSectionTitle title={`Šampionát po poslednej VC`} />
+          <SideSectionTitle title={`Šampionát po VC ${this.props.venueName}`} />
           <div className={styles.container}>
-            {
-              /*this.props.data.StandingsTable.StandingsLists[0].DriverStandings.slice(0, 5).map((positionData, index) => (
-                                <DriverDataItem 
-                                    key={index}
-                                    renderID={this.props.renderID}
-                                    pos={positionData.position} 
-                                    name={`${positionData.Driver.givenName} ${positionData.Driver.familyName}`} 
-                                    team={positionData.Constructors[positionData.Constructors.length - 1].name}
-                                    time={`${positionData.points}b`}
-                                />
-                            ))*/
-              <div className={styles.temporaryPanel}>
-                <img
-                  alt="logo"
-                ></img>
-                <span>Štartujeme 5. júla na Red Bull Ringu!</span>
-              </div>
-            }
+            {this.props.data
+              .slice(1, 6)
+                  .map((positionData, index) => (
+                    <DriverDataItem
+                      key={index}
+                      renderID={this.props.renderID}
+                      pos={positionData.position}
+                      name={positionData.driverName}
+                      team={positionData.teamName}
+                      time={`${positionData.points}b`}
+                    />
+                  ))
+              }
             <Divider height="10px" />
             <LinkAsButton
               target="/vysledky"

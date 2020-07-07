@@ -13,7 +13,7 @@ function ResultsHeaderRow(props) {
 }
 
 function getPointsCell(pts) {
-    if(pts === 1) {
+    if(pts == 1) {
         return '1 bod'
     } else if (pts > 1 && pts < 5) {
         return `${pts} body`
@@ -26,7 +26,7 @@ function ResultsRow(props) {
         <div className={`${styles.resultsRow} ${props.pos === "1" ? styles.noBorder : ""}`}>
             <span className={styles.position}>{props.pos}.</span>
             <span className={styles.driver}>{props.name}</span>
-            <span className={styles.points}>{getPointsCell(props.points)}</span>
+            <span className={styles.time}>{getPointsCell(props.points)}</span>
         </div>
     )
 }
@@ -36,22 +36,17 @@ class ChampResWidget extends Component {
         return (
             <div className={styles.content}>
                 <div className={styles.venueBlock}>
-                    <p className={styles.venueTitle}>Poradie po VC Rakúska</p>
+                    <p className={styles.venueTitle}>{`Poradie po VC ${this.props.venueName}`}</p>
                 </div>
                 <ResultsHeaderRow />
-                {/*
-                    this.props.data.StandingsTable.StandingsLists[0].DriverStandings.slice(0, 10).map(positionData => (
+                {
+                    this.props.data.slice(1, 11).map(positionData => (
                         <ResultsRow 
                             pos={positionData.position} 
-                            name={`${positionData.Driver.givenName} ${positionData.Driver.familyName}`} 
+                            name={positionData.driverName} 
                             points={positionData.points}
                         />
                     ))
-                */
-                    <div className={styles.temporaryPanel}>
-                        <img alt="logo"></img>
-                        <span>Štartujeme 5. júla na Red Bull Ringu!</span>
-                    </div>
                 }
             </div>
         )

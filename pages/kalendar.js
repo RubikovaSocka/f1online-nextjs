@@ -4,9 +4,10 @@ import Head from "next/head";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import RPanel from "../components/RPanel.js";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
-
+import CalendarBox from "../components/Calendar/CalendarBox.js";
 import styles from "../styles/kalendar.module.scss";
 import Divider from "../components/Divider.js";
+
 export default class Calendar extends Component {
   constructor(props) {
     super(props);
@@ -15,33 +16,26 @@ export default class Calendar extends Component {
       isLoaded: false
     };
   }
-  /*
-    componentDidMount() {
-        axios.get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar?per_page=1`)
-            .then(res => {
-                this.setState({
-                    calendarData: res.data[0],
-                    isLoaded: true
-                })
-            })
-            .catch(err => console.log(err))
-    }
-*/
+
+  componentDidMount() {
+    axios
+      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar?per_page=25`)
+      .then(res => {
+        this.setState({
+          calendarData: res.data,
+          isLoaded: true
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     let contentData;
-    //if(this.state.isLoaded) {
-    contentData = (
-      <div className={styles.container}>
-        <img
-          className={styles.annLogo}
-          alt="logo f1online.sk"
-        />
-        <span
-          className={styles.announcement}
-        >{`Zverejníme po aktualizácii kalendára na rok 2020`}</span>
-      </div>
-    );
-    //}
+    if (this.state.isLoaded) {
+      console.log("ok");
+      console.log(this.state.calendarData);
+      contentData = <CalendarBox data={this.state.calendarData} />;
+    }
 
     return (
       <>
@@ -62,6 +56,7 @@ export default class Calendar extends Component {
           <div className="page">
             <div className="mainContent">
               <SectionTitle title="Kalendár" />
+              <Divider height="28px" />
               {contentData}
             </div>
             <aside className="sideBar">

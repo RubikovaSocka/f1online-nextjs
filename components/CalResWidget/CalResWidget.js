@@ -18,12 +18,10 @@ class CalResWidget extends Component {
       lastVenueName: "",
       lastVenueData: {},
       champData: {},
-
+      
       calendarIsLoaded: false,
-      //lastVenueIsLoaded: false,
-      //champIsLoaded: false
-      lastVenueIsLoaded: true,
-      champIsLoaded: true
+      lastVenueIsLoaded: false,
+      champIsLoaded: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.renderElement = this.renderElement.bind(this);
@@ -31,15 +29,15 @@ class CalResWidget extends Component {
 
   componentDidMount() {
     axios
-      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar?per_page=1`)
+      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/3885`)
       .then(res => {
         this.setState({
-          calendarData: res.data[0],
+          calendarData: res.data,
           calendarIsLoaded: true
         });
       });
     //.catch(err => console.log(err))
-/*
+
     axios
       .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=1`)
       .then(res => {
@@ -49,14 +47,14 @@ class CalResWidget extends Component {
         Promise.all([venue, champ]).then(res => {
           this.setState({
             lastVenueName: venueName,
-            lastVenueData: res[0].data.MRData,
-            lastVenueConstructorData: res[1].data.MRData,
+            lastVenueData: res[0].data,
+            lastVenueDriverChampData: res[1].data,
             lastVenueIsLoaded: true,
             champIsLoaded: true
           });
         });
       })
-      .catch(err => console.log(err));*/
+      .catch(err => console.log(err));
   }
 
   handleChange(id) {
@@ -88,7 +86,7 @@ class CalResWidget extends Component {
         return (
           <ChampResWidget
             venueName={this.state.lastVenueName}
-            data={this.state.lastVenueConstructorData}
+            data={this.state.lastVenueDriverChampData}
           />
         );
       }

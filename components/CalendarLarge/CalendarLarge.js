@@ -28,10 +28,10 @@ class CalendarLarge extends Component {
   componentDidMount() {
     //axios.get(`/wp-json/wp/v2/calendar/?per_page=1`)
     axios
-      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar?per_page=1`)
+      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/3885`)
       .then(res =>
         this.setState({
-          venueData: res.data[0],
+          venueData: res.data,
           isLoaded: true
         })
       )

@@ -1,0 +1,64 @@
+.container {
+  background-color: var(--table-back-color);
+  background-color: var(--calendar-header-color);
+  padding: 15px;
+}
+.header {
+  
+  font-family: "HK Grotesk";
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--basic-text-color);
+}
+.table {
+  margin-top: 15px;
+  font-family: "HK Grotesk";
+  font-size: 15px;
+  color: var(--basic-text-color);
+  overflow: scroll;
+
+  
+
+  span {
+    display: inline-block;
+  }
+}
+.tableHeader {
+  font-weight: 600;
+}
+.tableRow {
+  height: 24px;
+  width: 560px;
+}
+
+.position {
+  width: 40px;
+  text-align: center;
+}
+.name {
+  width: 140px;
+  width: calc(50% - 140px)
+}
+.team{
+  width: 130px;
+  width: calc(50% - 180px)
+}
+.laps {
+  width: 80px;
+  text-align: center
+}
+.split {
+  width: 100px;
+}
+.points {
+  width: 60px
+}
+
+@media only screen and (min-width: 1024px) {
+  .table {
+    overflow: hidden;
+  }
+  .tableRow {
+    width: 100%;
+  }
+}
