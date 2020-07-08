@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Router from "next/router";
 import ReactGA from "react-ga";
+import TrackVisibility from "react-on-screen";
 import HeaderMeta from "../components/HeaderMeta/HeaderMeta";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
@@ -78,7 +79,9 @@ export default class App extends Component {
       <Provider store={store}>
         <HeaderMeta />
         {this.state.showCookieBanner ? this.state.cookieBanner : ""}
-        <HeaderRePanel />
+        <TrackVisibility style={{width: "100%"}}>
+          <HeaderRePanel />
+        </TrackVisibility>
         <Header />
         <ThemeSwitcher />
         <Component {...pageProps} />
@@ -87,4 +90,3 @@ export default class App extends Component {
     );
   }
 }
-

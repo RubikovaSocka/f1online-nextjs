@@ -12,109 +12,116 @@ class ArtRePanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      runningOnClient: false
+      runningOnClient: false,
+      alreadyShown: [],
+      lastShownLink: "",
+      lastShownSrc: ""
     };
+
+    this.pickBanner = this.pickBanner.bind(this);
   }
 
   componentDidMount() {
     if (!this.props.loaded) {
       this.props.fetchPanels();
     }
-
     this.setState({
       runningOnClient: true
     });
-    //let adsbygoogle;
-    //(adsbygoogle = window.adsbygoogle || []).push({});
   }
 
-  handleClick(link) {
+  pickBanner() {
+    const { panelsJSON } = this.props;
+    let partnerPick =
+      window.innerWidth < 1024
+        ? panelsJSON.bArtMob[
+            Math.floor(Math.random() * panelsJSON.bArtMob.length)
+          ]
+        : (partnerPick =
+            panelsJSON.bArt[
+              Math.floor(Math.random() * panelsJSON.bArt.length)
+            ]);
+
+    let panelPick =
+      partnerPick.banners[
+        Math.floor(Math.random() * partnerPick.banners.length)
+      ];
+
+    return {
+      lastShownSrc: panelPick.imgSrc,
+      lastShownLink: panelPick.linkTo
+    };
+  }
+
+  handleClick(e) {
     ReactGA.event({
-      category: "partnerClick",
+      category: "partnerClicked",
       action: "click-pc-art",
-      label: link
+      label: `${e.link}@@${e.src}`
     });
+  }
+
+  handleShown(e) {
+    ReactGA.event({
+      category: "partnerShown",
+      action: "shown-pc-art",
+      label: `${e.link}@@${e.src}`
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { lastShownSrc, lastShownLink } = this.state;
+    if(!this.props.loaded) {
+      return;
+    }
+    
+    if(this.state.lastShownSrc === "") {
+      this.setState(this.pickBanner());
+      return;
+    }
+
+    if (nextProps.isVisible) {
+      if (!this.state.alreadyShown.includes(lastShownSrc)) {
+        this.handleShown({ link: lastShownLink, src: lastShownSrc });
+        this.setState(prev => {
+          return {
+            alreadyShown: prev.alreadyShown.concat(lastShownSrc)
+          };
+        });
+      }
+    } else {
+      const nextShow = this.pickBanner();
+      if (
+        nextShow.lastShownSrc != lastShownSrc ||
+        nextShow.lastShownLink != lastShownLink
+      ) {
+        this.setState(nextShow);
+      }
+    }
   }
 
   render() {
     if (this.state.runningOnClient) {
-      let panelBlock;
-      const { panelsJSON } = this.props;
+      const { lastShownSrc, lastShownLink } = this.state;
 
       if (this.props.loaded) {
-        let partnerPick =
-          window.innerWidth < 1024
-            ? panelsJSON.bArtMob[
-                Math.floor(Math.random() * panelsJSON.bArtMob.length)
-              ]
-            : (partnerPick =
-                panelsJSON.bArt[
-                  Math.floor(Math.random() * panelsJSON.bArt.length)
-                ]);
-
-        let panelPick =
-          partnerPick.banners[
-            Math.floor(Math.random() * partnerPick.banners.length)
-          ];
-
-        let x = Math.floor(Math.random() * 2);
-        if (x > 0) {
-          panelBlock = (
-            <>
-              <AdBlockDetect>
-                <a
-                  href={
-                    panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo
-                  }
-                  rel="noreferrer"
-                  target="_blank"
-                  onClick={() => {
-                    this.handleClick(panelPick.linkTo);
-                  }}
-                >
-                  <div className={styles.panel}>
-                    <img src={panelPick.imgSrc} />
-                  </div>
-                </a>
-              </AdBlockDetect>
-              {/*
-              <ins
-                className={`adsbygoogle ${styles.panel}`}
-                data-ad-layout="in-article"
-                data-ad-format="fluid"
-                data-ad-client="ca-pub-2681240380511410"
-                data-ad-slot="7293745168"
-              ></ins>*/}
-              <div className={styles.panel}>
-                <AdSense.Google
-                  client="ca-pub-2681240380511410"
-                  slot="7293745168"
-                  style={{ display: "inline-block", width: "650px", height: "120px"}}
-                  layout="in-article"
-                  format="fluid"
-                />
-              </div>
-              
-            </>
-          );
-        } else {
-          panelBlock = (
+        return (
+          <div className={styles.container}>
             <a
-              href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
+              href={lastShownLink}
               rel="noreferrer"
               target="_blank"
               onClick={() => {
-                this.handleClick(panelPick.linkTo);
+                this.handleClick({link: lastShownLink, src: lastShownSrc});
               }}
             >
               <div className={styles.panel}>
-                <img src={panelPick.imgSrc} />
+                <img src={lastShownSrc} />
               </div>
             </a>
-          );
-        }
+          </div>
+        );
       }
-      return <div className={styles.container}>{panelBlock}</div>;
     } else return null;
   }
 }

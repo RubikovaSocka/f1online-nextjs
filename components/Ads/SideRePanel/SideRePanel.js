@@ -10,78 +10,89 @@ import AdSense from "react-adsense";
 class SideRePanel extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      runningOnClient: true,
+      alreadyShown: [],
+      lastShownLink: "",
+      lastShownSrc: ""
+    };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.pickBanner = this.pickBanner.bind(this);
   }
 
   componentDidMount() {
     if (!this.props.loaded) {
       this.props.fetchPanels();
     }
-    //let adsbygoogle;
-    //(adsbygoogle = window.adsbygoogle || []).push({});
-  }
 
-  handleClick(link) {
-    ReactGA.event({
-      category: "partnerClick",
-      action: "click-pc-side",
-      label: link
+    this.setState({
+      runningOnClient: true
     });
   }
 
-  render() {
-    const { panelsJSON } = this.props;
+  handleClick(e) {
+    ReactGA.event({
+      category: "partnerClicked",
+      action: "click-pc-side",
+      label: `${e.link}@@${e.src}`
+    });
+  }
 
-    let panelBlock;
+  handleShown(e) {
+    ReactGA.event({
+      category: "partnerShown",
+      action: "click-pc-side",
+      label: `${e.link}@@${e.src}`
+    });
+  }
+
+  pickBanner() {
+    const { panelsJSON } = this.props;
+    let partnerPick =
+      panelsJSON.bSide[Math.floor(Math.random() * panelsJSON.bSide.length)];
+    let panelPick =
+      partnerPick.banners[
+        Math.floor(Math.random() * partnerPick.banners.length)
+      ];
+
+    return {
+      lastShownSrc: panelPick.imgSrc,
+      lastShownLink: panelPick.linkTo
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
+    const { lastShownSrc, lastShownLink } = this.state;
+    if (!this.props.loaded) {
+      return;
+    }
+    if (this.state.lastShownSrc === "") {
+      this.setState(this.pickBanner());
+      return;
+    }
+
+    if (nextProps.isVisible) {
+      if (!this.state.alreadyShown.includes(lastShownSrc)) {
+        this.handleShown({ link: lastShownLink, src: lastShownSrc });
+        this.setState(prev => {
+          return {
+            alreadyShown: prev.alreadyShown.concat(lastShownSrc)
+          };
+        });
+      }
+    } else {
+      this.setState(this.pickBanner());
+    }
+  }
+
+  render() {
     if (this.props.loaded) {
-      let partnerPick =
-        panelsJSON.bSide[Math.floor(Math.random() * panelsJSON.bSide.length)];
-      let panelPick =
-        partnerPick.banners[
-          Math.floor(Math.random() * partnerPick.banners.length)
-        ];
-      let x = Math.floor(Math.random() * 3);
-      if (x > 0) {
-        panelBlock = (
-          <>
-            <AdBlockDetect>
-              <a
-                href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
-                rel="noreferrer"
-                target="_blank"
-                onClick={() => {
-                  this.handleClick(panelPick.linkTo);
-                }}
-              >
-                <div className={styles.panel}>
-                  <img src={panelPick.imgSrc} />
-                </div>
-              </a>
-            </AdBlockDetect>
-{/*
-            <ins
-              className={`adsbygoogle ${styles.container}`}
-              data-ad-client="ca-pub-2681240380511410"
-              data-ad-slot="9306692655"
-              data-ad-format="auto"
-              data-full-width-responsive="true"
-            ></ins>*/}
-            <div className={styles.panel}>
-                <AdSense.Google
-                  client="ca-pub-2681240380511410"
-                  slot="9306692655"
-                  style={{ display: "inline-block", width: "300px", height: "250px"}}
-                  layout="in-article"
-                  format="auto"
-                />
-              </div>
-          </>
-        );
-      } else {
-        panelBlock = (
+      const { lastShownSrc, lastShownLink } = this.state;
+      return (
+        <div className={styles.container}>
           <a
-            href={panelPick.linkTo ? panelPick.linkTo : partnerPick.linkTo}
+            href={lastShownLink}
             rel="noreferrer"
             target="_blank"
             onClick={() => {
@@ -89,14 +100,12 @@ class SideRePanel extends Component {
             }}
           >
             <div className={styles.panel}>
-              <img src={panelPick.imgSrc} />
+              <img src={lastShownSrc} />
             </div>
           </a>
-        );
-      }
-    }
-
-    return <div className={styles.container}>{panelBlock}</div>;
+        </div>
+      );
+    } else return null;
   }
 }
 

@@ -19,6 +19,7 @@ import Divider from "../components/Divider.js";
 import Media from "react-media";
 
 import styles from "../styles/main.module.scss";
+import TrackedSidePanel from "../components/Ads/TrackedSidePanel";
 
 export default class Home extends Component {
   constructor(props) {
@@ -95,38 +96,36 @@ export default class Home extends Component {
     );
 
     return (
-      <>
-        <main className="contentsPage">
-          {titleSection}
-          <Divider height="25px" />
-          <div className="page">
-            <div className="mainContent">
-              {otherArticlesSection}
-              {largeWidgets}
-            </div>
-            <aside className={`sideBar`}>
-              {/*${styles.stickyWidget}*/}
-              <Divider height="15px" />
-              <SideRePanel />
-              <Divider height="25px" />
-              <QuickNews />
-            </aside>
-
-            <Media query={{ maxWidth: 1023 }}>
-              {matches =>
-                matches ? (
-                  <div className="mainContent">
-                    <CalResWidget />
-                    <Divider height="110px" />
-                  </div>
-                ) : (
-                  ""
-                )
-              }
-            </Media>
+      <main className="contentsPage">
+        {titleSection}
+        <Divider height="25px" />
+        <div className="page">
+          <div className="mainContent">
+            {otherArticlesSection}
+            {largeWidgets}
           </div>
-        </main>
-      </>
+          <aside className={`sideBar`}>
+            {/*${styles.stickyWidget}*/}
+            <Divider height="15px" />
+            <TrackedSidePanel />
+            <Divider height="25px" />
+            <QuickNews />
+          </aside>
+
+          <Media query={{ maxWidth: 1023 }}>
+            {matches =>
+              matches ? (
+                <div className="mainContent">
+                  <CalResWidget />
+                  <Divider height="110px" />
+                </div>
+              ) : (
+                ""
+              )
+            }
+          </Media>
+        </div>
+      </main>
     );
   }
 }

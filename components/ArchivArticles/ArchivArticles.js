@@ -5,6 +5,7 @@ import ArticlesPanel from "../ArticlesPanel/ArticlesPanel";
 
 import styles from "./ArchivArticles.module.scss";
 import LoadingSpinner from "../LoadingSpinner";
+import MySection from "../TestComponent";
 
 export class ArchivArticles extends Component {
   constructor(props) {
@@ -86,7 +87,7 @@ export class ArchivArticles extends Component {
           </div>
         );
       } else {
-        articles = <ArticlesPanel posts={this.state.posts} />;
+        articles = <ArticlesPanel counter={this.state.offset} posts={this.state.posts} />;
         if (this.props.asArchive) {
           paginateSection = (
             <ReactPaginate

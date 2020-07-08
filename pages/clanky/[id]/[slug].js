@@ -16,6 +16,7 @@ import PostsBlock from "../../../components/PostsBlock/PostsBlock";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon } from "react-share";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle.js";
+import TrackedSidePanel from "../../../components/Ads/TrackedSidePanel.js";
 
 export default class Post extends Component {
   constructor(props) {
@@ -149,7 +150,8 @@ export default class Post extends Component {
             <CalResWidget />
 
             {/*<div className={`${styles.stickyWidget}`}>*/}
-            <SideRePanel />
+            {/*<SideRePanel />*/}
+            <TrackedSidePanel />
             {/*</div>*/}
           </aside>
         </div>

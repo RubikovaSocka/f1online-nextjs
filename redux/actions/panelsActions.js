@@ -5,11 +5,11 @@ export const fetchPanels = () => (dispatch, state) => {
   if (state.loaded) {
     dispatch({
       ...state,
-      type: FETCH_PANELS,
+      type: FETCH_PANELS
     });
   } else {
     axios
-      .get("https://wpadmin.f1online.sk/wp-content/uploads/parts2.json")
+      .get("https://wpadmin.f1online.sk/wp-content/uploads/parts.json")
       .then(panels =>
         dispatch({
           ...state,
