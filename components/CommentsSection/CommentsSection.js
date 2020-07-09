@@ -94,18 +94,81 @@ export default class CommentsSection extends Component {
         `https://wpadmin.f1online.sk/wp-json/wp/v2/comments?post=${this.props.articleID}&per_page=100`
       )
       .then(res => {
-        console.log(res);
-        this.setState({
-          comments: nestComments(res.data.reverse()),
-          commentsLoaded: true
-        });
-        if (Object.keys(this.selectedRef).length != 0) {
-          this.selectedRef.current
-            ? window.scrollTo({
-                top: this.selectedRef.current.offsetTop - 120,
-                behavior: "smooth"
-              })
-            : "";
+        if (res.headers["x-wp-total"] <= 100) {
+          this.setState({
+            comments: nestComments(res.data.reverse()),
+            commentsLoaded: true
+          });
+          if (Object.keys(this.selectedRef).length != 0) {
+            this.selectedRef.current
+              ? window.scrollTo({
+                  top: this.selectedRef.current.offsetTop - 120,
+                  behavior: "smooth"
+                })
+              : "";
+          }
+        } else {
+          axios
+            .get(
+              `https://wpadmin.f1online.sk/wp-json/wp/v2/comments?post=${this.props.articleID}&per_page=100&page=2`
+            )
+            .then(res2 => {
+              if (res.headers["x-wp-total"] <= 200) {
+                this.setState({
+                  comments: nestComments(
+                    res2.data.reverse().concat(res.data.reverse())
+                  ),
+                  commentsLoaded: true
+                });
+                if (Object.keys(this.selectedRef).length != 0) {
+                  this.selectedRef.current
+                    ? window.scrollTo({
+                        top: this.selectedRef.current.offsetTop - 120,
+                        behavior: "smooth"
+                      })
+                    : "";
+                }
+              } else {
+                axios
+                  .get(
+                    `https://wpadmin.f1online.sk/wp-json/wp/v2/comments?post=${this.props.articleID}&per_page=100&page=3`
+                  )
+                  .then(res3 => {
+                    this.setState({
+                      comments: nestComments(
+                        res3.data
+                          .reverse()
+                          .concat(
+                            res2.data.reverse().concat(res.data.reverse())
+                          )
+                      ),
+                      commentsLoaded: true
+                    });
+                    if (Object.keys(this.selectedRef).length != 0) {
+                      this.selectedRef.current
+                        ? window.scrollTo({
+                            top: this.selectedRef.current.offsetTop - 120,
+                            behavior: "smooth"
+                          })
+                        : "";
+                    }
+                  });
+              }
+              this.setState({
+                comments: nestComments(
+                  res2.data.reverse().concat(res.data.reverse())
+                ),
+                commentsLoaded: true
+              });
+              if (Object.keys(this.selectedRef).length != 0) {
+                this.selectedRef.current
+                  ? window.scrollTo({
+                      top: this.selectedRef.current.offsetTop - 120,
+                      behavior: "smooth"
+                    })
+                  : "";
+              }
+            });
         }
       });
   };

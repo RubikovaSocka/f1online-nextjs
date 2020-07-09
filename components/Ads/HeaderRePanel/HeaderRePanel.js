@@ -33,7 +33,7 @@ class HeaderRePanel extends Component {
     ReactGA.event({
       category: "partnerClicked",
       action: "click-pc-top",
-      label: `${e.link}@@${e.src}`
+      label: `${e.link}*${e.src}`,
     });
   }
 
@@ -41,7 +41,8 @@ class HeaderRePanel extends Component {
     ReactGA.event({
       category: "partnerShown",
       action: "click-pc-top",
-      label: `${e.link}@@${e.src}`
+      label: `${e.link}*${e.src}`,
+      nonInteraction: true
     });
   }
 

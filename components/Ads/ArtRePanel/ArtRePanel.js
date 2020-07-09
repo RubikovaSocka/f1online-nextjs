@@ -57,7 +57,7 @@ class ArtRePanel extends Component {
     ReactGA.event({
       category: "partnerClicked",
       action: "click-pc-art",
-      label: `${e.link}@@${e.src}`
+      label: `${e.link}*${e.src}`,
     });
   }
 
@@ -65,7 +65,8 @@ class ArtRePanel extends Component {
     ReactGA.event({
       category: "partnerShown",
       action: "shown-pc-art",
-      label: `${e.link}@@${e.src}`
+      label: `${e.link}*${e.src}`,
+      nonInteraction: true
     });
   }
 
@@ -121,7 +122,7 @@ class ArtRePanel extends Component {
             </a>
           </div>
         );
-      }
+      } else return null;
     } else return null;
   }
 }

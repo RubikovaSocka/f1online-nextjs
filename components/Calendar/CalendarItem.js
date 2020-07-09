@@ -19,7 +19,6 @@ export default class CalendarItem extends Component {
   }
 
   render() {
-    console.log(this.props.data);
     const { data } = this.props;
     return (
       <div

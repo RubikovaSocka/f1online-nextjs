@@ -14,54 +14,114 @@ class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      venueName: "",
-      lastVenueResults: {},
-      lastVenueLoaded: false,
-      driverChampResults: {},
-      driverChampLoaded: false,
-      teamChampResults: {},
-      teamChampLoaded: false
+      venueName0: "",
+      lastVenueResults0: {},
+      lastVenueLoaded0: false,
+      driverChampResults0: {},
+      driverChampLoaded0: false,
+      teamChampResults0: {},
+      teamChampLoaded0: false,
+
+      venueName1: "",
+      lastVenueResults1: {},
+      lastVenueLoaded1: false,
+      driverChampResults1: {},
+      driverChampLoaded1: false,
+      teamChampResults1: {},
+      teamChampLoaded1: false
     };
   }
 
   componentDidMount() {
     axios
-      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=1`)
+      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=25`)
       .then(res => {
-        console.log(res)
         axios.get(res.data[0].acf.results_json).then(res2 => {
           this.setState({
-            lastVenueResults: res2.data,
-            lastVenueLoaded: true,
-            venueName: res.data[0].acf.venue_name
-          })
-        })
+            lastVenueResults0: res2.data,
+            lastVenueLoaded0: true,
+            venueName0: res.data[0].acf.venue_name
+          });
+        });
         axios.get(res.data[0].acf.cd_results_json).then(res => {
           this.setState({
-            driverChampResults: res.data,
-            driverChampLoaded: true
-          })
-        })
+            driverChampResults0: res.data,
+            driverChampLoaded0: true
+          });
+        });
         axios.get(res.data[0].acf.cc_results_json).then(res => {
           this.setState({
-            teamChampResults: res.data,
-            teamChampLoaded: true
-          })
-        })
+            teamChampResults0: res.data,
+            teamChampLoaded0: true
+          });
+        });
+        
+        if (res.data[1]) {
+          axios.get(res.data[1].acf.results_json).then(res2 => {
+            this.setState({
+              lastVenueResults1: res2.data,
+              lastVenueLoaded1: true,
+              venueName1: res.data[1].acf.venue_name
+            });
+          });
+          axios.get(res.data[1].acf.cd_results_json).then(res => {
+            this.setState({
+              driverChampResults1: res.data,
+              driverChampLoaded1: true
+            });
+          });
+          axios.get(res.data[1].acf.cc_results_json).then(res => {
+            this.setState({
+              teamChampResults1: res.data,
+              teamChampLoaded1: true
+            });
+          });
+        }
       })
       .catch(err => console.log(err));
   }
 
   render() {
     let contentData;
-    if (this.state.driverChampLoaded && this.state.teamChampLoaded && this.state.lastVenueLoaded) {
-      contentData = (
+    if (
+      this.state.driverChampLoaded0 &&
+      this.state.teamChampLoaded0 &&
+      this.state.lastVenueLoaded0
+    ) {
+      contentData = contentData = (
         <>
-          <LastVenueResBox venueName={this.state.venueName} data={this.state.lastVenueResults} />
-          <Divider height="15px" />
-          <DriverChampResBox venueName={this.state.venueName} data={this.state.driverChampResults} />
-          <Divider height="15px" />
-          <TeamChampResBox venueName={this.state.venueName} data={this.state.teamChampResults} />
+          <LastVenueResBox
+            venueName={this.state.venueName0}
+            data={this.state.lastVenueResults0}
+          />
+          <DriverChampResBox
+            venueName={this.state.venueName0}
+            data={this.state.driverChampResults0}
+          />
+          <TeamChampResBox
+            venueName={this.state.venueName0}
+            data={this.state.teamChampResults0}
+          />
+          {this.state.driverChampLoaded1 &&
+          this.state.teamChampLoaded1 &&
+          this.state.lastVenueLoaded1 ? (
+            <>
+              <LastVenueResBox
+                venueName={this.state.venueName1}
+                data={this.state.lastVenueResults1}
+              />
+              <DriverChampResBox
+                venueName={this.state.venueName1}
+                data={this.state.driverChampResults1}
+              />
+              <TeamChampResBox
+                venueName={this.state.venueName1}
+                data={this.state.teamChampResults1}
+              />{" "}
+            </>
+          ) : (
+            ""
+          )}
         </>
       );
     }

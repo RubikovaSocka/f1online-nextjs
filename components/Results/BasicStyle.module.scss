@@ -1,7 +1,15 @@
 .container {
-  background-color: var(--table-back-color);
+  //background-color: var(--table-back-color);
   background-color: var(--calendar-header-color);
-  padding: 15px;
+  //padding: 15px;
+
+  width: 100%;
+  margin-bottom: 10px;
+  overflow: hidden;
+  &.opened {
+    background-color: var(--table-back-color);
+    color: white;
+  }
 }
 .header {
   
@@ -9,16 +17,53 @@
   font-size: 15px;
   font-weight: 600;
   color: var(--basic-text-color);
+
+  padding: 10px 15px;
+  background-color: var(--calendar-header-color);
+  //border: 1px solid var(--lines-color);
+  //border-bottom: none;
+
+  cursor: pointer;
+  //font-family: "HK Grotesk"
+  transition-delay: 0.1s;
+  i {
+    margin-right: 15px;
+  }
+
+  &:hover,
+  &.opened {
+    background-color: var(--table-back-color);
+    color: white;
+  }
+  &.opened {
+    border-bottom: none;
+    padding-bottom: 30px;
+  }
 }
+.contentBox {
+  background-color: var(--table-back-color);
+  transition: ease-in-out 0.25s;
+  &.opened {
+
+    &.venueResult, &.champResult {
+      height: 540px;
+    }
+    &.teamResult {
+      height: 280px;
+    }
+  }
+  &.closed {
+    height: 0px;
+  }
+}
+
+
 .table {
-  margin-top: 15px;
   font-family: "HK Grotesk";
   font-size: 15px;
-  color: var(--basic-text-color);
+  padding: 0 10px 10px 10px;
+  color: white;
   overflow: scroll;
-
-  
-
   span {
     display: inline-block;
   }

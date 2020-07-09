@@ -34,7 +34,7 @@ class SideRePanel extends Component {
     ReactGA.event({
       category: "partnerClicked",
       action: "click-pc-side",
-      label: `${e.link}@@${e.src}`
+      label: `${e.link}*${e.src}`,
     });
   }
 
@@ -42,7 +42,8 @@ class SideRePanel extends Component {
     ReactGA.event({
       category: "partnerShown",
       action: "click-pc-side",
-      label: `${e.link}@@${e.src}`
+      label: `${e.link}*${e.src}`,
+      nonInteraction: true
     });
   }
 
@@ -62,7 +63,6 @@ class SideRePanel extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     const { lastShownSrc, lastShownLink } = this.state;
     if (!this.props.loaded) {
       return;
