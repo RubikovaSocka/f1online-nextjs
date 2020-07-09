@@ -17,6 +17,7 @@ import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon } from "react-share";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle.js";
 import TrackedSidePanel from "../../../components/Ads/TrackedSidePanel.js";
+import TrackedArtRePanel from "../../../components/Ads/TrackedArtRePanel.js";
 
 export default class Post extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ export default class Post extends Component {
             className={styles.articleContentUpper}
             dangerouslySetInnerHTML={{ __html: upperPart }}
           />
-          <ArtRePanel />
+          <TrackedArtRePanel />
           <div
             className={styles.articleContentLower}
             dangerouslySetInnerHTML={{ __html: lowerPart }}
