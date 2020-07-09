@@ -51,7 +51,7 @@ export default class Post extends Component {
             className={styles.articleContentUpper}
             dangerouslySetInnerHTML={{ __html: upperPart }}
           />
-          <TrackedArtRePanel />
+          {/*<TrackedArtRePanel />*/}
           <div
             className={styles.articleContentLower}
             dangerouslySetInnerHTML={{ __html: lowerPart }}
