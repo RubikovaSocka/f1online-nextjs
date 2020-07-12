@@ -29,7 +29,7 @@ class CalResWidget extends Component {
 
   componentDidMount() {
     axios
-      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/3885`)
+      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/3936`)
       .then(res => {
         this.setState({
           calendarData: res.data,

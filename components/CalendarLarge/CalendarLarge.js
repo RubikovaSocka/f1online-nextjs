@@ -28,7 +28,7 @@ class CalendarLarge extends Component {
   componentDidMount() {
     //axios.get(`/wp-json/wp/v2/calendar/?per_page=1`)
     axios
-      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/3885`)
+      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/3936`)
       .then(res =>
         this.setState({
           venueData: res.data,
@@ -48,7 +48,7 @@ class CalendarLarge extends Component {
             <img
               className={styles.image}
               alt="VC Rakúska"
-              src="https://wpadmin.f1online.sk/wp-content/uploads/2020/04/bresized003-768x480.jpg"
+              src="https://wpadmin.f1online.sk/wp-content/uploads/1419268983784-1082866725_news.jpg"
             />
             <div className={styles.dataContainer}>
               <div className={styles.venueTitleContainer}>
