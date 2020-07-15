@@ -11,8 +11,8 @@ import SideRePanel from "../../../components/Ads/SideRePanel/SideRePanel.js";
 import Divider from "../../../components/Divider.js";
 import getImagePreview from "../../../utils/getImagePreview";
 import ArtRePanel from "../../../components/Ads/ArtRePanel/ArtRePanel.js";
-import CommentsSection from "../../../components/CommentsSection/CommentsSection.js";
 import PostsBlock from "../../../components/PostsBlock/PostsBlock";
+import DiskusnyBox from '../../../components/DiskusnyBox/DiskusnyBox'
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon } from "react-share";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle.js";
@@ -121,7 +121,7 @@ export default class Post extends Component {
     let pageFull = (
       <main className="contentsPage">
         <div className="page">
-          <div className="mainContent">
+          <div id="cn" className="mainContent">
             {post}
             <Divider height="10px" />
             <div className={styles.shareButtonRow}>
@@ -140,9 +140,9 @@ export default class Post extends Component {
             </div>
 
             <Divider height="10px" />
-            <CommentsSection
-              articleID={postData.id}
-              articleUrl={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`}
+            <DiskusnyBox
+              discourseUrl="https://forum.f1online.sk/"
+              discourseEmbedUrl={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`}
             />
           </div>
           <aside className="sideBar">
@@ -202,7 +202,9 @@ export default class Post extends Component {
             }
           />
         </Head>
+        <div id="dsa">
         {this.state.pageFull}
+        </div>
       </>
     );
   }
