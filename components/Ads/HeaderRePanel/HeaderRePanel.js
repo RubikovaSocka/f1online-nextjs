@@ -33,7 +33,7 @@ class HeaderRePanel extends Component {
     ReactGA.event({
       category: "partnerClicked",
       action: "click-pc-top",
-      label: `${e.link}*${e.src}`,
+      label: `${e.link}*${e.src}`
     });
   }
 
@@ -46,8 +46,8 @@ class HeaderRePanel extends Component {
     });
   }
 
-  pickBanner() {
-    const { panelsJSON } = this.props;
+  pickBanner(nextProps) {
+    const { panelsJSON } = nextProps ? nextProps : this.props;
     let partnerPick =
       panelsJSON.bTop[Math.floor(Math.random() * panelsJSON.bTop.length)];
     let panelPick =
@@ -63,11 +63,11 @@ class HeaderRePanel extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { lastShownSrc, lastShownLink } = this.state;
-    if(!this.props.loaded) {
+    if (!nextProps.loaded) {
       return;
     }
-    if(this.state.lastShownSrc === "") {
-      this.setState(this.pickBanner());
+    if (this.state.lastShownSrc === "") {
+      this.setState(this.pickBanner(nextProps));
       return;
     }
 
@@ -92,6 +92,7 @@ class HeaderRePanel extends Component {
   }
 
   render() {
+    console.log(this.state.lastShownSrc);
     if (this.props.loaded) {
       const { lastShownSrc, lastShownLink } = this.state;
       return (
@@ -110,7 +111,7 @@ class HeaderRePanel extends Component {
           </a>
         </div>
       );
-    } else return null
+    } else return null;
   }
 }
 

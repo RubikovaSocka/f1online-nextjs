@@ -79,7 +79,7 @@ export default class App extends Component {
       <Provider store={store}>
         <HeaderMeta />
         {this.state.showCookieBanner ? this.state.cookieBanner : ""}
-        <TrackVisibility style={{width: "100%"}}>
+        <TrackVisibility partialVisibility style={{width: "100%"}}>
           <HeaderRePanel />
         </TrackVisibility>
         <Header />

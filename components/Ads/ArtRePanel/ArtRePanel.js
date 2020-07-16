@@ -30,8 +30,8 @@ class ArtRePanel extends Component {
     });
   }
 
-  pickBanner() {
-    const { panelsJSON } = this.props;
+  pickBanner(nextProps) {
+    const { panelsJSON } = nextProps ? nextProps : this.props;
     let partnerPick =
       window.innerWidth < 1024
         ? panelsJSON.bArtMob[
@@ -72,12 +72,11 @@ class ArtRePanel extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { lastShownSrc, lastShownLink } = this.state;
-    if(!this.props.loaded) {
+    if (!nextProps.loaded) {
       return;
     }
-    
-    if(this.state.lastShownSrc === "") {
-      this.setState(this.pickBanner());
+    if (this.state.lastShownSrc === "") {
+      this.setState(this.pickBanner(nextProps));
       return;
     }
 

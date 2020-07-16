@@ -1,4 +1,4 @@
-$rowsDivider: 1px solid #e0e0e0;
+$rowsDivider: 1px solid var(--widget-line-divider-color);
 
 .content {
   display: flex;
@@ -17,6 +17,7 @@ $rowsDivider: 1px solid #e0e0e0;
 
     font-size: 16px;
     font-weight: 600;
+    color: var(--basic-text-color);
   }
   .venueDate {
     margin: 0;
@@ -30,7 +31,7 @@ $rowsDivider: 1px solid #e0e0e0;
   padding: 6px 5px;
 
   border-top: $rowsDivider;
-  color: black;
+  color: var(--basic-text-color);
 
   &.noBorder {
     margin-top: 0;

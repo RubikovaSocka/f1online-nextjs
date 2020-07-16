@@ -66,8 +66,8 @@ export default class Home extends Component {
           {articlesSection}
           {
             <ButtonWB
-              hrefProp="/clanky"
-              asProp="/clanky"
+              hrefProp="/archiv"
+              asProp="/archiv"
               title="Pozrieť všetky"
             />
           }
@@ -94,7 +94,7 @@ export default class Home extends Component {
         </Media>
       </>
     );
-          
+
     return (
       <>
         <Head>

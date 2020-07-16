@@ -47,8 +47,8 @@ class SideRePanel extends Component {
     });
   }
 
-  pickBanner() {
-    const { panelsJSON } = this.props;
+  pickBanner(nextProps) {
+    const { panelsJSON } = nextProps ? nextProps : this.props;
     let partnerPick =
       panelsJSON.bSide[Math.floor(Math.random() * panelsJSON.bSide.length)];
     let panelPick =
@@ -64,11 +64,11 @@ class SideRePanel extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { lastShownSrc, lastShownLink } = this.state;
-    if (!this.props.loaded) {
+    if (!nextProps.loaded) {
       return;
     }
     if (this.state.lastShownSrc === "") {
-      this.setState(this.pickBanner());
+      this.setState(this.pickBanner(nextProps));
       return;
     }
 
@@ -82,7 +82,13 @@ class SideRePanel extends Component {
         });
       }
     } else {
-      this.setState(this.pickBanner());
+      const nextShow = this.pickBanner();
+      if (
+        nextShow.lastShownSrc != lastShownSrc ||
+        nextShow.lastShownLink != lastShownLink
+      ) {
+        this.setState(nextShow);
+      }
     }
   }
 

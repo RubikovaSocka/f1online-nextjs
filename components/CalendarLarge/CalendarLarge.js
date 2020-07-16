@@ -28,14 +28,21 @@ class CalendarLarge extends Component {
   componentDidMount() {
     //axios.get(`/wp-json/wp/v2/calendar/?per_page=1`)
     axios
-      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/3936`)
-      .then(res =>
-        this.setState({
-          venueData: res.data,
-          isLoaded: true
-        })
+      .get(
+        `https://wpadmin.f1online.sk/wp-json/wp/v2/online_details?per_page=1`
       )
-      .catch(err => console.log(err));
+      .then(res => {
+        axios
+          .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/${res.data[0].acf.calendar_gp_id}`)
+          .then(res2 => {
+            this.setState({
+              venueData: res2.data,
+              isLoaded: true
+            });
+          })
+          .catch(err => console.log(err));;
+      })
+      .catch(err => console.log(err));;
   }
 
   render() {
@@ -47,8 +54,8 @@ class CalendarLarge extends Component {
           <div className={styles.container}>
             <img
               className={styles.image}
-              alt="VC Rakúska"
-              src="https://wpadmin.f1online.sk/wp-content/uploads/1419268983784-1082866725_news.jpg"
+              alt={`VC ${venueData.acf.venue_name}`}
+              src={`${venueData.acf.circuit_image}`}
             />
             <div className={styles.dataContainer}>
               <div className={styles.venueTitleContainer}>

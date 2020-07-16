@@ -7,8 +7,9 @@ import CalResWidget from "../components/CalResWidget/CalResWidget.js";
 import Head from "next/head";
 
 import Divider from "../components/Divider.js";
+import PopularBox from "../components/PopularBox/PopularBox.js";
 
-export default function Clanky() {
+export default function Archiv() {
   return (
     <>
       <Head>
@@ -27,7 +28,9 @@ export default function Clanky() {
             <ArchivArticles asArchive={true} perpage="12" />
           </div>
           <aside className="sideBar">
-            <Divider height="50px" />
+            <Divider height="40px" />
+            <PopularBox />
+            <Divider height="25px" />
             <QuickNews />
             {/*<RPanel />*/}
             <CalResWidget />

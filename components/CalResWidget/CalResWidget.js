@@ -18,7 +18,7 @@ class CalResWidget extends Component {
       lastVenueName: "",
       lastVenueData: {},
       champData: {},
-      
+
       calendarIsLoaded: false,
       lastVenueIsLoaded: false,
       champIsLoaded: false
@@ -29,13 +29,20 @@ class CalResWidget extends Component {
 
   componentDidMount() {
     axios
-      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/3936`)
+      .get(
+        `https://wpadmin.f1online.sk/wp-json/wp/v2/online_details?per_page=1`
+      )
       .then(res => {
-        this.setState({
-          calendarData: res.data,
-          calendarIsLoaded: true
-        });
+        axios
+          .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/${res.data[0].acf.calendar_gp_id}`)
+          .then(res => {
+            this.setState({
+              calendarData: res.data,
+              calendarIsLoaded: true
+            });
+          });
       });
+
     //.catch(err => console.log(err))
 
     axios

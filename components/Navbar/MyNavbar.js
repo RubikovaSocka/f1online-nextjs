@@ -62,7 +62,7 @@ class MyNavbar extends Component {
                 <div className={styles.bottomLine} />
               </a>
             </Link>
-            <Link activeClassName={styles.selected} href="/clanky">
+            <Link activeClassName={styles.selected} href="/archiv">
               <a onClick={this.close}>
                 <span>Správy</span>
                 <div className={styles.bottomLine} />

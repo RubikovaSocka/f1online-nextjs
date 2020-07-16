@@ -14,7 +14,9 @@ export class ArchivArticles extends Component {
     this.state = {
       posts: [],
       offset: 1,
-      isLoaded: false
+      isLoaded: false,
+      errorMessage: "Žiaľ, nič sme nenašli",
+      showErrorMessage: false
     };
     this.loadPostsFromServer = this.loadPostsFromServer.bind(this);
   }
@@ -26,20 +28,29 @@ export class ArchivArticles extends Component {
           `https://wpadmin.f1online.sk/wp-json/wp/v2/tags?slug=${this.props.tagSlug}&per_page=1`
         )
         .then(res => {
-          axios
-            .get(
-              `https://wpadmin.f1online.sk/wp-json/wp/v2/posts?tags=${
-                res.data[0].id
-              }&per_page=${this.props.perpage}&offset=${this.props.perpage *
-                (this.state.offset - 1)}`
-            )
-            .then(res => {
-              this.setState({
-                posts: res.data,
-                isLoaded: true
+          if (res.data[0]) {
+            axios
+              .get(
+                `https://wpadmin.f1online.sk/wp-json/wp/v2/posts?tags=${
+                  res.data[0].id
+                }&per_page=${this.props.perpage}&offset=${this.props.perpage *
+                  (this.state.offset - 1)}`
+              )
+              .then(res => {
+                this.setState({
+                  posts: res.data,
+                  isLoaded: true,
+                  pageCount: Math.ceil(
+                    res.headers["x-wp-total"] / this.props.perpage
+                  )
+                });
               });
+            //.catch(err => console.log(err))
+          } else {
+            this.setState({
+              showErrorMessage: true
             });
-          //.catch(err => console.log(err))
+          }
         });
       //.catch(err => console.log(err))
     } else {
@@ -87,8 +98,10 @@ export class ArchivArticles extends Component {
           </div>
         );
       } else {
-        articles = <ArticlesPanel counter={this.state.offset} posts={this.state.posts} />;
-        if (this.props.asArchive) {
+        articles = (
+          <ArticlesPanel counter={this.state.offset} posts={this.state.posts} />
+        );
+        if (this.props.asArchive && this.state.pageCount > 1) {
           paginateSection = (
             <ReactPaginate
               previousLabel={"<"}
@@ -107,6 +120,8 @@ export class ArchivArticles extends Component {
           );
         }
       }
+    } else if (this.state.showErrorMessage) {
+      articles = <p>{this.state.errorMessage}</p>;
     } else {
       articles = <LoadingSpinner />;
     }
