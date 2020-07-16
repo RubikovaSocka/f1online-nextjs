@@ -19,6 +19,7 @@ export default function HeaderMeta() {
         property="og:description"
         content={`Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky...`}
       />
+      
       <meta
         key="meta_image"
         property="og:image"

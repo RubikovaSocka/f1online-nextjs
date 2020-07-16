@@ -94,38 +94,46 @@ export default class Home extends Component {
         </Media>
       </>
     );
-
+          
     return (
-      <main className="contentsPage">
-        {titleSection}
-        <Divider height="25px" />
-        <div className="page">
-          <div className="mainContent">
-            {otherArticlesSection}
-            {largeWidgets}
-          </div>
-          <aside className={`sideBar`}>
-            {/*${styles.stickyWidget}*/}
-            <Divider height="15px" />
-            <TrackedSidePanel />
-            <Divider height="25px" />
-            <QuickNews />
-          </aside>
+      <>
+        <Head>
+          <meta
+            name="description"
+            content="Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky..."
+          />
+        </Head>
+        <main className="contentsPage">
+          {titleSection}
+          <Divider height="25px" />
+          <div className="page">
+            <div className="mainContent">
+              {otherArticlesSection}
+              {largeWidgets}
+            </div>
+            <aside className={`sideBar`}>
+              {/*${styles.stickyWidget}*/}
+              <Divider height="15px" />
+              <TrackedSidePanel />
+              <Divider height="25px" />
+              <QuickNews />
+            </aside>
 
-          <Media query={{ maxWidth: 1023 }}>
-            {matches =>
-              matches ? (
-                <div className="mainContent">
-                  <CalResWidget />
-                  <Divider height="110px" />
-                </div>
-              ) : (
-                ""
-              )
-            }
-          </Media>
-        </div>
-      </main>
+            <Media query={{ maxWidth: 1023 }}>
+              {matches =>
+                matches ? (
+                  <div className="mainContent">
+                    <CalResWidget />
+                    <Divider height="110px" />
+                  </div>
+                ) : (
+                  ""
+                )
+              }
+            </Media>
+          </div>
+        </main>
+      </>
     );
   }
 }

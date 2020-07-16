@@ -172,6 +172,7 @@ export default class Post extends Component {
           <title key="meta_title">
             {postData.title.rendered} | F1online.sk
           </title>
+          <meta name="description" content={`${postData.excerpt.rendered.replace(regex, "")}`} />
           <meta key="meta_type" property="og:type" content="article" />
           <meta
             key="meta_ogtitle"
