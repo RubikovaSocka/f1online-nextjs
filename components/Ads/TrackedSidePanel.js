@@ -32,7 +32,7 @@ export default class TrackedSidePanel extends Component {
                 <SideRePanel />
               </TrackVisibility>
             </AdBlockDetect>
-            <div style={{ width: "100%", overflow: "hidden" }}>
+            <div style={{ width: "100%", minWidth: "290px", overflow: "hidden" }}>
               <AdSense.Google
                 client="ca-pub-2681240380511410"
                 slot="9306692655"
