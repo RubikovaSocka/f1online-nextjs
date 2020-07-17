@@ -92,7 +92,6 @@ class HeaderRePanel extends Component {
   }
 
   render() {
-    console.log(this.state.lastShownSrc);
     if (this.props.loaded) {
       const { lastShownSrc, lastShownLink } = this.state;
       return (
