@@ -11,7 +11,6 @@ class SideRePanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      runningOnClient: true,
       alreadyShown: [],
       lastShownLink: "",
       lastShownSrc: ""
@@ -24,17 +23,13 @@ class SideRePanel extends Component {
     if (!this.props.loaded) {
       this.props.fetchPanels();
     }
-
-    this.setState({
-      runningOnClient: true
-    });
   }
 
   handleClick(e) {
     ReactGA.event({
       category: "partnerClicked",
       action: "click-pc-side",
-      label: `${e.link}*${e.src}`,
+      label: `${e.link}*${e.src}`
     });
   }
 

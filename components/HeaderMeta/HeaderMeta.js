@@ -24,12 +24,12 @@ export default function HeaderMeta() {
         key="meta_image"
         property="og:image"
         content={`https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png`}
-      />
+      />{/*
       <script
         data-ad-client="ca-pub-2681240380511410"
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-      ></script>
+      ></script>*/}
     </Head>
   );
 }

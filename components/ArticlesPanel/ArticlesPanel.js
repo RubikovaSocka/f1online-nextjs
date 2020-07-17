@@ -4,6 +4,7 @@ import ArticlePreview from "../ArticlePreview/ArticlePreview";
 import styles from "./ArticlesPanel.module.scss";
 import ArtRePanel from "../Ads/ArtRePanel/ArtRePanel";
 import TrackVisibility from "react-on-screen";
+import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
 
 class ArticlesPanel extends Component {
   render() {
@@ -21,9 +22,7 @@ class ArticlesPanel extends Component {
             <i aria-hidden="true"></i>
           </div>
           <div counter={this.props.counter}>
-            <TrackVisibility partialVisibility>
-              <ArtRePanel />
-            </TrackVisibility>
+            <TrackedArtRePanel />
           </div>
 
           <div className={styles.container}>

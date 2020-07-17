@@ -146,7 +146,7 @@ export default class CalendarItem extends Component {
             </div>
           </div>
           <div className={styles.circuitContainer}>
-            <img src={`/images/${data.circuit_id}.png`}></img>
+            <img src={data.circuit_map}></img>
             <span>{data.circuit_name}</span>
           </div>
         </div>

@@ -12,7 +12,6 @@ class ArtRePanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      runningOnClient: false,
       alreadyShown: [],
       lastShownLink: "",
       lastShownSrc: ""
@@ -25,9 +24,6 @@ class ArtRePanel extends Component {
     if (!this.props.loaded) {
       this.props.fetchPanels();
     }
-    this.setState({
-      runningOnClient: true
-    });
   }
 
   pickBanner(nextProps) {
@@ -57,7 +53,7 @@ class ArtRePanel extends Component {
     ReactGA.event({
       category: "partnerClicked",
       action: "click-pc-art",
-      label: `${e.link}*${e.src}`,
+      label: `${e.link}*${e.src}`
     });
   }
 
@@ -101,27 +97,25 @@ class ArtRePanel extends Component {
   }
 
   render() {
-    if (this.state.runningOnClient) {
-      const { lastShownSrc, lastShownLink } = this.state;
+    const { lastShownSrc, lastShownLink } = this.state;
 
-      if (this.props.loaded) {
-        return (
-          <div className={styles.container}>
-            <a
-              href={lastShownLink}
-              rel="noreferrer"
-              target="_blank"
-              onClick={() => {
-                this.handleClick({link: lastShownLink, src: lastShownSrc});
-              }}
-            >
-              <div className={styles.panel}>
-                <img src={lastShownSrc} />
-              </div>
-            </a>
-          </div>
-        );
-      } else return null;
+    if (this.props.loaded) {
+      return (
+        <div className={styles.container}>
+          <a
+            href={lastShownLink}
+            rel="noreferrer"
+            target="_blank"
+            onClick={() => {
+              this.handleClick({ link: lastShownLink, src: lastShownSrc });
+            }}
+          >
+            <div className={styles.panel}>
+              <img src={lastShownSrc} />
+            </div>
+          </a>
+        </div>
+      );
     } else return null;
   }
 }
