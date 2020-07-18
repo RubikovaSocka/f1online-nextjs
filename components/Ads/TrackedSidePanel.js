@@ -21,14 +21,16 @@ export default class TrackedSidePanel extends Component {
   }
 
   render() {
+    console.log("rendering")
     if (this.state.onClient) {
       let randomNumber = Math.floor(Math.random() * Math.floor(100));
+      console.log(randomNumber < showGASPercentage)
       if (randomNumber < showGASPercentage) {
         return (
           //google ad if user does not have adblock
           <>
             <AdBlockDetect>
-              <TrackVisibility partialVisibility style={{ width: "100%" }}>
+              <TrackVisibility partialVisibility style={{ width: "300px" }}>
                 <SideRePanel />
               </TrackVisibility>
             </AdBlockDetect>

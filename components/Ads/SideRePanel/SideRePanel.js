@@ -97,7 +97,7 @@ class SideRePanel extends Component {
             rel="noreferrer"
             target="_blank"
             onClick={() => {
-              this.handleClick(panelPick.linkTo);
+              this.handleClick({ link: lastShownLink, src: lastShownSrc });
             }}
           >
             <div className={styles.panel}>
