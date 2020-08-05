@@ -40,10 +40,11 @@ export default class TrackedRSpravyPanel extends Component {
                 slot="3932644685"
                 style={{
                   display: "inline-block",
-                  width: "100%"
+                  width: "100%",
+                  height: "100%"
                 }}
                 layout="in-article"
-                format="auto"
+                format=""
               />
             </div>
           </>
