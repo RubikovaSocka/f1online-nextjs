@@ -46,7 +46,6 @@ export default class EmbedFullscreen extends Component {
                   height: "100%"
                 }}
                 //layout="in-article"
-                format=""
               />
               ) : (
                 <TrackedRSpravyPanel />
