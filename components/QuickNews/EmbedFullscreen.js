@@ -40,11 +40,12 @@ export default class EmbedFullscreen extends Component {
                 client="ca-pub-2681240380511410"
                 slot="3863813186"
                 style={{
-                  display: "inline-block",
+                  //display: "inline-block",
+                  float: "left",
                   width: "100%",
                   height: "100%"
                 }}
-                layout="in-article"
+                //layout="in-article"
                 format=""
               />
               ) : (
