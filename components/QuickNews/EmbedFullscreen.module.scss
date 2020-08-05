@@ -13,6 +13,8 @@
 
   background-color: var(--basic-back-color);
   box-shadow: var(--popup-shadow);
+
+  overflow: hidden;
 }
 .closeButton {
   position: absolute;
@@ -146,6 +148,6 @@
     bottom: unset;
 
     width: 300px;
-    height: calc(100% - 60px);
+    height: calc(100% - 60px) !important;
   }
 }
