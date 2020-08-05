@@ -28,13 +28,21 @@ class Results extends Component {
       driverChampResults1: {},
       driverChampLoaded1: false,
       teamChampResults1: {},
-      teamChampLoaded1: false
+      teamChampLoaded1: false,
+
+      venueName2: "",
+      lastVenueResults2: {},
+      lastVenueLoaded2: false,
+      driverChampResults2: {},
+      driverChampLoaded2: false,
+      teamChampResults2: {},
+      teamChampLoaded2: false
     };
   }
 
   componentDidMount() {
     axios
-      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=25`)
+      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=5`)
       .then(res => {
         axios.get(res.data[0].acf.results_json).then(res2 => {
           this.setState({
@@ -55,7 +63,7 @@ class Results extends Component {
             teamChampLoaded0: true
           });
         });
-        
+
         if (res.data[1]) {
           axios.get(res.data[1].acf.results_json).then(res2 => {
             this.setState({
@@ -76,7 +84,28 @@ class Results extends Component {
               teamChampLoaded1: true
             });
           });
-        }
+        }/*
+        if (res.data[2]) {
+          axios.get(res.data[2].acf.results_json).then(res3 => {
+            this.setState({
+              lastVenueResults2: res3.data,
+              lastVenueLoaded2: true,
+              venueName2: res.data[2].acf.venue_name
+            });
+          });
+          axios.get(res.data[2].acf.cd_results_json).then(res => {
+            this.setState({
+              driverChampResults2: res.data,
+              driverChampLoaded2: true
+            });
+          });
+          axios.get(res.data[2].acf.cc_results_json).then(res => {
+            this.setState({
+              teamChampResults2: res.data,
+              teamChampLoaded2: true
+            });
+          });
+        }*/
       })
       .catch(err => console.log(err));
   }
@@ -122,6 +151,26 @@ class Results extends Component {
           ) : (
             ""
           )}
+          {/*this.state.driverChampLoaded2 &&
+          this.state.teamChampLoaded2 &&
+          this.state.lastVenueLoaded2 ? (
+            <>
+              <LastVenueResBox
+                venueName={this.state.venueName2}
+                data={this.state.lastVenueResults2}
+              />
+              <DriverChampResBox
+                venueName={this.state.venueName2}
+                data={this.state.driverChampResults2}
+              />
+              <TeamChampResBox
+                venueName={this.state.venueName2}
+                data={this.state.teamChampResults2}
+              />{" "}
+            </>
+          ) : (
+            ""
+          )*/}
         </>
       );
     }

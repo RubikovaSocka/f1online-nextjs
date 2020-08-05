@@ -12,12 +12,15 @@ import Divider from "../../../components/Divider.js";
 import getImagePreview from "../../../utils/getImagePreview";
 import ArtRePanel from "../../../components/Ads/ArtRePanel/ArtRePanel.js";
 import PostsBlock from "../../../components/PostsBlock/PostsBlock";
-import DiskusnyBox from '../../../components/DiskusnyBox/DiskusnyBox'
+import DiskusnyBox from "../../../components/DiskusnyBox/DiskusnyBox";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon } from "react-share";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle.js";
 import TrackedSidePanel from "../../../components/Ads/TrackedSidePanel.js";
 import TrackedArtRePanel from "../../../components/Ads/TrackedArtRePanel.js";
+import ReportBox from "../../../components/ReportBox/ReportBox.js";
+import RelatedArticles from "../../../components/RelatedArticles.js";
+import decodeHtml from "../../../utils/decodeHtml.js";
 
 export default class Post extends Component {
   constructor(props) {
@@ -82,7 +85,7 @@ export default class Post extends Component {
       <>
         <div className={styles.title}>
           {/*<h1>{postData.title.rendered}</h1>*/}
-          <h1 dangerouslySetInnerHTML={{ __html: postData.title.rendered }} />
+          <h1>{decodeHtml(postData.title.rendered)}</h1>
         </div>
         <div className={styles.imageContainer}>
           {getImagePreview({
@@ -124,6 +127,12 @@ export default class Post extends Component {
           <div id="cn" className="mainContent">
             {post}
             <Divider height="10px" />
+            <ReportBox
+              artLink={`https://f1online.sk/clanky/${this.props.postData.id}/${this.props.postData.slug}`}
+              title={decodeHtml(this.props.postData.title.rendered)}
+              articleID={this.props.postData.id}
+            />
+            <Divider height="8px" />
             <div className={styles.shareButtonRow}>
               <span>Zdieľať</span>
               <FacebookShareButton
@@ -138,8 +147,15 @@ export default class Post extends Component {
                 <TwitterIcon size={25} />
               </TwitterShareButton>
             </div>
-
             <Divider height="10px" />
+            <SectionTitle title="Možno vás zaujme" />
+
+            <RelatedArticles
+              ids={this.props.postData.acf.suvisiace_clanky}
+              tagID={this.props.postData.tags[0]}
+            />
+            <Divider height="10px" />
+            <SectionTitle title="Komentáre" />
             <DiskusnyBox
               discourseUrl="https://forum.f1online.sk/"
               discourseEmbedUrl={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`}
@@ -170,19 +186,28 @@ export default class Post extends Component {
       <>
         <Head>
           <title key="meta_title">
-            {postData.title.rendered} | F1online.sk
+            {decodeHtml(postData.title.rendered)} | F1online.sk
           </title>
-          <meta name="description" content={`${postData.excerpt.rendered.replace(regex, "")}`} />
+          <meta
+            name="description"
+            content={`${decodeHtml(postData.excerpt.rendered).replace(
+              regex,
+              ""
+            )}`}
+          />
           <meta key="meta_type" property="og:type" content="article" />
           <meta
             key="meta_ogtitle"
             property="og:title"
-            content={`${postData.title.rendered} | F1online.sk`}
+            content={`${decodeHtml(postData.title.rendered)} | F1online.sk`}
           />
           <meta
             key="meta_description"
             property="og:description"
-            content={`${postData.excerpt.rendered.replace(regex, "")}`}
+            content={`${decodeHtml(postData.excerpt.rendered).replace(
+              regex,
+              ""
+            )}`}
           />
           <meta
             key="meta_url"
@@ -202,10 +227,26 @@ export default class Post extends Component {
                 : "https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png"
             }
           />
+          <meta
+            key="meta_image_height"
+            property="og:image:height"
+            content={
+              postData.better_featured_image
+                ? `${postData.better_featured_image.media_details.height}`
+                : "630"
+            }
+          />
+          <meta
+            key="meta_image_width"
+            property="og:image:width"
+            content={
+              postData.better_featured_image
+                ? `${postData.better_featured_image.media_details.width}`
+                : "1200"
+            }
+          />
         </Head>
-        <div id="dsa">
-        {this.state.pageFull}
-        </div>
+        <div id="dsa">{this.state.pageFull}</div>
       </>
     );
   }

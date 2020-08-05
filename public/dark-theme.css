@@ -55,4 +55,6 @@
   --comments-back-color: #878787;
 
   --category-selected-back-color: #b5b5b5;
+
+  --popup-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }

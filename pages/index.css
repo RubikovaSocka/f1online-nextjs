@@ -176,3 +176,16 @@ body {
   width: 100% !important;
   height: 100% !important;
 }
+.instagram-media {
+  min-width: 278px !important;
+}
+.wp-embedded-content {
+  max-height: 230px !important;
+  width: 100%;
+}
+@media only screen and (min-width: 1260px) {
+  .wp-embedded-content {
+    max-height: 360px !important;
+    width: 100%;
+  }
+}

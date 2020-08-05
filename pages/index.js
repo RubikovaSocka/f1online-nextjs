@@ -114,8 +114,53 @@ export default class Home extends Component {
             <aside className={`sideBar`}>
               {/*${styles.stickyWidget}*/}
               <Divider height="15px" />
-              <TrackedSidePanel />
-              <Divider height="25px" />
+              {/*<TrackedSidePanel />
+              <Divider height="25px" />*/}
+              <div
+                style={{
+                  width: "100%"
+                }}
+              >
+                <Media query={{ maxWidth: 350 }}>
+                  {matches =>
+                    matches ? (
+                      <iframe
+                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ff1online.sk%2F&tabs=timeline&width=280&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=313229599518550"
+                        width="290"
+                        height="500"
+                        style={{
+                          border: "none",
+                          overflow: "hidden",
+                          margin: "auto",
+                          display: "block"
+                        }}
+                        scrolling="no"
+                        frameborder="0"
+                        allowTransparency="true"
+                        allow="encrypted-media"
+                      ></iframe>
+                    ) : (
+                      <iframe
+                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ff1online.sk%2F&tabs=timeline&width=320&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=313229599518550"
+                        width="320"
+                        height="500"
+                        style={{
+                          border: "none",
+                          overflow: "hidden",
+                          margin: "auto",
+                          display: "block"
+                        }}
+                        scrolling="no"
+                        frameborder="0"
+                        allowTransparency="true"
+                        allow="encrypted-media"
+                      ></iframe>
+                    )
+                  }
+                </Media>
+              </div>
+
+              <Divider height="15px" />
               <QuickNews />
             </aside>
 

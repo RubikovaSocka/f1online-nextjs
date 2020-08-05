@@ -7,7 +7,8 @@ const LoadingSpinner = props => (
       display: "flex",
       justifyContent: "center",
       fontFamily: "HK Grotesk",
-      fontWeight: "600"
+      fontWeight: "600",
+      color: "var(--basic-text-color)"
     }}
   >
     <div>

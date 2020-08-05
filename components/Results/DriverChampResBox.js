@@ -48,6 +48,7 @@ export default class DriverChampResBox extends Component {
                   {this.props.data.map((item, index) =>
                     index === 0 ? (
                       <div
+                        key={index}
                         className={`${styles.tableRow} ${styles.tableHeader}`}
                       >
                         <span className={styles.position}>{item.position}</span>
@@ -55,7 +56,7 @@ export default class DriverChampResBox extends Component {
                         <span className={styles.points}>{item.points}</span>
                       </div>
                     ) : (
-                      <div className={`${styles.tableRow}`}>
+                      <div key={index} className={`${styles.tableRow}`}>
                         <span className={styles.position}>
                           {item.position}
                           {item.position === "-" ? "" : "."}
@@ -77,6 +78,7 @@ export default class DriverChampResBox extends Component {
                   {this.props.data.map((item, index) =>
                     index === 0 ? (
                       <div
+                        key={index}
                         className={`${styles.tableRow} ${styles.tableHeader}`}
                       >
                         <span className={styles.position}>{item.position}</span>
@@ -87,7 +89,7 @@ export default class DriverChampResBox extends Component {
                         <span className={styles.points}>{item.points}</span>
                       </div>
                     ) : (
-                      <div className={`${styles.tableRow}`}>
+                      <div key={index} className={`${styles.tableRow}`}>
                         <span className={styles.position}>
                           {item.position}
                           {item.position === "-" ? "" : "."}

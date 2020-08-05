@@ -88,63 +88,89 @@ export default class CalendarItem extends Component {
               <span className={styles.sessionTime}>Čas</span>
               <span className={styles.sessionTv}>Vysiela</span>
             </div>
-            <div className={styles.timesRow}>
-              <span className={styles.session}>1. tréning</span>
-              <span className={styles.sessionTime}>{`${
-                data.fp1_time
-              } - ${format(
-                addMinutes(parse(data.fp1_time, "HH:mm", new Date()), 90),
-                "HH:mm"
-              )}`}</span>
-              <span className={styles.sessionTv}>
-                {data.fp1_tv ? data.fp1_tv : "Doplníme..."}
-              </span>
-            </div>
-            <div className={styles.timesRow}>
-              <span className={styles.session}>2. tréning</span>
-              <span className={styles.sessionTime}>{`${
-                data.fp2_time
-              } - ${format(
-                addMinutes(parse(data.fp2_time, "HH:mm", new Date()), 90),
-                "HH:mm"
-              )}`}</span>
-              <span className={styles.sessionTv}>
-                {data.fp2_tv ? data.fp2_tv : "Doplníme..."}
-              </span>
-            </div>
-            <div className={styles.timesRow}>
-              <span className={styles.session}>3. tréning</span>
-              <span className={styles.sessionTime}>{`${
-                data.fp3_time
-              } - ${format(
-                addMinutes(parse(data.fp3_time, "HH:mm", new Date()), 90),
-                "HH:mm"
-              )}`}</span>
-              <span className={styles.sessionTv}>
-                {data.fp3_tv ? data.fp3_tv : "Doplníme..."}
-              </span>
-            </div>
-            <div className={styles.timesRow}>
-              <span className={styles.session}>Kvalifikácia</span>
-              <span className={styles.sessionTime}>{`${data.q_time} - ${format(
-                addMinutes(parse(data.q_time, "HH:mm", new Date()), 90),
-                "HH:mm"
-              )}`}</span>
-              <span className={styles.sessionTv}>
-                {data.q_tv ? data.q_tv : "Doplníme..."}
-              </span>
-            </div>
-            <div className={styles.timesRow}>
-              <span className={styles.session}>Preteky</span>
-              <span className={styles.sessionTime}>{`${data.r_time} - ${format(
-                addMinutes(parse(data.r_time, "HH:mm", new Date()), 90),
-                "HH:mm"
-              )}`}</span>
-              <span className={styles.sessionTv}>
-                {data.r_tv ? data.r_tv : "Doplníme..."}
-              </span>
-            </div>
+            {data.fp1_time ? (
+              <div className={styles.timesRow}>
+                <span className={styles.session}>1. tréning</span>
+                <span className={styles.sessionTime}>{`${
+                  data.fp1_time
+                } - ${format(
+                  addMinutes(parse(data.fp1_time, "HH:mm", new Date()), 90),
+                  "HH:mm"
+                )}`}</span>
+                <span className={styles.sessionTv}>
+                  {data.fp1_tv ? data.fp1_tv : "Doplníme..."}
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
+
+            {data.fp2_time ? (
+              <div className={styles.timesRow}>
+                <span className={styles.session}>2. tréning</span>
+                <span className={styles.sessionTime}>{`${
+                  data.fp2_time
+                } - ${format(
+                  addMinutes(parse(data.fp2_time, "HH:mm", new Date()), 90),
+                  "HH:mm"
+                )}`}</span>
+                <span className={styles.sessionTv}>
+                  {data.fp2_tv ? data.fp2_tv : "Doplníme..."}
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
+            {data.fp3_time ? (
+              <div className={styles.timesRow}>
+                <span className={styles.session}>3. tréning</span>
+                <span className={styles.sessionTime}>{`${
+                  data.fp3_time
+                } - ${format(
+                  addMinutes(parse(data.fp3_time, "HH:mm", new Date()), 90),
+                  "HH:mm"
+                )}`}</span>
+                <span className={styles.sessionTv}>
+                  {data.fp3_tv ? data.fp3_tv : "Doplníme..."}
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
+            {data.q_time ? (
+              <div className={styles.timesRow}>
+                <span className={styles.session}>Kvalifikácia</span>
+                <span className={styles.sessionTime}>{`${
+                  data.q_time
+                } - ${format(
+                  addMinutes(parse(data.q_time, "HH:mm", new Date()), 90),
+                  "HH:mm"
+                )}`}</span>
+                <span className={styles.sessionTv}>
+                  {data.q_tv ? data.q_tv : "Doplníme..."}
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
+            {data.r_time ? (
+              <div className={styles.timesRow}>
+                <span className={styles.session}>Preteky</span>
+                <span className={styles.sessionTime}>{`${
+                  data.r_time
+                } - ${format(
+                  addMinutes(parse(data.r_time, "HH:mm", new Date()), 90),
+                  "HH:mm"
+                )}`}</span>
+                <span className={styles.sessionTv}>
+                  {data.r_tv ? data.r_tv : "Doplníme..."}
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
+
           <div className={styles.circuitContainer}>
             <img src={data.circuit_map}></img>
             <span>{data.circuit_name}</span>

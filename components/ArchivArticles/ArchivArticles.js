@@ -53,6 +53,19 @@ export class ArchivArticles extends Component {
           }
         });
       //.catch(err => console.log(err))
+    } else if (this.props.tagID) {
+      axios
+        .get(
+          `https://wpadmin.f1online.sk/wp-json/wp/v2/posts?tags=${
+            this.props.tagID
+          }&per_page=${this.props.perpage}`
+        )
+        .then(res => {
+          this.setState({
+            posts: res.data,
+            isLoaded: true,
+          });
+        });
     } else {
       axios
         .get(

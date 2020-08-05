@@ -44,7 +44,7 @@ export default class LastVenueResBox extends Component {
           <div className={styles.table}>
             {data.map((item, index) =>
               index === 0 ? (
-                <div className={`${styles.tableRow} ${styles.tableHeader}`}>
+                <div key={index} className={`${styles.tableRow} ${styles.tableHeader}`}>
                   <span className={styles.position}>{item.position}</span>
                   <span className={styles.name}>{item.driverName}</span>
                   <span className={styles.team}>{item.teamName}</span>
@@ -53,7 +53,7 @@ export default class LastVenueResBox extends Component {
                   <span className={styles.points}>{item.points}</span>
                 </div>
               ) : (
-                <div className={`${styles.tableRow}`}>
+                <div key={index} className={`${styles.tableRow}`}>
                   <span className={styles.position}>
                     {item.position}
                     {item.position === "-" ? "" : "."}

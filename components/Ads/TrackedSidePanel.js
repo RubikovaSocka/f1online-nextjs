@@ -30,7 +30,7 @@ export default class TrackedSidePanel extends Component {
           //google ad if user does not have adblock
           <>
             <AdBlockDetect>
-              <TrackVisibility partialVisibility style={{ width: "300px" }}>
+              <TrackVisibility partialVisibility >
                 <SideRePanel />
               </TrackVisibility>
             </AdBlockDetect>

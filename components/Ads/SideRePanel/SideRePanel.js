@@ -86,12 +86,16 @@ class SideRePanel extends Component {
       }
     }
   }
+  /*
+  csadas
+  */
 
   render() {
     if (this.props.loaded) {
       const { lastShownSrc, lastShownLink } = this.state;
       return (
         <div className={styles.container}>
+        
           <a
             href={lastShownLink}
             rel="noreferrer"
