@@ -46,7 +46,7 @@ export default class TrackedArtRePanel extends Component {
             </AdBlockDetect>
             <div
               style={{
-                maxHeight: "160px",
+                height: "160px",
                 width: "100%",
                 minWidth: "290px",
                 overflow: "hidden"

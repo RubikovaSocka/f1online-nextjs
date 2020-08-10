@@ -113,7 +113,6 @@ export default class DriverPage extends Component {
         </div>
       </Fragment>
     );
-    console.log(driverData.slug)
     let driverPosts = (
       <ArchivArticles tagSlug={driverData.slug} asArchive={false} perpage="3" />
     );

@@ -21,7 +21,6 @@ export default class TrackedSidePanel extends Component {
   }
 
   render() {
-    console.log("rendering")
     if (this.state.onClient) {
       let randomNumber = Math.floor(Math.random() * 100);
       if (randomNumber < showGASPercentage) {
@@ -33,7 +32,7 @@ export default class TrackedSidePanel extends Component {
                 <SideRePanel />
               </TrackVisibility>
             </AdBlockDetect>
-            <div style={{ maxHeight: "60vh", width: "100%", minWidth: "290px", overflow: "hidden", position: "sticky", top: "calc(20vh + 50px)" }}>
+            <div style={{ height:"60vh", maxHeight: "60vh", width: "100%", minWidth: "290px", overflow: "hidden", position: "sticky", top: "calc(20vh + 50px)" }}>
               <AdSense.Google
                 client="ca-pub-2681240380511410"
                 slot="9306692655"

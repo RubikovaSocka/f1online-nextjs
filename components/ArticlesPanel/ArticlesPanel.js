@@ -22,7 +22,7 @@ class ArticlesPanel extends Component {
             <i aria-hidden="true"></i>
           </div>
           <div counter={this.props.counter} style={{ width: "100%" }}>
-            <TrackedArtRePanel />
+            <TrackedArtRePanel changeable={true} report={true}/>
           </div>
 
           <div className={styles.container}>

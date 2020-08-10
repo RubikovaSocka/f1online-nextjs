@@ -40,7 +40,6 @@ export default class Post extends Component {
 
     if (this.props.postData.acf.gallery) {
       axios.get(this.props.postData.acf.gallery).then(res => {
-        console.log(res);
         let imagesLoaded = res.data.map(item => {
           return {
             original: item.full,

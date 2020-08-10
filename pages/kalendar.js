@@ -32,8 +32,6 @@ export default class Calendar extends Component {
   render() {
     let contentData;
     if (this.state.isLoaded) {
-      console.log("ok");
-      console.log(this.state.calendarData);
       contentData = <CalendarBox data={this.state.calendarData} />;
     }
 
