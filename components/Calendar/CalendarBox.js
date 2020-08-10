@@ -15,7 +15,7 @@ export default class CalendarBox extends Component {
               data={calendarItem.acf}
             />
             {
-             index === 4 && this.props.data.length > 7 ?  <TrackedArtRePanel /> : ""
+             index === 4 && this.props.data.length > 7 ?  <TrackedArtRePanel report={true} changeable={true} /> : ""
             }
           </>
         ))}

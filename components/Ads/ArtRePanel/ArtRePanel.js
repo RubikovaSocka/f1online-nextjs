@@ -58,15 +58,18 @@ class ArtRePanel extends Component {
   }
 
   handleShown(e) {
-    ReactGA.event({
-      category: "partnerShown",
-      action: "shown-pc-art",
-      label: `${e.link}*${e.src}`,
-      nonInteraction: true
-    });
+    if (this.props.report) {
+      ReactGA.event({
+        category: "partnerShown",
+        action: "shown-pc-art",
+        label: `${e.link}*${e.src}`,
+        nonInteraction: true
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log("ss " + this.props.changeable)
     const { lastShownSrc, lastShownLink } = this.state;
     if (!nextProps.loaded) {
       return;
@@ -85,7 +88,7 @@ class ArtRePanel extends Component {
           };
         });
       }
-    } else {
+    } else if (this.props.changeable) {
       const nextShow = this.pickBanner();
       if (
         nextShow.lastShownSrc != lastShownSrc ||

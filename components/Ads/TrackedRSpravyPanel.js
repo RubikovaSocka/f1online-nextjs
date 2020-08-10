@@ -21,10 +21,8 @@ export default class TrackedRSpravyPanel extends Component {
   }
 
   render() {
-    console.log("rendering")
     if (this.state.onClient) {
-      let randomNumber = Math.floor(Math.random() * Math.floor(100));
-      console.log(randomNumber < showGASPercentage)
+      let randomNumber = Math.floor(Math.random() * 100);
       if (randomNumber < showGASPercentage) {
         return (
           //google ad if user does not have adblock

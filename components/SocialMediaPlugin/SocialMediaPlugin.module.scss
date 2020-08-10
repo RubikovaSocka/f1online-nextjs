@@ -33,6 +33,9 @@
         &.instaImg {
           content: var(--insta-img-url);
         }
+        &.youtubeImg {
+          content: var(--youtube-img-url);
+        }
       }
     }
   }

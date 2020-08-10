@@ -127,7 +127,7 @@ export default class CalendarItem extends Component {
                 <span className={styles.sessionTime}>{`${
                   data.fp3_time
                 } - ${format(
-                  addMinutes(parse(data.fp3_time, "HH:mm", new Date()), 90),
+                  addMinutes(parse(data.fp3_time, "HH:mm", new Date()), 60),
                   "HH:mm"
                 )}`}</span>
                 <span className={styles.sessionTv}>
@@ -143,7 +143,7 @@ export default class CalendarItem extends Component {
                 <span className={styles.sessionTime}>{`${
                   data.q_time
                 } - ${format(
-                  addMinutes(parse(data.q_time, "HH:mm", new Date()), 90),
+                  addMinutes(parse(data.q_time, "HH:mm", new Date()), 60),
                   "HH:mm"
                 )}`}</span>
                 <span className={styles.sessionTv}>
@@ -156,12 +156,7 @@ export default class CalendarItem extends Component {
             {data.r_time ? (
               <div className={styles.timesRow}>
                 <span className={styles.session}>Preteky</span>
-                <span className={styles.sessionTime}>{`${
-                  data.r_time
-                } - ${format(
-                  addMinutes(parse(data.r_time, "HH:mm", new Date()), 90),
-                  "HH:mm"
-                )}`}</span>
+                <span className={styles.sessionTime}>{`${data.r_time}`}</span>
                 <span className={styles.sessionTv}>
                   {data.r_tv ? data.r_tv : "Doplníme..."}
                 </span>

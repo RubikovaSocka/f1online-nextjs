@@ -21,7 +21,9 @@ import { changeTheme } from "../redux/actions/themeActions";
 import { Provider } from "react-redux";
 import store from "../redux/store/store.js";
 
-Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeStart", () => {
+  NProgress.start();
+});
 Router.events.on("routeChangeComplete", () => {
   ReactGA.pageview(window.location.pathname);
   NProgress.done();
@@ -79,7 +81,7 @@ export default class App extends Component {
       <Provider store={store}>
         <HeaderMeta />
         {this.state.showCookieBanner ? this.state.cookieBanner : ""}
-        <TrackVisibility partialVisibility style={{width: "100%"}}>
+        <TrackVisibility partialVisibility style={{ width: "100%" }}>
           <HeaderRePanel />
         </TrackVisibility>
         <Header />

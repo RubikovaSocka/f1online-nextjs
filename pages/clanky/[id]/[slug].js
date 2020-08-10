@@ -21,12 +21,15 @@ import TrackedArtRePanel from "../../../components/Ads/TrackedArtRePanel.js";
 import ReportBox from "../../../components/ReportBox/ReportBox.js";
 import RelatedArticles from "../../../components/RelatedArticles.js";
 import decodeHtml from "../../../utils/decodeHtml.js";
+import ImageGallery from "../../../components/react-image-gallery/src/ImageGallery";
 
 export default class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      articleFullHtml: {}
+      articleFullHtml: {},
+      images: [],
+      imagesLoaded: false
     };
   }
 
@@ -34,39 +37,97 @@ export default class Post extends Component {
     this.setState({
       windowWidth: window.innerWidth
     });
+
+    if (this.props.postData.acf.gallery) {
+      axios.get(this.props.postData.acf.gallery).then(res => {
+        console.log(res);
+        let imagesLoaded = res.data.map(item => {
+          return {
+            original: item.full,
+            thumbnail: item.thumbnail,
+            originalTitle: "zdroj: " + item.source,
+            thumbnailTitle: "zdroj: " + item.source
+          };
+        });
+        this.setState({
+          images: imagesLoaded,
+          imagesLoaded: true
+        });
+      });
+    }
+
     let article = this.props.postData.content.rendered;
-    let upperPart, lowerPart, articleContentFull, onlineNews;
-    let paraNum = (article.match(/<p>/g) || []).length;
+    let articleContentFull, onlineNews;
+    let nrOfParagraphs = (article.match(/<p>/g) || []).length;
 
-    if (paraNum > 6) {
-      let delimiter = "<p>";
-      let start = paraNum > 10 ? 7 : 5;
+    let delimiter = "<p>";
+    const nrPsBetween = 4;
 
-      let tokens2 = article.split(delimiter).slice(0, start);
-      let tokens = article.split(delimiter).slice(start);
-
-      upperPart = tokens2.join(delimiter);
-      lowerPart = "<p>" + tokens.join(delimiter);
-
+    //Don't show ads
+    if (nrOfParagraphs < 6) {
+      articleContentFull = (
+        <div
+          className={`${styles.articleContent} ${styles.setFirst}`}
+          dangerouslySetInnerHTML={{ __html: article }}
+        />
+      );
+      //Show ads
+    } else if (nrOfParagraphs === 6) {
       articleContentFull = (
         <>
-          <div
-            className={styles.articleContentUpper}
-            dangerouslySetInnerHTML={{ __html: upperPart }}
-          />
-          <TrackedArtRePanel />
-          <div
-            className={styles.articleContentLower}
-            dangerouslySetInnerHTML={{ __html: lowerPart }}
-          />
+          {article.split(delimiter).map((paragraph, index) => {
+            return index > 0 ? (
+              <>
+                <div
+                  className={`${styles.articleContent} ${
+                    index === 1 ? styles.firstPar : ""
+                  }`}
+                  dangerouslySetInnerHTML={{
+                    __html: "<p>".concat(paragraph)
+                  }}
+                />
+                {index === 3 ? (
+                  <TrackedArtRePanel report={true} changeable={false} />
+                ) : (
+                  ""
+                )}
+              </>
+            ) : (
+              ""
+            );
+          })}
         </>
       );
     } else {
       articleContentFull = (
-        <div
-          className={styles.articleContentUpper}
-          dangerouslySetInnerHTML={{ __html: article }}
-        />
+        <>
+          {article.split(delimiter).map((paragraph, index) => {
+            return index > 0 ? (
+              <>
+                <div
+                  className={`${styles.articleContent} ${
+                    index === 1 ? styles.firstPar : ""
+                  }`}
+                  dangerouslySetInnerHTML={{
+                    __html: "<p>".concat(paragraph)
+                  }}
+                />
+                {(index - 1) % nrPsBetween === 3 &&
+                nrOfParagraphs - (index - 1) > 2 ? (
+                  <TrackedArtRePanel
+                    GASpercentage={index > 4 ? 100 : 65}
+                    report={index === 4}
+                    changeable={index === 4}
+                  />
+                ) : (
+                  ""
+                )}
+              </>
+            ) : (
+              ""
+            );
+          })}
+        </>
       );
     }
 
@@ -121,62 +182,62 @@ export default class Post extends Component {
       </>
     );
 
-    let pageFull = (
-      <main className="contentsPage">
-        <div className="page">
-          <div id="cn" className="mainContent">
-            {post}
-            <Divider height="10px" />
-            <ReportBox
-              artLink={`https://f1online.sk/clanky/${this.props.postData.id}/${this.props.postData.slug}`}
-              title={decodeHtml(this.props.postData.title.rendered)}
-              articleID={this.props.postData.id}
-            />
-            <Divider height="8px" />
-            <div className={styles.shareButtonRow}>
-              <span>Zdieľať</span>
-              <FacebookShareButton
-                url={`https://f1online.sk/clanky/${this.props.postData.id}/${this.props.postData.slug}`}
-              >
-                <FacebookIcon size={25} />
-              </FacebookShareButton>
-              <TwitterShareButton
-                url={`https://f1online.sk/clanky/${this.props.postData.id}/${this.props.postData.slug}`}
-              >
-                {" "}
-                <TwitterIcon size={25} />
-              </TwitterShareButton>
-            </div>
-            <Divider height="10px" />
-            <SectionTitle title="Možno vás zaujme" />
-
-            <RelatedArticles
-              ids={this.props.postData.acf.suvisiace_clanky}
-              tagID={this.props.postData.tags[0]}
-            />
-            <Divider height="10px" />
-            <SectionTitle title="Komentáre" />
-            <DiskusnyBox
-              discourseUrl="https://forum.f1online.sk/"
-              discourseEmbedUrl={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`}
-            />
-          </div>
-          <aside className="sideBar">
-            <QuickNews />
-            <Divider height="15px" />
-            <CalResWidget />
-
-            {/*<div className={`${styles.stickyWidget}`}>*/}
-            {/*<SideRePanel />*/}
-            <TrackedSidePanel />
-            {/*</div>*/}
-          </aside>
+    let pagePostBottom = (
+      <>
+        <Divider height="10px" />
+        <ReportBox
+          artLink={`https://f1online.sk/clanky/${this.props.postData.id}/${this.props.postData.slug}`}
+          title={decodeHtml(this.props.postData.title.rendered)}
+          articleID={this.props.postData.id}
+        />
+        <Divider height="8px" />
+        <div className={styles.shareButtonRow}>
+          <span>Zdieľať</span>
+          <FacebookShareButton
+            url={`https://f1online.sk/clanky/${this.props.postData.id}/${this.props.postData.slug}`}
+          >
+            <FacebookIcon size={25} />
+          </FacebookShareButton>
+          <TwitterShareButton
+            url={`https://f1online.sk/clanky/${this.props.postData.id}/${this.props.postData.slug}`}
+          >
+            {" "}
+            <TwitterIcon size={25} />
+          </TwitterShareButton>
         </div>
-      </main>
+        <Divider height="10px" />
+        <SectionTitle title="Možno vás zaujme" />
+
+        <RelatedArticles
+          ids={this.props.postData.acf.suvisiace_clanky}
+          tagID={this.props.postData.tags[0]}
+        />
+        <Divider height="10px" />
+        <SectionTitle title="Komentáre" />
+        <DiskusnyBox
+          discourseUrl="https://forum.f1online.sk/"
+          discourseEmbedUrl={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`}
+        />
+      </>
+    );
+
+    let pageFullAside = (
+      <aside className="sideBar">
+        <QuickNews />
+        <Divider height="15px" />
+        <CalResWidget />
+
+        {/*<div className={`${styles.stickyWidget}`}>*/}
+        {/*<SideRePanel />*/}
+        <TrackedSidePanel />
+        {/*</div>*/}
+      </aside>
     );
 
     this.setState({
-      pageFull: pageFull
+      pagePost: post,
+      pagePostBottom: pagePostBottom,
+      pageFullB: pageFullAside
     });
   }
   render() {
@@ -246,7 +307,32 @@ export default class Post extends Component {
             }
           />
         </Head>
-        <div id="dsa">{this.state.pageFull}</div>
+        {/*<div id="dsa">*/}
+          <main className="contentsPage">
+            <div className="page">
+              <div id="cn" className="mainContent">
+                {this.state.pagePost}
+                {this.state.imagesLoaded ? (
+                  <div style={{ width: "100%", marginTop: "20px" }}>
+                    <ImageGallery
+                      showPlayButton={false}
+                      lazyLoad={true}
+                      showFullscreenButton={true}
+                      items={this.state.images}
+                      className={styles.galleryEdit}
+                      showIndex
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
+
+                {this.state.pagePostBottom}
+              </div>
+              {this.state.pageFullB}
+            </div>
+          </main>
+        {/*</div>*/}
       </>
     );
   }

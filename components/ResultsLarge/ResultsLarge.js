@@ -33,18 +33,16 @@ class ResultsLarge extends Component {
         <div>
           <SideSectionTitle title={`Výsledky VC ${this.props.venueName}`} />
           <div className={styles.container}>
-            {this.props.data.slice(1, 6)
-                  .map((positionData, index) => (
-                    <DriverDataItem
-                      key={index}
-                      renderID={this.props.renderID}
-                      pos={positionData.position}
-                      name={positionData.driverName}
-                      team={positionData.teamName}
-                      time={positionData.split}
-                    />
-                  ))
-              }
+            {this.props.data.slice(1, 6).map((positionData, index) => (
+              <DriverDataItem
+                key={index}
+                renderID={this.props.renderID}
+                pos={positionData.position}
+                name={positionData.driverName}
+                team={positionData.teamName}
+                time={positionData.split}
+              />
+            ))}
             <Divider height="10px" />
             <LinkAsButton
               target="/vysledky"
@@ -54,24 +52,20 @@ class ResultsLarge extends Component {
         </div>
       );
     } else if (this.props.renderID === "champ") {
-      console.log(this.props.data);
       return (
         <div>
           <SideSectionTitle title={`Šampionát po VC ${this.props.venueName}`} />
           <div className={styles.container}>
-            {this.props.data
-              .slice(1, 6)
-                  .map((positionData, index) => (
-                    <DriverDataItem
-                      key={index}
-                      renderID={this.props.renderID}
-                      pos={positionData.position}
-                      name={positionData.driverName}
-                      team={positionData.teamName}
-                      time={`${positionData.points}b`}
-                    />
-                  ))
-              }
+            {this.props.data.slice(1, 6).map((positionData, index) => (
+              <DriverDataItem
+                key={index}
+                renderID={this.props.renderID}
+                pos={positionData.position}
+                name={positionData.driverName}
+                team={positionData.teamName}
+                time={`${positionData.points}b`}
+              />
+            ))}
             <Divider height="10px" />
             <LinkAsButton
               target="/vysledky"

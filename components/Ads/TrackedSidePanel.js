@@ -23,8 +23,7 @@ export default class TrackedSidePanel extends Component {
   render() {
     console.log("rendering")
     if (this.state.onClient) {
-      let randomNumber = Math.floor(Math.random() * Math.floor(100));
-      console.log(randomNumber < showGASPercentage)
+      let randomNumber = Math.floor(Math.random() * 100);
       if (randomNumber < showGASPercentage) {
         return (
           //google ad if user does not have adblock
@@ -34,16 +33,17 @@ export default class TrackedSidePanel extends Component {
                 <SideRePanel />
               </TrackVisibility>
             </AdBlockDetect>
-            <div style={{ width: "100%", minWidth: "290px", overflow: "hidden" }}>
+            <div style={{ maxHeight: "60vh", width: "100%", minWidth: "290px", overflow: "hidden", position: "sticky", top: "calc(20vh + 50px)" }}>
               <AdSense.Google
                 client="ca-pub-2681240380511410"
                 slot="9306692655"
                 style={{
                   display: "inline-block",
-                  width: "100%"
+                  width: "100%",
+                  height: "100%"
                 }}
                 layout="in-article"
-                format="auto"
+                format=""
               />
             </div>
           </>

@@ -25,11 +25,8 @@ export class ResultsLargeWrapper extends Component {
         const venue = axios.get(res.data[0].acf.results_json);
 
         const champ = axios.get(res.data[0].acf.cd_results_json);
-        console.log(`seee ${res.data[0].acf.results_json}`);
-        console.log(`seed ${res.data[0].acf.cd_results_json}`);
 
         Promise.all([venue, champ]).then(res => {
-          console.log(res)
           this.setState({
             lastVenueName: venueName,
             lastVenueData: res[0].data,

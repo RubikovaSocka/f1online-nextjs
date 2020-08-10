@@ -188,4 +188,7 @@ body {
     max-height: 360px !important;
     width: 100%;
   }
-}
+}/*
+.wp-block-gallery {
+  display: none;
+}*/

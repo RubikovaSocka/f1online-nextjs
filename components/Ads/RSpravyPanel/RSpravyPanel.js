@@ -28,7 +28,7 @@ class RSpravyPanel extends Component {
   handleClick(e) {
     ReactGA.event({
       category: "partnerClicked",
-      action: "click-pc-side",
+      action: "click-pc-rsp",
       label: `${e.link}*${e.src}`
     });
   }
@@ -36,7 +36,7 @@ class RSpravyPanel extends Component {
   handleShown(e) {
     ReactGA.event({
       category: "partnerShown",
-      action: "click-pc-side",
+      action: "click-pc-rsp",
       label: `${e.link}*${e.src}`,
       nonInteraction: true
     });
