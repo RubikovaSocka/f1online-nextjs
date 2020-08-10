@@ -44,26 +44,26 @@ export default class TrackedArtRePanel extends Component {
                 />
               </TrackVisibility>
             </AdBlockDetect>
-            <div
+            {/*<div
               style={{
                 height: "160px",
                 width: "100%",
                 minWidth: "290px",
                 overflow: "hidden"
               }}
-            >
+            >*/}
               <AdSense.Google
                 client="ca-pub-2681240380511410"
                 slot="7293745168"
                 style={{
                   display: "inline-block",
                   width: "100%",
-                  height: "100%"
+                  height: "160px"
                 }}
                 layout="in-article"
                 format=""
               />
-            </div>
+            {/*</div>*/}
           </>
         );
       } else {
