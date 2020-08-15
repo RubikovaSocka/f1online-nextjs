@@ -56,9 +56,9 @@ export default class TrackedArtRePanel extends Component {
                 client="ca-pub-2681240380511410"
                 slot="7293745168"
                 style={{
-                  display: "inline-block",
+                  display: "block",
                   width: "100%",
-                  height: "160px"
+                  height: "170px"
                 }}
                 layout="in-article"
                 format=""

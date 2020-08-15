@@ -11,7 +11,7 @@ export default function TitleArticlePreview({
 }) {
   return (
     <div className={`${styles.container} zoomImageContainer`}>
-      <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
+      <Link href={`/clanky/${id}/${slug}`} as={`/clanky/${id}/${slug}`}>
         <a className="noOutline">
           {getImagePreview({
             imgData: better_featured_image,

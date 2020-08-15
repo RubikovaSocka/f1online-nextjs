@@ -13,7 +13,7 @@ export default function ArticlePreview({
 }) {
   return (
     <div className={styles.container}>
-      <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
+      <Link href={`/clanky/${id}/${slug}`} as={`/clanky/${id}/${slug}`}>
         <a>
           <div className={styles.imgContainer}>
             {getImagePreview({
@@ -23,7 +23,7 @@ export default function ArticlePreview({
           </div>
         </a>
       </Link>
-      <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
+      <Link href={`/clanky/${id}/${slug}`} as={`/clanky/${id}/${slug}`}>
         <a className={`${styles.titleContainer}`}>
           <h3
             className={styles.title}
