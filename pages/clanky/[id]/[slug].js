@@ -23,6 +23,8 @@ import RelatedArticles from "../../../components/RelatedArticles.js";
 import decodeHtml from "../../../utils/decodeHtml.js";
 import ImageGallery from "../../../components/react-image-gallery/src/ImageGallery";
 
+import ReactGA from "react-ga";
+
 export default class Post extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +36,7 @@ export default class Post extends Component {
   }
 
   componentDidMount() {
+
     this.setState({
       windowWidth: window.innerWidth
     });
