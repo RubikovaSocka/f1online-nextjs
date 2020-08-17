@@ -12,6 +12,8 @@ function PostRendered({ postData }) {
         authorName={postData._embedded.author[0].name}
         date={postData.date}
         imageData={postData.better_featured_image}
+        id={postData.id}
+        slug={postData.slug}
       />
       <PostContentArea article={postData.content.rendered} />
       <PostExtrasArea acf={postData.acf} />

@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "./PostRendered.module.scss";
-import { FacebookShareButton, TwitterShareButton } from "react-share";
-import { FacebookIcon, TwitterIcon } from "react-share";
 import ReportBox from "../ReportBox/ReportBox";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Divider from "../Divider";
@@ -13,18 +11,12 @@ function PostFooterArea({ postData }) {
   return (
     <>
       <Divider height="10px" />
-      <ReportBox
-        artLink={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`}
-        title={decodeHtml(postData.title.rendered)}
-        articleID={postData.id}
-      />
-      <Divider height="8px" />
       <div className={styles.shareButtonRow}>
         <iframe
           src={`https://www.facebook.com/plugins/like.php?href=${encodeURI(
             `https://f1online.sk/clanky/${postData.id}/${postData.slug}`
           )}&width=128&layout=button_count&action=like&size=small&share=true&height=46&appId=313229599518550`}
-          width="170"
+          width="183"
           height="25"
           style={{ border: "none", overflow: "hidden" }}
           scrolling="no"
@@ -33,6 +25,11 @@ function PostFooterArea({ postData }) {
           allow="encrypted-media"
         ></iframe>
       </div>
+      <ReportBox
+        artLink={`https://f1online.sk/clanky/${postData.id}/${postData.slug}`}
+        title={decodeHtml(postData.title.rendered)}
+        articleID={postData.id}
+      />
       <Divider height="10px" />
       <SectionTitle title="Možno vás zaujme" />
       <RelatedArticles

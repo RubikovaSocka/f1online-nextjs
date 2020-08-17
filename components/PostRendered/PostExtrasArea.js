@@ -4,7 +4,6 @@ import ImageGallery from "../react-image-gallery/src/ImageGallery";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Divider from "../Divider";
 import PostsBlock from "../PostsBlock/PostsBlock";
-
 import styles from "./PostRendered.module.scss";
 
 class PostExtrasArea extends Component {
@@ -39,7 +38,7 @@ class PostExtrasArea extends Component {
       <>
         {acf.start_time && acf.end_time ? (
           <>
-            <Divider height="100px" />
+            <Divider height="10px" />
             <SectionTitle title="Príspevky z onlinu:" />
             <Divider height="30px" />
             <PostsBlock
