@@ -7,21 +7,8 @@ import AdSense from "react-adsense";
 const showGASPercentage = 65; //X% chance to show GAS
 
 export default class TrackedArtRePanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      onClient: false
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      onClient: true
-    });
-  }
-
   render() {
-    if (this.state.onClient) {
+    if (typeof window !== 'undefined') {
       let randomNumber = Math.floor(Math.random() * 100);
       if (
         randomNumber <

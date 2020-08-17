@@ -56,14 +56,16 @@ export class ArchivArticles extends Component {
     } else if (this.props.tagID) {
       axios
         .get(
-          `https://wpadmin.f1online.sk/wp-json/wp/v2/posts?tags=${
-            this.props.tagID
-          }&per_page=${this.props.perpage}`
+          `https://wpadmin.f1online.sk/wp-json/wp/v2/posts?tags=${this.props.tagID}&per_page=${this.props.perpage}`
         )
         .then(res => {
           this.setState({
-            posts: res.data,
-            isLoaded: true,
+            posts: res.data
+              .filter(post =>
+                this.props.except ? post.id !== this.props.except : true
+              )
+              .slice(0, this.props.perpage === "4" ? 3 : 6),
+            isLoaded: true
           });
         });
     } else {

@@ -52,7 +52,8 @@ export default class RelatedArticles extends Component {
         <ArchivArticles
           key={this.props.tag}
           tagID={this.state.tag}
-          perpage="3"
+          except={this.props.except}
+          perpage="4"
         />
       );
     } else if (this.state.loaded) {

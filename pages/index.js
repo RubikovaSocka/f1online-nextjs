@@ -116,7 +116,7 @@ export default class Home extends Component {
               <Divider height="15px" />
               {/*<TrackedSidePanel />
               <Divider height="25px" />*/}
-              {/*
+              {
               <div
                 style={{
                   width: "100%"
@@ -159,7 +159,7 @@ export default class Home extends Component {
                     )
                   }
                 </Media>
-                </div>*/}
+                </div>}
 
               <Divider height="15px" />
               <QuickNews />
