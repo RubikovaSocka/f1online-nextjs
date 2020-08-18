@@ -26,7 +26,7 @@ export default class Post extends Component {
               ) : (
                 ""
               )*/}
-              <PostRendered postData={postData} />
+              <PostRendered key={postData.id} postData={postData} />
             </div>
             <aside className="sideBar">
               <QuickNews />

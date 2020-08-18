@@ -36,8 +36,8 @@ function PostTitleArea({ title, authorName, date, imageData, id, slug }) {
           height="25"
           style={{ border: "none", overflow: "hidden" }}
           scrolling="no"
-          frameborder="0"
-          allowTransparency="true"
+          frameBorder="0"
+          //allowTransparency="true"
           allow="encrypted-media"
         ></iframe>
       </div>

@@ -18,12 +18,15 @@ function InjectAds({ article }) {
     );
     //Show ads
   } else if (nrOfParagraphs === 6) {
+    let counter = 0;
     return (
       <>
         {article.split(delimiter).map((paragraph, index) => {
+          counter++;
           return index > 0 ? (
-            <>
+            <div key={counter}>
               <div
+                
                 className={`${styles.articleContent} ${
                   index === 1 ? styles.firstPar : ""
                 }`}
@@ -36,7 +39,7 @@ function InjectAds({ article }) {
               ) : (
                 ""
               )}
-            </>
+            </div>
           ) : (
             ""
           );
@@ -44,12 +47,15 @@ function InjectAds({ article }) {
       </>
     );
   } else {
+    let counter = 0;
     return (
       <>
         {article.split(delimiter).map((paragraph, index) => {
+          counter++;
           return index > 0 ? (
-            <>
+            <div key={counter}>
               <div
+                
                 className={`${styles.articleContent} ${
                   index === 1 ? styles.firstPar : ""
                 }`}
@@ -67,7 +73,7 @@ function InjectAds({ article }) {
               ) : (
                 ""
               )}
-            </>
+            </div>
           ) : (
             ""
           );
