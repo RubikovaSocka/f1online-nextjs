@@ -88,6 +88,7 @@ export default class App extends Component {
         <ThemeSwitcher />
         <Component {...pageProps} />
         <Footer />
+        
       </Provider>
     );
   }

@@ -152,8 +152,8 @@ export default class Home extends Component {
                           display: "block"
                         }}
                         scrolling="no"
-                        frameborder="0"
-                        allowTransparency="true"
+                        frameBorder="0"
+                        //allowTransparency="true"
                         allow="encrypted-media"
                       ></iframe>
                     )
