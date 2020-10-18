@@ -25,8 +25,8 @@ class Header extends React.Component {
                     className={styles.logo}
                     src={
                       this.props.isThemeLight
-                        ? this.props.lightTheme.logoSrc
-                        : this.props.darkTheme.logoSrc
+                        ? "https://f1online.sk/images/logo-light.png"
+                        : "https://f1online.sk/images/logo-dark.png"
                     }
                     alt="-"
                   ></img>

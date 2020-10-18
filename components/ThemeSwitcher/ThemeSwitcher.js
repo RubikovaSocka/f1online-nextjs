@@ -56,10 +56,9 @@ class ThemeSwitcher extends Component {
         </Head>
         <div className={styles.container}>
           <Link href="/chcem-vas-podporit">
-            <a className={styles.donateButton}>
-              Chcem podporiť F1online.sk
-            </a>
-          </Link>{/*
+            <a className={styles.donateButton}>Chcem podporiť F1online.sk</a>
+          </Link>
+          {/*
           <div className={styles.donateButtonContainer}>
             <form
               action="https://www.paypal.com/cgi-bin/webscr"
@@ -121,13 +120,13 @@ ThemeSwitcher.propTypes = {
   changeTheme: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  isThemeLight: state.theme.isThemeLight
+const mapStateToProps = ({ theme }) => ({
+  isThemeLight: theme.isThemeLight
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeTheme: () => dispatch()
-})
+  changeTheme: () => dispatch(changeTheme())
+});
 
 export default connect(
   mapStateToProps,

@@ -3,7 +3,7 @@ import fetchPanelsApi from "../../../apis/fetchPanelsApi";
 import { setPanels } from "../../actions/panelsActions";
 
 function* handleFetchPanels() {
-  const panelsData = yield call(fetchPanelsApi, ids);
+  const panelsData = yield call(fetchPanelsApi);
   yield put(setPanels(panelsData));
 }
 

@@ -1,4 +1,4 @@
-import { THEME } from "../actions/types";
+import { THEME } from "../constants";
 
 const defaultState = {
   isThemeLight: true
