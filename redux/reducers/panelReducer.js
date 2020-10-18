@@ -1,21 +1,36 @@
-import { FETCH_PANELS } from "../actions/types";
+import { PANELS } from "../constants";
 
-const initialState = {
-  panelsJSON: {},
-  loaded: false
+const defaultState = {
+  json: {},
+  error: null,
+  isLoading: false
 };
 
-const panelReducer = (state = initialState, action) => {
+const panelReducer = (state = defaultState, action) => {
+  console.log(action);
   switch (action.type) {
-    case FETCH_PANELS:
+    case PANELS.FETCH:
       return {
         ...state,
-        loaded: true,
-        data: action.payload
+        isLoading: true,
+        error: null
       };
+    case PANELS.FETCH_SUCCESS:
+      return {
+        ...state,
+        json: action.json,
+        isLoading: false
+      };
+    case PANELS.FETCH_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error
+      };
+
     default:
       return state;
   }
-}
+};
 
 export default panelReducer;

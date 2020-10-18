@@ -1,5 +1,6 @@
+import { takeLatest } from "redux-saga/effects";
 import { PANELS } from "../constants";
-import handleFetchPanels from "./handleFetchPanels.js";
+import handleFetchPanels from "./handlers/handleFetchPanels";
 
 //watcher
 function* rootSaga() {

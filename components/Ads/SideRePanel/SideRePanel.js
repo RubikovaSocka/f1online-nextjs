@@ -114,17 +114,15 @@ class SideRePanel extends Component {
   }
 }
 
-SideRePanel.propTypes = {
-  fetchPanels: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => ({
-  panelsJSON: state.panels.data,
-  loaded: state.panels.loaded,
-  userLoaded: true
+const mapStateToProps = ({panels}) => ({
+  json: panels.json
 });
+
+const mapDispatchToProps = dispatch => ({
+  fetchPanels: () => dispatch(fetchPanels())
+})
 
 export default connect(
   mapStateToProps,
-  { fetchPanels }
+  mapDispatchToProps
 )(SideRePanel);

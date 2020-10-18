@@ -1,21 +1,21 @@
 import { PANELS } from "../constants";
 
-const fetchPanelsAction = () => ({
+const fetchPanels = () => ({
   type: PANELS.FETCH
 });
 
-const fetchPanelsSuccessAction = json => ({
+const setPanels = json => ({
   type: PANELS.FETCH,
   json
 });
 
-const fetchPanelsFailAction = error => ({
+const setPanelsError = error => ({
   type: PANELS.FETCH,
   error
 });
 
-export default {
-  fetchPanelsAction,
-  fetchPanelsSuccessAction,
-  fetchPanelsFailAction
+export {
+  fetchPanels,
+  setPanels,
+  setPanelsError
 };

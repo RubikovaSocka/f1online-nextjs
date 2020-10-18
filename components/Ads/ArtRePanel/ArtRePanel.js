@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Provider, connect } from "react-redux";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { fetchPanels } from "../../../redux/actions/panelsActions";
 import styles from "./ArtRePanel.module.scss";
 import ReactGA from "react-ga";
@@ -21,9 +20,7 @@ class ArtRePanel extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.loaded) {
-      this.props.fetchPanels();
-    }
+    this.props.fetchPanels();
   }
 
   pickBanner(nextProps) {
@@ -123,16 +120,15 @@ class ArtRePanel extends Component {
   }
 }
 
-ArtRePanel.propTypes = {
-  fetchPanels: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => ({
-  panelsJSON: state.panels.data,
-  loaded: state.panels.loaded
+const mapStateToProps = ({panels}) => ({
+  json: panels.json
 });
+
+const mapDispatchToProps = dispatch => ({
+  fetchPanels: () => dispatch(fetchPanels())
+})
 
 export default connect(
   mapStateToProps,
-  { fetchPanels }
+  mapDispatchToProps
 )(ArtRePanel);

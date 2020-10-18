@@ -20,9 +20,7 @@ class HeaderRePanel extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.loaded) {
-      this.props.fetchPanels();
-    }
+    this.props.fetchPanels();
 
     this.setState({
       runningOnClient: true
@@ -114,16 +112,15 @@ class HeaderRePanel extends Component {
   }
 }
 
-HeaderRePanel.propTypes = {
-  fetchPanels: PropTypes.func.isRequired
-};
+const mapStateToProps = ({ panels }) => ({
+  json: panels.json
+});
 
-const mapStateToProps = state => ({
-  panelsJSON: state.panels.data,
-  loaded: state.panels.loaded
+const mapDispatchToProps = dispatch => ({
+  fetchPanels: () => dispatch(fetchPanels())
 });
 
 export default connect(
   mapStateToProps,
-  { fetchPanels }
+  mapDispatchToProps
 )(HeaderRePanel);
