@@ -7,18 +7,6 @@ import styles from "./TitleArea.module.scss";
 
 class TitleArea extends Component {
 
-  componentDidMount() {
-    console.log(`https://forum.f1online.sk/t/${this.props.posts[0].slug}-f1online-sk.json`)
-    axios.get(`https://forum.f1online.sk/t/${this.props.posts[0].slug}-f1online-sk.json`)
-      .then(res => {
-        console.log(res)
-        console.log(res.posts_count)
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }
-
   render() {
     if (this.props.posts.length === 3) {
       //show for mobile version

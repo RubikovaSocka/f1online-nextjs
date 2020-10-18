@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Provider, connect } from "react-redux";
-import PropTypes from "prop-types";
 import { fetchPanels } from "../../../redux/actions/panelsActions";
 import styles from "./HeaderRePanel.module.scss";
 import Router from "next/router";
@@ -21,7 +20,6 @@ class HeaderRePanel extends Component {
 
   componentDidMount() {
     this.props.fetchPanels();
-
     this.setState({
       runningOnClient: true
     });
@@ -45,9 +43,9 @@ class HeaderRePanel extends Component {
   }
 
   pickBanner(nextProps) {
-    const { panelsJSON } = nextProps ? nextProps : this.props;
+    const { panels } = nextProps ? nextProps : this.props;
     let partnerPick =
-      panelsJSON.bTop[Math.floor(Math.random() * panelsJSON.bTop.length)];
+      panels.bTop[Math.floor(Math.random() * panels.bTop.length)];
     let panelPick =
       partnerPick.banners[
         Math.floor(Math.random() * partnerPick.banners.length)
@@ -59,7 +57,7 @@ class HeaderRePanel extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     const { lastShownSrc, lastShownLink } = this.state;
     if (!nextProps.loaded) {
       return;
@@ -113,7 +111,8 @@ class HeaderRePanel extends Component {
 }
 
 const mapStateToProps = ({ panels }) => ({
-  json: panels.json
+  panels: panels.json,
+  loaded: panels.loaded
 });
 
 const mapDispatchToProps = dispatch => ({

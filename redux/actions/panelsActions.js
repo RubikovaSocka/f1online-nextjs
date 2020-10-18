@@ -5,12 +5,12 @@ const fetchPanels = () => ({
 });
 
 const setPanels = json => ({
-  type: PANELS.FETCH,
+  type: PANELS.FETCH_SUCCESS,
   json
 });
 
 const setPanelsError = error => ({
-  type: PANELS.FETCH,
+  type: PANELS.FETCH_FAILs,
   error
 });
 
