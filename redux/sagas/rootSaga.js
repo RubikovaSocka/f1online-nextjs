@@ -1,8 +1,9 @@
-import {}
+import { PANELS } from "../constants";
+import handleFetchPanels from "./handleFetchPanels.js";
 
 //watcher
 function* rootSaga() {
-  yield takeLatest()
+  yield takeLatest(PANELS.FETCH, handleFetchPanels);
   /*yield takeEvery(MOVIES.SEARCH_FETCH_NEW, handleSearchFetch);
   yield takeEvery(MOVIES.SEARCH_FETCH_MORE, handleSearchFetch);
 
