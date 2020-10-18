@@ -57,9 +57,9 @@ class HeaderRePanel extends Component {
     };
   }
 
-  componentDidUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const { lastShownSrc, lastShownLink } = this.state;
-    if (!nextProps.loaded) {
+    if (Object.keys(nextProps.panels).length === 0) {
       return;
     }
     if (this.state.lastShownSrc === "") {
@@ -88,7 +88,8 @@ class HeaderRePanel extends Component {
   }
 
   render() {
-    if (this.props.loaded) {
+    const { panels } = this.props;
+    if (Object.keys(panels).length > 0) {
       const { lastShownSrc, lastShownLink } = this.state;
       return (
         <div className={styles.container}>
