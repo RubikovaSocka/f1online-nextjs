@@ -1,21 +1,21 @@
-import axios from "axios";
-import { PANELS } from "./types.js";
+import { PANELS } from "../constants";
 
-export const fetchPanels = () => (dispatch, state) => {
-  if (state.loaded) {
-    dispatch({
-      ...state,
-      type: FETCH_PANELS
-    });
-  } else {
-    axios
-      .get("https://wpadmin.f1online.sk/wp-content/uploads/parts2.json")
-      .then(panels =>
-        dispatch({
-          ...state,
-          type: FETCH_PANELS,
-          payload: panels.data
-        })
-      );
-  }
+const fetchPanelsAction = () => ({
+  type: PANELS.FETCH
+});
+
+const fetchPanelsSuccessAction = json => ({
+  type: PANELS.FETCH,
+  json
+});
+
+const fetchPanelsFailAction = error => ({
+  type: PANELS.FETCH,
+  error
+});
+
+export default {
+  fetchPanelsAction,
+  fetchPanelsSuccessAction,
+  fetchPanelsFailAction
 };
