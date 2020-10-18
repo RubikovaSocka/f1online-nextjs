@@ -125,6 +125,10 @@ const mapStateToProps = state => ({
   isThemeLight: state.theme.isThemeLight
 });
 
+const mapDispatchToProps = dispatch => ({
+  changeTheme: () => dispatch()
+})
+
 export default connect(
   mapStateToProps,
   { changeTheme }

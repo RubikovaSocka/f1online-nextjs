@@ -4,6 +4,8 @@ const PANELS = {
   FETCH_FAIL: "FETCH_PANELS_FAIL"
 };
 
-const CHANGE_THEME = "CHANGE_THEME";
+const THEME = {
+  CHANGE: "THEME_CHANGE"
+};
 
-export { PANELS, CHANGE_THEME };
+export { PANELS, THEME };
