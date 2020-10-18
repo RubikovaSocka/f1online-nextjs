@@ -53,7 +53,7 @@ class PostExtrasArea extends Component {
         {this.state.imagesLoaded ? (
           <>
             <Divider height="30px" />
-            <SectionTitle title="Najlepšie fotky z víkendu" />
+            <SectionTitle title="Galéria" />
             <Divider height="30px" />
             <div style={{ width: "100%" }}>
               <ImageGallery
