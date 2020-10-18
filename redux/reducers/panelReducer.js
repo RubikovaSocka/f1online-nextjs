@@ -5,7 +5,7 @@ const initialState = {
   loaded: false
 };
 
-export default function(state = initialState, action) {
+const panelReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PANELS:
       return {
@@ -17,3 +17,5 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
+export default panelReducer;

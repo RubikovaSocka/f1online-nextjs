@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_PANELS } from "./types.js";
+import { PANELS } from "./types.js";
 
 export const fetchPanels = () => (dispatch, state) => {
   if (state.loaded) {
