@@ -1,24 +1,15 @@
-import { CHANGE_THEME } from "../actions/types";
+import { THEME } from "../actions/types";
 
-const initialState = {
-  isThemeLight: true,
-  lightTheme: { logoSrc: "/images/logo-light.png" },
-  darkTheme: { logoSrc: "/images/logo-dark.png" }
+const defaultState = {
+  isThemeLight: true
 };
 
-export default function(state = initialState, action) {
-  switch (action.type) {
-    case CHANGE_THEME:
-      return {
-        ...state,
-        isThemeLight:
-          action.payload === "light"
-            ? true
-            : action.payload === "dark"
-            ? false
-            : true
-      };
-    default:
-      return state;
-  }
-}
+const themeReducer = (state = defaultState, action) => {
+  return action.type === THEME.CHANGE
+    ? {
+        isThemeLight: !state.isThemeLight
+      }
+    : state;
+};
+
+export default themeReducer;
