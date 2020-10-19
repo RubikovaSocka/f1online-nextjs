@@ -1,9 +1,11 @@
 import { takeLatest } from "redux-saga/effects";
-import { PANELS } from "../constants";
+import { PANELS, ARTICLES } from "../constants";
 import handleFetchPanels from "./handlers/handleFetchPanels";
+import handleFetchArticles from "./handlers/handleFetchArticles";
 
 //watcher
 function* rootSaga() {
+  yield takeLatest(ARTICLES.FETCH, handleFetchArticles);
   yield takeLatest(PANELS.FETCH, handleFetchPanels);
   /*yield takeEvery(MOVIES.SEARCH_FETCH_NEW, handleSearchFetch);
   yield takeEvery(MOVIES.SEARCH_FETCH_MORE, handleSearchFetch);
