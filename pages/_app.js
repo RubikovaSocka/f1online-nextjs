@@ -3,7 +3,7 @@ import Router from "next/router";
 import ReactGA from "react-ga";
 import TrackVisibility from "react-on-screen";
 import HeaderMeta from "../components/HeaderMeta/HeaderMeta";
-import Header from "../components/Header/Header";
+import Header from "../components/Header";
 import Footer from "../components/Footer/Footer";
 import HeaderRePanel from "../components/Ads/HeaderRePanel/HeaderRePanel";
 import CookieBanner from "react-cookie-banner";
@@ -88,7 +88,6 @@ export default class App extends Component {
         <ThemeSwitcher />
         <Component {...pageProps} />
         <Footer />
-        
       </Provider>
     );
   }
