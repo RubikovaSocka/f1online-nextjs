@@ -9,11 +9,13 @@ const fetchMoreArticles = () => ({
 });
 
 const setArticles = articles => ({
-  type: ARTICLES.FETCH_SUCCESS
+  type: ARTICLES.FETCH_SUCCESS,
+  articles
 });
 
 const setArticlesError = error => ({
-  type: ARTICLES.FETCH_FAIL
+  type: ARTICLES.FETCH_FAIL,
+  error
 });
 
 export { fetchNewArticles, fetchMoreArticles, setArticles, setArticlesError };
