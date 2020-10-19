@@ -7,7 +7,6 @@ const defaultState = {
 };
 
 const panelReducer = (state = defaultState, action) => {
-  console.log(action);
   switch (action.type) {
     case PANELS.FETCH:
       return {
