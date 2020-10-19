@@ -1,25 +1,18 @@
-import { useState, useEffect, Component } from "react";
+import React, { Component } from "react";
 import axios from "axios";
-import Link from "next/link";
 import Head from "next/head";
+import Media from "react-media";
 
 import TitleArea from "../components/TitleArea";
 import ArticlesPanel from "../components/ArticlesPanel/ArticlesPanel";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import CalResWidget from "../components/CalResWidget/CalResWidget.js";
-import ThemeSwitcher from "../components/ThemeSwitcher/ThemeSwitcher.js";
 import CalendarLarge from "../components/CalendarLarge/CalendarLarge.js";
-import SideSectionTitle from "../components/SideSectionTitle/SideSectionTitle.js";
 import ResultsLargeWrapper from "../components/ResultsLarge/ResultsLargeWrapper.js";
-import LoadingSpinner from "../components/LoadingSpinner.js";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
-import SideRePanel from "../components/Ads/SideRePanel/SideRePanel.js";
 import Divider from "../components/Divider.js";
-import Media from "react-media";
 
-import styles from "../styles/main.module.scss";
-import TrackedSidePanel from "../components/Ads/TrackedSidePanel";
 import FBPageBox from "../components/FBPageBox";
 
 export default class Home extends Component {
