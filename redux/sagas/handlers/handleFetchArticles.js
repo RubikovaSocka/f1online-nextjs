@@ -1,10 +1,10 @@
 import { call, put } from "redux-saga/effects";
-import fetchArticlesApi from "../../../apis/fetchArticlesApi";
+import fetchArticles from "../../../apis/fetchArticlesApi";
 import { setArticles } from "../../actions/panelsActions";
 
 function* handleFetchArticles() {
-  const articles = yield call(fetchArticlesApi);
-  yield put(setPanels(articles));
+  const articles = yield call(fetchArticles);
+  yield put(setArticles(articles));
 }
 
 export default handleFetchArticles;
