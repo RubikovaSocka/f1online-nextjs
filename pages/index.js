@@ -15,7 +15,14 @@ import Divider from "../components/Divider.js";
 
 import FBPageBox from "../components/FBPageBox";
 
+import { fetchNewArticles } from "../redux/actions/articlesActions";
+
 export default class Home extends Component {
+  static async getInitialProps({ isServer, store }) {
+    await store.dispatch(fetchNewArticles());
+    return {};
+  }
+
   state = {
     width: 1280
   };
@@ -138,6 +145,7 @@ export default class Home extends Component {
   }
 }
 
+/*
 export async function getServerSideProps(context) {
   const responseSticky = await axios({
     method: "get",
@@ -158,3 +166,4 @@ export async function getServerSideProps(context) {
     }
   };
 }
+*/

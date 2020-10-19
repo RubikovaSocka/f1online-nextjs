@@ -20,6 +20,9 @@ import cstyles from "../styles/cookiestyle.module.scss";
 import { Provider } from "react-redux";
 import store from "../redux/store/store.js";
 
+import withRedux from "next-redux-wrapper";
+import withReduxSaga from "next-redux-saga";
+
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
 });
@@ -74,6 +77,13 @@ class App extends Component {
     });
   }
 
+  static async getInitialProps({ Component, ctx }) {
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {};
+    return { pageProps };
+  }
+
   render() {
     const { Component, pageProps } = this.props;
     return (
@@ -92,4 +102,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRedux(makeStore)(withReduxSaga(MyApp));
