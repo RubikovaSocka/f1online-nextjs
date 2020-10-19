@@ -6,7 +6,7 @@ import MyNavbar from "../Navbar/MyNavbar";
 import SocialMediaBasicPlugin from "../SocialMediaPlugin/SocialMediaPlugin";
 import SearchBar from "../SearchBar/SearchBar";
 
-import styles from "./Header.module.scss";
+import styles from "./style.module.scss";
 
 function Header({ isThemeLight }) {
   return (
