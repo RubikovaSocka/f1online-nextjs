@@ -17,7 +17,6 @@ import "../components/nprogress/nprogress.css";
 import { mobileStyles, pcStyles } from "../styles/cookieNotification.js";
 import cstyles from "../styles/cookiestyle.module.scss";
 
-import { changeTheme } from "../redux/actions/themeActions";
 import { Provider } from "react-redux";
 import store from "../redux/store/store.js";
 

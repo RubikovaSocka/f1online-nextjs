@@ -4,13 +4,11 @@
   flex-direction: column;
   justify-content: center;
   padding: 0 20px 0 20px;
-}
 
-@media only screen and (min-width: 1024px) {
-  .container {
+  @media only screen and (min-width: 1024px) {
     width: initial;
     display: grid;
-    
+
     grid-template-columns: auto 232px 19px 232px 19px 226px 19px 226px auto;
     grid-template-rows: 0 141px 19px 141px;
 
@@ -35,10 +33,8 @@
       grid-row: 4 / span 1;
     }
   }
-}
 
-@media only screen and (min-width: 1280px) {
-  .container {
+  @media only screen and (min-width: 1280px) {
     grid-template-columns: auto 246px 20px 246px 20px 240px 20px 240px auto;
     grid-template-rows: 0 150px 20px 150px;
   }
