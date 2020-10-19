@@ -1,6 +1,6 @@
 import React from "react";
 import MainArticlePreview from "../MainArticlePreview";
-import TitleArticlePreview from "../TitleArticlePreview/TitleArticlePreview";
+import TitleArticlePreview from "../TitleArticlePreview";
 
 import styles from "./TitleArea.module.scss";
 

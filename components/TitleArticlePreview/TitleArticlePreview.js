@@ -1,14 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import Link from "next/link";
 import styles from "./TitleArticlePreview.module.scss";
 import getImagePreview from "../../utils/getImagePreview.js";
 
-export default function TitleArticlePreview({
-  id,
-  slug,
-  title,
-  better_featured_image
-}) {
+function TitleArticlePreview({ id, slug, title, better_featured_image }) {
   return (
     <div className={`${styles.container} zoomImageContainer`}>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
@@ -29,3 +24,5 @@ export default function TitleArticlePreview({
     </div>
   );
 }
+
+export default TitleArticlePreview;
