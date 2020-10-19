@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import Link from "next/link";
 import styles from "./MainArticlePreview.module.scss";
 import getImagePreview from "../../utils/getImagePreview.js";
 
-export default function MainArticlePreview({ id, slug, better_featured_image, title }) {
+function MainArticlePreview({ id, slug, better_featured_image, title }) {
   return (
     <div className={`${styles.container} zoomImageContainer`}>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
@@ -14,10 +14,15 @@ export default function MainArticlePreview({ id, slug, better_featured_image, ti
           })}
           <div className={`${styles.titleContainer} blackBotGradient`}>
             {/*<div className={styles.title}>{title.rendered}</div>*/}
-            <div className={styles.title} dangerouslySetInnerHTML={{__html: title.rendered}} />
+            <div
+              className={styles.title}
+              dangerouslySetInnerHTML={{ __html: title.rendered }}
+            />
           </div>
         </a>
       </Link>
     </div>
   );
 }
+
+export default MainArticlePreview;
