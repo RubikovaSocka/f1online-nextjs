@@ -3,7 +3,7 @@ import Link from "next/link";
 import { connect } from "react-redux";
 
 import MyNavbar from "../Navbar/MyNavbar";
-import SocialMediaBasicPlugin from "../SocialMediaPlugin/SocialMediaPlugin";
+import SocialMediaBasicPlugin from "../SocialMediaPlugin";
 import SearchBar from "../SearchBar/SearchBar";
 
 import styles from "./style.module.scss";
