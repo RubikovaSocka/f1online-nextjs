@@ -1,17 +1,12 @@
 import React, { Component } from "react";
-import styles from "./SearchBar.module.scss";
+import styles from "./style.module.scss";
 
 export default class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      width: 0,
-      height: 0,
-      showFormClicked: false
-    };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-    this.openSearchBar = this.openSearchBar.bind(this);
-  }
+  state = {
+    width: 0,
+    height: 0,
+    showFormClicked: false
+  };
 
   componentDidMount() {
     this.updateWindowDimensions();
@@ -22,20 +17,20 @@ export default class SearchBar extends Component {
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
-  updateWindowDimensions() {
+  updateWindowDimensions = () => {
     this.setState({
       width: window.innerWidth,
       height: window.innerHeight
     });
-  }
+  };
 
-  openSearchBar() {
+  openSearchBar = () => {
     this.setState(prev => {
       return {
         showFormClicked: !prev.showFormClicked
       };
     });
-  }
+  };
 
   render() {
     let button;

@@ -1,10 +1,12 @@
 .container {
-  //width: 40px;
-
   float: right;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media only screen and (min-width: 1024px) {
+    width: 170px;
+  }
 }
 .searchForm {
   float: right;
@@ -15,6 +17,22 @@
   input {
     display: none;
     background-color: var(--basic-back-color);
+
+    @media only screen and (min-width: 1024px) {
+      height: 30px;
+      width: 120px;
+
+      font-family: "HK Grotesk";
+      display: inline-block;
+      border: solid 1px #c0c0c0;
+      border-radius: 30px;
+      padding: 0 40px 0 15px;
+
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--searchbar-text-color);
+    }
+
     &.show {
       height: 30px;
       width: 120px;
@@ -49,6 +67,7 @@
     cursor: pointer;
     background-color: transparent;
   }
+
   .buttonContent {
     cursor: pointer;
     width: 22px;
@@ -58,32 +77,8 @@
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
-  }
-}
 
-@media only screen and (min-width: 1024px) {
-  .container {
-    width: 170px;
-  }
-  .searchForm {
-
-    input {
-      height: 30px;
-      width: 120px;
-
-      font-family: "HK Grotesk";
-      display: inline-block;
-      border: solid 1px #c0c0c0;
-      border-radius: 30px;
-      padding: 0 40px 0 15px;
-
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--searchbar-text-color);
-
-      background-color: var(--basic-back-color);
-    }
-    .buttonContent {
+    @media only screen and (min-width: 1024px) {
       width: 16px;
       height: 16px;
       margin-left: -45px;

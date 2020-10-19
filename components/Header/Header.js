@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import MyNavbar from "../Navbar/MyNavbar";
 import SocialMediaBasicPlugin from "../SocialMediaPlugin";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../SearchBar";
 
 import styles from "./style.module.scss";
 

@@ -22,14 +22,9 @@ import styles from "../styles/main.module.scss";
 import TrackedSidePanel from "../components/Ads/TrackedSidePanel";
 
 export default class Home extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      width: 1280
-    };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-  }
+  state = {
+    width: 1280
+  };
 
   componentDidMount() {
     this.updateWindowDimensions();
@@ -40,11 +35,11 @@ export default class Home extends Component {
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
-  updateWindowDimensions() {
+  updateWindowDimensions = () => {
     this.setState({
       width: window.innerWidth
     });
-  }
+  };
 
   render() {
     let titleSection, articlesSection;
