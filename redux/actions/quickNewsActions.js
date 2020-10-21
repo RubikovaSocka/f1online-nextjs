@@ -8,9 +8,9 @@ const fetchMoreQuickNews = () => ({
   type: QUICK_NEWS.FETCH_MORE
 });
 
-const setQuickNews = articles => ({
+const setQuickNews = news => ({
   type: QUICK_NEWS.FETCH_SUCCESS,
-  articles
+  news
 });
 
 const setQuickNewsError = error => ({

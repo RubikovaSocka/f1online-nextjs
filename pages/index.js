@@ -17,6 +17,7 @@ import Divider from "../components/Divider.js";
 import FBPageBox from "../components/FBPageBox";
 
 import { fetchNewArticles } from "../redux/actions/articlesActions";
+import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 
 function Home() {
   const postsData = useSelector(state => state.articles.indexArticles);
@@ -132,6 +133,7 @@ function Home() {
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   if (store.getState().articles.indexArticles.length === 0) {
     store.dispatch(fetchNewArticles());
+    store.dispatch(fetchNewQuickNews());
     store.dispatch(END);
   }
 

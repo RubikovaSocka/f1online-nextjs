@@ -18,7 +18,9 @@ import "../components/nprogress/nprogress.css";
 import { mobileStyles, pcStyles } from "../styles/cookieNotification.js";
 import cstyles from "../styles/cookiestyle.module.scss";
 
+import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store.js";
+import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -94,6 +96,9 @@ class MyApp extends App {
 }
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+  console.log("...")
+  console.log("...")
+  console.log("...")
   if (store.getState().quickNews.news.length === 0) {
     store.dispatch(fetchNewQuickNews());
     store.dispatch(END);
