@@ -1,13 +1,12 @@
 import React from "react";
-import styles from "./ButtonWB.module.scss";
 import Link from "next/link";
 
-export default function ButtonWB(props) {
+import styles from "./style.module.scss";
+
+export default function ButtonWB({ hrefProp, asProp, title }) {
   return (
-    <Link href={props.hrefProp} as={props.asProp}>
-      <a className={styles.button}>
-        {props.title ? props.title : "Pozrieť všetky"}
-      </a>
+    <Link href={hrefProp} as={asProp}>
+      <a className={styles.button}>{title ? title : "Pozrieť všetky"}</a>
     </Link>
   );
 }
