@@ -3,7 +3,7 @@ import axios from "axios";
 import ReactPaginate from "react-paginate";
 import ArticlesPanel from "../ArticlesPanel/ArticlesPanel";
 
-import styles from "./ArchivArticles.module.scss";
+import styles from "./style.module.scss";
 import LoadingSpinner from "../LoadingSpinner";
 import MySection from "../TestComponent";
 
