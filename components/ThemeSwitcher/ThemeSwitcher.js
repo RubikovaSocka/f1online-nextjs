@@ -8,14 +8,10 @@ import { connect } from "react-redux";
 import { changeTheme } from "../../redux/actions/themeActions";
 
 class ThemeSwitcher extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isThemeLight: true
-    };
-    this.changeTheme = this.changeTheme.bind(this);
-  }
-
+  state = {
+    isThemeLight: true
+  };
+  
   componentDidMount() {
     this.props.changeTheme({
       themeName: window.localStorage.getItem("theme-name")

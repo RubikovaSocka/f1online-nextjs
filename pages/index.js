@@ -19,7 +19,7 @@ import FBPageBox from "../components/FBPageBox";
 import { fetchNewArticles } from "../redux/actions/articlesActions";
 
 function Home() {
-  const postsData = useSelector(state => state.articles.nonStickyArticles);
+  const postsData = useSelector(state => state.articles.indexArticles);
 
   /*
   componentDidMount() {
@@ -142,7 +142,7 @@ function Home() {
 }
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  if (store.getState().articles.nonStickyArticles.length === 0) {
+  if (store.getState().articles.indexArticles.length === 0) {
     store.dispatch(fetchNewArticles());
     store.dispatch(END);
   }

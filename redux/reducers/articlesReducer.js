@@ -2,8 +2,7 @@ import { ARTICLES } from "../constants";
 import { HYDRATE } from "next-redux-wrapper";
 
 const defaultState = {
-  stickyArticles: [],
-  nonStickyArticles: [],
+  indexArticles: [],
   isLoading: false,
   error: null
 };
@@ -24,7 +23,7 @@ const articlesReducer = (state = defaultState, action) => {
         ...state,
         isLoading: false,
         error: null,
-        nonStickyArticles: action.articles
+        indexArticles: action.articles
       };
 
     default:
