@@ -1,9 +1,10 @@
 import React from "react";
-const LoadingSpinner = props => (
+
+const LoadingSpinner = ({ title, nomargin }) => (
   <div
     style={{
       width: "100%",
-      marginTop: `${props.nomargin ? "0" : "15px"}`,
+      marginTop: `${nomargin ? "0" : "15px"}`,
       display: "flex",
       justifyContent: "center",
       fontFamily: "HK Grotesk",
@@ -16,7 +17,7 @@ const LoadingSpinner = props => (
         style={{ textAlign: "center" }}
         className="fas fa-circle-notch fa-spin"
       />
-      &nbsp;&nbsp;{props.title === "none" ? "" : props.title ? props.title : "Načítavam..."}
+      &nbsp;&nbsp;{props.title === "none" ? "" : title ? title : "Načítavam..."}
     </div>
   </div>
 );
