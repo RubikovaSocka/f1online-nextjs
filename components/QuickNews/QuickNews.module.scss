@@ -1,13 +1,11 @@
 .quicknewsContainer {
   margin-bottom: 25px;
 }
-
 .newsItemContainer {
   z-index: 5;
   color: var(--sub-title-color);
   padding: 0 10px;
 }
-
 .date {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -35,7 +33,6 @@
     text-decoration: underline;
   }
 }
-
 .linkStyle {
   text-decoration: none;
   color: var(--article-text-color);
