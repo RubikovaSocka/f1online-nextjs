@@ -50,43 +50,6 @@ function Home() {
   articlesSection = <ArticlesPanel posts={postsData.slice(5, 11)} />;
   /*}*/
 
-  let otherArticlesSection = (
-    <>
-      <SectionTitle title="Ďalšie správy" />
-      <Divider height="10px" />
-      <div className="basicButtonContainer">
-        {articlesSection}
-        {
-          <ButtonWB
-            hrefProp="/archiv"
-            asProp="/archiv"
-            title="Pozrieť všetky"
-          />
-        }
-      </div>
-    </>
-  );
-
-  let largeWidgets = (
-    <>
-      <Media query={{ maxWidth: 1023 }}>
-        {matches =>
-          matches ? (
-            ""
-          ) : (
-            <>
-              <Divider height="30px" />
-              <SectionTitle title="Boxová tabuľa" />
-              <Divider height="15px" />
-              <CalendarLarge />
-              <ResultsLargeWrapper />
-            </>
-          )
-        }
-      </Media>
-    </>
-  );
-
   return (
     <>
       <Head>
@@ -100,8 +63,33 @@ function Home() {
         <Divider height="25px" />
         <div className="page">
           <div className="mainContent">
-            {otherArticlesSection}
-            {largeWidgets}
+            <SectionTitle title="Ďalšie správy" />
+            <Divider height="10px" />
+            <div className="basicButtonContainer">
+              {articlesSection}
+              {
+                <ButtonWB
+                  hrefProp="/archiv"
+                  asProp="/archiv"
+                  title="Pozrieť všetky"
+                />
+              }
+            </div>
+            <Media query={{ maxWidth: 1023 }}>
+              {matches =>
+                matches ? (
+                  ""
+                ) : (
+                  <>
+                    <Divider height="30px" />
+                    <SectionTitle title="Boxová tabuľa" />
+                    <Divider height="15px" />
+                    <CalendarLarge />
+                    <ResultsLargeWrapper />
+                  </>
+                )
+              }
+            </Media>
           </div>
           <aside className={`sideBar`}>
             {/*${styles.stickyWidget}*/}
