@@ -4,17 +4,14 @@
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   color: var(--basic-text-color);
-  .title {
-    margin: 0px;
-    padding-left: 0;
-    font-size: 24px;
-  }
 }
 
-@media only screen and (min-width: 1366px) {
-  .titleContainer {
-    .title {
-      font-size: 26px;
-    }
+.title {
+  margin: 0px;
+  padding-left: 0;
+  font-size: 24px;
+
+  @media only screen and (min-width: 1366px) {
+    font-size: 26px;
   }
 }
