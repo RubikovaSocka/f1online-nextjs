@@ -1,16 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import formatDate from "../../utils/dateFormatter.js";
-import styles from "./ArticlePreview.module.scss";
 import getImagePreview from "../../utils/getImagePreview.js";
 
-export default function ArticlePreview({
-  id,
-  slug,
-  title,
-  date,
-  better_featured_image
-}) {
+import styles from "./style.module.scss";
+
+function ArticlePreview({ id, slug, title, date, better_featured_image }) {
   return (
     <div className={styles.container}>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
@@ -36,3 +31,5 @@ export default function ArticlePreview({
     </div>
   );
 }
+
+export default ArticlePreview;
