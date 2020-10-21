@@ -93,4 +93,13 @@ class MyApp extends App {
   }
 }
 
+export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+  if (store.getState().quickNews.news.length === 0) {
+    store.dispatch(fetchNewQuickNews());
+    store.dispatch(END);
+  }
+
+  await store.sagaTask.toPromise();
+});
+
 export default wrapper.withRedux(MyApp);

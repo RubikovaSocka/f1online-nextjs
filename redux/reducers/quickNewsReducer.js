@@ -1,4 +1,6 @@
 import { QUICK_NEWS } from "../constants";
+import { HYDRATE } from "next-redux-wrapper";
+
 
 const defaultState = {
   news: [],
@@ -11,13 +13,13 @@ const quickNewsReducer = (state = defaultState, action) => {
     case HYDRATE:
       return { ...state, ...action.payload.quickNews };
 
-    case INDEX_ARTICLES.FETCH:
+    case QUICK_NEWS.FETCH:
       return {
         ...state,
         isLoading: true,
         error: null
       };
-    case INDEX_ARTICLES.FETCH_SUCCESS:
+    case QUICK_NEWS.FETCH_SUCCESS:
       return {
         ...state,
         isLoading: false,
