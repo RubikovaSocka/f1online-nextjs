@@ -1,9 +1,8 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
 import Head from "next/head";
 import Media from "react-media";
-import { connect } from "react-redux";
 import { END } from "redux-saga";
+import { useSelector } from "react-redux";
 import { wrapper } from "../redux/store/store";
 
 import TitleArea from "../components/TitleArea";
@@ -15,17 +14,14 @@ import CalendarLarge from "../components/CalendarLarge/CalendarLarge.js";
 import ResultsLargeWrapper from "../components/ResultsLarge/ResultsLargeWrapper.js";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
-
 import FBPageBox from "../components/FBPageBox";
 
 import { fetchNewArticles } from "../redux/actions/articlesActions";
-import { useSelector } from 'react-redux'
 
 function Home() {
-  const postsData = useSelector((state) => state.articles.nonStickyArticles)
-  
-  
-/*
+  const postsData = useSelector(state => state.articles.nonStickyArticles);
+
+  /*
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
@@ -42,106 +38,106 @@ function Home() {
   };
 */
   //render() {
-    let titleSection, articlesSection;
-    //const { postsData } = this.props;
-    //console.log(this.props)
+  let titleSection, articlesSection;
+  //const { postsData } = this.props;
+  //console.log(this.props)
 
-    /*if (this.state.width < 1024) {
+  /*if (this.state.width < 1024) {
       titleSection = <TitleArea posts={postsData.slice(0, 3)} />;
       articlesSection = <ArticlesPanel posts={postsData.slice(3, 9)} />;
     } else {*/
-      titleSection = <TitleArea posts={postsData.slice(0, 5)} />;
-      articlesSection = <ArticlesPanel posts={postsData.slice(5, 11)} />;
-    /*}*/
+  titleSection = <TitleArea posts={postsData.slice(0, 5)} />;
+  articlesSection = <ArticlesPanel posts={postsData.slice(5, 11)} />;
+  /*}*/
 
-    let otherArticlesSection = (
-      <>
-        <SectionTitle title="Ďalšie správy" />
-        <Divider height="10px" />
-        <div className="basicButtonContainer">
-          {articlesSection}
-          {
-            <ButtonWB
-              hrefProp="/archiv"
-              asProp="/archiv"
-              title="Pozrieť všetky"
-            />
-          }
-        </div>
-      </>
-    );
-
-    let largeWidgets = (
-      <>
-        <Media query={{ maxWidth: 1023 }}>
-          {matches =>
-            matches ? (
-              ""
-            ) : (
-              <>
-                <Divider height="30px" />
-                <SectionTitle title="Boxová tabuľa" />
-                <Divider height="15px" />
-                <CalendarLarge />
-                <ResultsLargeWrapper />
-              </>
-            )
-          }
-        </Media>
-      </>
-    );
-
-    return (
-      <>
-        <Head>
-          <meta
-            name="description"
-            content="Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky..."
+  let otherArticlesSection = (
+    <>
+      <SectionTitle title="Ďalšie správy" />
+      <Divider height="10px" />
+      <div className="basicButtonContainer">
+        {articlesSection}
+        {
+          <ButtonWB
+            hrefProp="/archiv"
+            asProp="/archiv"
+            title="Pozrieť všetky"
           />
-        </Head>
-        <main className="contentsPage">
-          {titleSection}
-          <Divider height="25px" />
-          <div className="page">
-            <div className="mainContent">
-              {otherArticlesSection}
-              {largeWidgets}
-            </div>
-            <aside className={`sideBar`}>
-              {/*${styles.stickyWidget}*/}
-              <Divider height="15px" />
-              {/*<TrackedSidePanel />
-              <Divider height="25px" />*/}
-              {
-                <div
-                  style={{
-                    width: "100%"
-                  }}
-                >
-                  <FBPageBox />
-                </div>
-              }
+        }
+      </div>
+    </>
+  );
 
+  let largeWidgets = (
+    <>
+      <Media query={{ maxWidth: 1023 }}>
+        {matches =>
+          matches ? (
+            ""
+          ) : (
+            <>
+              <Divider height="30px" />
+              <SectionTitle title="Boxová tabuľa" />
               <Divider height="15px" />
-              <QuickNews />
-            </aside>
+              <CalendarLarge />
+              <ResultsLargeWrapper />
+            </>
+          )
+        }
+      </Media>
+    </>
+  );
 
-            <Media query={{ maxWidth: 1023 }}>
-              {matches =>
-                matches ? (
-                  <div className="mainContent">
-                    <CalResWidget />
-                    <Divider height="110px" />
-                  </div>
-                ) : (
-                  ""
-                )
-              }
-            </Media>
+  return (
+    <>
+      <Head>
+        <meta
+          name="description"
+          content="Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky..."
+        />
+      </Head>
+      <main className="contentsPage">
+        {titleSection}
+        <Divider height="25px" />
+        <div className="page">
+          <div className="mainContent">
+            {otherArticlesSection}
+            {largeWidgets}
           </div>
-        </main>
-      </>
-    );
+          <aside className={`sideBar`}>
+            {/*${styles.stickyWidget}*/}
+            <Divider height="15px" />
+            {/*<TrackedSidePanel />
+              <Divider height="25px" />*/}
+            {
+              <div
+                style={{
+                  width: "100%"
+                }}
+              >
+                <FBPageBox />
+              </div>
+            }
+
+            <Divider height="15px" />
+            <QuickNews />
+          </aside>
+
+          <Media query={{ maxWidth: 1023 }}>
+            {matches =>
+              matches ? (
+                <div className="mainContent">
+                  <CalResWidget />
+                  <Divider height="110px" />
+                </div>
+              ) : (
+                ""
+              )
+            }
+          </Media>
+        </div>
+      </main>
+    </>
+  );
   //}
 }
 
