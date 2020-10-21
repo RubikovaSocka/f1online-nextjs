@@ -17,7 +17,7 @@ const LoadingSpinner = ({ title, nomargin }) => (
         style={{ textAlign: "center" }}
         className="fas fa-circle-notch fa-spin"
       />
-      &nbsp;&nbsp;{props.title === "none" ? "" : title ? title : "Načítavam..."}
+      &nbsp;&nbsp;{title === "none" ? "" : title ? title : "Načítavam..."}
     </div>
   </div>
 );
