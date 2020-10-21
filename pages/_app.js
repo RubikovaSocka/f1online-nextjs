@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
+import App from "next/app";
 import Router from "next/router";
 import ReactGA from "react-ga";
 import TrackVisibility from "react-on-screen";
@@ -17,11 +18,7 @@ import "../components/nprogress/nprogress.css";
 import { mobileStyles, pcStyles } from "../styles/cookieNotification.js";
 import cstyles from "../styles/cookiestyle.module.scss";
 
-import { Provider } from "react-redux";
-import store from "../redux/store/store.js";
-
-import withRedux from "next-redux-wrapper";
-import withReduxSaga from "next-redux-saga";
+import { wrapper } from "../redux/store/store.js";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -32,7 +29,7 @@ Router.events.on("routeChangeComplete", () => {
 });
 Router.events.on("routeChangeError", () => NProgress.done());
 
-class App extends Component {
+class MyApp extends App {
   constructor(props) {
     super(props);
     this.state = {
@@ -77,17 +74,11 @@ class App extends Component {
     });
   }
 
-  static async getInitialProps({ Component, ctx }) {
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
-    return { pageProps };
-  }
-
   render() {
     const { Component, pageProps } = this.props;
+
     return (
-      <Provider store={store}>
+      <>
         <HeaderMeta />
         {this.state.showCookieBanner ? this.state.cookieBanner : ""}
         <TrackVisibility partialVisibility style={{ width: "100%" }}>
@@ -97,9 +88,9 @@ class App extends Component {
         <ThemeSwitcher />
         <Component {...pageProps} />
         <Footer />
-      </Provider>
+      </>
     );
   }
 }
 
-export default withRedux(makeStore)(withReduxSaga(MyApp));
+export default wrapper.withRedux(MyApp);

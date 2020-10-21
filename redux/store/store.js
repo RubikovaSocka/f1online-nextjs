@@ -1,17 +1,16 @@
 import { createStore, applyMiddleware } from "redux";
-import reducer from "../reducers";
 import createSagaMiddleware from "redux-saga";
+import { createWrapper } from "next-redux-wrapper";
+import reducer from "../reducers";
 import saga from "../sagas";
 
-const makeStore = initialState => {
+export const makeStore = context => {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(
-    reducer,
-    initialState,
-    applyMiddleware(sagaMiddleware)
-  );
+  const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+
   store.sagaTask = sagaMiddleware.run(saga);
+
   return store;
 };
 
-export default makeStore;
+export const wrapper = createWrapper(makeStore, { debug: true });

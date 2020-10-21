@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import Head from "next/head";
 import Media from "react-media";
+import { connect } from "react-redux";
+import { END } from "redux-saga";
+import { wrapper } from "../redux/store/store";
 
 import TitleArea from "../components/TitleArea";
 import ArticlesPanel from "../components/ArticlesPanel/ArticlesPanel";
@@ -16,17 +19,13 @@ import Divider from "../components/Divider.js";
 import FBPageBox from "../components/FBPageBox";
 
 import { fetchNewArticles } from "../redux/actions/articlesActions";
+import { useSelector } from 'react-redux'
 
-export default class Home extends Component {
-  static async getInitialProps({ isServer, store }) {
-    await store.dispatch(fetchNewArticles());
-    return {};
-  }
-
-  state = {
-    width: 1280
-  };
-
+function Home() {
+  const postsData = useSelector((state) => state.articles.nonStickyArticles)
+  
+  
+/*
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
@@ -41,18 +40,19 @@ export default class Home extends Component {
       width: window.innerWidth
     });
   };
-
-  render() {
+*/
+  //render() {
     let titleSection, articlesSection;
-    const { postsData } = this.props;
+    //const { postsData } = this.props;
+    //console.log(this.props)
 
-    if (this.state.width < 1024) {
+    /*if (this.state.width < 1024) {
       titleSection = <TitleArea posts={postsData.slice(0, 3)} />;
       articlesSection = <ArticlesPanel posts={postsData.slice(3, 9)} />;
-    } else {
+    } else {*/
       titleSection = <TitleArea posts={postsData.slice(0, 5)} />;
       articlesSection = <ArticlesPanel posts={postsData.slice(5, 11)} />;
-    }
+    /*}*/
 
     let otherArticlesSection = (
       <>
@@ -142,28 +142,16 @@ export default class Home extends Component {
         </main>
       </>
     );
+  //}
+}
+
+export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+  if (store.getState().articles.nonStickyArticles.length === 0) {
+    store.dispatch(fetchNewArticles());
+    store.dispatch(END);
   }
-}
 
-/*
-export async function getServerSideProps(context) {
-  const responseSticky = await axios({
-    method: "get",
-    url:
-      "https://wpadmin.f1online.sk/wp-json/wp/v2/posts?sticky=true&per_page=3"
-    //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-  });
-  const responseNonSticky = await axios({
-    method: "get",
-    url:
-      "https://wpadmin.f1online.sk/wp-json/wp/v2/posts?sticky=false&per_page=11"
-    //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-  });
+  await store.sagaTask.toPromise();
+});
 
-  return {
-    props: {
-      postsData: responseSticky.data.concat(responseNonSticky.data)
-    }
-  };
-}
-*/
+export default Home;

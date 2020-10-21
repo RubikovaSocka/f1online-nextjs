@@ -1,8 +1,8 @@
 import { ARTICLES } from "../constants";
 
-const fetchNewArticles = () => ({
+const fetchNewArticles = () => { console.log("OK"); return ({
   type: ARTICLES.FETCH
-});
+})};
 
 const fetchMoreArticles = () => ({
   type: ARTICLES.FETCH_MORE
