@@ -37,21 +37,7 @@
   text-decoration: none;
   color: var(--article-text-color);
 }
-.message {
-  padding: 0 8px;
-  font-family: "HK Grotesk";
-  font-size: 13px;
-  z-index: 0;
 
-  p {
-    margin-bottom: 3px;
-  }
-  &:hover,
-  &:hover p {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-}
 .showMoreButton {
   width: 100%;
   padding: 0 8px;
@@ -101,8 +87,19 @@
     padding-top: 3px;
   }
 }
-
 .message {
+  padding: 0 8px;
+  font: 13px "HK Grotesk";
+  z-index: 0;
+
+  p {
+    margin-bottom: 3px;
+  }
+  &:hover,
+  &:hover p {
+    cursor: pointer;
+    text-decoration: underline;
+  }
   /* Step 1: Common Properties: All required to make icons render reliably */
   &.icon p::before {
     display: inline-block;
