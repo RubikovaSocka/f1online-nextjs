@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import LoadingSpinner from "../LoadingSpinner";
 import ReactPaginate from "react-paginate";
-import ArticlesPanel from "../ArticlesPanel/ArticlesPanel";
+import ArticlesPanel from "../ArticlesPanel";
 import { fetchArchiveArticles } from "../../redux/actions/archiveActions";
 
 import styles from "./style.module.scss";
