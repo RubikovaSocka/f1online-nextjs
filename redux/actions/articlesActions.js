@@ -1,8 +1,8 @@
 import { INDEX_ARTICLES } from "../constants";
 
-const fetchNewArticles = () => { console.log("OK"); return ({
+const fetchNewArticles = () => ({
   type: INDEX_ARTICLES.FETCH
-})};
+});
 
 const fetchMoreArticles = () => ({
   type: INDEX_ARTICLES.FETCH_MORE
