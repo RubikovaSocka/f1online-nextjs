@@ -6,63 +6,64 @@
   z-index: 5;
   color: var(--sub-title-color);
   padding: 0 10px;
-  
-  .date {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
-    padding: 0 6px;
+}
 
-    position: relative;
-    margin-bottom: -7px;
-    margin-left: 15px;
-    margin-right: auto;
+.date {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 6px;
 
-    z-index: 3;
-    font-family: "HK Grotesk";
-    font-size: 12px;
-    background-color: var(--basic-back-color);
-  }
-  .messageContainer {
-    border: 1px solid var(--lines-color);
-    padding-bottom: 5px;
-    padding-right: 5px;
-    text-decoration: none;
-    color: var(--article-text-color);
+  position: relative;
+  margin-bottom: -7px;
+  margin-left: 15px;
+  margin-right: auto;
 
-    .linkStyle {
-      text-decoration: none;
-      color: var(--article-text-color);
-    }
+  z-index: 3;
+  font-family: "HK Grotesk";
+  font-size: 12px;
+  background-color: var(--basic-back-color);
+}
+.messageContainer {
+  border: 1px solid var(--lines-color);
+  padding-bottom: 5px;
+  padding-right: 5px;
+  text-decoration: none;
+  color: var(--article-text-color);
 
-    .clickable:hover {
-      text-decoration: underline;
-    }
-
-    .message {
-      padding: 0 8px;
-      font-family: "HK Grotesk";
-      font-size: 13px;
-      z-index: 0;
-
-      p {
-        margin-bottom: 3px;
-      }
-      &:hover, &:hover p {
-        cursor: pointer;
-        text-decoration: underline;
-      }
-    }
-    .showMoreButton {
-      width: 100%;
-      padding: 0 8px;
-      font-family: "HK Grotesk";
-      font-size: 13px;
-      z-index: 0;
-      text-align: center;
-    }
+  .clickable:hover {
+    text-decoration: underline;
   }
 }
+
+.linkStyle {
+  text-decoration: none;
+  color: var(--article-text-color);
+}
+.message {
+  padding: 0 8px;
+  font-family: "HK Grotesk";
+  font-size: 13px;
+  z-index: 0;
+
+  p {
+    margin-bottom: 3px;
+  }
+  &:hover,
+  &:hover p {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+.showMoreButton {
+  width: 100%;
+  padding: 0 8px;
+  font-family: "HK Grotesk";
+  font-size: 13px;
+  z-index: 0;
+  text-align: center;
+}
+
 .actionRow {
   padding: 2px 8px 0 8px;
 
