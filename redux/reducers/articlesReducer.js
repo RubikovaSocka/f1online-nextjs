@@ -8,6 +8,7 @@ const defaultState = {
 };
 
 const articlesReducer = (state = defaultState, action) => {
+  console.log(action)
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload.articles };
@@ -23,7 +24,7 @@ const articlesReducer = (state = defaultState, action) => {
         ...state,
         isLoading: false,
         error: null,
-        indexArticles: action.articles
+        indexArticles: action.articles,
       };
 
     default:

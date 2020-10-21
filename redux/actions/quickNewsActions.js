@@ -8,13 +8,13 @@ const fetchMoreQuickNews = () => ({
   type: QUICK_NEWS.FETCH_MORE
 });
 
-const setQuickNews = payload => ({
+const setArchiveArticles = payload => ({
   type: QUICK_NEWS.FETCH_SUCCESS,
   news: payload.news,
   totalNewsCount: payload.totalNewsCount
 });
 
-const setQuickNewsError = payload => ({
+const setArchiveArticlesError = payload => ({
   type: QUICK_NEWS.FETCH_FAIL,
   payload
 });
@@ -22,6 +22,6 @@ const setQuickNewsError = payload => ({
 export {
   fetchNewQuickNews,
   fetchMoreQuickNews,
-  setQuickNews,
-  setQuickNewsError
+  setArchiveArticles,
+  setArchiveArticlesError
 };

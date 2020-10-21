@@ -6,7 +6,7 @@ import saga from "../sagas";
 
 export const makeStore = context => {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+  const store = createStore(reducer, context, applyMiddleware(sagaMiddleware));
 
   store.sagaTask = sagaMiddleware.run(saga);
 

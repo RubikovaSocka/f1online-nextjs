@@ -1,6 +1,6 @@
 import { call, put, select } from "redux-saga/effects";
 import fetchQuickNews from "../../../apis/fetchQuickNewsApi";
-import { setQuickNews, setQuickNewsError } from "../../actions/quickNewsActions";
+import { setArchiveArticles, setArchiveArticlesError } from "../../actions/quickNewsActions";
 
 const getPage = state => state.quickNews.pageNumber;
 
@@ -8,9 +8,9 @@ function* fetchQuickNewsSaga() {
   try {
     const page = yield select(getPage);
     const quickNews = yield call(fetchQuickNews, page);
-    yield put(setQuickNews(quickNews));
+    yield put(setArchiveArticles(quickNews));
   } catch (err) {
-    yield put(setQuickNewsError(err));
+    yield put(setArchiveArticlesError(err));
   }
 }
 

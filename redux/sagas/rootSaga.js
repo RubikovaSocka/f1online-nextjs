@@ -1,14 +1,20 @@
 import { fork, takeLatest, take, takeEvery } from "redux-saga/effects";
-import { PANELS, INDEX_ARTICLES, QUICK_NEWS } from "../constants";
+import { PANELS, INDEX_ARTICLES, QUICK_NEWS, ARCHIVE_ARTICLES } from "../constants";
 import handleFetchPanels from "./handlers/handleFetchPanels";
 import fetchArticlesSaga from "./handlers/fetchArticlesSaga";
 import fetchQuickNewsSaga from "./handlers/fetchQuickNewsSaga";
+import fetchArchiveArticlesSaga from "./handlers/fetchArchiveArticlesSaga";
 
 //watcher
 function* rootSaga() {
   yield takeLatest(INDEX_ARTICLES.FETCH, fetchArticlesSaga);
+
   yield takeLatest(QUICK_NEWS.FETCH, fetchQuickNewsSaga);
   yield takeLatest(QUICK_NEWS.FETCH_MORE, fetchQuickNewsSaga);
+  
+  yield takeLatest(ARCHIVE_ARTICLES.FETCH, fetchArchiveArticlesSaga)
+  //yield takeLatest(ARCHIVE_ARTICLES.FETCH_SERVER, fetchArchiveArticlesSaga)
+  yield takeLatest(ARCHIVE_ARTICLES.FETCH_MORE, fetchArchiveArticlesSaga)
   //yield takeLatest(ARTICLES.FETCH, handleFetchArticles);
   //yield takeLatest(PANELS.FETCH, handleFetchPanels);
 }
