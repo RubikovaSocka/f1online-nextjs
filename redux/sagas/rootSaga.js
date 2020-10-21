@@ -8,6 +8,7 @@ import fetchQuickNewsSaga from "./handlers/fetchQuickNewsSaga";
 function* rootSaga() {
   yield takeLatest(INDEX_ARTICLES.FETCH, fetchArticlesSaga);
   yield takeLatest(QUICK_NEWS.FETCH, fetchQuickNewsSaga);
+  yield takeLatest(QUICK_NEWS.FETCH_MORE, fetchQuickNewsSaga);
   //yield takeLatest(ARTICLES.FETCH, handleFetchArticles);
   //yield takeLatest(PANELS.FETCH, handleFetchPanels);
 }

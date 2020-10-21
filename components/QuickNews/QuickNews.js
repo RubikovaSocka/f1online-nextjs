@@ -6,7 +6,8 @@ import LoadingSpinner from "../LoadingSpinner";
 import EmbedFullscreen from "./EmbedFullscreen.js";
 import Popup from "reactjs-popup";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchMoreQuickNews } from "../../redux/actions/quickNewsActions";
 
 function OneLineNews({ hasvideo, content, date, embed, callback }) {
   return (
@@ -30,10 +31,14 @@ function OneLineNews({ hasvideo, content, date, embed, callback }) {
 }
 
 function QuickNews() {
+  const dispatch = useDispatch();
   const [shownItem, setShownItem] = useState({ index: 0, isShown: false });
   const newsArray = useSelector(({ quickNews }) => quickNews.news);
-  const isLoaded = useSelector(({ quickNews }) => quickNews.isLoaded);
+  //const isLoading = useSelector(({ quickNews }) => quickNews.isLoading);
   const error = useSelector(({ quickNews }) => quickNews.error);
+  const totalNewsCount = useSelector(
+    ({ quickNews }) => quickNews.totalNewsCount
+  );
 
   let newsTriggersArray = newsArray.map((newsItem, index) => (
     <OneLineNews
@@ -69,40 +74,32 @@ function QuickNews() {
       ) : (
         ""
       )}
-      {isLoaded ? (
-        <>
-          <InfiniteScroll
-            dataLength={newsArray.length}
-            //next={this.fetchMoreData}
-            //hasMore={this.state.hasMore}
-            hasMore={false}
-            loader={<LoadingSpinner />}
-            height={480}
-            endMessage={
-              <p style={{ fontFamily: "HK Grotesk", textAlign: "center" }}>
-                <b>Toto bola posledná rýchla správa.</b>
-              </p>
-            }
-          >
-            {newsArray.map((newsItem, index) => (
-              <OneLineNews
-                key={index}
-                id={newsItem.id}
-                date={formatDate(newsItem.date)}
-                content={newsItem.acf.obsah_rychlej_spravy}
-                embed={newsItem.acf.embed_zo_socialnych_sieti}
-                hasvideo={newsItem.acf.hasvideo}
-                callback={() => {
-                  console.log("Pressed");
-                  setShownItem({ index: index, isShown: true });
-                }}
-              />
-            ))}
-          </InfiniteScroll>
-        </>
-      ) : (
-        <LoadingSpinner />
-      )}
+      <InfiniteScroll
+        dataLength={newsArray.length}
+        next={() => dispatch(fetchMoreQuickNews())}
+        hasMore={totalNewsCount > newsArray.length}
+        loader={<LoadingSpinner />}
+        height={480}
+        endMessage={
+          <p style={{ fontFamily: "HK Grotesk", textAlign: "center" }}>
+            <b>Toto bola posledná rýchla správa.</b>
+          </p>
+        }
+      >
+        {newsArray.map((newsItem, index) => (
+          <OneLineNews
+            key={index}
+            id={newsItem.id}
+            date={formatDate(newsItem.date)}
+            content={newsItem.acf.obsah_rychlej_spravy}
+            embed={newsItem.acf.embed_zo_socialnych_sieti}
+            hasvideo={newsItem.acf.hasvideo}
+            callback={() => {
+              setShownItem({ index: index, isShown: true });
+            }}
+          />
+        ))}
+      </InfiniteScroll>
     </div>
   );
 }

@@ -3,28 +3,39 @@ import { HYDRATE } from "next-redux-wrapper";
 
 const defaultState = {
   news: [],
-  isLoaded: false,
-  error: null
+  isLoading: false,
+  error: null,
+  totalNewsCount: 0,
+  pageNumber: 1
 };
 
 const quickNewsReducer = (state = defaultState, action) => {
-  console.log(action)
+  console.log(action);
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload.quickNews };
 
     case QUICK_NEWS.FETCH:
+    case QUICK_NEWS.FETCH_MORE:
       return {
         ...state,
-        isLoaded: false,
+        isLoading: true,
         error: null
       };
     case QUICK_NEWS.FETCH_SUCCESS:
       return {
         ...state,
-        isLoaded: true,
+        isLoading: false,
         error: null,
-        news: action.news
+        news: [...state.news, ...action.news],
+        totalNewsCount: action.totalNewsCount,
+        pageNumber: state.pageNumber + 1
+      };
+    case QUICK_NEWS.FETCH_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error
       };
 
     default:

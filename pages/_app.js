@@ -96,9 +96,6 @@ class MyApp extends App {
 }
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  console.log("...")
-  console.log("...")
-  console.log("...")
   if (store.getState().quickNews.news.length === 0) {
     store.dispatch(fetchNewQuickNews());
     store.dispatch(END);
