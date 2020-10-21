@@ -1,13 +1,8 @@
-import React, { Component } from 'react'
+import React from "react";
+import styles from "./style.module.scss";
 
-import styles from './SideSectionTitle.module.scss'
-
-class SideSectionTitle extends Component {
-
-    render() {
-        return (
-            <span className={styles.Title}>{this.props.title}</span>
-        )
-    }
+function SideSectionTitle({ title }) {
+  return <span className={styles.title}>{title}</span>;
 }
-export default SideSectionTitle
+
+export default SideSectionTitle;
