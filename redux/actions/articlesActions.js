@@ -1,20 +1,20 @@
-import { ARTICLES } from "../constants";
+import { INDEX_ARTICLES } from "../constants";
 
 const fetchNewArticles = () => { console.log("OK"); return ({
-  type: ARTICLES.FETCH
+  type: INDEX_ARTICLES.FETCH
 })};
 
 const fetchMoreArticles = () => ({
-  type: ARTICLES.FETCH_MORE
+  type: INDEX_ARTICLES.FETCH_MORE
 });
 
 const setArticles = articles => ({
-  type: ARTICLES.FETCH_SUCCESS,
+  type: INDEX_ARTICLES.FETCH_SUCCESS,
   articles
 });
 
 const setArticlesError = error => ({
-  type: ARTICLES.FETCH_FAIL,
+  type: INDEX_ARTICLES.FETCH_FAIL,
   error
 });
 

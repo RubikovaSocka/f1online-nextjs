@@ -1,4 +1,4 @@
-import { ARTICLES } from "../constants";
+import { INDEX_ARTICLES } from "../constants";
 import { HYDRATE } from "next-redux-wrapper";
 
 const defaultState = {
@@ -12,13 +12,13 @@ const articlesReducer = (state = defaultState, action) => {
     case HYDRATE:
       return { ...state, ...action.payload.articles };
 
-    case ARTICLES.FETCH:
+    case INDEX_ARTICLES.FETCH:
       return {
         ...state,
         isLoading: true,
         error: null
       };
-    case ARTICLES.FETCH_SUCCESS:
+    case INDEX_ARTICLES.FETCH_SUCCESS:
       return {
         ...state,
         isLoading: false,
