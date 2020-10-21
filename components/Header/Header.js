@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
 
-import MyNavbar from "../Navbar/MyNavbar";
+import MyNavbar from "../Navbar";
 import SocialMediaBasicPlugin from "../SocialMediaPlugin";
 import SearchBar from "../SearchBar";
 

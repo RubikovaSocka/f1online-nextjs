@@ -1,119 +1,71 @@
-import React from "react";
-import { Nav, Navbar, NavLink, Button } from "react-bootstrap";
-import { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { Nav, Navbar, Button } from "react-bootstrap";
 import Link from "../../utils/ActiveLink";
-import styles from "./MyNavbar.module.scss";
 import {
   disableBodyScroll,
   enableBodyScroll,
   clearAllBodyScrollLocks
 } from "body-scroll-lock";
 
-class MyNavbar extends Component {
-  targetElement = null;
+import styles from "./style.module.scss";
 
-  constructor() {
-    super();
-    this.state = {
-      bMenuOpened: false
-    };
-    this.openClose = this.openClose.bind(this);
-    this.close = this.close.bind(this);
-  }
+const links = [
+  { href: "/", title: "Domov" },
+  { href: "/archiv", title: "Správy" },
+  { href: "/vysledky", title: "Výsledky" },
+  { href: "/piloti", title: "Piloti" },
+  { href: "/timy", title: "Tímy" },
+  { href: "/kalendar", title: "Kalendár" },
+  { href: "/partneri", title: "Partneri" },
+  { href: "/archiv/t/eisking", title: "EisKing" }
+];
 
-  componentDidMount() {
-    this.targetElement = document.querySelector("#__next");
-  }
+let targetElement = null;
 
-  openClose() {
-    this.setState(prevState => {
-      return {
-        bMenuOpened: !prevState.bMenuOpened
-      };
-    });
-  }
-  close() {
-    this.setState(() => {
-      return {
-        bMenuOpened: false
-      };
-    });
+function MyNavbar() {
+  const [isMenuOpened, setIsMenuOpened] = useState(false);
+
+  useEffect(() => {
+    targetElement = document.querySelector("#__next");
+  }, []);
+
+  if (isMenuOpened) {
+    disableBodyScroll(targetElement);
+  } else {
+    enableBodyScroll(targetElement);
   }
 
-  render() {
-    {
-      this.state.bMenuOpened
-        ? disableBodyScroll(this.targetElement)
-        : enableBodyScroll(this.targetElement);
-    }
-    return (
-      <>
-        <Navbar
-          bg="light"
-          expand="lg"
-          className={`${styles.container} ${
-            this.state.bMenuOpened ? styles.full : styles.none
-          } ${this.state.bMenuOpened ? styles.opened : ""}`}
-        >
-          <Nav className={`mr-auto ${styles.navbar}`}>
-            <Link activeClassName={styles.selected} href="/">
-              <a onClick={this.close}>
-                <span>Domov</span>
+  return (
+    <>
+      <Navbar
+        bg="light"
+        expand="lg"
+        className={`${styles.container} ${
+          isMenuOpened ? styles.full : styles.none
+        } ${isMenuOpened ? styles.opened : ""}`}
+      >
+        <Nav className={`mr-auto ${styles.navbar}`}>
+          {links.map((item, index) => (
+            <Link
+              key={index}
+              activeClassName={styles.selected}
+              href={item.href}
+            >
+              <a onClick={() => setIsMenuOpened(false)}>
+                <span>{item.title}</span>
                 <div className={styles.bottomLine} />
               </a>
             </Link>
-            <Link activeClassName={styles.selected} href="/archiv">
-              <a onClick={this.close}>
-                <span>Správy</span>
-                <div className={styles.bottomLine} />
-              </a>
-            </Link>
-            <Link activeClassName={styles.selected} href="/vysledky">
-              <a onClick={this.close}>
-                <span>Výsledky</span>
-                <div className={styles.bottomLine} />
-              </a>
-            </Link>
-            <Link activeClassName={styles.selected} href="/piloti">
-              <a onClick={this.close}>
-                <span>Piloti</span>
-                <div className={styles.bottomLine} />
-              </a>
-            </Link>
-            <Link activeClassName={styles.selected} href="/timy">
-              <a onClick={this.close}>
-                <span>Tímy</span>
-                <div className={styles.bottomLine} />
-              </a>
-            </Link>
-            <Link activeClassName={styles.selected} href="/kalendar">
-              <a onClick={this.close}>
-                <span>Kalendár</span>
-                <div className={styles.bottomLine} />
-              </a>
-            </Link>
-            <Link activeClassName={styles.selected} href="/partneri">
-              <a onClick={this.close}>
-                <span>Partneri</span>
-                <div className={styles.bottomLine} />
-              </a>
-            </Link>
-            <Link activeClassName={styles.selected} href="/archiv/t/eisking">
-              <a onClick={this.close} /*target="_blank"*/>
-                <span>EisKing</span>
-                <div className={styles.bottomLine} />
-              </a>
-            </Link>
-          </Nav>
-        </Navbar>
-        <Button
-          onClick={this.openClose}
-          className={`${styles.button} ${
-            this.state.bMenuOpened ? styles.xBut : styles.bBut
-          }`}
-        ></Button>
-      </>
-    );
-  }
+          ))}
+        </Nav>
+      </Navbar>
+      <Button
+        onClick={() => setIsMenuOpened(prev => !prev)}
+        className={`${styles.button} ${
+          isMenuOpened ? styles.xBut : styles.bBut
+        }`}
+      ></Button>
+    </>
+  );
 }
 export default MyNavbar;
