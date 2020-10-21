@@ -1,5 +1,9 @@
 import React from "react";
 import Head from "next/head";
+import { END } from "redux-saga";
+
+import { useSelector } from "react-redux";
+import { wrapper } from "../redux/store/store";
 
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
@@ -7,6 +11,8 @@ import CalResWidget from "../components/CalResWidget/CalResWidget.js";
 import Divider from "../components/Divider.js";
 import PopularBox from "../components/PopularBox/PopularBox.js";
 import ArchiveArticlesRenderer from "../components/ArchivArticles/ArchiveArticlesRenderer.js";
+import { fetchArchiveArticles } from "../redux/actions/archiveActions";
+import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 
 function Archiv() {
   const { pageNumber } = useSelector(

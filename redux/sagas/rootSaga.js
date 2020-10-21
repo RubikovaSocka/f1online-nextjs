@@ -14,7 +14,6 @@ function* rootSaga() {
   
   yield takeLatest(ARCHIVE_ARTICLES.FETCH, fetchArchiveArticlesSaga)
   //yield takeLatest(ARCHIVE_ARTICLES.FETCH_SERVER, fetchArchiveArticlesSaga)
-  yield takeLatest(ARCHIVE_ARTICLES.FETCH_MORE, fetchArchiveArticlesSaga)
   //yield takeLatest(ARTICLES.FETCH, handleFetchArticles);
   //yield takeLatest(PANELS.FETCH, handleFetchPanels);
 }
