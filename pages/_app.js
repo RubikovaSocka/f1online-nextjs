@@ -21,7 +21,7 @@ import cstyles from "../styles/cookiestyle.module.scss";
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store.js";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
-import { fetchWidgetInfo } from "../redux/actions/f1WidgetInfoActions";
+import { fetchWidgetInfo } from "../redux/actions/f1ResultsActions";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
