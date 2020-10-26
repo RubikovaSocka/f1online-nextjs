@@ -181,8 +181,6 @@ function Home() {
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   if (store.getState().articles.indexArticles.length === 0) {
     store.dispatch(fetchNewArticles());
-    //store.dispatch(fetchNewQuickNews());
-    //store.dispatch(fetchF1Results({ perPage: 1 }));
     store.dispatch(END);
   }
 

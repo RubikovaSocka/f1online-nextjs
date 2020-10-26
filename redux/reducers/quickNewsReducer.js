@@ -11,8 +11,14 @@ const defaultState = {
 
 const quickNewsReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case HYDRATE:
-      return { ...state, ...action.payload.quickNews };
+    case HYDRATE: {
+      if (action.payload.quickNews.news.length !== 0) {
+        return {
+          ...state,
+          ...action.payload.quickNews
+        };
+      }
+    }
 
     case QUICK_NEWS.FETCH:
     case QUICK_NEWS.FETCH_MORE:
