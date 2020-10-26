@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import fetchPanels from "../../../apis/fetchPanelsApi";
+import fetchPanels from "../../apis/fetchPanelsApi";
 import { setPanels } from "../../actions/panelsActions";
 
 function* handleFetchPanels() {

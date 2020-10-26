@@ -1,5 +1,5 @@
 import { call, put, select } from "redux-saga/effects";
-import fetchArchiveArticles from "../../../apis/fetchArchiveArticlesApi";
+import fetchArchiveArticles from "../../apis/fetchArchiveArticlesApi";
 import {
   setArchiveArticles,
   setArchiveArticlesServer,

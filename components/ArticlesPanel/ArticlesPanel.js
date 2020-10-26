@@ -35,7 +35,7 @@ function ArticlesPanel({ posts }) {
   }
   return (
     <div className={styles.container}>
-      {this.props.posts.map((post, index) => (
+      {posts.map((post, index) => (
         <div key={index} className={styles.item}>
           <ArticlePreview {...post} />
         </div>

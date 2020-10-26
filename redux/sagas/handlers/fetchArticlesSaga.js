@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import fetchArticles from "../../../apis/fetchArticlesApi";
+import fetchArticles from "../../apis/fetchArticlesApi";
 import { setArticles, setArticlesError } from "../../actions/articlesActions";
 
 function* fetchArticlesSaga() {

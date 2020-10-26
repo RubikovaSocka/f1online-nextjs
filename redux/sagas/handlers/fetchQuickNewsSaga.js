@@ -1,5 +1,5 @@
 import { call, put, select } from "redux-saga/effects";
-import fetchQuickNews from "../../../apis/fetchQuickNewsApi";
+import fetchQuickNews from "../../apis/fetchQuickNewsApi";
 import { setArchiveArticles, setArchiveArticlesError } from "../../actions/quickNewsActions";
 
 const getPage = state => state.quickNews.pageNumber;
