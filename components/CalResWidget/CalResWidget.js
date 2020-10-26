@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import ResultsWidget from "./ResultsWidget";
-import CalendarWidgetContent from "./CalendarWidget/CalendarWidget";
-import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
-import SideWidgetButton from "./SideWidgetButton/SideWidgetButton";
+import CalendarWidget from "./CalendarWidget";
+import SideSectionTitle from "../SideSectionTitle";
+import SideWidgetButton from "./SideWidgetButton";
 
 import styles from "./style.module.scss";
 
@@ -15,7 +15,7 @@ const WIDGETS = {
 };
 
 function CalResWidget() {
-  const [selectedWidget, setSelectedWidget] = useState(WIDGETS.RACE);
+  const [selectedWidget, setSelectedWidget] = useState(WIDGETS.CAL);
   const lastVenueName = useSelector(
     ({ f1Results }) => f1Results.results[0].venueName
   );
@@ -23,6 +23,7 @@ function CalResWidget() {
   const champData = useSelector(
     ({ f1Results }) => f1Results.results[0].driverChamp
   );
+  const calendarData = useSelector(({ calendar }) => calendar.events[0]);
 
   return (
     <div className={styles.widget}>
@@ -46,10 +47,9 @@ function CalResWidget() {
           />
         </div>
         <div className={styles.content}>
-          {/*selectedWidget === WIDGETS.CAL ? (
-            <CalendarWidgetContent data={this.state.calendarData} />
-          ) :*/ selectedWidget ===
-          WIDGETS.RACE ? (
+          {selectedWidget === WIDGETS.CAL ? (
+            <CalendarWidget data={calendarData} />
+          ) : selectedWidget === WIDGETS.RACE ? (
             <ResultsWidget
               title={`Výsledky VC ${lastVenueName}`}
               dataTitle="Čas/strata"
@@ -69,4 +69,5 @@ function CalResWidget() {
     </div>
   );
 }
+
 export default CalResWidget;

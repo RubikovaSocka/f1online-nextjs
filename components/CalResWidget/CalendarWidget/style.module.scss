@@ -1,48 +1,38 @@
 $rowsDivider: 1px solid var(--widget-line-divider-color);
 
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
+.table {
+  width: 100%;
   font-family: "HK Grotesk";
   font-size: 13px;
-}
+  border-spacing: 0;
+  color: var(--basic-text-color);
 
-.calendarRow {
-  margin: 0;
-  padding: 6px 5px;
+  tr {
+    margin: 0;
+    padding: 6px 5px;
+    height: 31px;
 
-  border-top: $rowsDivider;
-  color: var(--sub-title-color);
-
-  &.noBorder {
-    margin-top: 0;
-    border: none;
+    &.noBorder td {
+      border: none;
+    }
   }
 
-  &.header {
-    height: 20px;
-    color: var(--basic-text-color);
-    font-weight: 600;
+  th {
+    height: 32px;
+    text-align: start;
     background-color: var(--widget-noselect-back-color);
-    border: none;
-  }
-  .event {
-    //padding-left: 5px;
-    width: 70px;
 
-    display: inline-block;
-    font-weight: 600;
-    color: var(--basic-text-color);
+    &.position {
+      text-align: center;
+    }
   }
-  .time {
-    display: inline-block;
-    width: 90px;
+  td {
+    border-top: $rowsDivider;
   }
-  .tv {
-    display: inline-block;
-    width: 100px;
+
+  td span,
+  th span {
+    line-height: 30px;
   }
 }
 
@@ -51,100 +41,69 @@ $rowsDivider: 1px solid var(--widget-line-divider-color);
   padding: 5px;
 
   .venueTitle {
-    margin: 0;
-
+    display: block;
     font-size: 16px;
     font-weight: 600;
-    color: var(--basic-text-color);
+    text-align: start;
   }
   .venueDate {
-    margin: 0;
-
+    display: block;
     font-size: 14px;
-    color: var(--basic-text-color);
+    text-align: start;
   }
 }
+.event {
+  font-weight: 600;
+  padding-left: 8px;
+  width: 75px;
 
-@media only screen and (min-width: 340px) {
-  .calendarRow {
-    .event {
-      width: 80px;
-    }
-    .time {
-      width: 100px;
-    }
-    .tv {
-      width: 100px;
-    }
+  @media only screen and (min-width: 340px) {
+    width: 80px;
+  }
+  @media only screen and (min-width: 360px) {
+    width: 90px;
+  }
+  @media only screen and (min-width: 380px) {
+    width: 100px;
+  }
+  @media only screen and (min-width: 410px) {
+    width: 110px;
+  }
+  @media only screen and (min-width: 600px) {
+    width: 140px;
+  }
+  @media only screen and (min-width: 1024px) {
+    width: 75px;
+  }
+  @media only screen and (min-width: 1280px) {
+    width: 85px;
   }
 }
+.tv {
+  width: 100px;
 
-@media only screen and (min-width: 360px) {
-  .calendarRow {
-    .event {
-      width: 90px;
-    }
-    .time {
-      width: 110px;
-    }
-    .tv {
-      width: 100px;
-    }
+  @media only screen and (min-width: 340px) {
+    width: 110px;
   }
-}
-
-@media only screen and (min-width: 410px) {
-  .calendarRow {
-    .event {
-      width: 110px;
-    }
-    .time {
-      width: 120px;
-    }
-    .tv {
-      width: 110px;
-    }
+  @media only screen and (min-width: 360px) {
+    width: 110px;
   }
-}
-
-@media only screen and (min-width: 600px) {
-  .calendarRow {
-    .event {
-      width: 100px;
-    }
-    .time {
-      width: 130px;
-    }
-    .tv {
-      width: 110px;
-    }
+  @media only screen and (min-width: 380px) {
+    width: 110px;
   }
-}
-@media only screen and (min-width: 760px) {
-}
-@media only screen and (min-width: 1024px) {
-  .calendarRow {
-    .event {
-      width: 80px;
-    }
-    .time {
-      width: 100px;
-    }
-    .tv {
-      width: 80px;
-    }
+  @media only screen and (min-width: 410px) {
+    width: 125px;
   }
-}
-@media only screen and (min-width: 1366px) {
-  .calendarRow {
-    .event {
-      width: 80px;
-    }
-    .time {
-      width: 103px;
-    }
-    .tv {
-      width: 110px;
-    }
+  @media only screen and (min-width: 600px) {
+    width: 210px;
+  }
+  @media only screen and (min-width: 1024px) {
+    width: 100px;
+  }
+  @media only screen and (min-width: 1280px) {
+    width: 110px;
+  }
+  @media only screen and (min-width: 1366px) {
+    width: 110px;
   }
 }

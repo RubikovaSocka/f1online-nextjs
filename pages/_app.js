@@ -22,6 +22,7 @@ import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store.js";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
+import { fetchCalendar } from "../redux/actions/calendarActions";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -43,6 +44,7 @@ class MyApp extends App {
   static getInitialProps = async ({ Component, ctx }) => {
     ctx.store.dispatch(fetchF1Results({ perPage: 1 }));
     ctx.store.dispatch(fetchNewQuickNews());
+    ctx.store.dispatch(fetchCalendar({ perPage: 1 }));
     const pageProps = {
       ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {})
     };

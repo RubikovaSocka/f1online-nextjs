@@ -3,31 +3,18 @@ import styles from "./style.module.scss";
 
 import { addMinutes, format, parse } from "date-fns";
 
-function calendarHeaderRow() {
-  return (
-    <div className={`${styles.calendarRow} ${styles.header}`}>
-      <span className={styles.event}>Časť</span>
-      <span className={styles.time}>Čas</span>
-      <span className={styles.tv}>Vysiela</span>
-    </div>
-  );
-}
+const getTimeText = (time, minutes) => {
+  return `${time} - ${format(
+    addMinutes(parse(time, "HH:mm", new Date()), minutes),
+    "HH:mm"
+  )}`;
+};
 
-function CalendarRow(props) {
-  return (
-    <div
-      className={`${styles.calendarRow} ${
-        props.event === "1. tréning" ? styles.noBorder : ""
-      }`}
-    >
-      <span className={styles.event}>{props.event}</span>
-      <span className={styles.time}>{props.time}</span>
-      <span className={styles.tv}>{props.tv ? props.tv : "doplníme..."}</span>
-    </div>
-  );
-}
+const getTvText = tv => {
+  return tv ? tv : "doplníme...";
+};
 
-const SESSION_NAMES = {
+const SESSIONS = {
   FP1: "1. tréning",
   FP2: "2. tréning",
   FP3: "3. tréning",
@@ -35,53 +22,86 @@ const SESSION_NAMES = {
   R: "Preteky"
 };
 
-function CalendarWidgetContent({ data }) {
+const SESSION_DUR = {
+  FP1: 90,
+  FP2: 90,
+  FP3: 60,
+  Q: 60
+};
+
+function CalendarWidget({ data }) {
   return (
-    <div className={styles.content}>
-      <div className={styles.venueBlock}>
-        <p className={styles.venueTitle}>VC {data.acf.venue_name}</p>
-        <p className={styles.venueDate}>{data.acf.venue_date}</p>
-      </div>
-      {calendarHeaderRow()}
-      <CalendarRow
-        event="1. tréning"
-        time={`${data.acf.fp1_time} - ${format(
-          addMinutes(parse(data.acf.fp1_time, "HH:mm", new Date()), 90),
-          "HH:mm"
-        )}`}
-        tv={data.acf.fp1_tv}
-      />
-      <CalendarRow
-        event="2. tréning"
-        time={`${data.acf.fp2_time} - ${format(
-          addMinutes(parse(data.acf.fp2_time, "HH:mm", new Date()), 90),
-          "HH:mm"
-        )}`}
-        tv={data.acf.fp2_tv}
-      />
-      <CalendarRow
-        event="3. tréning"
-        time={`${data.acf.fp3_time} - ${format(
-          addMinutes(parse(data.acf.fp3_time, "HH:mm", new Date()), 60),
-          "HH:mm"
-        )}`}
-        tv={data.acf.fp3_tv}
-      />
-      <CalendarRow
-        event="Kvalifikácia"
-        time={`${data.acf.q_time} - ${format(
-          addMinutes(parse(data.acf.q_time, "HH:mm", new Date()), 60),
-          "HH:mm"
-        )}`}
-        tv={data.acf.q_tv}
-      />
-      <CalendarRow
-        event="Preteky"
-        time={`${data.acf.r_time}`}
-        tv={data.acf.r_tv}
-      />
-    </div>
+    <table className={styles.table}>
+      <caption className={styles.venueBlock}>
+        <span className={styles.venueTitle}>VC {data.venue_name}</span>
+        <span className={styles.venueDate}>{data.venue_date}</span>
+      </caption>
+      <tr className={styles.header}>
+        <th className={styles.event}>
+          <span>Časť</span>
+        </th>
+        <th className={styles.time}>
+          <span>Čas</span>
+        </th>
+        <th className={styles.tv}>
+          <span>Vysiela</span>
+        </th>
+      </tr>
+      {data.fp1_time ? (
+        <tr className={styles.noBorder}>
+          <td className={styles.event}>{SESSIONS.FP1}</td>
+          <td className={styles.time}>
+            {getTimeText(data.fp1_time, SESSION_DUR.FP1)}
+          </td>
+          <td className={styles.tv}>{getTvText(data.fp1_tv)}</td>
+        </tr>
+      ) : (
+        ""
+      )}
+      {data.fp2_time ? (
+        <tr>
+          <td className={styles.event}>{SESSIONS.FP2}</td>
+          <td className={styles.time}>
+            {getTimeText(data.fp2_time, SESSION_DUR.FP2)}
+          </td>
+          <td className={styles.tv}>{getTvText(data.fp2_tv)}</td>
+        </tr>
+      ) : (
+        ""
+      )}
+      {data.fp3_time ? (
+        <tr>
+          <td className={styles.event}>{SESSIONS.FP3}</td>
+          <td className={styles.time}>
+            {getTimeText(data.fp3_time, SESSION_DUR.FP3)}
+          </td>
+          <td className={styles.tv}>{getTvText(data.fp3_tv)}</td>
+        </tr>
+      ) : (
+        ""
+      )}
+      {data.q_time ? (
+        <tr>
+          <td className={styles.event}>{SESSIONS.Q}</td>
+          <td className={styles.time}>
+            {getTimeText(data.q_time, SESSION_DUR.Q)}
+          </td>
+          <td className={styles.tv}>{getTvText(data.q_tv)}</td>
+        </tr>
+      ) : (
+        ""
+      )}
+      {data.r_time ? (
+        <tr>
+          <td className={styles.event}>{SESSIONS.R}</td>
+          <td className={styles.time}>{data.r_time}</td>
+          <td className={styles.tv}>{getTvText(data.r_tv)}</td>
+        </tr>
+      ) : (
+        ""
+      )}
+    </table>
   );
 }
 
-export default CalendarWidgetContent;
+export default CalendarWidget;
