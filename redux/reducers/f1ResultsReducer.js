@@ -11,7 +11,7 @@ const f1ResultsReducer = (state = defaultState, action) => {
   switch (action.type) {
     case HYDRATE: {
       //hydrate only if server sends all results (results page visited)
-      if (state.results.length < action.payload.f1Results.results) {
+      if (state.results.length < action.payload.f1Results.results.length) {
         return {
           ...action.payload.f1Results
         };
@@ -20,11 +20,8 @@ const f1ResultsReducer = (state = defaultState, action) => {
     case TYPES.FETCH:
       return {
         ...state,
-        client: {
-          ...state.client,
-          isLoading: true,
-          error: null
-        }
+        isLoading: true,
+        error: null
       };
     case TYPES.SUCCESS: {
       return {
@@ -34,6 +31,15 @@ const f1ResultsReducer = (state = defaultState, action) => {
         results: action.results
       };
     }
+    case TYPES.ERROR: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error
+      };
+    }
+    default:
+      return state;
   }
 };
 

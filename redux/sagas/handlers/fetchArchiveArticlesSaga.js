@@ -16,7 +16,7 @@ function* fetchArchiveArticlesSaga({ pageNumber, perPage, isServer }) {
     }
     
   } catch (err) {
-    yield put(setArchiveArticlesError(err));
+    yield put(setArchiveArticlesError(err.toString()));
   }
 }
 

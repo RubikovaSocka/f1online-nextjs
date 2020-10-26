@@ -10,7 +10,6 @@ const defaultState = {
 };
 
 const quickNewsReducer = (state = defaultState, action) => {
-  console.log(action);
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload.quickNews };

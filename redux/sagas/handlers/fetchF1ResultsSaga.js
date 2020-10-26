@@ -10,7 +10,7 @@ function* fetchF1ResultsSaga({ perPage }) {
     const data = yield call(fetchF1Results, perPage);
     yield put(setF1Results(data));
   } catch (err) {
-    yield put(setF1ResultsError(err));
+    yield put(setF1ResultsError(err.toString()));
   }
 }
 

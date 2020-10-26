@@ -21,7 +21,7 @@ import cstyles from "../styles/cookiestyle.module.scss";
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store.js";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
-import { fetchWidgetInfo } from "../redux/actions/f1ResultsActions";
+import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -33,16 +33,30 @@ Router.events.on("routeChangeComplete", () => {
 Router.events.on("routeChangeError", () => NProgress.done());
 
 class MyApp extends App {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showCookieBanner: false,
-      cookieBanner: {},
-      logoUrl: "",
-      isOnClient: false
+  state = {
+    showCookieBanner: false,
+    cookieBanner: {},
+    logoUrl: "",
+    isOnClient: false
+  };
+
+  static getInitialProps = async ({ Component, ctx }) => {
+    ctx.store.dispatch(fetchF1Results({ perPage: 1 }));
+    ctx.store.dispatch(fetchNewQuickNews());
+    const pageProps = {
+      ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {})
     };
-    this.removeCookieBar = this.removeCookieBar.bind(this);
-  }
+
+    // 2. Stop the saga if on server
+    if (ctx.req) {
+      ctx.store.dispatch(END);
+      await ctx.store.sagaTask.toPromise();
+    }
+
+    return {
+      pageProps
+    };
+  };
 
   componentDidMount() {
     const trackingId = "UA-166048655-1";
@@ -69,13 +83,13 @@ class MyApp extends App {
     }
   }
 
-  removeCookieBar() {
+  removeCookieBar = () => {
     localStorage.setItem("f1online-cookie-ok", "suhlasOK");
     this.setState({
       showCookieBanner: false,
       cookieBanner: {}
     });
-  }
+  };
 
   render() {
     const { Component, pageProps } = this.props;
@@ -95,15 +109,15 @@ class MyApp extends App {
     );
   }
 }
-
+/*
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   if (store.getState().quickNews.news.length === 0) {
-    store.dispatch(fetchNewQuickNews());
-    store.dispatch(fetchWidgetInfo());
+    //store.dispatch(fetchNewQuickNews());
+    //store.dispatch(fetchF1Results({ perPage: 1 }));
     store.dispatch(END);
   }
 
   await store.sagaTask.toPromise();
 });
-
+*/
 export default wrapper.withRedux(MyApp);

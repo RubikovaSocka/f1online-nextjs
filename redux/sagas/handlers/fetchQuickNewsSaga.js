@@ -10,7 +10,7 @@ function* fetchQuickNewsSaga() {
     const quickNews = yield call(fetchQuickNews, page);
     yield put(setArchiveArticles(quickNews));
   } catch (err) {
-    yield put(setArchiveArticlesError(err));
+    yield put(setArchiveArticlesError(err.toString()));
   }
 }
 
