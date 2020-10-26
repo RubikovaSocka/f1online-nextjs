@@ -1,5 +1,4 @@
-import { parseISO } from "date-fns";
-import { format } from "date-fns";
+import { parseISO, format } from "date-fns";
 import { sk } from "date-fns/locale";
 
 function formatDate(dateInISO) {
