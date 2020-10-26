@@ -7,7 +7,7 @@ import { wrapper } from "../redux/store/store";
 
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
-import CalResWidget from "../components/CalResWidget/CalResWidget.js";
+import CalResWidget from "../components/CalResWidget";
 import Divider from "../components/Divider.js";
 import PopularBox from "../components/PopularBox/PopularBox.js";
 import ArchiveArticlesRenderer from "../components/ArchivArticles/ArchiveArticlesRenderer.js";
