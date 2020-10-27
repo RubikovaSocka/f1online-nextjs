@@ -1,48 +1,32 @@
-import { Component } from "react";
+import React from "react";
 import axios from "axios";
 
-import QuickNews from "../../../components/QuickNews/QuickNews";
-import CalResWidget from "../../../components/CalResWidget/CalResWidget";
+import QuickNews from "../../../components/QuickNews";
+import CalResWidget from "../../../components/CalResWidget";
 import Divider from "../../../components/Divider.js";
 import TrackedSidePanel from "../../../components/Ads/TrackedSidePanel.js";
 import PostRendered from "../../../components/PostRendered/PostRendered.js";
 import PostMeta from "../../../components/PostRendered/PostMeta.js";
 
-export default class Post extends Component {
-  render() {
-    const { postData } = this.props;
-    return (
-      <>
-        <PostMeta postData={postData} />
-        <main className="contentsPage">
-          <div className="page">
-            <div id="cn" className="mainContent">
-              {/*
-
-                SSR vs. CSR ?
-
-                typeof window !== "undefined" ? (
-                <PostRendered postData={postData} />
-              ) : (
-                ""
-              )*/}
-              <PostRendered key={postData.id} postData={postData} />
-            </div>
-            <aside className="sideBar">
-              <QuickNews />
-              <Divider height="15px" />
-              <CalResWidget />
-
-              {/*<div className={`${styles.stickyWidget}`}>*/}
-              {/*<SideRePanel />*/}
-              <TrackedSidePanel />
-              {/*</div>*/}
-            </aside>
+export default function Post({ postData }) {
+  return (
+    <>
+      <PostMeta {...postData} />
+      <main className="contentsPage">
+        <div className="page">
+          <div id="cn" className="mainContent">
+            <PostRendered key={postData.id} postData={postData} />
           </div>
-        </main>
-      </>
-    );
-  }
+          <aside className="sideBar">
+            <QuickNews />
+            <Divider height="15px" />
+            <CalResWidget />
+            <TrackedSidePanel />
+          </aside>
+        </div>
+      </main>
+    </>
+  );
 }
 
 export async function getServerSideProps({ params }) {
