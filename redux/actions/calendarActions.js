@@ -4,9 +4,8 @@ const TYPES = {
   ERROR: "CALENDAR_ERROR"
 };
 
-const fetchCalendar = ({ perPage }) => ({
-  type: TYPES.FETCH,
-  perPage
+const fetchCalendar = () => ({
+  type: TYPES.FETCH
 });
 
 const setCalendar = events => ({

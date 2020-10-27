@@ -45,7 +45,6 @@ class MyApp extends App {
   static getInitialProps = async ({ Component, ctx }) => {
     ctx.store.dispatch(fetchF1Results({ perPage: 1 }));
     ctx.store.dispatch(fetchNewQuickNews());
-    ctx.store.dispatch(fetchCalendar({ perPage: 1 }));
     ctx.store.dispatch(fetchProgramme());
     const pageProps = {
       ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {})

@@ -1,70 +1,57 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
+import { useSelector } from "react-redux";
+import { wrapper } from "../redux/store/store";
+import { END } from "redux-saga";
+
 import Head from "next/head";
-import QuickNews from "../components/QuickNews/QuickNews.js";
+import QuickNews from "../components/QuickNews";
 import RPanel from "../components/RPanel.js";
-import SectionTitle from "../components/SectionTitle/SectionTitle.js";
+import SectionTitle from "../components/SectionTitle";
 import CalendarBox from "../components/Calendar/CalendarBox.js";
-import styles from "../styles/kalendar.module.scss";
+import { fetchCalendar } from "../redux/actions/calendarActions";
 import Divider from "../components/Divider.js";
 
-export default class Calendar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      calendarData: {},
-      isLoaded: false
-    };
-  }
+function Calendar() {
+  const calendarData = useSelector(({ calendar }) => calendar.events);
 
-  componentDidMount() {
-    axios
-      .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar?per_page=25`)
-      .then(res => {
-        this.setState({
-          calendarData: res.data,
-          isLoaded: true
-        });
-      })
-      .catch(err => console.log(err));
-  }
-
-  render() {
-    let contentData;
-    if (this.state.isLoaded) {
-      contentData = <CalendarBox data={this.state.calendarData} />;
-    }
-
-    return (
-      <>
-        <Head>
-          <title key="meta_title">Kalendár | F1online.sk</title>
-          <meta
-            key="meta_ogtitle"
-            property="og:title"
-            content={`Kalendár | F1online.sk`}
-          />
-          <meta
-            key="meta_url"
-            property="og:url"
-            content={`https://f1online.sk/kalendar`}
-          />
-        </Head>
-        <main className="contentsPage">
-          <div className="page">
-            <div className="mainContent">
-              <SectionTitle title="Kalendár" />
-              <Divider height="28px" />
-              {contentData}
-            </div>
-            <aside className="sideBar">
-              <Divider height="50px" />
-              <QuickNews />
-              <RPanel />
-            </aside>
+  return (
+    <>
+      <Head>
+        <title key="meta_title">Kalendár | F1online.sk</title>
+        <meta
+          key="meta_ogtitle"
+          property="og:title"
+          content={`Kalendár | F1online.sk`}
+        />
+        <meta
+          key="meta_url"
+          property="og:url"
+          content={`https://f1online.sk/kalendar`}
+        />
+      </Head>
+      <main className="contentsPage">
+        <div className="page">
+          <div className="mainContent">
+            <SectionTitle title="Kalendár" />
+            <Divider height="28px" />
+            <CalendarBox data={calendarData} />
           </div>
-        </main>
-      </>
-    );
-  }
+          <aside className="sideBar">
+            <Divider height="50px" />
+            <QuickNews />
+            <RPanel />
+          </aside>
+        </div>
+      </main>
+    </>
+  );
 }
+
+export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+  store.dispatch(fetchCalendar());
+  store.dispatch(END);
+
+  await store.sagaTask.toPromise();
+});
+
+export default Calendar;

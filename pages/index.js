@@ -20,10 +20,6 @@ import { fetchNewArticles } from "../redux/actions/articlesActions";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 
-import axios from "axios";
-
-const createResultsArray = data => {};
-
 function Home() {
   const postsData = useSelector(state => state.articles.indexArticles);
   const resultsData = useSelector(state => state.f1Results.results);

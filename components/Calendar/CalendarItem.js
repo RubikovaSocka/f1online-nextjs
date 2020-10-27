@@ -1,177 +1,164 @@
-import React, { Component } from "react";
-import styles from "./CalendarItem.module.scss";
+import React, { useState } from "react";
+import styles from "./style.module.scss";
 import { addMinutes, format, parse } from "date-fns";
 import Media from "react-media";
-export default class CalendarItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      opened: false
-    };
-  }
 
-  changeState() {
-    this.setState(prev => {
-      return {
-        opened: !prev.opened
-      };
-    });
-  }
+function CalendarItem({
+  venue_name,
+  venue_date,
+  fp1_time,
+  fp2_time,
+  fp3_time,
+  q_time,
+  r_time,
+  fp1_tv,
+  fp2_tv,
+  fp3_tv,
+  q_tv,
+  r_tv,
+  position,
+  circuit_map,
+  circuit_name
+}) {
+  const [isOpened, setIsOpened] = useState(false);
 
-  render() {
-    const { data } = this.props;
-    return (
+  return (
+    <div
+      className={`${styles.container} ${
+        isOpened ? styles.opened : styles.closed
+      }`}
+    >
+      <Media query={{ maxWidth: 1023 }}>
+        {matches =>
+          matches ? (
+            <div
+              className={`${styles.header} ${
+                isOpened ? styles.opened : styles.closed
+              }`}
+              onClick={() => setIsOpened(prev => !prev)}
+            >
+              <div>
+                <span className={styles.venueName}>{`${position +
+                  1}. VC ${venue_name}`}</span>
+                <div className={styles.venueHeaderDate}>
+                  <span className={styles.date}>{venue_date}</span>
+                  <span className={styles.raceTime}>{r_time}</span>
+                </div>
+              </div>
+              <i className={`fas fa-chevron-${isOpened ? "up" : "down"}`}></i>
+            </div>
+          ) : (
+            <div
+              className={`${styles.header} ${
+                isOpened ? styles.opened : styles.closed
+              }`}
+              onClick={() => setIsOpened(prev => !prev)}
+            >
+              <i className={`fas fa-chevron-${isOpened ? "up" : "down"}`}></i>
+              <span className={styles.venueName}>{`${position +
+                1}. VC ${venue_name}`}</span>
+              <div className={styles.venueHeaderDate}>
+                <span className={styles.date}>
+                  {venue_date
+                    .split("-")[1]
+                    .trim()
+                    .replace(" 2020", "")}
+                </span>
+                <span className={styles.raceTime}>{r_time}</span>
+              </div>
+            </div>
+          )
+        }
+      </Media>
+
       <div
-        className={`${styles.container} ${
-          this.state.opened ? styles.opened : styles.closed
+        className={`${styles.contentBox} ${
+          isOpened ? styles.opened : styles.closed
         }`}
       >
-        <Media query={{ maxWidth: 1023 }}>
-          {matches =>
-            matches ? (
-              <div
-                className={`${styles.header} ${
-                  this.state.opened ? styles.opened : styles.closed
-                }`}
-                onClick={() => this.changeState()}
-              >
-                <div>
-                  <span className={styles.venueName}>{`${this.props.position +
-                    1}. VC ${data.venue_name}`}</span>
-                  <div className={styles.venueHeaderDate}>
-                    <span className={styles.date}>{data.venue_date}</span>
-                    <span className={styles.raceTime}>{data.r_time}</span>
-                  </div>
-                </div>
-                <i
-                  className={`fas fa-chevron-${
-                    this.state.opened ? "up" : "down"
-                  }`}
-                ></i>
-              </div>
-            ) : (
-              <div
-                className={`${styles.header} ${
-                  this.state.opened ? styles.opened : styles.closed
-                }`}
-                onClick={() => this.changeState()}
-              >
-                <i
-                  className={`fas fa-chevron-${
-                    this.state.opened ? "up" : "down"
-                  }`}
-                ></i>
-                <span className={styles.venueName}>{`${this.props.position +
-                  1}. VC ${data.venue_name}`}</span>
-                <div className={styles.venueHeaderDate}>
-                  <span className={styles.date}>
-                    {data.venue_date
-                      .split("-")[1]
-                      .trim()
-                      .replace(" 2020", "")}
-                  </span>
-                  <span className={styles.raceTime}>{data.r_time}</span>
-                </div>
-              </div>
-            )
-          }
-        </Media>
-
-        <div
-          className={`${styles.contentBox} ${
-            this.state.opened ? styles.opened : styles.closed
-          }`}
-        >
-          <div className={styles.table}>
-            <div className={`${styles.timesRow} ${styles.timesRowHeader}`}>
-              <span className={styles.session}>Časť</span>
-              <span className={styles.sessionTime}>Čas</span>
-              <span className={styles.sessionTv}>Vysiela</span>
+        <div className={styles.table}>
+          <div className={`${styles.timesRow} ${styles.timesRowHeader}`}>
+            <span className={styles.session}>Časť</span>
+            <span className={styles.sessionTime}>Čas</span>
+            <span className={styles.sessionTv}>Vysiela</span>
+          </div>
+          {fp1_time ? (
+            <div className={styles.timesRow}>
+              <span className={styles.session}>1. tréning</span>
+              <span className={styles.sessionTime}>{`${fp1_time} - ${format(
+                addMinutes(parse(fp1_time, "HH:mm", new Date()), 90),
+                "HH:mm"
+              )}`}</span>
+              <span className={styles.sessionTv}>
+                {fp1_tv ? fp1_tv : "Doplníme..."}
+              </span>
             </div>
-            {data.fp1_time ? (
-              <div className={styles.timesRow}>
-                <span className={styles.session}>1. tréning</span>
-                <span className={styles.sessionTime}>{`${
-                  data.fp1_time
-                } - ${format(
-                  addMinutes(parse(data.fp1_time, "HH:mm", new Date()), 90),
-                  "HH:mm"
-                )}`}</span>
-                <span className={styles.sessionTv}>
-                  {data.fp1_tv ? data.fp1_tv : "Doplníme..."}
-                </span>
-              </div>
-            ) : (
-              ""
-            )}
+          ) : (
+            ""
+          )}
 
-            {data.fp2_time ? (
-              <div className={styles.timesRow}>
-                <span className={styles.session}>2. tréning</span>
-                <span className={styles.sessionTime}>{`${
-                  data.fp2_time
-                } - ${format(
-                  addMinutes(parse(data.fp2_time, "HH:mm", new Date()), 90),
-                  "HH:mm"
-                )}`}</span>
-                <span className={styles.sessionTv}>
-                  {data.fp2_tv ? data.fp2_tv : "Doplníme..."}
-                </span>
-              </div>
-            ) : (
-              ""
-            )}
-            {data.fp3_time ? (
-              <div className={styles.timesRow}>
-                <span className={styles.session}>3. tréning</span>
-                <span className={styles.sessionTime}>{`${
-                  data.fp3_time
-                } - ${format(
-                  addMinutes(parse(data.fp3_time, "HH:mm", new Date()), 60),
-                  "HH:mm"
-                )}`}</span>
-                <span className={styles.sessionTv}>
-                  {data.fp3_tv ? data.fp3_tv : "Doplníme..."}
-                </span>
-              </div>
-            ) : (
-              ""
-            )}
-            {data.q_time ? (
-              <div className={styles.timesRow}>
-                <span className={styles.session}>Kvalifikácia</span>
-                <span className={styles.sessionTime}>{`${
-                  data.q_time
-                } - ${format(
-                  addMinutes(parse(data.q_time, "HH:mm", new Date()), 60),
-                  "HH:mm"
-                )}`}</span>
-                <span className={styles.sessionTv}>
-                  {data.q_tv ? data.q_tv : "Doplníme..."}
-                </span>
-              </div>
-            ) : (
-              ""
-            )}
-            {data.r_time ? (
-              <div className={styles.timesRow}>
-                <span className={styles.session}>Preteky</span>
-                <span className={styles.sessionTime}>{`${data.r_time}`}</span>
-                <span className={styles.sessionTv}>
-                  {data.r_tv ? data.r_tv : "Doplníme..."}
-                </span>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          {fp2_time ? (
+            <div className={styles.timesRow}>
+              <span className={styles.session}>2. tréning</span>
+              <span className={styles.sessionTime}>{`${fp2_time} - ${format(
+                addMinutes(parse(fp2_time, "HH:mm", new Date()), 90),
+                "HH:mm"
+              )}`}</span>
+              <span className={styles.sessionTv}>
+                {fp2_tv ? fp2_tv : "Doplníme..."}
+              </span>
+            </div>
+          ) : (
+            ""
+          )}
+          {fp3_time ? (
+            <div className={styles.timesRow}>
+              <span className={styles.session}>3. tréning</span>
+              <span className={styles.sessionTime}>{`${fp3_time} - ${format(
+                addMinutes(parse(fp3_time, "HH:mm", new Date()), 60),
+                "HH:mm"
+              )}`}</span>
+              <span className={styles.sessionTv}>
+                {fp3_tv ? fp3_tv : "Doplníme..."}
+              </span>
+            </div>
+          ) : (
+            ""
+          )}
+          {q_time ? (
+            <div className={styles.timesRow}>
+              <span className={styles.session}>Kvalifikácia</span>
+              <span className={styles.sessionTime}>{`${q_time} - ${format(
+                addMinutes(parse(q_time, "HH:mm", new Date()), 60),
+                "HH:mm"
+              )}`}</span>
+              <span className={styles.sessionTv}>
+                {q_tv ? q_tv : "Doplníme..."}
+              </span>
+            </div>
+          ) : (
+            ""
+          )}
+          {r_time ? (
+            <div className={styles.timesRow}>
+              <span className={styles.session}>Preteky</span>
+              <span className={styles.sessionTime}>{`${r_time}`}</span>
+              <span className={styles.sessionTv}>
+                {r_tv ? r_tv : "Doplníme..."}
+              </span>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
 
-          <div className={styles.circuitContainer}>
-            <img src={data.circuit_map}></img>
-            <span>{data.circuit_name}</span>
-          </div>
+        <div className={styles.circuitContainer}>
+          <img src={circuit_map}></img>
+          <span>{circuit_name}</span>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+export default CalendarItem;
