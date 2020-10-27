@@ -23,7 +23,6 @@ import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store.js";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
-import { fetchCalendar } from "../redux/actions/calendarActions";
 import { fetchProgramme } from "../redux/actions/programmeActions";
 import { initializeTheme } from "../redux/actions/themeActions";
 
