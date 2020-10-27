@@ -11,7 +11,7 @@ import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import CalResWidget from "../components/CalResWidget";
 import CalendarLarge from "../components/CalendarLarge";
-import ResultsLargeWrapper from "../components/ResultsLarge/ResultsLargeWrapper.js";
+import ResultsLargeWrapper from "../components/ResultsLarge";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
 import FBPageBox from "../components/FBPageBox";
