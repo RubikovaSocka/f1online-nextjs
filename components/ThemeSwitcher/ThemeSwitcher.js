@@ -27,7 +27,6 @@ function ThemeSwitcher() {
       <Link href="/chcem-vas-podporit">
         <a className={styles.donateButton}>Chcem podporiť F1online.sk</a>
       </Link>
-
       <button
         onClick={() => dispatch(setTheme(getOtherTheme(theme)))}
         className={styles.themeSwitcherContainer}

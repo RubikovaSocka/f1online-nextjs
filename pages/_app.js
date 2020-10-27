@@ -118,19 +118,6 @@ class App extends Component {
   }
 }
 
-/*
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  if (store.getState().quickNews.news.length === 0) {
-    //store.dispatch(fetchNewQuickNews());
-    //store.dispatch(fetchF1Results({ perPage: 1 }));
-    store.dispatch(END);
-  }
-
-  await store.sagaTask.toPromise();
-});
-*/
-
-
 const mapStateToProps = ({ theme }) => ({
   theme: theme.theme
 });
