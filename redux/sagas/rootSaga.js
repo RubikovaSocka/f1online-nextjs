@@ -10,9 +10,12 @@ import fetchArticlesSaga from "./handlers/fetchArticlesSaga";
 import fetchQuickNewsSaga from "./handlers/fetchQuickNewsSaga";
 import fetchArchiveArticlesSaga from "./handlers/fetchArchiveArticlesSaga";
 import fetchF1ResultsSaga from "./handlers/fetchF1ResultsSaga";
+import fetchProgrammeSaga from "./handlers/fetchProgrammeSaga";
 import fetchCalendarSaga from "./handlers/fetchCalendarSaga";
+
 import { TYPES as F1_RESULTS } from "../actions/f1ResultsActions";
 import { TYPES as CALENDAR } from "../actions/calendarActions";
+import { TYPES as PROGRAMME } from "../actions/programmeActions";
 
 //watcher
 function* rootSaga() {
@@ -24,6 +27,7 @@ function* rootSaga() {
   yield takeLatest(ARCHIVE_ARTICLES.FETCH, fetchArchiveArticlesSaga);
   yield takeLatest(F1_RESULTS.FETCH, fetchF1ResultsSaga);
   yield takeLatest(CALENDAR.FETCH, fetchCalendarSaga);
+  yield takeLatest(PROGRAMME.FETCH, fetchProgrammeSaga);
   //yield takeLatest(ARCHIVE_ARTICLES.FETCH_SERVER, fetchArchiveArticlesSaga)
   //yield takeLatest(ARTICLES.FETCH, handleFetchArticles);
   //yield takeLatest(PANELS.FETCH, handleFetchPanels);

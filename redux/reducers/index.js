@@ -6,6 +6,7 @@ import quickNewsReducer from "./quickNewsReducer";
 import f1ResultsReducer from "./f1ResultsReducer";
 import archiveArticlesReducer from "./archiveReducer";
 import calendarReducer from "./calendarReducer";
+import programmeReducer from "./programmeReducer";
 
 export default combineReducers({
   panels: panelReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   quickNews: quickNewsReducer,
   archiveArticles: archiveArticlesReducer,
   f1Results: f1ResultsReducer,
-  calendar: calendarReducer
+  calendar: calendarReducer,
+  programme: programmeReducer
 });

@@ -23,7 +23,7 @@ function CalResWidget() {
   const champData = useSelector(
     ({ f1Results }) => f1Results.results[0].driverChamp
   );
-  const calendarData = useSelector(({ calendar }) => calendar.events[0]);
+  const calendarData = useSelector(({ programme }) => programme.event);
 
   return (
     <div className={styles.widget}>
