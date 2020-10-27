@@ -1,5 +1,4 @@
-import React, {Component} from "react";
-//import App from "next/app";
+import React, { Component } from "react";
 import Router from "next/router";
 import ReactGA from "react-ga";
 import TrackVisibility from "react-on-screen";
@@ -18,7 +17,7 @@ import "../components/nprogress/nprogress.css";
 import { mobileStyles, pcStyles } from "../styles/cookieNotification.js";
 import cstyles from "../styles/cookiestyle.module.scss";
 
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store.js";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
@@ -63,7 +62,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-
     this.props.initializeTheme();
 
     const trackingId = "UA-166048655-1";
@@ -108,7 +106,7 @@ class App extends Component {
         <TrackVisibility partialVisibility style={{ width: "100%" }}>
           <HeaderRePanel />
         </TrackVisibility>
-        <Header />
+        <Header theme={theme} />
         <ThemeSwitcher />
         <Component {...pageProps} />
         <Footer />
@@ -125,4 +123,9 @@ const mapDispatchToProps = dispatch => ({
   initializeTheme: () => dispatch(initializeTheme())
 });
 
-export default wrapper.withRedux(connect(mapStateToProps, mapDispatchToProps)(App));
+export default wrapper.withRedux(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);

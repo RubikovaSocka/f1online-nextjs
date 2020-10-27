@@ -8,7 +8,9 @@ import SearchBar from "../SearchBar";
 
 import styles from "./style.module.scss";
 
-function Header({ isThemeLight }) {
+import { THEMES } from "../../constants";
+
+function Header({ theme }) {
   return (
     <div className={styles.container}>
       <div className={styles.shadowHide} />
@@ -22,9 +24,9 @@ function Header({ isThemeLight }) {
                   className={styles.logo}
                   alt="-"
                   src={
-                    isThemeLight
-                      ? "https://f1online.sk/images/logo-light.png"
-                      : "https://f1online.sk/images/logo-dark.png"
+                    theme === THEMES.DARK
+                      ? "https://f1online.sk/images/logo-dark.png"
+                      : "https://f1online.sk/images/logo-light.png"
                   }
                 />
               </a>
