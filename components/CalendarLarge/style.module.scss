@@ -9,7 +9,6 @@ $border-left-width: 3px;
 
     @media only screen and (min-width: 1280px) {
       grid-template-columns: auto 328px 17px 328px 38px 320px auto;
-      grid-template-rows: 10px 205px 30px 26px;
     }
   }
   .image {
@@ -126,7 +125,7 @@ $border-left-width: 3px;
 
     display: block;
     transition: ease-in-out 0.5s;
-    
+
     @media only screen and (min-width: 1280px) {
       width: $item-width;
     }
