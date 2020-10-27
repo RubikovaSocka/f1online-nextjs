@@ -4,20 +4,31 @@ import PostContentArea from "./PostContentArea.js";
 import PostExtrasArea from "./PostExtrasArea.js";
 import PostFooterArea from "./PostFooterArea.js";
 
-function PostRendered({ postData }) {
+function PostRendered(props) {
+  const {
+    title,
+    date,
+    better_featured_image,
+    id,
+    slug,
+    content,
+    acf,
+    _embedded
+  } = props;
+
   return (
     <article>
       <PostTitleArea
-        title={postData.title.rendered}
-        authorName={postData._embedded.author[0].name}
-        date={postData.date}
-        imageData={postData.better_featured_image}
-        id={postData.id}
-        slug={postData.slug}
+        title={title.rendered}
+        authorName={_embedded.author[0].name}
+        date={date}
+        imageData={better_featured_image}
+        id={id}
+        slug={slug}
       />
-      <PostContentArea article={postData.content.rendered} />
-      <PostExtrasArea acf={postData.acf} />
-      <PostFooterArea postData={postData} />
+      <PostContentArea article={content.rendered} />
+      <PostExtrasArea {...acf} />
+      <PostFooterArea {...props} />
     </article>
   );
 }

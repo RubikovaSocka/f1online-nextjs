@@ -7,6 +7,7 @@ import Divider from "../../../components/Divider.js";
 import TrackedSidePanel from "../../../components/Ads/TrackedSidePanel.js";
 import PostRendered from "../../../components/PostRendered/PostRendered.js";
 import PostMeta from "../../../components/PostRendered/PostMeta.js";
+import { URLS } from "../../../redux/apis/urls";
 
 export default function Post({ postData }) {
   return (
@@ -15,7 +16,7 @@ export default function Post({ postData }) {
       <main className="contentsPage">
         <div className="page">
           <div id="cn" className="mainContent">
-            <PostRendered key={postData.id} postData={postData} />
+            <PostRendered key={postData.id} {...postData} />
           </div>
           <aside className="sideBar">
             <QuickNews />
@@ -32,11 +33,11 @@ export default function Post({ postData }) {
 export async function getServerSideProps({ params }) {
   const response = await axios({
     method: "get",
-    url: `https://wpadmin.f1online.sk/wp-json/wp/v2/posts/${params.id}?_embed`
+    url: `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}${params.id}?_embed`
     //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
   });
   axios.get(
-    `https://wpadmin.f1online.sk/wp-content/plugins/counter/count.php?id=${params.id}`
+    `${URLS.BASE}wp-content/plugins/counter/count.php?id=${params.id}`
   );
 
   return {

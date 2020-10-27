@@ -1,7 +1,8 @@
 import React from "react";
 import EmbedContainer from "react-oembed-container";
-import styles from "./PostRendered.module.scss";
 import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
+
+import styles from "./style.module.scss";
 
 function InjectAds({ article }) {
   let nrOfParagraphs = (article.match(/<p>/g) || []).length;

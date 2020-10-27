@@ -2,7 +2,7 @@ import React from "react";
 import decodeHtml from "../../utils/decodeHtml";
 import getImagePreview from "../../utils/getImagePreview";
 import formatDate from "../../utils/dateFormatter";
-import styles from './PostRendered.module.scss'
+import styles from "./style.module.scss";
 
 function PostTitleArea({ title, authorName, date, imageData, id, slug }) {
   return (
