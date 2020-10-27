@@ -64,7 +64,7 @@ class App extends Component {
 
   componentDidMount() {
 
-    () => this.props.initializeTheme();
+    this.props.initializeTheme();
     () => this.props.initializePanels();
 
     const trackingId = "UA-166048655-1";

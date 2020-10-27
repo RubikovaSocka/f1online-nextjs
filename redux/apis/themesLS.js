@@ -2,7 +2,6 @@ import { THEMES } from "../../constants";
 
 const getTheme = () => {
   const themeFromLS = window.localStorage.getItem("theme-name");
-
   switch (themeFromLS) {
     case THEMES.LIGHT:
       return THEMES.LIGHT;
