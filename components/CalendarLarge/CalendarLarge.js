@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
-import LinkAsButton from "../LinkAsButton/LinkAsButton";
+import { useSelector } from "react-redux";
+import { addMinutes, format, parse } from "date-fns";
 
-import styles from "./CalendarLarge.module.scss";
+import LinkAsButton from "../LinkAsButton/LinkAsButton";
 import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
 
-import { addMinutes, format, parse } from "date-fns";
+import styles from "./style.module.scss";
 
 function RenderCalendarItem(props) {
   return (
@@ -19,135 +19,124 @@ function RenderCalendarItem(props) {
   );
 }
 
-class CalendarLarge extends Component {
-  state = {
-    venueData: {},
-    isLoaded: false
-  };
+function CalendarLarge() {
+  const calendarData = useSelector(({ calendar }) => calendar.events[0]);
 
-  componentDidMount() {
-    //axios.get(`/wp-json/wp/v2/calendar/?per_page=1`)
-    axios
-      .get(
-        `https://wpadmin.f1online.sk/wp-json/wp/v2/online_details?per_page=1`
-      )
-      .then(res => {
-        axios
-          .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/calendar/${res.data[0].acf.calendar_gp_id}`)
-          .then(res2 => {
-            this.setState({
-              venueData: res2.data,
-              isLoaded: true
-            });
-          })
-          .catch(err => console.log(err));;
-      })
-      .catch(err => console.log(err));;
-  }
-
-  render() {
-    if (this.state.isLoaded) {
-      const { venueData } = this.state;
-      return (
-        <div>
-          <SideSectionTitle title="Najbližšie preteky" />
-          <div className={styles.container}>
-            <img
-              className={styles.image}
-              alt={`VC ${venueData.acf.venue_name}`}
-              src={`${venueData.acf.circuit_image}`}
-            />
-            <div className={styles.dataContainer}>
-              <div className={styles.venueTitleContainer}>
-                <p className={styles.venueName}>
-                  VC {venueData.acf.venue_name}
-                </p>
-                <p className={styles.date}>{venueData.acf.venue_date}</p>
-              </div>
-              <div className={styles.cols}>
-                <div className={styles.col1}>
-                  <RenderCalendarItem
-                    event="1. tréning"
-                    time={`${venueData.acf.fp1_time} - ${format(
-                      addMinutes(
-                        parse(venueData.acf.fp1_time, "HH:mm", new Date()),
-                        90
-                      ),
-                      "HH:mm"
-                    )}`}
-                    tv={`vysiela${
-                      venueData.acf.fp1_tv
-                        ? " " + venueData.acf.fp1_tv
-                        : ": doplníme..."
-                    }`}
-                  />
-                  <RenderCalendarItem
-                    event="2. tréning"
-                    time={`${venueData.acf.fp2_time} - ${format(
-                      addMinutes(
-                        parse(venueData.acf.fp2_time, "HH:mm", new Date()),
-                        90
-                      ),
-                      "HH:mm"
-                    )}`}
-                    tv={`vysiela${
-                      venueData.acf.fp2_tv
-                        ? " " + venueData.acf.fp2_tv
-                        : ": doplníme..."
-                    }`}
-                  />
-                  <RenderCalendarItem
-                    event="3. tréning"
-                    time={`${venueData.acf.fp3_time} - ${format(
-                      addMinutes(
-                        parse(venueData.acf.fp3_time, "HH:mm", new Date()),
-                        60
-                      ),
-                      "HH:mm"
-                    )}`}
-                    tv={`vysiela${
-                      venueData.acf.fp3_tv
-                        ? " " + venueData.acf.fp3_tv
-                        : ": doplníme..."
-                    }`}
-                  />
-                </div>
-                <div className={styles.col2}>
-                  <RenderCalendarItem
-                    event="Kvalifikácia"
-                    time={`${venueData.acf.q_time} - ${format(
-                      addMinutes(
-                        parse(venueData.acf.q_time, "HH:mm", new Date()),
-                        60
-                      ),
-                      "HH:mm"
-                    )}`}
-                    tv={`vysiela${
-                      venueData.acf.q_tv
-                        ? " " + venueData.acf.q_tv
-                        : ": doplníme..."
-                    }`}
-                  />
-                  <RenderCalendarItem
-                    event="Preteky"
-                    time={`${venueData.acf.r_time}`}
-                    tv={`vysiela${
-                      venueData.acf.r_tv
-                        ? " " + venueData.acf.r_tv
-                        : ": doplníme..."
-                    }`}
-                  />
-                </div>
-              </div>
+  return (
+    <div>
+      <SideSectionTitle title="Najbližšie preteky" />
+      <div className={styles.container}>
+        <img
+          className={styles.image}
+          alt={`Ilustračná foto k VC ${calendarData.venue_name}`}
+          src={`${calendarData.circuit_image}`}
+        />
+        <div className={styles.dataContainer}>
+          <div className={styles.venueTitleContainer}>
+            <p className={styles.venueName}>VC {calendarData.venue_name}</p>
+            <p className={styles.date}>{calendarData.venue_date}</p>
+          </div>
+          <div className={styles.cols}>
+            <div className={styles.col1}>
+              {calendarData.fp1_time ? (
+                <RenderCalendarItem
+                  event="1. tréning"
+                  time={`${calendarData.fp1_time} - ${format(
+                    addMinutes(
+                      parse(calendarData.fp1_time, "HH:mm", new Date()),
+                      90
+                    ),
+                    "HH:mm"
+                  )}`}
+                  tv={`vysiela${
+                    calendarData.fp1_tv
+                      ? " " + calendarData.fp1_tv
+                      : ": doplníme..."
+                  }`}
+                />
+              ) : (
+                ""
+              )}
+              {calendarData.fp2_time ? (
+                <RenderCalendarItem
+                  event="2. tréning"
+                  time={`${calendarData.fp2_time} - ${format(
+                    addMinutes(
+                      parse(calendarData.fp2_time, "HH:mm", new Date()),
+                      90
+                    ),
+                    "HH:mm"
+                  )}`}
+                  tv={`vysiela${
+                    calendarData.fp2_tv
+                      ? " " + calendarData.fp2_tv
+                      : ": doplníme..."
+                  }`}
+                />
+              ) : (
+                ""
+              )}
+              {calendarData.fp3_time ? (
+                <RenderCalendarItem
+                  event="3. tréning"
+                  time={`${calendarData.fp3_time} - ${format(
+                    addMinutes(
+                      parse(calendarData.fp3_time, "HH:mm", new Date()),
+                      60
+                    ),
+                    "HH:mm"
+                  )}`}
+                  tv={`vysiela${
+                    calendarData.fp3_tv
+                      ? " " + calendarData.fp3_tv
+                      : ": doplníme..."
+                  }`}
+                />
+              ) : (
+                ""
+              )}
             </div>
-            <div className={styles.button}>
-              <LinkAsButton target={"/kalendar"} title={"Celý kalendár"} />
+            <div className={styles.col2}>
+              {calendarData.q_time ? (
+                <RenderCalendarItem
+                  event="Kvalifikácia"
+                  time={`${calendarData.q_time} - ${format(
+                    addMinutes(
+                      parse(calendarData.q_time, "HH:mm", new Date()),
+                      60
+                    ),
+                    "HH:mm"
+                  )}`}
+                  tv={`vysiela${
+                    calendarData.q_tv
+                      ? " " + calendarData.q_tv
+                      : ": doplníme..."
+                  }`}
+                />
+              ) : (
+                ""
+              )}
+              {calendarData.r_time ? (
+                <RenderCalendarItem
+                  event="Preteky"
+                  time={`${calendarData.r_time}`}
+                  tv={`vysiela${
+                    calendarData.r_tv
+                      ? " " + calendarData.r_tv
+                      : ": doplníme..."
+                  }`}
+                />
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
-      );
-    }
-    return null;
-  }
+        <div className={styles.button}>
+          <LinkAsButton target={"/kalendar"} title={"Celý kalendár"} />
+        </div>
+      </div>
+    </div>
+  );
 }
 export default CalendarLarge;

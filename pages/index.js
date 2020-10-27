@@ -9,8 +9,8 @@ import TitleArea from "../components/TitleArea";
 import ArticlesPanel from "../components/ArticlesPanel/ArticlesPanel";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
-import CalResWidget from "../components/CalResWidget/CalResWidget.js";
-import CalendarLarge from "../components/CalendarLarge/CalendarLarge.js";
+import CalResWidget from "../components/CalResWidget";
+import CalendarLarge from "../components/CalendarLarge";
 import ResultsLargeWrapper from "../components/ResultsLarge/ResultsLargeWrapper.js";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
@@ -22,9 +22,7 @@ import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 
 import axios from "axios";
 
-const createResultsArray = data => {
-  
-};
+const createResultsArray = data => {};
 
 function Home() {
   const postsData = useSelector(state => state.articles.indexArticles);
@@ -32,61 +30,6 @@ function Home() {
   console.log("Results Data");
   console.log(resultsData);
 
-/*
-  useEffect(() => {
-    async function fetch() {
-      let response = await axios.get(
-        `https://wpadmin.f1online.sk/wp-json/wp/v2/results/?per_page=1`
-      );
-      console.log(response)
-      let linksToJsons = response.data.map(item => item.acf);
-      console.log(linksToJsons)
-      let jsons = await axios.all(
-        linksToJsons
-          .map(item => [
-            axios.get(item.results_json),
-            axios.get(item.cd_results_json),
-            axios.get(item.cc_results_json)
-          ])
-          .flat()
-      );
-          let jsonsData = jsons.map(res => res.data)
-      let toReturn = [];
-    
-      for (let index = 0; index < Math.floor(jsonsData.length / 3); index++) {
-        let subArray = jsonsData.slice(3 * index, 3 * index + 3);
-        toReturn[index] = {
-          venueName: linksToJsons[index].venue_name,
-          race: subArray[0],
-          driverChamp: subArray[1],
-          teamChamp: subArray[2]
-        };
-      }
-      console.log(".")
-      console.log(toReturn)
-      return toReturn;
-    }
-    let res = fetch();
-    console.log(res)
-  }, [])
-*/
-  /*
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener("resize", this.updateWindowDimensions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowDimensions);
-  }
-
-  updateWindowDimensions = () => {
-    this.setState({
-      width: window.innerWidth
-    });
-  };
-*/
-  //render() {
   let titleSection, articlesSection;
   //const { postsData } = this.props;
   //console.log(this.props)

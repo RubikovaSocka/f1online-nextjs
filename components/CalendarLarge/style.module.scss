@@ -1,0 +1,140 @@
+$item-width: 152px;
+$border-left-width: 3px;
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    display: grid;
+    grid-template-columns: auto 328px 17px 305px 30px 305px auto;
+    grid-template-rows: 10px 205px 30px 26px;
+
+    @media only screen and (min-width: 1280px) {
+      grid-template-columns: auto 328px 17px 328px 38px 320px auto;
+      grid-template-rows: 10px 205px 30px 26px;
+    }
+  }
+  .image {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    height: 100%;
+  }
+  .dataContainer {
+    grid-column: 4 / span 1;
+    grid-row: 2 / span 1;
+
+    font-size: 14px;
+    font-family: "HK Grotesk", "Source Sans Pro";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .venueTitleContainer {
+    padding-left: 7px;
+    border-left: 3px solid #e10600;
+  }
+  .venueName {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--basic-text-color);
+  }
+  .date {
+    margin: 0;
+    color: var(--basic-text-color);
+  }
+  .cols {
+    display: flex;
+    flex-direction: row;
+
+    .col1  {
+      display: flex;
+      flex-direction: column;
+    }
+    .col2  {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+  }
+  .button {
+    grid-column: 4 / span 1;
+    grid-row: 3 / span 1;
+    margin-top: 10px;
+    margin-right: 40px;
+
+    @media only screen and (min-width: 1280px) {
+      margin-right: 10px;
+    }
+  }
+
+  .timeDataItem {
+    margin: 14px 0px -2px 0;
+    width: $item-width - 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-left: $border-left-width solid #d4d4d4;
+
+    z-index: 0;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    @media only screen and (min-width: 1280px) {
+      margin-right: 10px;
+      width: $item-width;
+      border-left: $border-left-width solid var(--calendar-verline-color);
+    }
+
+    &:hover .tvStations {
+      right: -3px;
+      color: black;
+    }
+  }
+  .inRow {
+    position: relative;
+    padding-left: 0px;
+    width: 138px;
+    height: 20px;
+    overflow: hidden;
+    color: var(--basic-text-color);
+
+    @media only screen and (min-width: 1280px) {
+      width: 155px;
+    }
+  }
+
+  .time {
+    width: $item-width;
+    position: absolute;
+    padding-left: 7px;
+    color: var(--basic-text-color);
+    z-index: 1;
+  }
+  .tvStations {
+    position: absolute;
+    right: $item-width + 3px;
+    width: 135px;
+    background-color: var(--calendar-verline-color);
+
+    padding-left: 5px;
+    padding-right: 4px;
+    position: absolute;
+    z-index: 2;
+
+    display: block;
+    transition: ease-in-out 0.5s;
+    
+    @media only screen and (min-width: 1280px) {
+      width: $item-width;
+    }
+  }
+  .event {
+    height: 22px;
+    padding-left: 7px;
+    font-weight: 600;
+    color: var(--basic-text-color);
+  }
+}
