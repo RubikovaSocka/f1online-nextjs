@@ -37,7 +37,7 @@ function* rootSaga() {
 
   //yield takeLatest(ARCHIVE_ARTICLES.FETCH_SERVER, fetchArchiveArticlesSaga)
   //yield takeLatest(ARTICLES.FETCH, handleFetchArticles);
-  //yield takeLatest(PANELS.FETCH, handleFetchPanels);
+  yield takeLatest(PANELS.FETCH, handleFetchPanels);
 }
 
 export default rootSaga;

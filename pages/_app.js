@@ -24,6 +24,7 @@ import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 import { fetchProgramme } from "../redux/actions/programmeActions";
 import { initializeTheme } from "../redux/actions/themeActions";
+import fetchPanels from "../redux/apis/fetchPanelsApi";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -62,7 +63,9 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.props.initializeTheme();
+
+    () => this.props.initializeTheme();
+    () => this.props.initializePanels();
 
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
@@ -120,7 +123,8 @@ const mapStateToProps = ({ theme }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  initializeTheme: () => dispatch(initializeTheme())
+  initializeTheme: () => dispatch(initializeTheme()),
+  initializePanels: () => dispatch(fetchPanels())
 });
 
 export default wrapper.withRedux(
