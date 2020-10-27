@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-export default function HeaderMeta() {
+export default function HeaderMeta({ theme }) {
   return (
     <Head>
       <title key="meta_title">F1online.sk</title>
@@ -10,7 +10,8 @@ export default function HeaderMeta() {
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
       />
-      <link key="meta_style" rel="stylesheet" href="/light-theme.css" />
+      <link key="meta_style" rel="stylesheet" href={theme} />
+      {/*<link key="meta_style" rel="stylesheet" href="/light-theme.css" />*/}
       <meta key="meta_ogtitle" property="og:title" content={`F1online.sk`} />
       <meta key="meta_type" property="og:type" content="website" />
       <meta key="meta_url" property="og:url" content={`https://f1online.sk/`} />

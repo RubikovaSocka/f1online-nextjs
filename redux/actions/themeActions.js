@@ -1,7 +1,16 @@
-import { THEME } from "../constants";
+export const TYPES = {
+  INITIALIZE: "THEME_INITIALIZE",
+  //CHANGE: "THEME_CHANGE",
+  SET: "THEME_SET"
+};
 
-const changeTheme = () => ({
-  type: THEME.CHANGE
+const initializeTheme = () => ({
+  type: TYPES.INITIALIZE
 });
 
-export { changeTheme };
+const setTheme = theme => ({
+  type: TYPES.SET,
+  theme
+});
+
+export { setTheme, initializeTheme };

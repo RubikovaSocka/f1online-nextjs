@@ -1,15 +1,22 @@
-import { THEME } from "../constants";
+import { TYPES } from "../actions/themeActions";
+import { THEMES } from "../../constants";
 
 const defaultState = {
-  isThemeLight: true
+  theme: THEMES.LIGHT
 };
 
 const themeReducer = (state = defaultState, action) => {
-  return action.type === THEME.CHANGE
-    ? {
-        isThemeLight: !state.isThemeLight
-      }
-    : state;
+  switch (action.type) {
+    case TYPES.SET:
+      return {
+        theme: action.theme
+      };
+    case TYPES.CHANGE:
+      return state;
+
+    default:
+      return state;
+  }
 };
 
 export default themeReducer;

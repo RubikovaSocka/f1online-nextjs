@@ -1,5 +1,5 @@
-import React from "react";
-import App from "next/app";
+import React, {Component} from "react";
+//import App from "next/app";
 import Router from "next/router";
 import ReactGA from "react-ga";
 import TrackVisibility from "react-on-screen";
@@ -18,12 +18,14 @@ import "../components/nprogress/nprogress.css";
 import { mobileStyles, pcStyles } from "../styles/cookieNotification.js";
 import cstyles from "../styles/cookiestyle.module.scss";
 
+import { connect } from 'react-redux'
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store.js";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 import { fetchCalendar } from "../redux/actions/calendarActions";
 import { fetchProgramme } from "../redux/actions/programmeActions";
+import { initializeTheme } from "../redux/actions/themeActions";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -34,7 +36,7 @@ Router.events.on("routeChangeComplete", () => {
 });
 Router.events.on("routeChangeError", () => NProgress.done());
 
-class MyApp extends App {
+class App extends Component {
   state = {
     showCookieBanner: false,
     cookieBanner: {},
@@ -62,6 +64,9 @@ class MyApp extends App {
   };
 
   componentDidMount() {
+
+    this.props.initializeTheme();
+
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
 
@@ -95,11 +100,11 @@ class MyApp extends App {
   };
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, theme } = this.props;
 
     return (
       <>
-        <HeaderMeta />
+        <HeaderMeta theme={theme} />
         {this.state.showCookieBanner ? this.state.cookieBanner : ""}
         <TrackVisibility partialVisibility style={{ width: "100%" }}>
           <HeaderRePanel />
@@ -112,6 +117,7 @@ class MyApp extends App {
     );
   }
 }
+
 /*
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   if (store.getState().quickNews.news.length === 0) {
@@ -123,4 +129,14 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   await store.sagaTask.toPromise();
 });
 */
-export default wrapper.withRedux(MyApp);
+
+
+const mapStateToProps = ({ theme }) => ({
+  theme: theme.theme
+});
+
+const mapDispatchToProps = dispatch => ({
+  initializeTheme: () => dispatch(initializeTheme())
+});
+
+export default wrapper.withRedux(connect(mapStateToProps, mapDispatchToProps)(App));
