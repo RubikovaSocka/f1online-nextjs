@@ -14,14 +14,18 @@ import fetchProgrammeSaga from "./handlers/fetchProgrammeSaga";
 import fetchCalendarSaga from "./handlers/fetchCalendarSaga";
 import initializeThemeSaga from "./handlers/initializeThemeSaga";
 import saveThemeSaga from "./handlers/saveThemeSaga";
+import fetchTagArchiveArticlesSaga from "./handlers/fetchTagArchiveArticlesSaga";
 
 import { TYPES as F1_RESULTS } from "../actions/f1ResultsActions";
 import { TYPES as CALENDAR } from "../actions/calendarActions";
 import { TYPES as PROGRAMME } from "../actions/programmeActions";
 import { TYPES as THEME } from "../actions/themeActions";
+import { TYPES as TAG_ARCHIV } from "../actions/tagArchiveActions";
 
 //watcher
 function* rootSaga() {
+  /*console.log("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd")*/
+  yield takeLatest(TAG_ARCHIV.FETCH, fetchTagArchiveArticlesSaga);
   yield takeLatest(INDEX_ARTICLES.FETCH, fetchArticlesSaga);
 
   yield takeLatest(QUICK_NEWS.FETCH, fetchQuickNewsSaga);
@@ -34,6 +38,7 @@ function* rootSaga() {
 
   yield takeLatest(THEME.INITIALIZE, initializeThemeSaga);
   yield takeLatest(THEME.SET, saveThemeSaga);
+
 
   //yield takeLatest(ARCHIVE_ARTICLES.FETCH_SERVER, fetchArchiveArticlesSaga)
   //yield takeLatest(ARTICLES.FETCH, handleFetchArticles);

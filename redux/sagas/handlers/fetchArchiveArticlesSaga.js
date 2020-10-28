@@ -7,14 +7,17 @@ import {
 } from "../../actions/archiveActions";
 
 function* fetchArchiveArticlesSaga({ pageNumber, perPage, isServer }) {
+  console.log("HAAAA \n\nHAAAA")
   try {
-    const data = yield call(fetchArchiveArticles, pageNumber, perPage);
-    if(isServer) {
+    const data = yield call(fetchArchiveArticles, {
+      pageNumber: pageNumber,
+      perPage: perPage
+    });
+    if (isServer) {
       yield put(setArchiveArticlesServer(data));
     } else {
       yield put(setArchiveArticles(data));
     }
-    
   } catch (err) {
     yield put(setArchiveArticlesError(err.toString()));
   }

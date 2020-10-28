@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import axios from "axios";
 
 import QuickNews from "../../../components/QuickNews";
@@ -10,6 +10,21 @@ import PostMeta from "../../../components/PostRendered/PostMeta.js";
 import { URLS } from "../../../redux/apis/urls";
 
 export default function Post({ postData }) {
+
+  useEffect(() => {
+    axios.post(
+      `https://wpadmin.f1online.sk//wp-json/wordpress-popular-posts/v1/popular-posts`, {
+        wpp_id: postData.id
+      }
+    )
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }, [])
+
   return (
     <>
       <PostMeta {...postData} />
@@ -36,9 +51,7 @@ export async function getServerSideProps({ params }) {
     url: `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}${params.id}?_embed`
     //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
   });
-  axios.get(
-    `${URLS.BASE}wp-content/plugins/counter/count.php?id=${params.id}`
-  );
+  axios.get(`${URLS.BASE}wp-content/plugins/counter/count.php?id=${params.id}`);
 
   return {
     props: {

@@ -117,6 +117,28 @@ function Home() {
   //}
 }
 
+Home.getInitialProps = async ({ store }) => {
+  if (store.getState().articles.indexArticles.length === 0) {
+    store.dispatch(fetchNewArticles());
+    store.dispatch(END);
+  }
+
+  await store.sagaTask.toPromise();
+};
+/*
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store }) => {
+    if (store.getState().articles.indexArticles.length === 0) {
+      store.dispatch(fetchNewArticles());
+      store.dispatch(END);
+    }
+
+    await store.sagaTask.toPromise();
+  }
+);
+*/
+/*
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   if (store.getState().articles.indexArticles.length === 0) {
     store.dispatch(fetchNewArticles());
@@ -125,5 +147,5 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
 
   await store.sagaTask.toPromise();
 });
-
+*/
 export default Home;

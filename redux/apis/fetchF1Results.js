@@ -1,10 +1,11 @@
 import axios from "axios";
 
 import { URLS } from "./urls";
+const FIELDS = "_fields=acf";
 
 export default async function fetch(perPage) {
   let response = await axios.get(
-    `${URLS.BASE}${URLS.RESULTS_INFO_ENDPOINT}?per_page=${perPage}`
+    `${URLS.BASE}${URLS.RESULTS_INFO_ENDPOINT}?per_page=${perPage}&${FIELDS}`
   );
   let linksToJsons = response.data.map(item => item.acf);
 

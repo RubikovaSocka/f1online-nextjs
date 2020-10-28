@@ -1,10 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import LoadingSpinner from "../LoadingSpinner";
 import ReactPaginate from "react-paginate";
 import ArticlesPanel from "../ArticlesPanel";
-import { fetchArchiveArticles } from "../../redux/actions/archiveActions";
 
 import styles from "./style.module.scss";
 
@@ -19,53 +17,41 @@ function ArchiveArticlesRenderer({
   totalPosts,
   perPage,
   showPagination,
-  currentPage
+  currentPage,
+  pageClickCallback
 }) {
-  const dispatch = useDispatch();
 
-  const handlePageClick = ({ selected }) => {
-    window.scrollTo(0, 0);
-    dispatch(
-      fetchArchiveArticles({
-        pageNumber: selected + 1,
-        perPage: perPage,
-        isServer: false
-      })
-    );
-  };
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  } else if (error) {
-    return <p>{error}</p>;
-  } else if (articles.length === 0) {
-    return (
-      <div className={styles.noneFoundPanel}>
-        <img alt="logo"></img>
-        <span>Nenašli sme žiadne články</span>
-      </div>
-    );
-  } else if (showPagination) {
-    return (
-      <>
-        <ArticlesPanel posts={articles} />
-        <ReactPaginate
-          forcePage={currentPage - 1}
-          previousLabel={"<"}
-          nextLabel={">"}
-          breakLabel={"..."}
-          breakClassName={"break-me"}
-          pageCount={getPageCount(totalPosts, perPage)}
-          marginPagesDisplayed={1}
-          pageRangeDisplayed={3}
-          onPageChange={handlePageClick}
-          containerClassName={styles.paginateContainer}
-          activeClassName={styles.active}
-          previousClassName={"enabled"}
-        />
-      </>
-    );
-  } else return <ArticlesPanel posts={articles} />;
+  return isLoading ? (
+    <LoadingSpinner />
+  ) : error ? (
+    <p>{error}</p>
+  ) : articles.length === 0 ? (
+    <div className={styles.noneFoundPanel}>
+      <img alt="logo"></img>
+      <span>Nenašli sme žiadne články</span>
+    </div>
+  ) : showPagination ? (
+    <>
+      <ArticlesPanel posts={articles} />
+      <ReactPaginate
+        forcePage={currentPage - 1}
+        previousLabel={"<"}
+        nextLabel={">"}
+        breakLabel={"..."}
+        breakClassName={"break-me"}
+        pageCount={getPageCount(totalPosts, perPage)}
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={3}
+        //selected \in {0, 1, 2,...}, therefore pageNumber is selected + 1
+        onPageChange={({ selected }) => pageClickCallback(selected + 1)}
+        containerClassName={styles.paginateContainer}
+        activeClassName={styles.active}
+        previousClassName={"enabled"}
+      />
+    </>
+  ) : (
+    <ArticlesPanel posts={articles} />
+  );
 }
 
 export default ArchiveArticlesRenderer;
