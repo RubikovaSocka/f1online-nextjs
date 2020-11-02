@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Router from "next/router";
 import { useDispatch } from "react-redux";
-import Media from "react-media";
 import { TYPES as LOGOTRIGGER } from "../../redux/reducers/logoHideReducer";
 import styles from "./style.module.scss";
-import useWindowSize from "../../utils/useWindowSize";
+import isMobileUtil from "../../utils/isMobile";
 
 function SearchBar() {
   const dispatch = useDispatch();
@@ -18,9 +17,7 @@ function SearchBar() {
     });
   };
 
-  const windowSize = useWindowSize();
-  console.log(windowSize)
-  console.log("______________")
+  const isMobile = isMobileUtil();
 
   return (
     <div className={styles.container}>
@@ -35,7 +32,7 @@ function SearchBar() {
           aria-label="Search"
           onChange={e => setSearchPhrase(e.target.value)}
         />
-        {windowSize && windowSize.width < 1023 ? (
+        {isMobile ? (
           <>
             <button
               onClick={e => {
@@ -88,7 +85,6 @@ function SearchBar() {
             className={`${styles.buttonContent} ${styles.buttonGlass} ${styles.shown}`}
           />
         )}
-        {/*button*/}
       </form>
     </div>
   );

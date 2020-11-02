@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Head from "next/head";
-import Media from "react-media";
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";
 import { useSelector } from "react-redux";
@@ -19,19 +18,12 @@ import FBPageBox from "../components/FBPageBox";
 import { fetchNewArticles } from "../redux/actions/articlesActions";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
-import useWindowSize from "../utils/useWindowSize";
+import isMobile from "../utils/isMobile";
 
 function Home() {
   const postsData = useSelector(state => state.articles.indexArticles);
-  const resultsData = useSelector(state => state.f1Results.results);
-  console.log("state");
-  console.log(useSelector(state => state));
-  console.log("posts Data");
-  console.log(postsData.length);
-  console.log(postsData);
+  const isScreenMobile = isMobile();
 
-  const windowSize = useWindowSize();
-console.log(windowSize)
   return (
     <>
       <Head>
@@ -41,129 +33,75 @@ console.log(windowSize)
         />
       </Head>
       <main className="contentsPage">
-      
-        {windowSize && windowSize.width < 1023 ? (
+        {isScreenMobile ? (
           <TitleArea posts={postsData.slice(0, 3)} />
         ) : (
           <TitleArea posts={postsData.slice(0, 5)} />
-        ) /*
-        <Media query={{ maxWidth: 1023 }}>
-          {matches =>
-            matches ? (
-              <TitleArea posts={postsData.slice(0, 3)} />
-            ) : (
-              
-            )
-            
-            </Media>*/}
+        )}
         <Divider height="25px" />
         <div className="page">
           <div className="mainContent">
             <SectionTitle title="Ďalšie správy" />
             <Divider height="10px" />
-            {
-              <Media query={{ maxWidth: 1023 }}>
-                {matches =>
-                  matches ? (
-                    <ArticlesPanel posts={postsData.slice(3, 9)} />
-                  ) : (
-                    <ArticlesPanel posts={postsData.slice(5, 11)} />
-                  )
-                }
-              </Media>
-            }
+            {isScreenMobile ? (
+              <ArticlesPanel posts={postsData.slice(3, 9)} />
+            ) : (
+              <ArticlesPanel posts={postsData.slice(5, 11)} />
+            )}
+
             <div className="basicButtonContainer">
-              {
-                <ButtonWB
-                  hrefProp="/archiv"
-                  asProp="/archiv"
-                  title="Pozrieť všetky"
-                />
-              }
+              <ButtonWB
+                hrefProp="/archiv"
+                asProp="/archiv"
+                title="Pozrieť všetky"
+              />
             </div>
-            <Media query={{ maxWidth: 1023 }}>
-              {matches =>
-                matches ? (
-                  ""
-                ) : (
-                  <>
-                    <Divider height="30px" />
-                    <SectionTitle title="Boxová tabuľa" />
-                    <Divider height="15px" />
-                    <CalendarLarge />
-                    <ResultsLargeWrapper />
-                  </>
-                )
-              }
-            </Media>
+            {isScreenMobile ? (
+              ""
+            ) : (
+              <>
+                <Divider height="30px" />
+                <SectionTitle title="Boxová tabuľa" />
+                <Divider height="15px" />
+                <CalendarLarge />
+                <ResultsLargeWrapper />
+              </>
+            )}
           </div>
           <aside className={`sideBar`}>
-            {/*${styles.stickyWidget}*/}
             <Divider height="15px" />
-            {/*<TrackedSidePanel />
-              <Divider height="25px" />*/}
-            {
-              <div
-                style={{
-                  width: "100%"
-                }}
-              >
-                <FBPageBox />
-              </div>
-            }
-
+            <div
+              style={{
+                width: "100%"
+              }}
+            >
+              <FBPageBox />
+            </div>
             <Divider height="15px" />
             <QuickNews />
           </aside>
 
-          <Media query={{ maxWidth: 1023 }}>
-            {matches =>
-              matches ? (
-                <div className="mainContent">
-                  <CalResWidget />
-                  <Divider height="110px" />
-                </div>
-              ) : (
-                ""
-              )
-            }
-          </Media>
+          {isScreenMobile ? (
+            <div className="mainContent">
+              <CalResWidget />
+              <Divider height="110px" />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </main>
     </>
   );
-  //}
 }
-/*
-Home.getInitialProps = async ({ store }) => {
-  console.log("\n\n HOME INITIAL PROPS")
-  //if (store.getState().articles.indexArticles.length === 0) {
-    store.dispatch(fetchNewArticles());
-    store.dispatch(END);
-  //}
-
-  await store.sagaTask.toPromise();
-};*/
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
-    //if (store.getState().articles.indexArticles.length === 0) {
     store.dispatch(fetchNewArticles());
     store.dispatch(END);
-    //}
 
     await store.sagaTask.toPromise();
   }
 );
 
-/*
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  if (store.getState().articles.indexArticles.length === 0) {
-    store.dispatch(fetchNewArticles());
-    store.dispatch(END);
-  }
-
-  await store.sagaTask.toPromise();
-});
-*/
 export default Home;

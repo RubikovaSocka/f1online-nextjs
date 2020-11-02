@@ -1,8 +1,5 @@
 .container {
   float: right;
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
 
   @media only screen and (min-width: 1024px) {
     width: 170px;
@@ -10,15 +7,9 @@
 
     border: solid 1px #c0c0c0;
     border-radius: 30px;
-
-    //padding: 0 40px 0 15px;
   }
 }
 .searchForm {
-  //float: right;
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
   margin-top: -2px;
 
   @media only screen and (min-width: 1024px) {
@@ -28,21 +19,20 @@
   &.shown {
     border: solid 1px #c0c0c0;
     border-radius: 30px;
-    //padding: 0 40px 0 15px;
     padding: 0 15px;
   }
 
   input {
     display: none;
-    background-color: var(--basic-back-color);
-    background-color: unset;
     border: none;
+    background-color: unset;
+
+    font-family: "HK Grotesk";
 
     @media only screen and (min-width: 1024px) {
       height: 30px;
       width: 120px;
 
-      font-family: "HK Grotesk";
       display: inline-block;
 
       font-size: 14px;
@@ -55,11 +45,7 @@
       height: 30px;
       width: 135px;
 
-      font-family: "HK Grotesk";
       display: inline-block;
-      //border: solid 1px #c0c0c0;
-      //border-radius: 30px;
-      //padding: 0 40px 0 15px;
 
       font-size: 14px;
       font-weight: 400;

@@ -33,4 +33,9 @@ function useWindowSize() {
   return windowSize;
 }
 
-export default useWindowSize;
+const isMobile = () => {
+  const dimensions = useWindowSize();
+  return dimensions && dimensions.width < 1024;
+};
+
+export default isMobile;
