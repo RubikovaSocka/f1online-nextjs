@@ -19,14 +19,19 @@ import FBPageBox from "../components/FBPageBox";
 import { fetchNewArticles } from "../redux/actions/articlesActions";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
+import useWindowSize from "../utils/useWindowSize";
 
 function Home() {
   const postsData = useSelector(state => state.articles.indexArticles);
   const resultsData = useSelector(state => state.f1Results.results);
+  console.log("state");
+  console.log(useSelector(state => state));
   console.log("posts Data");
   console.log(postsData.length);
   console.log(postsData);
 
+  const windowSize = useWindowSize();
+console.log(windowSize)
   return (
     <>
       <Head>
@@ -36,10 +41,12 @@ function Home() {
         />
       </Head>
       <main className="contentsPage">
-        {
-          <TitleArea
-            posts={postsData.slice(0, 5)}
-          /> /*
+      
+        {windowSize && windowSize.width < 1023 ? (
+          <TitleArea posts={postsData.slice(0, 3)} />
+        ) : (
+          <TitleArea posts={postsData.slice(0, 5)} />
+        ) /*
         <Media query={{ maxWidth: 1023 }}>
           {matches =>
             matches ? (
@@ -48,8 +55,7 @@ function Home() {
               
             )
             
-            </Media>*/
-        }
+            </Media>*/}
         <Divider height="25px" />
         <div className="page">
           <div className="mainContent">

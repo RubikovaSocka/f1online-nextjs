@@ -32,6 +32,7 @@ const archiveArticlesReducer = (state = defaultState, action) => {
         client: {
           ...state.client,
           error: null,
+          isLoading: !action.isServer
         }
       };
     case ARCHIVE_ARTICLES.FETCH_SUCCESS_SERVER: {

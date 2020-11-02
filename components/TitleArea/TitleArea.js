@@ -5,25 +5,6 @@ import TitleArticlePreview from "../TitleArticlePreview";
 import styles from "./style.module.scss";
 
 function TitleArea({ posts }) {
-  return (
-    <div className={styles.container}>
-      <div className={styles.art00}>
-        <MainArticlePreview {...posts[0]} />
-      </div>
-      <div className={styles.art01}>
-        <TitleArticlePreview {...posts[1]} />
-      </div>
-      <div className={styles.art02}>
-        <TitleArticlePreview {...posts[3]} />
-      </div>
-      <div className={styles.art03}>
-        <TitleArticlePreview {...posts[2]} />
-      </div>
-      <div className={styles.art04}>
-        <TitleArticlePreview {...posts[4]} />
-      </div>
-    </div>
-  );/*
   if (posts.length === 3) {
     //show for mobile version
     return (
@@ -57,7 +38,7 @@ function TitleArea({ posts }) {
       </div>
     );
   }
-  return null;*/
+  return null;
 }
 
 export default TitleArea;

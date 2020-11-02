@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import Media from "react-media";
 import { TYPES as LOGOTRIGGER } from "../../redux/reducers/logoHideReducer";
 import styles from "./style.module.scss";
+import useWindowSize from "../../utils/useWindowSize";
 
 function SearchBar() {
   const dispatch = useDispatch();
@@ -16,6 +17,10 @@ function SearchBar() {
       return !wasOpened;
     });
   };
+
+  const windowSize = useWindowSize();
+  console.log(windowSize)
+  console.log("______________")
 
   return (
     <div className={styles.container}>
@@ -30,65 +35,59 @@ function SearchBar() {
           aria-label="Search"
           onChange={e => setSearchPhrase(e.target.value)}
         />
-        <Media query={{ maxWidth: 1023 }}>
-          {matches =>
-            matches ? (
-              //MOBILE
-              <>
-                <button
-                  onClick={e => {
-                    e.preventDefault();
-                    if (isOpenedMobile) {
-                      isOpenedChange();
-                      Router.push({
-                        pathname: "/archiv",
-                        query: {
-                          search: searchPhrase
-                        }
-                      });
-                    } else {
-                      isOpenedChange();
-                    }
-                  }}
-                  type={"submit"}
-                  className={`${isOpenedMobile ? styles.shown : ""} ${
-                    styles.buttonContent
-                  } ${styles.buttonGlass}`}
-                />
-                <button
-                  onClick={e => {
-                    e.preventDefault();
-                    if (searchPhrase.length === 0) {
-                      isOpenedChange();
-                    }
-                    setSearchPhrase("");
-                  }}
-                  style={{
-                    display: `${isOpenedMobile ? "inline-block" : "none"}`
-                  }}
-                  className={`${isOpenedMobile ? styles.shown : ""} ${
-                    styles.buttonContent
-                  } ${styles.buttonx}`}
-                />
-              </>
-            ) : (
-              //DESKTOP
-              <button
-                onClick={e => {
-                  e.preventDefault();
+        {windowSize && windowSize.width < 1023 ? (
+          <>
+            <button
+              onClick={e => {
+                e.preventDefault();
+                if (isOpenedMobile) {
+                  isOpenedChange();
                   Router.push({
                     pathname: "/archiv",
                     query: {
                       search: searchPhrase
                     }
                   });
-                }}
-                type={"submit"}
-                className={`${styles.shown} ${styles.buttonContent} ${styles.buttonGlass}`}
-              />
-            )
-          }
-        </Media>
+                } else {
+                  isOpenedChange();
+                }
+              }}
+              type={"submit"}
+              className={`${isOpenedMobile ? styles.shown : ""} ${
+                styles.buttonContent
+              } ${styles.buttonGlass}`}
+            />
+            <button
+              onClick={e => {
+                e.preventDefault();
+                if (searchPhrase.length === 0) {
+                  isOpenedChange();
+                }
+                setSearchPhrase("");
+              }}
+              style={{
+                display: `${isOpenedMobile ? "inline-block" : "none"}`
+              }}
+              className={`${isOpenedMobile ? styles.shown : ""} ${
+                styles.buttonContent
+              } ${styles.buttonx}`}
+            />
+          </>
+        ) : (
+          <button
+            onClick={e => {
+              e.preventDefault();
+              Router.push({
+                pathname: "/archiv",
+                query: {
+                  search: searchPhrase
+                }
+              });
+            }}
+            type={"submit"}
+            className={`${styles.buttonContent} ${styles.buttonGlass} ${styles.shown}`}
+          />
+        )}
         {/*button*/}
       </form>
     </div>
