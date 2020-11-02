@@ -50,10 +50,11 @@
   color: white;
   text-align: start;
   text-shadow: 2px 2px 2px black;
-
-  font: 700 20px "Cabin", "Source Sans Pro";
+  font: 700 17px "Cabin", "Source Sans Pro";
+  //font: 700 20px "Cabin", "Source Sans Pro";
 
   @media only screen and (min-width: 1024px) {
     padding: 11px 15px;
+    font-size: 20px;
   }
 }

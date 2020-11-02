@@ -1,10 +1,11 @@
 import { ARCHIVE_ARTICLES } from "../constants";
 
-const fetchArchiveArticles = ({ pageNumber, perPage, isServer }) => ({
+const fetchArchiveArticles = ({ pageNumber, perPage, searchPhrase, isServer }) => ({
   type: ARCHIVE_ARTICLES.FETCH,
   isServer,
   pageNumber,
-  perPage
+  perPage,
+  searchPhrase
 });
 
 const fetchMoreArchiveArticles = () => ({

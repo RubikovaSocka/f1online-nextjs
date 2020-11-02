@@ -26,6 +26,9 @@ $rowsDivider: 1px solid var(--widget-line-divider-color);
     &.position {
       text-align: center;
     }
+    &.time {
+      font-weight: 600;
+    }
   }
   td {
     border-top: $rowsDivider;
@@ -48,6 +51,7 @@ $rowsDivider: 1px solid var(--widget-line-divider-color);
 }
 .time {
   width: 100px;
+  font-weight: 400; 
   
   @media only screen and (min-width: 370px) {
     width: 120px;

@@ -1,68 +1,98 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import Router from "next/router";
+import { useDispatch } from "react-redux";
+import Media from "react-media";
+import { TYPES as LOGOTRIGGER } from "../../redux/reducers/logoHideReducer";
 import styles from "./style.module.scss";
 
-export default class SearchBar extends Component {
-  state = {
-    width: 0,
-    height: 0,
-    showFormClicked: false
-  };
+function SearchBar() {
+  const dispatch = useDispatch();
+  const [isOpenedMobile, setIsOpenedMobile] = useState(false);
+  const [searchPhrase, setSearchPhrase] = useState("");
 
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener("resize", this.updateWindowDimensions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowDimensions);
-  }
-
-  updateWindowDimensions = () => {
-    this.setState({
-      width: window.innerWidth,
-      height: window.innerHeight
+  const isOpenedChange = () => {
+    setIsOpenedMobile(wasOpened => {
+      dispatch({ type: `${wasOpened ? LOGOTRIGGER.SHOW : LOGOTRIGGER.HIDE}` });
+      return !wasOpened;
     });
   };
 
-  openSearchBar = () => {
-    this.setState(prev => {
-      return {
-        showFormClicked: !prev.showFormClicked
-      };
-    });
-  };
-
-  render() {
-    let button;
-
-    if (this.state.width < 1024) {
-      //mobile
-      button = (
-        <div
-          /*onClick={this.openSearchBar}*/ className={styles.buttonContent}
-        ></div>
-      );
-    } else {
-      //desktop
-      button = (
-        <button type="submit">
-          <div className={styles.buttonContent}></div>
-        </button>
-      );
-    }
-
-    return (
-      <div className={styles.container}>
-        <form className={`${styles.searchForm}`}>
-          <input
-            type="text"
-            placeholder="Hľadať"
-            className={`ifont ${this.state.showFormClicked ? styles.show : ""}`}
-            aria-label="Search"
-          />
-          {button}
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className={styles.container}>
+      <form
+        className={`${styles.searchForm} ${isOpenedMobile ? styles.shown : ""}`}
+      >
+        <input
+          type="text"
+          value={searchPhrase}
+          placeholder="Hľadať"
+          className={`ifont ${isOpenedMobile ? styles.show : ""}`}
+          aria-label="Search"
+          onChange={e => setSearchPhrase(e.target.value)}
+        />
+        <Media query={{ maxWidth: 1023 }}>
+          {matches =>
+            matches ? (
+              //MOBILE
+              <>
+                <button
+                  onClick={e => {
+                    e.preventDefault();
+                    if (isOpenedMobile) {
+                      isOpenedChange();
+                      Router.push({
+                        pathname: "/archiv",
+                        query: {
+                          search: searchPhrase
+                        }
+                      });
+                    } else {
+                      isOpenedChange();
+                    }
+                  }}
+                  type={"submit"}
+                  className={`${isOpenedMobile ? styles.shown : ""} ${
+                    styles.buttonContent
+                  } ${styles.buttonGlass}`}
+                />
+                <button
+                  onClick={e => {
+                    e.preventDefault();
+                    if (searchPhrase.length === 0) {
+                      isOpenedChange();
+                    }
+                    setSearchPhrase("");
+                  }}
+                  style={{
+                    display: `${isOpenedMobile ? "inline-block" : "none"}`
+                  }}
+                  className={`${isOpenedMobile ? styles.shown : ""} ${
+                    styles.buttonContent
+                  } ${styles.buttonx}`}
+                />
+              </>
+            ) : (
+              //DESKTOP
+              <button
+                onClick={e => {
+                  e.preventDefault();
+                  Router.push({
+                    pathname: "/archiv",
+                    query: {
+                      search: searchPhrase
+                    }
+                  });
+                }}
+                type={"submit"}
+                className={`${styles.shown} ${styles.buttonContent} ${styles.buttonGlass}`}
+              />
+            )
+          }
+        </Media>
+        {/*button*/}
+      </form>
+    </div>
+  );
 }
+
+export default SearchBar;

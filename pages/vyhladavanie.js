@@ -1,23 +1,22 @@
 import React from "react";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
-import { wrapper } from '../../../redux/store/store'
-import { fetchTagArchiveArticles } from "../../../redux/actions/tagArchiveActions";
+import { fetchTagArchiveArticles } from "../redux/actions/tagArchiveActions";
 
-import RPanel from "../../../components/RPanel.js";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle.js";
-import QuickNews from "../../../components/QuickNews/QuickNews.js";
-import CalResWidget from "../../../components/CalResWidget/CalResWidget.js";
-import Divider from "../../../components/Divider.js";
-import PopularBox from "../../../components/PopularBox/PopularBox.js";
-import ArchiveArticlesRenderer from "../../../components/ArchivArticles/ArchiveArticlesRenderer.js";
+import RPanel from "../components/RPanel.js";
+import SectionTitle from "../components/SectionTitle/SectionTitle.js";
+import QuickNews from "../components/QuickNews/QuickNews.js";
+import CalResWidget from "../components/CalResWidget/CalResWidget.js";
+import Divider from "../components/Divider.js";
+import PopularBox from "../components/PopularBox/PopularBox.js";
+import ArchiveArticlesRenderer from "../components/ArchivArticles/ArchiveArticlesRenderer.js";
 
 const PER_PAGE = 12;
 
-function Archiv() {
-  const router = useRouter();
+function Vyhladavanie() {
+  const router = useRouter()
   const dispatch = useDispatch();
   const { pageNumber } = useSelector(
     ({ tagArchiveArticles }) => tagArchiveArticles.client
@@ -42,6 +41,8 @@ function Archiv() {
       })
     );
   };
+
+  console.log(router);
 
   return (
     <>
@@ -74,9 +75,7 @@ function Archiv() {
           </div>
           <aside className="sideBar">
             <Divider height="40px" />
-            <PopularBox
-              pickedSlug={router.query.slug ? router.query.slug : ""}
-            />
+            <PopularBox pickedSlug={router.query.slug ? router.query.slug : ""}/>
             <Divider height="25px" />
             <QuickNews />
             {/*<RPanel />*/}
@@ -88,8 +87,8 @@ function Archiv() {
   );
   //}
 }
-/*
-Archiv.getInitialProps = async ({ store, query }) => {
+
+Vyhladavanie.getInitialProps = async ({ store, query }) => {
   store.dispatch(
     fetchTagArchiveArticles({
       pageNumber: 1,
@@ -101,22 +100,6 @@ Archiv.getInitialProps = async ({ store, query }) => {
   store.dispatch(END);
 
   await store.sagaTask.toPromise();
-};*/
+};
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  async ({ store, query }) => {
-    store.dispatch(
-      fetchTagArchiveArticles({
-        pageNumber: 1,
-        perPage: PER_PAGE,
-        tagSlug: query.slug,
-        isServer: true
-      })
-    );
-    store.dispatch(END);
-
-    await store.sagaTask.toPromise();
-  }
-);
-
-export default Archiv;
+export default Vyhladavanie;

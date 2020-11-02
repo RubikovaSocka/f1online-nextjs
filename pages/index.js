@@ -23,20 +23,9 @@ import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 function Home() {
   const postsData = useSelector(state => state.articles.indexArticles);
   const resultsData = useSelector(state => state.f1Results.results);
-  console.log("Results Data");
-  console.log(resultsData);
-
-  let titleSection, articlesSection;
-  //const { postsData } = this.props;
-  //console.log(this.props)
-
-  /*if (this.state.width < 1024) {
-      titleSection = <TitleArea posts={postsData.slice(0, 3)} />;
-      articlesSection = <ArticlesPanel posts={postsData.slice(3, 9)} />;
-    } else {*/
-  titleSection = <TitleArea posts={postsData.slice(0, 5)} />;
-  articlesSection = <ArticlesPanel posts={postsData.slice(5, 11)} />;
-  /*}*/
+  console.log("posts Data");
+  console.log(postsData.length);
+  console.log(postsData);
 
   return (
     <>
@@ -47,14 +36,37 @@ function Home() {
         />
       </Head>
       <main className="contentsPage">
-        {titleSection}
+        {
+          <TitleArea
+            posts={postsData.slice(0, 5)}
+          /> /*
+        <Media query={{ maxWidth: 1023 }}>
+          {matches =>
+            matches ? (
+              <TitleArea posts={postsData.slice(0, 3)} />
+            ) : (
+              
+            )
+            
+            </Media>*/
+        }
         <Divider height="25px" />
         <div className="page">
           <div className="mainContent">
             <SectionTitle title="Ďalšie správy" />
             <Divider height="10px" />
+            {
+              <Media query={{ maxWidth: 1023 }}>
+                {matches =>
+                  matches ? (
+                    <ArticlesPanel posts={postsData.slice(3, 9)} />
+                  ) : (
+                    <ArticlesPanel posts={postsData.slice(5, 11)} />
+                  )
+                }
+              </Media>
+            }
             <div className="basicButtonContainer">
-              {articlesSection}
               {
                 <ButtonWB
                   hrefProp="/archiv"
@@ -116,28 +128,28 @@ function Home() {
   );
   //}
 }
-
+/*
 Home.getInitialProps = async ({ store }) => {
-  if (store.getState().articles.indexArticles.length === 0) {
+  console.log("\n\n HOME INITIAL PROPS")
+  //if (store.getState().articles.indexArticles.length === 0) {
     store.dispatch(fetchNewArticles());
     store.dispatch(END);
-  }
+  //}
 
   await store.sagaTask.toPromise();
-};
-/*
+};*/
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
-    if (store.getState().articles.indexArticles.length === 0) {
-      store.dispatch(fetchNewArticles());
-      store.dispatch(END);
-    }
+    //if (store.getState().articles.indexArticles.length === 0) {
+    store.dispatch(fetchNewArticles());
+    store.dispatch(END);
+    //}
 
     await store.sagaTask.toPromise();
   }
 );
-*/
+
 /*
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   if (store.getState().articles.indexArticles.length === 0) {

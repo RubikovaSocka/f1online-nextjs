@@ -3,7 +3,7 @@ import CalendarItem from "./CalendarItem";
 import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
 
 function CalendarBox({ data }) {
-  return data.reverse().map((calendarItem, index) => (
+  return data.map((calendarItem, index) => (
     <>
       <CalendarItem key={index} position={index} {...calendarItem} />
       {index === 4 && data.length > 7 ? (

@@ -8,15 +8,20 @@ const defaultState = {
 };
 
 const articlesReducer = (state = defaultState, action) => {
-  console.log(action.type)
+  console.log(action);
   switch (action.type) {
     case HYDRATE:
-      return { ...state, ...action.payload.articles };
+      return {
+        ...state,
+        indexArticles:
+          action.payload.articles.indexArticles.length > 0
+            ? action.payload.articles.indexArticles
+            : state.indexArticles
+      };
 
     case INDEX_ARTICLES.FETCH:
       return {
         ...state,
-        isLoading: true,
         error: null
       };
     case INDEX_ARTICLES.FETCH_SUCCESS:
@@ -24,7 +29,7 @@ const articlesReducer = (state = defaultState, action) => {
         ...state,
         isLoading: false,
         error: null,
-        indexArticles: action.articles,
+        indexArticles: action.articles
       };
 
     default:

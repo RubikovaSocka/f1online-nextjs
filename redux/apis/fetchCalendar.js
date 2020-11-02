@@ -7,7 +7,7 @@ const FIELDS = "_fields=acf"
 export default async function fetchCalendar() {
   return await axios
     .get(`${URLS.BASE}${URLS.CALENDAR_ENDPOINT}?per_page=${PER_PAGE}&${FIELDS}`)
-    .then(res => res.data.map(item => item.acf))
+    .then(res => res.data.reverse().map(item => item.acf))
     .catch(err => {
       throw new Error(err.response.data.Error);
     });

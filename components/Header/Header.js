@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import MyNavbar from "../Navbar";
 import SocialMediaBasicPlugin from "../SocialMediaPlugin";
@@ -11,6 +11,8 @@ import styles from "./style.module.scss";
 import { THEMES } from "../../constants";
 
 function Header({ theme }) {
+  const logoShown = useSelector(({ logoTrigger }) => logoTrigger.logoShown);
+
   return (
     <div className={styles.container}>
       <div className={styles.shadowHide} />
@@ -19,7 +21,7 @@ function Header({ theme }) {
           <div className={styles.headerPanel}>
             <SocialMediaBasicPlugin />
             <Link href="/">
-              <a>
+              <a style={{ display: `${logoShown ? "inline-block" : "none"}` }}>
                 <img
                   className={styles.logo}
                   alt="-"
@@ -41,11 +43,4 @@ function Header({ theme }) {
   );
 }
 
-const mapStateToProps = ({ theme }) => ({
-  isThemeLight: theme.isThemeLight
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(Header);
+export default Header;

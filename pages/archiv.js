@@ -1,8 +1,9 @@
 import React from "react";
 import Head from "next/head";
 import { END } from "redux-saga";
+import { useRouter } from "next/router";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { wrapper } from "../redux/store/store";
 
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
@@ -14,7 +15,11 @@ import ArchiveArticlesRenderer from "../components/ArchivArticles/ArchiveArticle
 import { fetchArchiveArticles } from "../redux/actions/archiveActions";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 
+const PER_PAGE = 12;
+
 function Archiv() {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const { pageNumber } = useSelector(
     ({ archiveArticles }) => archiveArticles.client
   );
@@ -24,6 +29,20 @@ function Archiv() {
   const { articles, isLoading } = useSelector(({ archiveArticles }) => {
     return pageNumber === 1 ? archiveArticles.server : archiveArticles.client;
   });
+
+  const onPageClicked = pageNumber => {
+    window.scrollTo(0, 0);
+    dispatch(
+      fetchArchiveArticles({
+        pageNumber: pageNumber,
+        perPage: PER_PAGE,
+        isServer: false,
+        searchPhrase: router.query.search
+      })
+    );
+  };
+
+  //console.log(router);
 
   return (
     <>
@@ -43,14 +62,21 @@ function Archiv() {
       <main className="contentsPage">
         <div className="page">
           <div className="mainContent">
-            <SectionTitle title="Všetky správy" />
+            <SectionTitle
+              title={`${
+                router.query.search
+                  ? `Vyhľadávanie: \"${router.query.search}\"`
+                  : "Všetky články"
+              }`}
+            />
             <ArchiveArticlesRenderer
               articles={articles}
               totalPosts={totalArticlesCount}
               isLoading={isLoading}
               showPagination={true}
               currentPage={pageNumber}
-              perPage={12}
+              perPage={PER_PAGE}
+              pageClickCallback={selectedPage => onPageClicked(selectedPage)}
             />
           </div>
           <aside className="sideBar">
@@ -66,15 +92,37 @@ function Archiv() {
     </>
   );
 }
-
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+/*
+Archiv.getInitialProps = async ({ store, query }) => {
   store.dispatch(
-    fetchArchiveArticles({ pageNumber: 1, perPage: 12, isServer: true })
+    fetchArchiveArticles({
+      pageNumber: 1,
+      perPage: 12,
+      searchPhrase: query.search,
+      isServer: true
+    })
   );
   store.dispatch(fetchNewQuickNews());
   store.dispatch(END);
 
   await store.sagaTask.toPromise();
-});
+};
+*/
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store, query }) => {
+    store.dispatch(
+      fetchArchiveArticles({
+        pageNumber: 1,
+        perPage: 12,
+        searchPhrase: query.search,
+        isServer: true
+      })
+    );
+    store.dispatch(fetchNewQuickNews());
+    store.dispatch(END);
+
+    await store.sagaTask.toPromise();
+  }
+);
 
 export default Archiv;

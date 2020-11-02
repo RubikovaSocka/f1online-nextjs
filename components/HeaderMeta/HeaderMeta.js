@@ -11,6 +11,7 @@ export default function HeaderMeta({ theme }) {
         href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
       />
       <link key="meta_style" rel="stylesheet" href={theme} />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta key="meta_ogtitle" property="og:title" content={`F1online.sk`} />
       <meta key="meta_type" property="og:type" content="website" />
       <meta key="meta_url" property="og:url" content={`https://f1online.sk/`} />

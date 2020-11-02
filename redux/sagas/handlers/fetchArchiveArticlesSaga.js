@@ -6,12 +6,13 @@ import {
   setArchiveArticlesError
 } from "../../actions/archiveActions";
 
-function* fetchArchiveArticlesSaga({ pageNumber, perPage, isServer }) {
+function* fetchArchiveArticlesSaga({ pageNumber, perPage, searchPhrase, isServer }) {
   console.log("HAAAA \n\nHAAAA")
   try {
     const data = yield call(fetchArchiveArticles, {
       pageNumber: pageNumber,
-      perPage: perPage
+      perPage: perPage,
+      searchPhrase: searchPhrase
     });
     if (isServer) {
       yield put(setArchiveArticlesServer(data));

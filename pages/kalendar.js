@@ -47,7 +47,7 @@ function Calendar() {
   );
 }
 
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
   store.dispatch(fetchCalendar());
   store.dispatch(END);
 

@@ -31,7 +31,6 @@ const archiveArticlesReducer = (state = defaultState, action) => {
         ...state,
         client: {
           ...state.client,
-          isLoading: true,
           error: null,
         }
       };

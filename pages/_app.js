@@ -51,11 +51,12 @@ class App extends Component {
       ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {})
     };
 
-    // 2. Stop the saga if on server
+    // 2. Stop the saga if on server/
+    /*
     if (ctx.req) {
       ctx.store.dispatch(END);
       await ctx.store.sagaTask.toPromise();
-    }
+    }*/
 
     return {
       pageProps
