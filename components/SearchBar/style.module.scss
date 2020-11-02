@@ -11,6 +11,8 @@
 }
 .searchForm {
   margin-top: -2px;
+  display: flex;
+  flex-direction: row;
 
   @media only screen and (min-width: 1024px) {
     margin-left: 15px;
@@ -53,30 +55,22 @@
       background-color: white;
     }
   }
-  button {
-    padding: auto 10px;
-
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-  }
-
   .buttonContent {
     cursor: pointer;
-
+    border: none;
+    background-color: transparent;
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
 
     width: 22px;
     height: 22px;
-
+    padding: 0;
+    
     &.shown {
       width: 18px;
       height: 18px;
-      margin-left: 10px;
-      position: relative;
-      bottom: 5px;
+      margin: auto 0 auto 10px;
 
       @media only screen and (min-width: 1024px) {
         width: 16px;

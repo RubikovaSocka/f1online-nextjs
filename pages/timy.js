@@ -1,13 +1,15 @@
 import React from "react";
 import axios from "axios";
+import { END } from "redux-saga";
+import { wrapper } from "../redux/store/store";
 import Head from "next/head";
 
-import QuickNews from "../components/QuickNews/QuickNews.js";
+import QuickNews from "../components/QuickNews";
 import RPanel from "../components/RPanel.js";
-import CalResWidget from "../components/CalResWidget/CalResWidget.js";
+import CalResWidget from "../components/CalResWidget";
 import TeamPreview from "../components/TeamPreview/TeamPreview.js";
 import Divider from "../components/Divider.js";
-import SectionTitle from "../components/SectionTitle/SectionTitle.js";
+import SectionTitle from "../components/SectionTitle";
 
 import styles from "../styles/timy.module.scss";
 
@@ -54,16 +56,20 @@ export default function Teams({ teamsData }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const response = await axios({
-    method: "get",
-    url: "https://wpadmin.f1online.sk/wp-content/uploads/teams.json"
-    //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-  });
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store }) => {
+    store.dispatch(END);
+    const response = await axios({
+      method: "get",
+      url: "https://wpadmin.f1online.sk/wp-content/uploads/teams.json"
+      //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
+    });
+    await store.sagaTask.toPromise();
 
-  return {
-    props: {
-      teamsData: response.data
-    }
-  };
-}
+    return {
+      props: {
+        teamsData: response.data
+      }
+    };
+  }
+);
