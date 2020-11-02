@@ -14,10 +14,6 @@ import SectionTitle from "../components/SectionTitle";
 import styles from "../styles/timy.module.scss";
 
 export default function Teams({ teamsData }) {
-  let dataBlock = teamsData.ConstructorTable.Constructors.map(constructor => {
-    return <TeamPreview constructor={constructor} />;
-  });
-
   return (
     <>
       <Head>
@@ -40,7 +36,11 @@ export default function Teams({ teamsData }) {
             <Divider height="20px" />
             {/*<img className={styles.image} src='' />*/}
 
-            <div className={styles.container}>{dataBlock}</div>
+            <div className={styles.container}>
+              {teamsData.ConstructorTable.Constructors.map(constructor => (
+                <TeamPreview constructor={constructor} />
+              ))}
+            </div>
           </div>
           <aside className="sideBar">
             <Divider height="50px" />

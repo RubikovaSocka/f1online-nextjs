@@ -1,5 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import axios from "axios";
+import { END } from "redux-saga";
+import { wrapper } from "../../redux/store/store";
+
 import QuickNews from "../../components/QuickNews/QuickNews.js";
 import RPanel from "../../components/RPanel.js";
 import CalResWidget from "../../components/CalResWidget/CalResWidget.js";
@@ -13,7 +16,7 @@ import ArchivArticles from "../../components/ArchivArticles/ArchivArticles.js";
 import ImageGallery from "../../components/react-image-gallery/src/ImageGallery";
 import SideRePanel from "../../components/Ads/SideRePanel/SideRePanel.js";
 
-export default class DriverPage extends Component {
+class DriverPage extends Component {
   constructor() {
     super();
     this.state = {
@@ -54,7 +57,7 @@ export default class DriverPage extends Component {
   render() {
     const { driverData } = this.props;
     let driverBioData = (
-      <Fragment>
+      <>
         <SectionTitle
           title={`${driverData.givenName} ${driverData.familyName}`}
         />
@@ -111,10 +114,10 @@ export default class DriverPage extends Component {
             </div>
           </div>
         </div>
-      </Fragment>
+      </>
     );
     let driverPosts = (
-      <ArchivArticles tagSlug={driverData.slug} asArchive={false} perpage="3" />
+      <ArchivArticles tagSlug={driverData.slug} asArchive={false} perpage="6" />
     );
 
     return (
@@ -198,24 +201,32 @@ export default class DriverPage extends Component {
   }
 }
 
-export async function getServerSideProps({ params }) {
-  const responseDriverData = await axios({
-    method: "get",
-    url: `https://wpadmin.f1online.sk/wp-content/uploads/${params.id}.json`
-    //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-  });
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store, params }) => {
+    store.dispatch(END);
 
-  //TODO: zmen na jazdcov tag
-  const responseDriverPosts = await axios({
-    method: "get",
-    url: "https://wpadmin.f1online.sk/wp-json/wp/v2/posts?per_page=3"
-    //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-  });
+    const responseDriverData = await axios({
+      method: "get",
+      url: `https://wpadmin.f1online.sk/wp-content/uploads/${params.id}.json`
+      //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
+    });
 
-  return {
-    props: {
-      driverData: responseDriverData.data,
-      postsData: responseDriverPosts.data
-    }
-  };
-}
+    //TODO: zmen na jazdcov tag
+    const responseDriverPosts = await axios({
+      method: "get",
+      url: "https://wpadmin.f1online.sk/wp-json/wp/v2/posts?per_page=3"
+      //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
+    });
+
+    await store.sagaTask.toPromise();
+
+    return {
+      props: {
+        driverData: responseDriverData.data,
+        postsData: responseDriverPosts.data
+      }
+    };
+  }
+);
+
+export default DriverPage;

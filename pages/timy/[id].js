@@ -1,5 +1,7 @@
 import React, { Fragment, Component } from "react";
 import axios from "axios";
+import { END } from "redux-saga";
+import { wrapper } from "../../redux/store/store";
 import Link from "next/link";
 import ImageGallery from "../../components/react-image-gallery/src/ImageGallery";
 import Head from "next/head";
@@ -171,7 +173,7 @@ export default class TeamPage extends Component {
     );
 
     let teamPosts = (
-      <ArchivArticles tagSlug={teamData.slug} asArchive={false} perpage="3" />
+      <ArchivArticles tagSlug={teamData.slug} asArchive={false} perpage="6" />
     );
 
     return (
@@ -206,18 +208,6 @@ export default class TeamPage extends Component {
                   <h2 className={styles.title}>Najnovšie články</h2>
                 </div>
                 {teamPosts}
-                {/*<div className={styles.titleContainer}>
-                                <h2 className={styles.title}>História</h2>
-                            </div>
-                            
-                            <article className={styles.history}>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a sem sit amet nibh fermentum condimentum id id justo. Morbi placerat leo sit amet elementum ultricies. Pellentesque mattis massa vitae augue tincidunt bibendum. Etiam consequat tincidunt egestas. Fusce eleifend sit amet ex fringilla euismod.</p>
-                                <p>Sed faucibus volutpat gravida. Duis eget tortor sed libero suscipit elementum nec ut dui. Quisque vitae enim ut ante gravida egestas. Phasellus risus ipsum, suscipit congue lectus eget, eleifend venenatis dolor. Sed nec tellus eget justo rhoncus congue.</p>
-                                <p>Mauris porttitor tristique purus, vel rhoncus turpis placerat vel. Nulla quam arcu, porta eget neque in, fermentum iaculis ipsum. Quisque venenatis velit et quam posuere, in sagittis risus rhoncus.</p>
-                                <p>Mauris posuere justo eget nunc bibendum mollis. Duis nec tellus vel felis blandit iaculis. Proin imperdiet vitae purus nec bibendum. Vestibulum id eros sed urna mattis tempor. Donec elementum tincidunt mauris, nec viverra ipsum ullamcorper in.</p>
-                                <p>Morbi id purus urna. Sed finibus eget lacus sed blandit. Aenean et volutpat orci, sagittis ornare mi. Aenean eget finibus magna, eu feugiat sapien. Etiam aliquam, urna eu consequat semper, elit sem fringilla nulla, eget varius metus augue a massa.</p>
-                            </article>
-                            */}
 
                 <div className={styles.titleContainer}>
                   <Divider height="15px" />
@@ -250,24 +240,22 @@ export default class TeamPage extends Component {
   }
 }
 
-export async function getServerSideProps({ params }) {
-  const responseTeamData = await axios({
-    method: "get",
-    url: `https://wpadmin.f1online.sk/wp-content/uploads/${params.id}.json`
-    //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-  });
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store, params }) => {
+    store.dispatch(END);
 
-  //TODO: zmen na jazdcov tag
-  const responseTeamPosts = await axios({
-    method: "get",
-    url: "https://wpadmin.f1online.sk/wp-json/wp/v2/posts?per_page=3"
-    //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-  });
+    const responseTeamData = await axios({
+      method: "get",
+      url: `https://wpadmin.f1online.sk/wp-content/uploads/${params.id}.json`
+      //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
+    });
 
-  return {
-    props: {
-      teamData: responseTeamData.data,
-      postsData: responseTeamPosts.data
-    }
-  };
-}
+    await store.sagaTask.toPromise();
+
+    return {
+      props: {
+        teamData: responseTeamData.data,
+      }
+    };
+  }
+);
