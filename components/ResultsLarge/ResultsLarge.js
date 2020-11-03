@@ -11,13 +11,12 @@ function DriverDataItem({ pos, renderID, name, team, time }) {
     <div className={styles.dataItem}>
       <span className={styles.position}>{pos}.</span>
       <div
-        className={`${styles.driverBox} 
+        className={`${styles.driverBox} ${pos < 4 ? styles.red : ""}
                             ${
                               renderID === "gp"
                                 ? styles.driverBoxWidthLV
                                 : styles.driverBoxWidthC
-                            }
-                            ${pos < 4 ? styles.red : ""}`}
+                            }`}
       >
         <span className={styles.name}>{name}</span>
         <span className={styles.team}>{team}</span>
@@ -35,7 +34,7 @@ function ResultsLarge() {
   const champData = useSelector(
     ({ f1Results }) => f1Results.results[0].driverChamp
   );
-  
+
   return (
     <div className={styles.outerContainer}>
       <div>
@@ -80,4 +79,5 @@ function ResultsLarge() {
     </div>
   );
 }
+
 export default ResultsLarge;

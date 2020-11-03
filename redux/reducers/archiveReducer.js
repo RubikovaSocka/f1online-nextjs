@@ -6,12 +6,12 @@ const defaultState = {
     articles: [],
     error: null,
     pageNumber: 1,
-    isLoading: false,
+    isLoading: true,
     totalArticlesCount: 0
   },
   client: {
     articles: [],
-    isLoading: false,
+    isLoading: true,
     error: null,
     pageNumber: 1,
     totalArticlesCount: 0
@@ -32,16 +32,20 @@ const archiveArticlesReducer = (state = defaultState, action) => {
         client: {
           ...state.client,
           error: null,
-          isLoading: !action.isServer
+          isLoading: true
         }
       };
     case ARCHIVE_ARTICLES.FETCH_SUCCESS_SERVER: {
       return {
         ...state,
+        client: {
+          isLoading: false
+        },
         server: {
           error: null,
           articles: action.articles,
-          totalArticlesCount: action.totalArticlesCount
+          totalArticlesCount: action.totalArticlesCount,
+          isLoading: false
         }
       };
     }

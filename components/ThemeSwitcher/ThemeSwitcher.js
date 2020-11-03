@@ -35,13 +35,13 @@ function ThemeSwitcher() {
           className={`${styles.lightThemeImg} ${
             theme === THEMES.LIGHT ? styles.selected : ""
           }`}
-          alt="."
+          alt="Light theme icon"
         />
         <img
           className={`${styles.darkThemeImg} ${
             theme === THEMES.DARK ? "" : styles.selected
           }`}
-          alt="."
+          alt="Dark theme icon"
         />
       </button>
     </div>

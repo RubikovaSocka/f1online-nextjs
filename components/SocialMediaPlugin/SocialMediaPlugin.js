@@ -11,7 +11,7 @@ function SocialMediaBasicPlugin() {
           rel="noreferrer"
           target="_blank"
         >
-          <img alt="." className={styles.fbImg} />
+          <img alt="FB icon" className={styles.fbImg} />
         </a>
       </div>
 
@@ -22,7 +22,7 @@ function SocialMediaBasicPlugin() {
           target="_blank"
           className="noOutline"
         >
-          <img alt="." className={styles.instaImg} />
+          <img alt="Instagram Icon" className={styles.instaImg} />
         </a>
       </div>
       <div className={styles.item}>
@@ -32,7 +32,7 @@ function SocialMediaBasicPlugin() {
           target="_blank"
           className="noOutline"
         >
-          <img alt="." className={styles.youtubeImg} />
+          <img alt="Youtube Icon" className={styles.youtubeImg} />
         </a>
       </div>
     </div>

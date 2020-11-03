@@ -30,6 +30,8 @@ function Archiv() {
     return pageNumber === 1 ? archiveArticles.server : archiveArticles.client;
   });
 
+  console.log(articles)
+
   const onPageClicked = pageNumber => {
     window.scrollTo(0, 0);
     dispatch(
@@ -92,22 +94,7 @@ function Archiv() {
     </>
   );
 }
-/*
-Archiv.getInitialProps = async ({ store, query }) => {
-  store.dispatch(
-    fetchArchiveArticles({
-      pageNumber: 1,
-      perPage: 12,
-      searchPhrase: query.search,
-      isServer: true
-    })
-  );
-  store.dispatch(fetchNewQuickNews());
-  store.dispatch(END);
 
-  await store.sagaTask.toPromise();
-};
-*/
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, query }) => {
     store.dispatch(
