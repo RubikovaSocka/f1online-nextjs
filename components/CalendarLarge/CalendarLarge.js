@@ -1,23 +1,108 @@
-import React, { Component } from "react";
 import { useSelector } from "react-redux";
 import { addMinutes, format, parse } from "date-fns";
 
 import LinkAsButton from "../LinkAsButton/LinkAsButton";
 import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
+import CalendarItem from "./CalendarItem";
 
-import styles from "./style.module.scss";
+import styled from "styled-components";
 
-function RenderCalendarItem({ event, time, tv }) {
-  return (
-    <div className={styles.timeDataItem}>
-      <span className={styles.event}>{event}</span>
-      <div className={styles.inRow}>
-        <span className={styles.time}>{time}</span>
-        <span className={styles.tvStations}>{tv}</span>
-      </div>
-    </div>
-  );
-}
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: auto 328px 17px 305px 30px 305px auto;
+  grid-template-rows: 10px 205px 30px 26px;
+
+  @media only screen and (min-width: 1280px) {
+    grid-template-columns: auto 328px 17px 328px 38px 320px auto;
+  }
+`;
+
+const Table = styled.div`
+  grid-column: 4 / span 1;
+  grid-row: 2 / span 1;
+
+  font-size: 14px;
+  font-family: "HK Grotesk", "Source Sans Pro";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+`;
+
+const VenueHeader = styled.div`
+  padding-left: 7px;
+  border-left: 3px solid #e10600;
+`;
+
+const VenueName = styled.p`
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--basic-text-color);
+`;
+
+const VenueDate = styled.p`
+  margin: 0;
+  color: var(--basic-text-color);
+`;
+
+const TimesContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const TimesFirstColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TimesSecondColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+`;
+
+const ShowAllButton = styled.div`
+  grid-column: 4 / span 1;
+  grid-row: 3 / span 1;
+  margin-top: 10px;
+  margin-right: 40px;
+
+  @media only screen and (min-width: 1280px) {
+    margin-right: 10px;
+  }
+`;
+
+const GPImage = styled.img`
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+  height: 100%;
+`;
+
+const getTimeText = (time, minutes) => {
+  return `${time} - ${format(
+    addMinutes(parse(time, "HH:mm", new Date()), minutes),
+    "HH:mm"
+  )}`;
+};
+
+const getTvText = tv => {
+  return `vysiela ${tv ? tv : "doplníme..."}`;
+};
+
+const SESSIONS = {
+  FP1: "1. tréning",
+  FP2: "2. tréning",
+  FP3: "3. tréning",
+  Q: "Kvalifikácia",
+  R: "Preteky"
+};
+
+const SESSION_DUR = {
+  FP1: 90,
+  FP2: 90,
+  FP3: 60,
+  Q: 60
+};
 
 function CalendarLarge() {
   const {
@@ -37,88 +122,75 @@ function CalendarLarge() {
   } = useSelector(({ programme }) => programme.event);
 
   return (
-    <div>
+    <>
       <SideSectionTitle title="Najbližšie preteky" />
-      <div className={styles.container}>
-        <img
-          className={styles.image}
+      <Container>
+        <GPImage
           alt={`Ilustračná foto k VC ${venue_name}`}
           src={`${circuit_image}`}
         />
-        <div className={styles.dataContainer}>
-          <div className={styles.venueTitleContainer}>
-            <p className={styles.venueName}>VC {venue_name}</p>
-            <p className={styles.date}>{venue_date}</p>
-          </div>
-          <div className={styles.cols}>
-            <div className={styles.col1}>
+        <Table>
+          <VenueHeader>
+            <VenueName>VC {venue_name}</VenueName>
+            <VenueDate>{venue_date}</VenueDate>
+          </VenueHeader>
+          <TimesContainer>
+            <TimesFirstColumn>
               {fp1_time ? (
-                <RenderCalendarItem
+                <CalendarItem
                   event="1. tréning"
-                  time={`${fp1_time} - ${format(
-                    addMinutes(parse(fp1_time, "HH:mm", new Date()), 90),
-                    "HH:mm"
-                  )}`}
-                  tv={`vysiela${fp1_tv ? " " + fp1_tv : ": doplníme..."}`}
+                  time={getTimeText(fp1_time, SESSION_DUR.FP1)}
+                  tv={getTvText(fp1_tv)}
                 />
               ) : (
                 ""
               )}
               {fp2_time ? (
-                <RenderCalendarItem
+                <CalendarItem
                   event="2. tréning"
-                  time={`${fp2_time} - ${format(
-                    addMinutes(parse(fp2_time, "HH:mm", new Date()), 90),
-                    "HH:mm"
-                  )}`}
-                  tv={`vysiela${fp2_tv ? " " + fp2_tv : ": doplníme..."}`}
+                  time={getTimeText(fp2_time, SESSION_DUR.FP2)}
+                  tv={getTvText(fp2_tv)}
                 />
               ) : (
                 ""
               )}
               {fp3_time ? (
-                <RenderCalendarItem
+                <CalendarItem
                   event="3. tréning"
-                  time={`${fp3_time} - ${format(
-                    addMinutes(parse(fp3_time, "HH:mm", new Date()), 60),
-                    "HH:mm"
-                  )}`}
-                  tv={`vysiela${fp3_tv ? " " + fp3_tv : ": doplníme..."}`}
+                  time={getTimeText(fp3_time, SESSION_DUR.FP3)}
+                  tv={getTvText(fp3_tv)}
                 />
               ) : (
                 ""
               )}
-            </div>
-            <div className={styles.col2}>
+            </TimesFirstColumn>
+            <TimesSecondColumn>
               {q_time ? (
-                <RenderCalendarItem
+                <CalendarItem
                   event="Kvalifikácia"
-                  time={`${q_time} - ${format(
-                    addMinutes(parse(q_time, "HH:mm", new Date()), 60),
-                    "HH:mm"
-                  )}`}
-                  tv={`vysiela${q_tv ? " " + q_tv : ": doplníme..."}`}
+                  time={getTimeText(q_time, SESSION_DUR.Q)}
+                  tv={getTvText(q_tv)}
                 />
               ) : (
                 ""
               )}
               {r_time ? (
-                <RenderCalendarItem
+                <CalendarItem
                   event="Preteky"
                   time={`${r_time}`}
-                  tv={`vysiela${r_tv ? " " + r_tv : ": doplníme..."}`}
+                  tv={getTvText(r_tv)}
                 />
               ) : (
                 ""
               )}
-            </div>
-          </div>
-        </div>
-        <div className={styles.button}>
+            </TimesSecondColumn>
+          </TimesContainer>
+        </Table>
+        <ShowAllButton>
           <LinkAsButton target={"/kalendar"} title={"Celý kalendár"} />
-        </div>
-      </div>
-    </div>
+        </ShowAllButton>
+      </Container>
+    </>
   );
 }
 export default CalendarLarge;
