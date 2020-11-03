@@ -1,19 +1,165 @@
 import React, { useEffect } from "react";
 import EmbedContainer from "react-oembed-container";
-import styles from "./EmbedFullscreen.module.scss";
 import TrackedRSpravyPanel from "../Ads/TrackedRSpravyPanel";
 import ReactGA from "react-ga";
-import Media from "react-media";
 import AdSense from "react-adsense";
 
-export default function EmbedFullscreen({
-  id,
-  date,
-  embed,
-  content,
-  hideClick,
-  hidePopup
-}) {
+import styled from "styled-components";
+import isMobile from "../../utils/isMobile";
+
+const Container = styled.div`
+  z-index: 150;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  width: calc(100% - 40px);
+  height: calc(100% - 100px);
+
+  padding: 10px 0;
+
+  background-color: var(--basic-back-color);
+  box-shadow: var(--popup-shadow);
+  overflow: hidden;
+
+  @media only screen and (min-width: 1024px) {
+    width: 920px;
+    top: 0;
+    bottom: 0;
+    height: calc(100vh - 100px);
+    max-height: 660px;
+    padding: 10px;
+  }
+`;
+
+const MessageText = styled.div`
+  padding: 0 8px;
+  font-family: "HK Grotesk";
+  font-size: 14px;
+  z-index: 0;
+  width: calc(100% - 16px);
+  color: var(--article-text-color);
+  p {
+    margin-bottom: 3px;
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 24px;
+  padding: 5px 12px;
+  cursor: pointer;
+  color: var(--sub-title-color);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &:hover {
+    color: var(--basic-text-color);
+  }
+  span {
+    text-transform: uppercase;
+    font-family: "HK Grotesk";
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 3px;
+  }
+`;
+
+const Content = styled.div`
+  position: absolute;
+  top: 40px;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: calc(100% - 20px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px;
+
+  @media only screen and (max-width: 1023px) {
+    height: ${props =>
+      props.textOnly ? "calc(50% - 10px)" : "calc(100% - 140px)"};
+  }
+
+  @media only screen and (min-width: 1024px) {
+    left: 20px;
+    width: calc(100% - 360px);
+    height: calc(100% - 60px);
+    padding: 0;
+  }
+`;
+
+const RPanel = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+  width: calc(100% - 20px);
+  height: 70px;
+  overflow: hidden;
+
+  @media only screen and (min-width: 1024px) {
+    top: 40px;
+    right: 20px;
+    bottom: unset;
+
+    width: 300px;
+    height: calc(100% - 60px) !important;
+  }
+`;
+
+const Embed = styled(EmbedContainer)`
+  margin-top: 10px;
+  width: calc(100% - 20px);
+
+  div iframe {
+    width: 100%;
+  }
+  > div > iframe {
+    width: 100%;
+    max-height: 280px;
+  }
+
+  > div {
+    position: relative !important;
+    padding-bottom: 56.25% !important; /* 16:9 */
+    height: 0 !important;
+  }
+  > div > iframe {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    margin-top: 20px;
+    width: calc(100% - 80px);
+
+    > div > iframe {
+      width: 100%;
+      max-height: 280px;
+    }
+  }
+`;
+
+function EmbedFullscreen({ id, date, embed, content, hideClick, hidePopup }) {
   useEffect(() => {
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
@@ -21,63 +167,48 @@ export default function EmbedFullscreen({
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div
-        className={`${styles.content} ${
-          embed.length === 0 ? styles.textOnlyContent : ""
-        }`}
-      >
-        <div
-          className={styles.message}
+    <Container>
+      <Content textOnly={embed.length === 0}>
+        <MessageText
           dangerouslySetInnerHTML={{
             __html: date.concat("").concat(content)
           }}
         />
-
-        <EmbedContainer className={styles.embed} markup={embed}>
+        <Embed markup={embed}>
           <div
             dangerouslySetInnerHTML={{
               __html: embed
             }}
-          ></div>
-        </EmbedContainer>
-      </div>
-      <div
-        className={`${styles.rPanel} ${
-          embed.length === 0 ? styles.textOnlyPanel : ""
-        }`}
-      >
-        <Media query={{ maxWidth: 1023 }}>
-          {matches =>
-            matches ? (
-              <AdSense.Google
-                client="ca-pub-2681240380511410"
-                slot="3863813186"
-                style={{
-                  display: "inline-block",
-                  //float: "left",
-                  width: "100%",
-                  height: "100%"
-                }}
-                layout="in-article"
-                format=""
-              />
-            ) : (
-              <TrackedRSpravyPanel />
-            )
-          }
-        </Media>
-      </div>
-
-      <button
-        className={styles.closeButton}
+          />
+        </Embed>
+      </Content>
+      <RPanel>
+        {isMobile ? (
+          <AdSense.Google
+            client="ca-pub-2681240380511410"
+            slot="3863813186"
+            style={{
+              display: "inline-block",
+              width: "100%",
+              height: "100%"
+            }}
+            layout="in-article"
+            format=""
+          />
+        ) : (
+          <TrackedRSpravyPanel />
+        )}
+      </RPanel>
+      <CloseButton
         onClick={() => {
           hideClick();
           hidePopup();
         }}
       >
         <span>Zavrieť</span>&times;
-      </button>
-    </div>
+      </CloseButton>
+    </Container>
   );
 }
+
+export default EmbedFullscreen;

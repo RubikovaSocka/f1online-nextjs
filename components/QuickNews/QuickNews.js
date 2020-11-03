@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./QuickNews.module.scss";
 import formatDate from "../../utils/dateFormatter";
 import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
 import LoadingSpinner from "../LoadingSpinner";
@@ -9,26 +8,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMoreQuickNews } from "../../redux/actions/quickNewsActions";
 
-function OneLineNews({ hasvideo, content, date, embed, callback }) {
-  return (
-    <div className={styles.newsItemContainer}>
-      <p className={styles.date}>{date}</p>
-      <div className={`${styles.messageContainer}`}>
-        <div
-          className={`${styles.message} ${
-            hasvideo && hasvideo === "Áno"
-              ? `${styles.icon} ${styles.video}`
-              : embed.length > 0
-              ? `${styles.icon} ${styles.post}`
-              : ""
-          }`}
-          dangerouslySetInnerHTML={{ __html: content }}
-          onClick={callback}
-        />
-      </div>
-    </div>
-  );
-}
+import OneLineNewsItem from "./OneLineNewsItem";
+
+import styled from "styled-components";
+
+const Container = styled.div`
+  margin-bottom: 25px;
+`;
 
 function QuickNews() {
   const dispatch = useDispatch();
@@ -41,7 +27,7 @@ function QuickNews() {
   );
 
   let newsTriggersArray = newsArray.map((newsItem, index) => (
-    <OneLineNews
+    <OneLineNewsItem
       key={index}
       id={newsItem.id}
       date={formatDate(newsItem.date)}
@@ -53,7 +39,7 @@ function QuickNews() {
   ));
 
   return (
-    <div className={styles.quicknewsContainer}>
+    <Container>
       <SideSectionTitle title="Rýchle správy" />
       {shownItem.isShown ? (
         <Popup
@@ -87,7 +73,7 @@ function QuickNews() {
         }
       >
         {newsArray.map((newsItem, index) => (
-          <OneLineNews
+          <OneLineNewsItem
             key={index}
             id={newsItem.id}
             date={formatDate(newsItem.date)}
@@ -100,7 +86,7 @@ function QuickNews() {
           />
         ))}
       </InfiniteScroll>
-    </div>
+    </Container>
   );
 }
 
