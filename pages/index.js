@@ -44,15 +44,12 @@ function Home() {
         />
       </Head>
       <main className="contentsPage">
-        <Container>
-          <span>SPAN</span>
-          <GlobalStyle />
-          {isScreenMobile ? (
-            <TitleArea posts={postsData.slice(0, 3)} />
-          ) : (
-            <TitleArea posts={postsData.slice(0, 5)} />
-          )}
-        </Container>
+        <GlobalStyle />
+        {isScreenMobile ? (
+          <TitleArea posts={postsData.slice(0, 3)} />
+        ) : (
+          <TitleArea posts={postsData.slice(0, 5)} />
+        )}
         <Divider height="25px" />
         <div className="page">
           <div className="mainContent">
