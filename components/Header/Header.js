@@ -8,10 +8,10 @@ import SearchBar from "../SearchBar";
 
 import { THEMES } from "../../constants";
 
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
 const shadowMobile = "0 0px 8px rgba(0, 0, 0, 0.25);";
-const shadowPC = "0 0px 8px rgba(0, 0, 0, 0.4)";
+//const shadowPC = "0 0px 8px rgba(0, 0, 0, 0.4)";
 
 const Container = styled.div`
   width: 100%;
