@@ -20,6 +20,17 @@ import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 import isMobile from "../utils/isMobile";
 
+import styled, { createGlobalStyle } from "styled-components";
+const GlobalStyle = createGlobalStyle`
+ h1 {
+   font-size: 50px;
+   color: green;
+ }
+`;
+const Container = styled.div`
+  text-align: center;
+`;
+
 function Home() {
   const postsData = useSelector(state => state.articles.indexArticles);
   const isScreenMobile = isMobile();
@@ -33,15 +44,20 @@ function Home() {
         />
       </Head>
       <main className="contentsPage">
-        {isScreenMobile ? (
-          <TitleArea posts={postsData.slice(0, 3)} />
-        ) : (
-          <TitleArea posts={postsData.slice(0, 5)} />
-        )}
+        <Container>
+          <span>SPAN</span>
+          <GlobalStyle />
+          {isScreenMobile ? (
+            <TitleArea posts={postsData.slice(0, 3)} />
+          ) : (
+            <TitleArea posts={postsData.slice(0, 5)} />
+          )}
+        </Container>
         <Divider height="25px" />
         <div className="page">
           <div className="mainContent">
             <SectionTitle title="Ďalšie správy" />
+
             <Divider height="10px" />
             {isScreenMobile ? (
               <ArticlesPanel posts={postsData.slice(3, 9)} />
