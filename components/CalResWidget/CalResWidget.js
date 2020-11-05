@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-import ResultsWidget from "./ResultsWidget";
+//import ResultsWidget from "./ResultsWidget";
 import CalendarWidget from "./CalendarWidget";
 import SideSectionTitle from "../SideSectionTitle";
 import SideWidgetButton from "./SideWidgetButton";
+
+import dynamic from "next/dynamic";
+const ResultsWidget = dynamic(() => import('./ResultsWidget'))
 
 import styles from "./style.module.scss";
 

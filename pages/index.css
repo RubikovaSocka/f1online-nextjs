@@ -21,7 +21,7 @@
   src: url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.ttf") format("truetype"),
     url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.woff") format("woff"),
     url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.woff2") format("woff2");
-}
+}/*
 @font-face {
   font-family: "Cabin";
   font-style: normal;
@@ -36,7 +36,7 @@
   src: url("./fonts/Cabin/Cabin-SemiBold.ttf") format("truetype"),
     url("./fonts/Cabin/Cabin-SemiBold.woff") format("woff"),
     url("./fonts/Cabin/Cabin-SemiBold.woff2") format("woff2");
-}
+}*/
 @font-face {
   font-family: "Cabin";
   font-style: bold;
@@ -66,10 +66,14 @@ body {
   outline: none;
 }
 
-#__gatsby {
+#__next {
   min-height: calc(100% - 60px);
   padding-bottom: 60px;
   position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* LAYOUT */

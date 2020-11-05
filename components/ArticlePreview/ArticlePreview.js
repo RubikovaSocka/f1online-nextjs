@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import formatDate from "../../utils/dateFormatter.js";
 import getImagePreview from "../../utils/getImagePreview.js";
-
+import LazyLoad from "react-lazyload";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -115,12 +115,14 @@ function ArticlePreview({ id, slug, title, date, better_featured_image }) {
     <Container>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
         <a>
-          <ImgContainer>
-            {getImagePreview({
-              imgData: better_featured_image,
-              imgSize: "medium"
-            })}
-          </ImgContainer>
+          <LazyLoad>
+            <ImgContainer>
+              {getImagePreview({
+                imgData: better_featured_image,
+                imgSize: "medium"
+              })}
+            </ImgContainer>
+          </LazyLoad>
         </a>
       </Link>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>

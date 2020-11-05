@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import formatDate from "../../utils/dateFormatter";
 import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
 import LoadingSpinner from "../LoadingSpinner";
-import EmbedFullscreen from "./EmbedFullscreen.js";
+//import EmbedFullscreen from "./EmbedFullscreen.js";
 import Popup from "reactjs-popup";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,6 +11,9 @@ import { fetchMoreQuickNews } from "../../redux/actions/quickNewsActions";
 import OneLineNewsItem from "./OneLineNewsItem";
 
 import styled from "styled-components";
+
+import dynamic from "next/dynamic";
+const EmbedFullscreen = dynamic(() => import('./EmbedFullscreen.js'))
 
 const Container = styled.div`
   margin-bottom: 25px;

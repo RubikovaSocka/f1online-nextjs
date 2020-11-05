@@ -8,17 +8,22 @@ import TitleArea from "../components/TitleArea";
 import ArticlesPanel from "../components/ArticlesPanel/ArticlesPanel";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
-import CalResWidget from "../components/CalResWidget";
-import CalendarLarge from "../components/CalendarLarge";
-import ResultsLargeWrapper from "../components/ResultsLarge";
+//import CalResWidget from "../components/CalResWidget";
+//import CalendarLarge from "../components/CalendarLarge";
+//import ResultsLargeWrapper from "../components/ResultsLarge";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
-import FBPageBox from "../components/FBPageBox";
+//import FBPageBox from "../components/FBPageBox";
 
 import { fetchNewArticles } from "../redux/actions/articlesActions";
-import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
-import { fetchF1Results } from "../redux/actions/f1ResultsActions";
+//import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
+//import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 import isMobile from "../utils/isMobile";
+
+import dynamic from "next/dynamic";
+const CalendarLarge = dynamic(() => import('../components/CalendarLarge'))
+const ResultsLargeWrapper = dynamic(() => import('../components/ResultsLarge'))
+const CalResWidget = dynamic(() => import('../components/CalResWidget'))
 
 import styled, { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
@@ -88,7 +93,7 @@ function Home() {
                 width: "100%"
               }}
             >
-              <FBPageBox />
+              {/*<FBPageBox />*/}
             </div>
             <Divider height="15px" />
             <QuickNews />

@@ -3,7 +3,7 @@ import axios from "axios";
 import { END } from "redux-saga";
 import { wrapper } from "../../redux/store/store";
 import Link from "next/link";
-import ImageGallery from "../../components/react-image-gallery/src/ImageGallery";
+//import ImageGallery from "../../components/react-image-gallery/src/ImageGallery";
 import Head from "next/head";
 
 import QuickNews from "../../components/QuickNews/QuickNews.js";
@@ -14,6 +14,9 @@ import Divider from "../../components/Divider.js";
 import LoadingSpinner from "../../components/LoadingSpinner.js";
 import styles from "./TeamPage.module.scss";
 import ArchivArticles from "../../components/ArchivArticles/ArchivArticles.js";
+
+import dynamic from "next/dynamic";
+const ImageGallery = dynamic(() => import('../../components/react-image-gallery/src/ImageGallery'))
 
 function getCName(team) {
   switch (team) {

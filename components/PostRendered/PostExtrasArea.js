@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import axios from "axios";
-import ImageGallery from "../react-image-gallery/src/ImageGallery";
+//import axios from "axios";
+//import ImageGallery from "../react-image-gallery/src/ImageGallery";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Divider from "../Divider";
-import PostsBlock from "../PostsBlock/PostsBlock";
+//import PostsBlock from "../PostsBlock/PostsBlock";
 
 import styles from "./style.module.scss";
+
+import dynamic from "next/dynamic";
+const ImageGallery = dynamic(() => import('../react-image-gallery/src/ImageGallery'))
+const PostsBlock = dynamic(() => import('../PostsBlock/PostsBlock'))
+const axios = dynamic(() => import('axios'))
 
 function PostExtrasArea({ gallery, start_time, end_time }) {
   const [images, setImages] = useState({ array: [], loaded: false });

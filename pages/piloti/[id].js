@@ -13,8 +13,11 @@ import Head from "next/head";
 import styles from "./DriverPage.module.scss";
 import ArchivArticles from "../../components/ArchivArticles/ArchivArticles.js";
 
-import ImageGallery from "../../components/react-image-gallery/src/ImageGallery";
+//import ImageGallery from "../../components/react-image-gallery/src/ImageGallery";
 import SideRePanel from "../../components/Ads/SideRePanel/SideRePanel.js";
+
+import dynamic from "next/dynamic";
+const ImageGallery = dynamic(() => import('../../components/react-image-gallery/src/ImageGallery'))
 
 class DriverPage extends Component {
   constructor() {
