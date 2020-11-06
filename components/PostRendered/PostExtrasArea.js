@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-//import axios from "axios";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 //import ImageGallery from "../react-image-gallery/src/ImageGallery";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Divider from "../Divider";
@@ -8,28 +8,36 @@ import Divider from "../Divider";
 import styles from "./style.module.scss";
 
 import dynamic from "next/dynamic";
-const ImageGallery = dynamic(() => import('../react-image-gallery/src/ImageGallery'))
-const PostsBlock = dynamic(() => import('../PostsBlock/PostsBlock'))
-const axios = dynamic(() => import('axios'))
+const ImageGallery = dynamic(() =>
+  import("../react-image-gallery/src/ImageGallery")
+);
+const PostsBlock = dynamic(() => import("../PostsBlock/PostsBlock"));
+//const axios = dynamic(() => import("axios"));
 
 function PostExtrasArea({ gallery, start_time, end_time }) {
   const [images, setImages] = useState({ array: [], loaded: false });
 
-  gallery &&
-    axios.get(gallery).then(res => {
-      let imagesLoaded = res.data.map(item => {
-        return {
-          original: item.full,
-          thumbnail: item.thumbnail,
-          originalTitle: "zdroj: " + item.source,
-          thumbnailTitle: "zdroj: " + item.source
-        };
+  const fetchGallery = () => {
+    gallery &&
+      axios.get(gallery).then(res => {
+        let imagesLoaded = res.data.map(item => {
+          return {
+            original: item.full,
+            thumbnail: item.thumbnail,
+            originalTitle: "zdroj: " + item.source,
+            thumbnailTitle: "zdroj: " + item.source
+          };
+        });
+        setImages({
+          array: imagesLoaded,
+          loaded: true
+        });
       });
-      setImages({
-        images: imagesLoaded,
-        loaded: true
-      });
-    });
+  };
+
+  useEffect(() => {
+    fetchGallery();
+  }, []);
 
   return (
     <>

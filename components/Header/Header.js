@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
@@ -11,7 +11,6 @@ import { THEMES } from "../../constants";
 import styled from "styled-components";
 
 const shadowMobile = "0 0px 8px rgba(0, 0, 0, 0.25);";
-//const shadowPC = "0 0px 8px rgba(0, 0, 0, 0.4)";
 
 const Container = styled.div`
   width: 100%;
@@ -32,7 +31,7 @@ const Container = styled.div`
 
   @media only screen and (min-width: 1024px) {
     padding: 0;
-    height: 101px;
+    height: 100px;
     justify-content: space-between;
     border-bottom: none;
     z-index: 12;

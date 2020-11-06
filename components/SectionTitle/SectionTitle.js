@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./SectionTitle.module.scss";
 
 function SectionTitle({ title }) {

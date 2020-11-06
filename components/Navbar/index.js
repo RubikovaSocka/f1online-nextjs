@@ -1,3 +1,3 @@
-import MyNavbar from "./MyNavbar";
+import MyNavbar from "./Navbar";
 
 export default MyNavbar;

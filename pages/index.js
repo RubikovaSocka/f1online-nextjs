@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import TitleArea from "../components/TitleArea";
 import ArticlesPanel from "../components/ArticlesPanel/ArticlesPanel";
@@ -10,33 +10,40 @@ import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 //import CalResWidget from "../components/CalResWidget";
 //import CalendarLarge from "../components/CalendarLarge";
-//import ResultsLargeWrapper from "../components/ResultsLarge";
+//import ResultsLarge from "../components/ResultsLarge";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
 //import FBPageBox from "../components/FBPageBox";
 
-import { fetchNewArticles } from "../redux/actions/articlesActions";
-//import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 //import { fetchF1Results } from "../redux/actions/f1ResultsActions";
+
+//import dynamic from "next/dynamic";
+import loadable from '@loadable/component'
+//const CalendarLarge = dynamic(() => import("../components/CalendarLarge"));
+//const ResultsLarge = dynamic(() => import("../components/ResultsLarge"));
+//const CalResWidget = dynamic(() => import("../components/CalResWidget"));
+
+const CalendarLarge = loadable(() => import("../components/CalendarLarge"), { ssr: false });
+const ResultsLarge = loadable(() => import("../components/ResultsLarge"), { ssr: false });
+const CalResWidget = loadable(() => import("../components/CalResWidget"), { ssr: false });
+
+import { fetchNewArticles } from "../redux/actions/articlesActions";
+import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
+import { fetchF1Results } from "../redux/actions/f1ResultsActions";
+import { fetchProgramme } from "../redux/actions/programmeActions";
+
 import isMobile from "../utils/isMobile";
-
-import dynamic from "next/dynamic";
-const CalendarLarge = dynamic(() => import('../components/CalendarLarge'))
-const ResultsLargeWrapper = dynamic(() => import('../components/ResultsLarge'))
-const CalResWidget = dynamic(() => import('../components/CalResWidget'))
-
-import styled, { createGlobalStyle } from "styled-components";
-const GlobalStyle = createGlobalStyle`
- h1 {
-   font-size: 50px;
-   color: green;
- }
-`;
-const Container = styled.div`
-  text-align: center;
-`;
+import onClient from "../utils/onClient";
 
 function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchF1Results({ perPage: 1 }));
+    dispatch(fetchProgramme());
+    dispatch(fetchNewQuickNews());
+  }, []);
+
   const postsData = useSelector(state => state.articles.indexArticles);
   const isScreenMobile = isMobile();
 
@@ -49,7 +56,6 @@ function Home() {
         />
       </Head>
       <main className="contentsPage">
-        <GlobalStyle />
         {isScreenMobile ? (
           <TitleArea posts={postsData.slice(0, 3)} />
         ) : (
@@ -74,7 +80,7 @@ function Home() {
                 title="Pozrieť všetky"
               />
             </div>
-            {isScreenMobile ? (
+            {onClient() && isScreenMobile ? (
               ""
             ) : (
               <>
@@ -82,7 +88,7 @@ function Home() {
                 <SectionTitle title="Boxová tabuľa" />
                 <Divider height="15px" />
                 <CalendarLarge />
-                <ResultsLargeWrapper />
+                <ResultsLarge />
               </>
             )}
           </div>
@@ -99,7 +105,7 @@ function Home() {
             <QuickNews />
           </aside>
 
-          {isScreenMobile ? (
+          {onClient() && isScreenMobile ? (
             <div className="mainContent">
               <CalResWidget />
               <Divider height="110px" />

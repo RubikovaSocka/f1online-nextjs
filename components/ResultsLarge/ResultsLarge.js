@@ -5,6 +5,7 @@ import styles from "./style.module.scss";
 import SideSectionTitle from "../SideSectionTitle";
 import LinkAsButton from "../LinkAsButton/LinkAsButton";
 import Divider from "../Divider";
+import onClient from "../../utils/onClient";
 
 function DriverDataItem({ pos, renderID, name, team, time }) {
   return (
@@ -27,14 +28,20 @@ function DriverDataItem({ pos, renderID, name, team, time }) {
 }
 
 function ResultsLarge() {
+  const isLoading = useSelector(
+    ({ f1Results }) => f1Results.isLoading
+  )
   const venueName = useSelector(
-    ({ f1Results }) => f1Results.results[0].venueName
+    ({ f1Results }) => f1Results.results[0] ? f1Results.results[0].venueName : ""
   );
-  const raceData = useSelector(({ f1Results }) => f1Results.results[0].race);
+  const raceData = useSelector(({ f1Results }) => f1Results.results[0] ? f1Results.results[0].race : "");
   const champData = useSelector(
-    ({ f1Results }) => f1Results.results[0].driverChamp
+    ({ f1Results }) => f1Results.results[0] ? f1Results.results[0].driverChamp : ""
   );
-
+  
+  if(isLoading) {
+    return <div className={styles.outerContainer}>LOADING</div>
+  }
   return (
     <div className={styles.outerContainer}>
       <div>

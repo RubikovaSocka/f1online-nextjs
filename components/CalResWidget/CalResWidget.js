@@ -7,7 +7,7 @@ import SideSectionTitle from "../SideSectionTitle";
 import SideWidgetButton from "./SideWidgetButton";
 
 import dynamic from "next/dynamic";
-const ResultsWidget = dynamic(() => import('./ResultsWidget'))
+const ResultsWidget = dynamic(() => import("./ResultsWidget"));
 
 import styles from "./style.module.scss";
 
@@ -19,15 +19,16 @@ const WIDGETS = {
 
 function CalResWidget() {
   const [selectedWidget, setSelectedWidget] = useState(WIDGETS.CAL);
-  const lastVenueName = useSelector(
-    ({ f1Results }) => f1Results.results[0].venueName
-  );
-  const raceData = useSelector(({ f1Results }) => f1Results.results[0].race);
-  const champData = useSelector(
-    ({ f1Results }) => f1Results.results[0].driverChamp
-  );
+  const isLoading = useSelector(({ f1Results }) => f1Results.isLoading);
+
+  const venue = useSelector(({ f1Results }) => f1Results.results[0]);
+
   const calendarData = useSelector(({ programme }) => programme.event);
 
+  if (isLoading) {
+    return <div className={styles.outerContainer}>LOADING</div>;
+  }
+  const { venueName, race, driverChamp } = venue;
   return (
     <div className={styles.widget}>
       <SideSectionTitle title="Boxová tabuľa" />
@@ -54,15 +55,15 @@ function CalResWidget() {
             <CalendarWidget data={calendarData} />
           ) : selectedWidget === WIDGETS.RACE ? (
             <ResultsWidget
-              title={`Výsledky VC ${lastVenueName}`}
+              title={`Výsledky VC ${venueName}`}
               dataTitle="Čas/strata"
-              data={raceData}
+              data={race}
             />
           ) : selectedWidget === WIDGETS.CHAMP ? (
             <ResultsWidget
-              title={`Šampionát po VC ${lastVenueName}`}
+              title={`Šampionát po VC ${venueName}`}
               dataTitle="Body"
-              data={champData}
+              data={driverChamp}
             />
           ) : (
             ""

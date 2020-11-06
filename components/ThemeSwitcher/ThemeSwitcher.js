@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import styles from "./ThemeSwitcher.module.scss";
+import styles from "./style.module.scss";
 import { useSelector } from "react-redux";
 import { setTheme } from "../../redux/actions/themeActions";
 import { THEMES } from "../../constants";

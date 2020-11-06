@@ -4,7 +4,7 @@ import { HYDRATE } from "next-redux-wrapper";
 const defaultState = {
   results: [],
   error: null,
-  isLoading: false
+  isLoading: true
 };
 
 const f1ResultsReducer = (state = defaultState, action) => {

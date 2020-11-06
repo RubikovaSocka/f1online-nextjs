@@ -1,5 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 import QuickNews from "../../../components/QuickNews";
 import CalResWidget from "../../../components/CalResWidget";
@@ -9,21 +10,31 @@ import PostRendered from "../../../components/PostRendered/PostRendered.js";
 import PostMeta from "../../../components/PostRendered/PostMeta.js";
 import { URLS } from "../../../redux/apis/urls";
 
-export default function Post({ postData }) {
+import { fetchNewQuickNews } from "../../../redux/actions/quickNewsActions";
+import { fetchF1Results } from "../../../redux/actions/f1ResultsActions";
+import { fetchProgramme } from "../../../redux/actions/programmeActions";
 
+export default function Post({ postData }) {
+  const dispatch = useDispatch();
+  
   useEffect(() => {
-    axios.post(
-      `https://wpadmin.f1online.sk//wp-json/wordpress-popular-posts/v1/popular-posts`, {
-        wpp_id: postData.id
-      }
-    )
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }, [])
+    dispatch(fetchF1Results({ perPage: 1 }));
+    dispatch(fetchProgramme());
+    dispatch(fetchNewQuickNews());
+    axios
+      .post(
+        `https://wpadmin.f1online.sk//wp-json/wordpress-popular-posts/v1/popular-posts`,
+        {
+          wpp_id: postData.id
+        }
+      )
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <>
