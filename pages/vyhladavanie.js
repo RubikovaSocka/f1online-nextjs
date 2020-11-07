@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { fetchTagArchiveArticles } from "../redux/actions/tagArchiveActions";
 
-import RPanel from "../components/RPanel.js";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import CalResWidget from "../components/CalResWidget/CalResWidget.js";
@@ -78,7 +77,6 @@ function Vyhladavanie() {
             <PopularBox pickedSlug={router.query.slug ? router.query.slug : ""}/>
             <Divider height="25px" />
             <QuickNews />
-            {/*<RPanel />*/}
             <CalResWidget />
           </aside>
         </div>

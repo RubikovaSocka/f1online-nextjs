@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Head from "next/head";
 import axios from "axios";
-
-import QuickNews from "../components/QuickNews/QuickNews.js";
-import RPanel from "../components/RPanel.js";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import Divider from "../components/Divider.js";
 import styles from "../styles/zabudol-som-heslo.module.scss";

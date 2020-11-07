@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import Head from "next/head";
 import QuickNews from "../components/QuickNews/QuickNews.js";
-import RPanel from "../components/RPanel.js";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import Divider from "../components/Divider.js";
 import styles from "../styles/vysledky.module.scss";
@@ -200,7 +199,6 @@ class Results extends Component {
             <aside className="sideBar">
               <Divider height="50px" />
               <QuickNews />
-              <RPanel />
             </aside>
           </div>
         </main>

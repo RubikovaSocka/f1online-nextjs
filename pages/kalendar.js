@@ -5,7 +5,6 @@ import { END } from "redux-saga";
 
 import Head from "next/head";
 import QuickNews from "../components/QuickNews";
-import RPanel from "../components/RPanel.js";
 import SectionTitle from "../components/SectionTitle";
 import CalendarBox from "../components/Calendar/CalendarBox.js";
 import { fetchCalendar } from "../redux/actions/calendarActions";
@@ -39,7 +38,6 @@ function Calendar() {
           <aside className="sideBar">
             <Divider height="50px" />
             <QuickNews />
-            <RPanel />
           </aside>
         </div>
       </main>

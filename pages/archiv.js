@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import { END } from "redux-saga";
 import { useRouter } from "next/router";
@@ -14,6 +14,8 @@ import PopularBox from "../components/PopularBox/PopularBox.js";
 import ArchiveArticlesRenderer from "../components/ArchivArticles/ArchiveArticlesRenderer.js";
 import { fetchArchiveArticles } from "../redux/actions/archiveActions";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
+import { fetchF1Results } from "../redux/actions/f1ResultsActions";
+import { fetchProgramme } from "../redux/actions/programmeActions";
 
 const PER_PAGE = 12;
 
@@ -30,7 +32,11 @@ function Archiv() {
     return pageNumber === 1 ? archiveArticles.server : archiveArticles.client;
   });
 
-  console.log(articles)
+  useEffect(() => {
+    dispatch(fetchF1Results({ perPage: 1 }));
+    dispatch(fetchProgramme());
+    dispatch(fetchNewQuickNews());
+  }, []);
 
   const onPageClicked = pageNumber => {
     window.scrollTo(0, 0);
@@ -105,7 +111,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         isServer: true
       })
     );
-    store.dispatch(fetchNewQuickNews());
+    //store.dispatch(fetchNewQuickNews());
     store.dispatch(END);
 
     await store.sagaTask.toPromise();

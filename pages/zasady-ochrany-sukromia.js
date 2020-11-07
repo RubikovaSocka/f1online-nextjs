@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
-import QuickNews from "../components/QuickNews/QuickNews.js";
-import RPanel from "../components/RPanel.js";
+import QuickNews from "../components/QuickNews";
 import Divider from "../components/Divider.js";
 import styles from "../styles/zasady.module.scss";
 
@@ -20,7 +19,6 @@ export default function privacy({ pageData }) {
         <aside className={`sideBar ${styles.stickySideBar}`}>
           <Divider height="50px" />
           <QuickNews />
-          <RPanel />
         </aside>
       </div>
     </main>

@@ -3,7 +3,6 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import QuickNews from "../components/QuickNews/QuickNews.js";
-import RPanel from "../components/RPanel.js";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import Divider from "../components/Divider.js";
 import styles from "../styles/registracia.module.scss";

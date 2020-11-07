@@ -6,7 +6,6 @@ import { END } from "redux-saga";
 import { wrapper } from '../../../redux/store/store'
 import { fetchTagArchiveArticles } from "../../../redux/actions/tagArchiveActions";
 
-import RPanel from "../../../components/RPanel.js";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../../../components/QuickNews/QuickNews.js";
 import CalResWidget from "../../../components/CalResWidget/CalResWidget.js";
@@ -79,7 +78,6 @@ function Archiv() {
             />
             <Divider height="25px" />
             <QuickNews />
-            {/*<RPanel />*/}
             <CalResWidget />
           </aside>
         </div>

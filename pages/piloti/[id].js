@@ -4,7 +4,6 @@ import { END } from "redux-saga";
 import { wrapper } from "../../redux/store/store";
 
 import QuickNews from "../../components/QuickNews/QuickNews.js";
-import RPanel from "../../components/RPanel.js";
 import CalResWidget from "../../components/CalResWidget/CalResWidget.js";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
 import Divider from "../../components/Divider.js";

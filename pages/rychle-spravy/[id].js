@@ -1,16 +1,9 @@
-import React, {
-  Component,
-  Fragment,
-  useMountEffect,
-  useEffect,
-  useRef
-} from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import Head from "next/head";
 import formatDate from "../../utils/dateFormatter";
 
 import QuickNews from "../../components/QuickNews/QuickNews";
-import RPanel from "../../components/RPanel";
 import CalResWidget from "../../components/CalResWidget/CalResWidget";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
@@ -129,7 +122,6 @@ export default class QuickNewsPage extends Component {
             </div>
             <aside className="sideBar">
               <Divider height="50px" />
-              <RPanel />
               <CalResWidget />
             </aside>
           </div>

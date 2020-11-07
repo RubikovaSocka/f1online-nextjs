@@ -5,11 +5,37 @@ import { useSelector } from "react-redux";
 import CalendarWidget from "./CalendarWidget";
 import SideSectionTitle from "../SideSectionTitle";
 import SideWidgetButton from "./SideWidgetButton";
+import ResultsWidget from "./ResultsWidget";
 
-import dynamic from "next/dynamic";
-const ResultsWidget = dynamic(() => import("./ResultsWidget"));
+import styled from "styled-components";
 
-import styles from "./style.module.scss";
+const WidgetContainer = styled.div`
+  width: 100%;
+  height: 480px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
+const WidgetContent = styled.div`
+  padding: 5px;
+`;
+
+const Buttons = styled.div`
+  width: 100%;
+  margin: 0;
+  margin-top: 10px;
+
+  display: flex;
+  flex-direction: row;
+`;
+
+const Content = styled.div`
+  //width: 100%;
+  height: 100%;
+  margin: 0;
+`;
 
 const WIDGETS = {
   CAL: "CALENDAR",
@@ -26,14 +52,14 @@ function CalResWidget() {
   const calendarData = useSelector(({ programme }) => programme.event);
 
   if (isLoading) {
-    return <div className={styles.outerContainer}>LOADING</div>;
+    return <div>LOADING</div>;
   }
   const { venueName, race, driverChamp } = venue;
   return (
-    <div className={styles.widget}>
+    <WidgetContainer>
       <SideSectionTitle title="Boxová tabuľa" />
-      <div className={styles.widgetContent}>
-        <div className={styles.widgetButtonsContainer}>
+      <WidgetContent>
+        <Buttons>
           <SideWidgetButton
             title="Budúca VC"
             onClick={() => setSelectedWidget(WIDGETS.CAL)}
@@ -49,8 +75,8 @@ function CalResWidget() {
             onClick={() => setSelectedWidget(WIDGETS.CHAMP)}
             selected={selectedWidget === WIDGETS.CHAMP ? true : false}
           />
-        </div>
-        <div className={styles.content}>
+        </Buttons>
+        <Content>
           {selectedWidget === WIDGETS.CAL ? (
             <CalendarWidget data={calendarData} />
           ) : selectedWidget === WIDGETS.RACE ? (
@@ -68,9 +94,9 @@ function CalResWidget() {
           ) : (
             ""
           )}
-        </div>
-      </div>
-    </div>
+        </Content>
+      </WidgetContent>
+    </WidgetContainer>
   );
 }
 

@@ -1,4 +1,3 @@
-import React from "react";
 import decodeHtml from "../../utils/decodeHtml";
 import getImagePreview from "../../utils/getImagePreview";
 import formatDate from "../../utils/dateFormatter";

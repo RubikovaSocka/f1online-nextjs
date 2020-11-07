@@ -5,7 +5,6 @@ import { wrapper } from "../redux/store/store";
 import Head from "next/head";
 
 import QuickNews from "../components/QuickNews";
-import RPanel from "../components/RPanel.js";
 import CalResWidget from "../components/CalResWidget";
 import TeamPreview from "../components/TeamPreview/TeamPreview.js";
 import Divider from "../components/Divider.js";
@@ -46,7 +45,6 @@ export default function Teams({ teamsData }) {
             <Divider height="50px" />
             <QuickNews />
             <Divider height="15px" />
-            <RPanel />
             <Divider height="15px" />
             <CalResWidget />
           </aside>

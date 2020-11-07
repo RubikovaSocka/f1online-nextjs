@@ -7,7 +7,6 @@ import Link from "next/link";
 import Head from "next/head";
 
 import QuickNews from "../../components/QuickNews/QuickNews.js";
-import RPanel from "../../components/RPanel.js";
 import CalResWidget from "../../components/CalResWidget/CalResWidget.js";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
 import Divider from "../../components/Divider.js";
@@ -232,7 +231,6 @@ export default class TeamPage extends Component {
               <Divider height="50px" />
               <QuickNews />
               <Divider height="15px" />
-              <RPanel />
               <Divider height="15px" />
               <CalResWidget />
             </aside>

@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import styles from "./style.module.scss";
-import { addMinutes, format, parse } from "date-fns";
-import Media from "react-media";
+import onMobile from "../../utils/onMobile";
+import {
+  SESSION_NAMES,
+  SESSION_DURATIONS,
+  getSesDurationText
+} from "../../utils/sessions";
+
+const getTvText = tv => {
+  return `${tv ? tv : "doplníme..."}`;
+};
 
 function CalendarItem({
   venue_name,
@@ -28,48 +36,44 @@ function CalendarItem({
         isOpened ? styles.opened : styles.closed
       }`}
     >
-      <Media query={{ maxWidth: 1023 }}>
-        {matches =>
-          matches ? (
-            <div
-              className={`${styles.header} ${
-                isOpened ? styles.opened : styles.closed
-              }`}
-              onClick={() => setIsOpened(prev => !prev)}
-            >
-              <div>
-                <span className={styles.venueName}>{`${position +
-                  1}. VC ${venue_name}`}</span>
-                <div className={styles.venueHeaderDate}>
-                  <span className={styles.date}>{venue_date}</span>
-                  <span className={styles.raceTime}>{r_time}</span>
-                </div>
-              </div>
-              <i className={`fas fa-chevron-${isOpened ? "up" : "down"}`}></i>
+      {onMobile() ? (
+        <div
+          className={`${styles.header} ${
+            isOpened ? styles.opened : styles.closed
+          }`}
+          onClick={() => setIsOpened(prev => !prev)}
+        >
+          <div>
+            <span className={styles.venueName}>{`${position +
+              1}. VC ${venue_name}`}</span>
+            <div className={styles.venueHeaderDate}>
+              <span className={styles.date}>{venue_date}</span>
+              <span className={styles.raceTime}>{r_time}</span>
             </div>
-          ) : (
-            <div
-              className={`${styles.header} ${
-                isOpened ? styles.opened : styles.closed
-              }`}
-              onClick={() => setIsOpened(prev => !prev)}
-            >
-              <i className={`fas fa-chevron-${isOpened ? "up" : "down"}`}></i>
-              <span className={styles.venueName}>{`${position +
-                1}. VC ${venue_name}`}</span>
-              <div className={styles.venueHeaderDate}>
-                <span className={styles.date}>
-                  {venue_date
-                    .split("-")[1]
-                    .trim()
-                    .replace(" 2020", "")}
-                </span>
-                <span className={styles.raceTime}>{r_time}</span>
-              </div>
-            </div>
-          )
-        }
-      </Media>
+          </div>
+          <i className={`fas fa-chevron-${isOpened ? "up" : "down"}`}></i>
+        </div>
+      ) : (
+        <div
+          className={`${styles.header} ${
+            isOpened ? styles.opened : styles.closed
+          }`}
+          onClick={() => setIsOpened(prev => !prev)}
+        >
+          <i className={`fas fa-chevron-${isOpened ? "up" : "down"}`}></i>
+          <span className={styles.venueName}>{`${position +
+            1}. VC ${venue_name}`}</span>
+          <div className={styles.venueHeaderDate}>
+            <span className={styles.date}>
+              {venue_date
+                .split("-")[1]
+                .trim()
+                .replace(" 2020", "")}
+            </span>
+            <span className={styles.raceTime}>{r_time}</span>
+          </div>
+        </div>
+      )}
 
       <div
         className={`${styles.contentBox} ${
@@ -84,14 +88,11 @@ function CalendarItem({
           </div>
           {fp1_time ? (
             <div className={styles.timesRow}>
-              <span className={styles.session}>1. tréning</span>
-              <span className={styles.sessionTime}>{`${fp1_time} - ${format(
-                addMinutes(parse(fp1_time, "HH:mm", new Date()), 90),
-                "HH:mm"
-              )}`}</span>
-              <span className={styles.sessionTv}>
-                {fp1_tv ? fp1_tv : "Doplníme..."}
+              <span className={styles.session}>{SESSION_NAMES.FP1}</span>
+              <span className={styles.sessionTime}>
+                {getSesDurationText(fp1_time, SESSION_DURATIONS.FP1)}
               </span>
+              <span className={styles.sessionTv}>{getTvText(fp1_tv)}</span>
             </div>
           ) : (
             ""
@@ -99,59 +100,47 @@ function CalendarItem({
 
           {fp2_time ? (
             <div className={styles.timesRow}>
-              <span className={styles.session}>2. tréning</span>
-              <span className={styles.sessionTime}>{`${fp2_time} - ${format(
-                addMinutes(parse(fp2_time, "HH:mm", new Date()), 90),
-                "HH:mm"
-              )}`}</span>
-              <span className={styles.sessionTv}>
-                {fp2_tv ? fp2_tv : "Doplníme..."}
+              <span className={styles.session}>{SESSION_NAMES.FP2}</span>
+              <span className={styles.sessionTime}>
+                {getSesDurationText(fp2_time, SESSION_DURATIONS.FP2)}
               </span>
+              <span className={styles.sessionTv}>{getTvText(fp2_tv)}</span>
             </div>
           ) : (
             ""
           )}
           {fp3_time ? (
             <div className={styles.timesRow}>
-              <span className={styles.session}>3. tréning</span>
-              <span className={styles.sessionTime}>{`${fp3_time} - ${format(
-                addMinutes(parse(fp3_time, "HH:mm", new Date()), 60),
-                "HH:mm"
-              )}`}</span>
-              <span className={styles.sessionTv}>
-                {fp3_tv ? fp3_tv : "Doplníme..."}
+              <span className={styles.session}>{SESSION_NAMES.FP3}</span>
+              <span className={styles.sessionTime}>
+                {getSesDurationText(fp3_time, SESSION_DURATIONS.FP3)}
               </span>
+              <span className={styles.sessionTv}>{getTvText(fp3_tv)}</span>
             </div>
           ) : (
             ""
           )}
           {q_time ? (
             <div className={styles.timesRow}>
-              <span className={styles.session}>Kvalifikácia</span>
-              <span className={styles.sessionTime}>{`${q_time} - ${format(
-                addMinutes(parse(q_time, "HH:mm", new Date()), 60),
-                "HH:mm"
-              )}`}</span>
-              <span className={styles.sessionTv}>
-                {q_tv ? q_tv : "Doplníme..."}
+              <span className={styles.session}>{SESSION_NAMES.Q}</span>
+              <span className={styles.sessionTime}>
+                {getSesDurationText(q_time, SESSION_DURATIONS.Q)}
               </span>
+              <span className={styles.sessionTv}>{getTvText(q_tv)}</span>
             </div>
           ) : (
             ""
           )}
           {r_time ? (
             <div className={styles.timesRow}>
-              <span className={styles.session}>Preteky</span>
+              <span className={styles.session}>{SESSION_NAMES.R}</span>
               <span className={styles.sessionTime}>{`${r_time}`}</span>
-              <span className={styles.sessionTv}>
-                {r_tv ? r_tv : "Doplníme..."}
-              </span>
+              <span className={styles.sessionTv}>{getTvText(r_tv)}</span>
             </div>
           ) : (
             ""
           )}
         </div>
-
         <div className={styles.circuitContainer}>
           <img src={circuit_map}></img>
           <span>{circuit_name}</span>

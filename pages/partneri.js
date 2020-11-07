@@ -1,5 +1,4 @@
 import React from "react";
-import RPanel from "../components/RPanel.js";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import ArchivArticles from "../components/ArchivArticles/ArchivArticles.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";

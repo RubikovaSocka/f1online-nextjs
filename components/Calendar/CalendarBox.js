@@ -1,4 +1,3 @@
-import React from "react";
 import CalendarItem from "./CalendarItem";
 import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
 

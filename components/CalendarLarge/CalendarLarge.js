@@ -1,5 +1,9 @@
 import { useSelector } from "react-redux";
-import { addMinutes, format, parse } from "date-fns";
+import {
+  SESSION_NAMES,
+  SESSION_DURATIONS,
+  getSesDurationText
+} from "../../utils/sessions";
 
 import LinkAsButton from "../LinkAsButton/LinkAsButton";
 import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
@@ -78,30 +82,8 @@ const GPImage = styled.img`
   height: 100%;
 `;
 
-const getTimeText = (time, minutes) => {
-  return `${time} - ${format(
-    addMinutes(parse(time, "HH:mm", new Date()), minutes),
-    "HH:mm"
-  )}`;
-};
-
 const getTvText = tv => {
   return `vysiela ${tv ? tv : "doplníme..."}`;
-};
-
-const SESSIONS = {
-  FP1: "1. tréning",
-  FP2: "2. tréning",
-  FP3: "3. tréning",
-  Q: "Kvalifikácia",
-  R: "Preteky"
-};
-
-const SESSION_DUR = {
-  FP1: 90,
-  FP2: 90,
-  FP3: 60,
-  Q: 60
 };
 
 function CalendarLarge() {
@@ -138,8 +120,8 @@ function CalendarLarge() {
             <TimesFirstColumn>
               {fp1_time ? (
                 <CalendarItem
-                  event="1. tréning"
-                  time={getTimeText(fp1_time, SESSION_DUR.FP1)}
+                  event={SESSION_NAMES.FP1}
+                  time={getSesDurationText(fp1_time, SESSION_DURATIONS.FP1)}
                   tv={getTvText(fp1_tv)}
                 />
               ) : (
@@ -147,8 +129,8 @@ function CalendarLarge() {
               )}
               {fp2_time ? (
                 <CalendarItem
-                  event="2. tréning"
-                  time={getTimeText(fp2_time, SESSION_DUR.FP2)}
+                  event={SESSION_NAMES.FP2}
+                  time={getSesDurationText(fp2_time, SESSION_DURATIONS.FP2)}
                   tv={getTvText(fp2_tv)}
                 />
               ) : (
@@ -156,8 +138,8 @@ function CalendarLarge() {
               )}
               {fp3_time ? (
                 <CalendarItem
-                  event="3. tréning"
-                  time={getTimeText(fp3_time, SESSION_DUR.FP3)}
+                  event={SESSION_NAMES.FP3}
+                  time={getSesDurationText(fp3_time, SESSION_DURATIONS.FP3)}
                   tv={getTvText(fp3_tv)}
                 />
               ) : (
@@ -167,8 +149,8 @@ function CalendarLarge() {
             <TimesSecondColumn>
               {q_time ? (
                 <CalendarItem
-                  event="Kvalifikácia"
-                  time={getTimeText(q_time, SESSION_DUR.Q)}
+                  event={SESSION_NAMES.Q}
+                  time={getSesDurationText(q_time, SESSION_DURATIONS.Q)}
                   tv={getTvText(q_tv)}
                 />
               ) : (
@@ -176,7 +158,7 @@ function CalendarLarge() {
               )}
               {r_time ? (
                 <CalendarItem
-                  event="Preteky"
+                  event={SESSION_NAMES.R}
                   time={`${r_time}`}
                   tv={getTvText(r_tv)}
                 />

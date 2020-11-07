@@ -5,7 +5,6 @@ import ArticlesPanel from "../ArticlesPanel";
 
 import styles from "./style.module.scss";
 import LoadingSpinner from "../LoadingSpinner";
-import MySection from "../TestComponent";
 
 export class ArchivArticles extends Component {
   constructor(props) {

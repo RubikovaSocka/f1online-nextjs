@@ -1,39 +1,33 @@
-import React, { Component } from "react";
-import { formatDateToTime } from "../../utils/dateFormatter.js";
+import formatDate from "../../utils/dateFormatter.js";
 import EmbedContainer from "react-oembed-container";
-
 import styles from "./PostItem.module.scss";
 
-export default class PostItem extends Component {
-  render() {
-    const { post } = this.props;
-    return (
-      <div className={styles.container}>
-        <div className={styles.textContainer}>
-          <div className={styles.postTime}>
-            <span>{formatDateToTime(post.date)}</span>
-          </div>
-          <div className={`${styles.postTextContent} ${styles.text}`}>
-            {post.acf.sprava}
-          </div>
+function PostItem({ post }) {
+  const { date, acf } = post;
+  return (
+    <div className={styles.container}>
+      <div className={styles.textContainer}>
+        <div className={styles.postTime}>
+          <span>{formatDate(date)}</span>
         </div>
-        {post.acf.embed ? (
-          <EmbedContainer markup={post.acf.embed} className={styles.embed}>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: post.acf.embed
-              }}
-            />
-          </EmbedContainer>
-        ) : (
-          ""
-        )}
-        {post.acf.foto ? (
-          <img className={styles.img} src={post.acf.foto}></img>
-        ) : (
-          ""
-        )}
+        <div className={`${styles.postTextContent} ${styles.text}`}>
+          {acf.sprava}
+        </div>
       </div>
-    );
-  }
+      {acf.embed ? (
+        <EmbedContainer markup={acf.embed} className={styles.embed}>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: acf.embed
+            }}
+          />
+        </EmbedContainer>
+      ) : (
+        ""
+      )}
+      {acf.foto ? <img className={styles.img} src={acf.foto}></img> : ""}
+    </div>
+  );
 }
+
+export default PostItem;

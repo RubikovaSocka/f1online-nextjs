@@ -4,7 +4,6 @@ import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";
 import Head from "next/head";
 import QuickNews from "../components/QuickNews";
-import RPanel from "../components/RPanel.js";
 import CalResWidget from "../components/CalResWidget";
 
 import DriverPreview from "../components/DriverPreview/DriverPreview.js";
@@ -56,7 +55,6 @@ export default function Drivers({ teamsData }) {
             <Divider height="50px" />
             <QuickNews />
             <Divider height="15px" />
-            <RPanel />
             <Divider height="15px" />
             <CalResWidget />
           </aside>

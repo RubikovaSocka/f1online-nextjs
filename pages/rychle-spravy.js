@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import Link from "next/link";
 import axios from "axios";
 import Head from "next/head";
-import RPanel from "../components/RPanel";
 import CalResWidget from "../components/CalResWidget/CalResWidget";
 import formatDate from "../utils/dateFormatter";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -99,7 +98,6 @@ export class QuickNewsPage extends Component {
             </div>
             <aside className="sideBar">
               <Divider height="50px" />
-              <RPanel />
               <CalResWidget />
             </aside>
           </div>

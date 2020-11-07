@@ -1,3 +1,8 @@
-import ResultsWidget from "./ResultsWidget";
+import Loadable from "react-loadable";
 
-export default ResultsWidget;
+const AsyncPage = Loadable({
+  loader: () => import("./ResultsWidget"),
+  loading: "Loading"
+});
+
+export default AsyncPage;
