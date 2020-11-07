@@ -3,7 +3,7 @@ import Router from "next/router";
 import ReactGA from "react-ga";
 import Header from "../components/Header";
 import HeaderMeta from "../components/HeaderMeta";
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/Footer";
 import HeaderRePanel from "../components/Ads/HeaderRePanel";
 import ThemeSwitcher from "../components/ThemeSwitcher";
 import CookieBanner from "../components/CookieBanner";
