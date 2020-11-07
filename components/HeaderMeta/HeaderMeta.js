@@ -7,6 +7,30 @@ export default function HeaderMeta({ theme }) {
       <title key="meta_title">F1online.sk</title>
       <link rel="shortcut icon" href="/favicon.ico" />
       <link
+        rel="preload"
+        href="/fonts/HKGrotesk/hkgrotesk-regular-webfont.ttf"
+        as="font"
+        crossorigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/HKGrotesk/hkgrotesk-semibold-webfont.ttf"
+        as="font"
+        crossorigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/HKGrotesk/hkgrotesk-bold-webfont.ttf"
+        as="font"
+        crossorigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Cabin/Cabin-Bold.ttf"
+        as="font"
+        crossorigin="anonymous"
+      />
+      <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
       />
