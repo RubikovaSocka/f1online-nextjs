@@ -23,6 +23,8 @@ import { fetchProgramme } from "../redux/actions/programmeActions";
 import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
+//import fontawesomeSubset from "fontawesome-subset";
+
 function Home() {
   const dispatch = useDispatch();
 
@@ -113,6 +115,7 @@ function Home() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
+    //fontawesomeSubset(["paperclip", "play-circle"], "sass/webfonts");
     store.dispatch(fetchNewArticles());
     store.dispatch(END);
 

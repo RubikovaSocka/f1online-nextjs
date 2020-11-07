@@ -6,6 +6,16 @@ export default function HeaderMeta({ theme }) {
     <Head>
       <title key="meta_title">F1online.sk</title>
       <link rel="shortcut icon" href="/favicon.ico" />
+      {/*<link
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      />*/}
+      <link
+        rel="preload"
+        href="/fonts/FontAwesome/fa-solid-900.ttf"
+        as="font"
+        crossorigin="anonymous"
+      />
       <link
         rel="preload"
         href="/fonts/HKGrotesk/hkgrotesk-regular-webfont.ttf"
@@ -30,10 +40,7 @@ export default function HeaderMeta({ theme }) {
         as="font"
         crossorigin="anonymous"
       />
-      <link
-        rel="stylesheet"
-        href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-      />
+      
       <link key="meta_style" rel="stylesheet" href={theme} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta key="meta_ogtitle" property="og:title" content={`F1online.sk`} />

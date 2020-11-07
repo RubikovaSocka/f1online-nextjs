@@ -22,6 +22,7 @@
     "escape-html": "^1.0.3",
     "fecha": "^4.2.0",
     "fontfaceobserver": "^2.1.0",
+    "fs": "0.0.1-security",
     "gray-matter": "^4.0.2",
     "isomorphic-fetch": "^3.0.0",
     "lodash": "^4.17.20",
@@ -62,5 +63,8 @@
     "sass": "^1.26.5",
     "styled-components": "^5.2.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "fontawesome-subset": "^2.0.0"
+  }
 }
