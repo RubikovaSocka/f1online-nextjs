@@ -10,15 +10,8 @@ import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
-//import FBPageBox from "../components/FBPageBox";
-
-//import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 
 import dynamic from "next/dynamic";
-//import loadable from '@loadable/component'
-//const CalendarLarge = dynamic(() => import("../components/CalendarLarge"));
-//const ResultsLarge = dynamic(() => import("../components/ResultsLarge"));
-//const CalResWidget = dynamic(() => import("../components/CalResWidget"));
 
 const CalendarLarge = dynamic(() => import("../components/CalendarLarge"), {
   ssr: false
@@ -40,31 +33,13 @@ import onClient from "../utils/onClient";
 
 function Home() {
   const dispatch = useDispatch();
-/*
+
   const dd = async () => {
-    //try {
-      let res = await Promise.all([
-        fetch(`https://wpadmin.f1online.sk/wp-json/wp/v2/posts/`),
-        fetch(`https://wpadmin.f1online.sk/wp-json/wp/v2/posts/`)
-      ])
-        .then(results => Promise.all(results.map(r => r.json())))
-        .then(results => results.flat());
-      console.log("eee");
-      console.log(res);
-      return await res;
-      /*
-      //const s = await sticky.json();
-      console.log(sticky)
-      const ee = await sticky.json();
-      console.log(ee)
-      return sticky.json();*/
-    /*} catch (e) {
-      throw new Error(e.response.data.Error);
-    }
-};*/
+    
+  };
 
   useEffect(() => {
-    //let x = dd();
+    let x = dd();
     //console.log(x);
     dispatch(fetchF1Results({ perPage: 1 }));
     dispatch(fetchProgramme());
