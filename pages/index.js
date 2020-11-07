@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Head from "next/head";
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";

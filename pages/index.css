@@ -2,6 +2,7 @@
   font-family: "HK Grotesk";
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: url("./fonts/HKGrotesk/hkgrotesk-regular-webfont.ttf") format("truetype"),
     url("./fonts/HKGrotesk/hkgrotesk-regular-webfont.woff") format("woff"),
     url("./fonts/HKGrotesk/hkgrotesk-regular-webfont.woff2") format("woff2");
@@ -9,6 +10,7 @@
 @font-face {
   font-family: "HK Grotesk";
   font-weight: 600;
+  font-display: swap;
   src: url("./fonts/HKGrotesk/hkgrotesk-semibold-webfont.ttf")
       format("truetype"),
     url("./fonts/HKGrotesk/hkgrotesk-semibold-webfont.woff") format("woff"),
@@ -18,6 +20,7 @@
   font-family: "HK Grotesk";
   font-style: bold;
   font-weight: 700;
+  font-display: swap;
   src: url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.ttf") format("truetype"),
     url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.woff") format("woff"),
     url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.woff2") format("woff2");
@@ -26,6 +29,7 @@
   font-family: "Cabin";
   font-style: bold;
   font-weight: 700;
+  font-display: swap;
   src: url("./fonts/Cabin/Cabin-Bold.ttf") format("truetype"),
     url("./fonts/Cabin/Cabin-Bold.woff") format("woff"),
     url("./fonts/Cabin/Cabin-Bold.woff2") format("woff2");
