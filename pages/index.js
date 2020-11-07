@@ -11,8 +11,8 @@ import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
 
 import QuickNews from "../components/QuickNews";
-import CalendarLarge from '../components/CalendarLarge'
-import ResultsLarge from '../components/ResultsLarge'
+import CalendarLarge from "../components/CalendarLarge";
+import ResultsLarge from "../components/ResultsLarge";
 
 import { fetchNewArticles } from "../redux/actions/articlesActions";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
@@ -22,15 +22,17 @@ import { fetchProgramme } from "../redux/actions/programmeActions";
 import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
+
+
 function Home() {
   const dispatch = useDispatch();
 
-  const dd = async () => {
+  const dd = dateInISO => {
     
   };
 
   useEffect(() => {
-    let x = dd();
+    let x = dd("2020-05-04T22:50:23");
     //console.log(x);
     dispatch(fetchF1Results({ perPage: 1 }));
     dispatch(fetchProgramme());

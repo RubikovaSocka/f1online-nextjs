@@ -1,6 +1,4 @@
-import React from "react";
-
-export default function getImagePreview({ imgData, imgSize }) {
+const getImagePreview = ({ imgData, imgSize }) => {
   if (imgData)
     return (
       <img
@@ -14,12 +12,12 @@ export default function getImagePreview({ imgData, imgSize }) {
         }
       />
     );
-  else {
-    return (
-      <img
-        alt="logo F1online.sk"
-        src={"https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png"}
-      />
-    );
-  }
-}
+  return (
+    <img
+      alt="logo F1online.sk"
+      src={"https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png"}
+    />
+  );
+};
+
+export default getImagePreview;
