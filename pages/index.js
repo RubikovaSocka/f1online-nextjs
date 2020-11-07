@@ -4,6 +4,7 @@ import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";
 import { useDispatch, useSelector } from "react-redux";
 
+import CalResWidget from "../components/CalResWidget";
 import TitleArea from "../components/TitleArea";
 import ArticlesPanel from "../components/ArticlesPanel/ArticlesPanel";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
@@ -22,14 +23,10 @@ import { fetchProgramme } from "../redux/actions/programmeActions";
 import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
-
-
 function Home() {
   const dispatch = useDispatch();
 
-  const dd = dateInISO => {
-    
-  };
+  const dd = dateInISO => {};
 
   useEffect(() => {
     let x = dd("2020-05-04T22:50:23");
