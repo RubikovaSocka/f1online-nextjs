@@ -21,22 +21,7 @@
   src: url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.ttf") format("truetype"),
     url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.woff") format("woff"),
     url("./fonts/HKGrotesk/hkgrotesk-bold-webfont.woff2") format("woff2");
-}/*
-@font-face {
-  font-family: "Cabin";
-  font-style: normal;
-  font-weight: 400;
-  src: url("./fonts/Cabin/Cabin-Regular.ttf") format("truetype"),
-    url("./fonts/Cabin/Cabin-Regular.woff") format("woff"),
-    url("./fonts/Cabin/Cabin-Regular.woff2") format("woff2");
 }
-@font-face {
-  font-family: "Cabin";
-  font-weight: 600;
-  src: url("./fonts/Cabin/Cabin-SemiBold.ttf") format("truetype"),
-    url("./fonts/Cabin/Cabin-SemiBold.woff") format("woff"),
-    url("./fonts/Cabin/Cabin-SemiBold.woff2") format("woff2");
-}*/
 @font-face {
   font-family: "Cabin";
   font-style: bold;
@@ -99,7 +84,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
 }
 .sideBar {
   padding: 15px;
@@ -168,7 +152,7 @@ body {
 }
 
 /* EXPORT */
-.wp-block-embed-youtube div{
+.wp-block-embed-youtube div {
   position: relative !important;
   padding-bottom: 56.25% !important; /* 16:9 */
   height: 0 !important;
@@ -192,7 +176,7 @@ body {
     max-height: 360px !important;
     width: 100%;
   }
-}/*
+} /*
 .wp-block-gallery {
   display: none;
 }*/

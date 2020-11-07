@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import Router from "next/router";
 import ReactGA from "react-ga";
-import HeaderMeta from "../components/HeaderMeta";
 import Header from "../components/Header";
+import HeaderMeta from "../components/HeaderMeta";
 import Footer from "../components/Footer/Footer";
-import TrackedHeaderPanel from "../components/Ads/TrackedHeaderPanel";
+import HeaderRePanel from "../components/Ads/HeaderRePanel";
 import ThemeSwitcher from "../components/ThemeSwitcher";
 import CookieBanner from "../components/CookieBanner";
 
@@ -12,58 +12,48 @@ import "./index.css";
 import NProgress from "../components/nprogress";
 import "../components/nprogress/nprogress.css";
 
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { wrapper } from "../redux/store/store.js";
 import { initializeTheme } from "../redux/actions/themeActions";
 import fetchPanels from "../redux/apis/fetchPanelsApi";
+import onClient from "../utils/onClient";
+import onMobile from "../utils/onMobile";
 
-Router.events.on("routeChangeStart", () => {
-  NProgress.start();
-});
-Router.events.on("routeChangeComplete", () => {
-  ReactGA.pageview(window.location.pathname);
-  NProgress.done();
-});
-Router.events.on("routeChangeError", () => NProgress.done());
+const initialize = () => {
+  const trackingId = "UA-166048655-1";
+  ReactGA.initialize(trackingId);
 
-class App extends Component {
-  componentDidMount() {
-    this.props.initializeTheme();
-    () => this.props.initializePanels();
+  Router.events.on("routeChangeStart", () => {
+    NProgress.start();
+  });
+  Router.events.on("routeChangeComplete", () => {
+    ReactGA.pageview(window.location.pathname);
+    NProgress.done();
+  });
+  Router.events.on("routeChangeError", () => NProgress.done());
+};
 
-    const trackingId = "UA-166048655-1";
-    ReactGA.initialize(trackingId);
-  }
+function App({ Component, pageProps }) {
+  const dispatch = useDispatch();
+  const theme = useSelector(({ theme }) => theme.theme);
 
-  render() {
-    const { Component, pageProps, theme } = this.props;
+  useEffect(() => {
+    initialize();
+    () => dispatch(initializeTheme());
+    () => dispatch(fetchPanels());
+  }, []);
 
-    return (
-      <>
-        <HeaderMeta theme={theme} />
-        <TrackedHeaderPanel />
-        <Header theme={theme} />
-        <ThemeSwitcher />
-        <Component {...pageProps} />
-        <Footer />
-        <CookieBanner />
-      </>
-    );
-  }
+  return (
+    <>
+      <HeaderMeta theme={theme} />
+      {!onMobile() && onClient() ? <HeaderRePanel /> : ""}
+      <Header theme={theme} />
+      <ThemeSwitcher />
+      <Component {...pageProps} />
+      <Footer />
+      <CookieBanner />
+    </>
+  );
 }
 
-const mapStateToProps = ({ theme }) => ({
-  theme: theme.theme
-});
-
-const mapDispatchToProps = dispatch => ({
-  initializeTheme: () => dispatch(initializeTheme()),
-  initializePanels: () => dispatch(fetchPanels())
-});
-
-export default wrapper.withRedux(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
-);
+export default wrapper.withRedux(App);

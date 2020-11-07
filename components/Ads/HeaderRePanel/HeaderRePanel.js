@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Provider, connect } from "react-redux";
+import { connect } from "react-redux";
 import { fetchPanels } from "../../../redux/actions/panelsActions";
 import styles from "./HeaderRePanel.module.scss";
-import Router from "next/router";
 import ReactGA from "react-ga";
 
 class HeaderRePanel extends Component {

@@ -5,7 +5,7 @@ import ReactGA from "react-ga";
 import AdSense from "react-adsense";
 
 import styled from "styled-components";
-import isMobile from "../../utils/isMobile";
+import onMobile from "../../utils/onMobile";
 
 const Container = styled.div`
   z-index: 150;
@@ -183,7 +183,7 @@ function EmbedFullscreen({ id, date, embed, content, hideClick, hidePopup }) {
         </Embed>
       </Content>
       <RPanel>
-        {isMobile ? (
+        {onMobile ? (
           <AdSense.Google
             client="ca-pub-2681240380511410"
             slot="3863813186"

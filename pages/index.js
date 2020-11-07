@@ -7,28 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 import TitleArea from "../components/TitleArea";
 import ArticlesPanel from "../components/ArticlesPanel/ArticlesPanel";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
-import QuickNews from "../components/QuickNews/QuickNews.js";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
 
-import dynamic from "next/dynamic";
-
-const CalendarLarge = dynamic(() => import("../components/CalendarLarge"), {
-  ssr: false
-});
-const ResultsLarge = dynamic(() => import("../components/ResultsLarge"), {
-  ssr: false
-});
-const CalResWidget = dynamic(() => import("../components/CalResWidget"), {
-  ssr: false
-});
+import QuickNews from "../components/QuickNews";
+import CalendarLarge from '../components/CalendarLarge'
+import ResultsLarge from '../components/ResultsLarge'
 
 import { fetchNewArticles } from "../redux/actions/articlesActions";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 import { fetchProgramme } from "../redux/actions/programmeActions";
 
-import isMobile from "../utils/isMobile";
+import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
 function Home() {

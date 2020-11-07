@@ -1,3 +1,8 @@
-import ResultsLarge from "./ResultsLarge";
+import Loadable from "react-loadable";
 
-export default ResultsLarge;
+const AsyncPage = Loadable({
+  loader: () => import("./ResultsLarge"),
+  loading: "Loading"
+});
+
+export default AsyncPage;

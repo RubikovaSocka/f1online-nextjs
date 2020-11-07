@@ -3,7 +3,7 @@ import Router from "next/router";
 import { useDispatch } from "react-redux";
 import { TYPES as LOGOTRIGGER } from "../../redux/reducers/logoHideReducer";
 import styles from "./style.module.scss";
-import isMobileUtil from "../../utils/isMobile";
+import isMobileUtil from "../../utils/onMobile";
 
 function SearchBar() {
   const dispatch = useDispatch();
