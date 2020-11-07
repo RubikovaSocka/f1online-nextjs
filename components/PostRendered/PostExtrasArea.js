@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-//import ImageGallery from "../react-image-gallery/src/ImageGallery";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Divider from "../Divider";
 //import PostsBlock from "../PostsBlock/PostsBlock";

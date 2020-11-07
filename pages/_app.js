@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import Router from "next/router";
 import ReactGA from "react-ga";
-import TrackVisibility from "react-on-screen";
 import HeaderMeta from "../components/HeaderMeta";
 import Header from "../components/Header";
 import Footer from "../components/Footer/Footer";
-import HeaderRePanel from "../components/Ads/HeaderRePanel/HeaderRePanel";
+import TrackedHeaderPanel from "../components/Ads/TrackedHeaderPanel";
 import ThemeSwitcher from "../components/ThemeSwitcher";
-import CookieBanner from '../components/CookieBanner'
+import CookieBanner from "../components/CookieBanner";
 
 import "./index.css";
 import NProgress from "../components/nprogress";
@@ -28,7 +27,6 @@ Router.events.on("routeChangeComplete", () => {
 Router.events.on("routeChangeError", () => NProgress.done());
 
 class App extends Component {
-  
   componentDidMount() {
     this.props.initializeTheme();
     () => this.props.initializePanels();
@@ -43,10 +41,7 @@ class App extends Component {
     return (
       <>
         <HeaderMeta theme={theme} />
-
-        <TrackVisibility partialVisibility style={{ width: "100%" }}>
-          <HeaderRePanel />
-        </TrackVisibility>
+        <TrackedHeaderPanel />
         <Header theme={theme} />
         <ThemeSwitcher />
         <Component {...pageProps} />
