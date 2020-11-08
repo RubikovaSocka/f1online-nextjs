@@ -1,4 +1,3 @@
-import React from "react";
 import ArticlePreview from "../ArticlePreview";
 import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
 

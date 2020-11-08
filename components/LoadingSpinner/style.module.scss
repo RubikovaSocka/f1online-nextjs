@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  font-family: "HK Grotesk";
+  font-weight: 600;
+  color: var(--basic-text-color);
+}
+.nomargin {
+  margin-top: 0;
+}
+
+.spinningIconContainer {
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  span::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f1ce";
+    animation: spin 1.2s linear infinite;
+    line-height: 16px;
+    height: 16px;
+    margin-right: 5px;
+  }
+}

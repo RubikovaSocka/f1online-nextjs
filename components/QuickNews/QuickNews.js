@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import formatDate from "../../utils/dateFormatter";
 import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
-import LoadingSpinner from "../LoadingSpinner";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 //import EmbedFullscreen from "./EmbedFullscreen.js";
 import Popup from "reactjs-popup";
 import InfiniteScroll from "react-infinite-scroll-component";

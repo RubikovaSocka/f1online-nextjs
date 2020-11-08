@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import CalResWidget from "../components/CalResWidget";
 import TitleArea from "../components/TitleArea";
-import ArticlesPanel from "../components/ArticlesPanel/ArticlesPanel";
-import SectionTitle from "../components/SectionTitle/SectionTitle.js";
+import ArticlesPanel from "../components/ArticlesPanel";
+import SectionTitle from "../components/SectionTitle";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
 
@@ -115,7 +115,10 @@ function Home() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
-    //fontawesomeSubset(["paperclip", "play-circle"], "sass/webfonts");
+    /*fontawesomeSubset(
+      ["circle-notch", "spin", "fa-spin", "paperclip", "play-circle"],
+      "public/fonts/FontAwesome"
+    );*/
     store.dispatch(fetchNewArticles());
     store.dispatch(END);
 
