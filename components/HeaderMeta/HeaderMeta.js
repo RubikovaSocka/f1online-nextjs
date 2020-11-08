@@ -45,7 +45,7 @@ export default function HeaderMeta({ theme }) {
       />
       <link
         key="meta_style"
-        rel="prealod"
+        rel="preload"
         as="stylesheet"
         href="/dark-theme.css"
       />
