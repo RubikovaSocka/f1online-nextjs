@@ -37,6 +37,18 @@ export default function HeaderMeta({ theme }) {
         crossorigin="anonymous"
       />
 
+      <link
+        key="meta_style"
+        rel="preload"
+        as="stylesheet"
+        href="/light-theme.css"
+      />
+      <link
+        key="meta_style"
+        rel="prealod"
+        as="stylesheet"
+        href="/dark-theme.css"
+      />
       <link key="meta_style" rel="stylesheet" href={theme} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta key="meta_ogtitle" property="og:title" content={`F1online.sk`} />

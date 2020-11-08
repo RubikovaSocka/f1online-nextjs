@@ -19,11 +19,7 @@ import fetchPanels from "../redux/apis/fetchPanelsApi";
 import onClient from "../utils/onClient";
 import onMobile from "../utils/onMobile";
 
-
-
 const initialize = () => {
-  
-
   const trackingId = "UA-166048655-1";
   ReactGA.initialize(trackingId);
 
