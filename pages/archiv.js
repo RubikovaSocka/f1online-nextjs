@@ -16,6 +16,12 @@ import { fetchArchiveArticles } from "../redux/actions/archiveActions";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 import { fetchProgramme } from "../redux/actions/programmeActions";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 const PER_PAGE = 12;
 
@@ -67,9 +73,10 @@ function Archiv() {
           content={`https://f1online.sk/clanky`}
         />
       </Head>
-      <main className="contentsPage">
-        <div className="page">
-          <div className="mainContent">
+
+      <MAIN>
+        <COLUMNED_PAGE>
+          <PAGE_MAIN_COL>
             <SectionTitle
               title={`${
                 router.query.search
@@ -86,17 +93,17 @@ function Archiv() {
               perPage={PER_PAGE}
               pageClickCallback={selectedPage => onPageClicked(selectedPage)}
             />
-          </div>
-          <aside className="sideBar">
+          </PAGE_MAIN_COL>
+          <SIDEBAR>
             <Divider height="40px" />
             <PopularBox />
             <Divider height="25px" />
             <QuickNews />
             {/*<RPanel />*/}
             <CalResWidget />
-          </aside>
-        </div>
-      </main>
+          </SIDEBAR>
+        </COLUMNED_PAGE>
+      </MAIN>
     </>
   );
 }

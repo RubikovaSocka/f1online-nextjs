@@ -8,6 +8,12 @@ import styles from "../styles/vysledky.module.scss";
 import LastVenueResBox from "../components/Results/LastVenueResBox.js";
 import DriverChampResBox from "../components/Results/DriverChampResBox.js";
 import TeamChampResBox from "../components/Results/TeamChampResBox.js";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 class Results extends Component {
   constructor(props) {
@@ -83,7 +89,7 @@ class Results extends Component {
               teamChampLoaded1: true
             });
           });
-        }/*
+        } /*
         if (res.data[2]) {
           axios.get(res.data[2].acf.results_json).then(res3 => {
             this.setState({
@@ -189,19 +195,19 @@ class Results extends Component {
             content={`https://f1online.sk/vysledky`}
           />
         </Head>
-        <main className="contentsPage">
-          <div className="page">
-            <div className="mainContent">
+        <MAIN>
+          <COLUMNED_PAGE>
+            <PAGE_MAIN_COL>
               <SectionTitle title="Výsledky" />
               <Divider height="29px" />
               {contentData}
-            </div>
-            <aside className="sideBar">
+            </PAGE_MAIN_COL>
+            <SIDEBAR>
               <Divider height="50px" />
               <QuickNews />
-            </aside>
-          </div>
-        </main>
+            </SIDEBAR>
+          </COLUMNED_PAGE>
+        </MAIN>
       </>
     );
   }

@@ -3,25 +3,33 @@ import axios from "axios";
 import QuickNews from "../components/QuickNews";
 import Divider from "../components/Divider.js";
 import styles from "../styles/zasady.module.scss";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 export default function privacy({ pageData }) {
   return (
-    <main className="contentsPage">
-      <div className="page">
-        <div className="mainContent">
+    <MAIN>
+      <COLUMNED_PAGE>
+        <PAGE_MAIN_COL>
+          <SectionTitle title="Výsledky" />
+          <Divider height="29px" />
           <div
             className={styles.container}
             /*className={styles.articleContent}*/ dangerouslySetInnerHTML={{
               __html: pageData.content.rendered
             }}
-          />
-        </div>
-        <aside className={`sideBar ${styles.stickySideBar}`}>
+          />{" "}
+        </PAGE_MAIN_COL>
+        <SIDEBAR>
           <Divider height="50px" />
           <QuickNews />
-        </aside>
-      </div>
-    </main>
+        </SIDEBAR>
+      </COLUMNED_PAGE>
+    </MAIN>
   );
 }
 

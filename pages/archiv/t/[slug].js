@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
-import { wrapper } from '../../../redux/store/store'
+import { wrapper } from "../../../redux/store/store";
 import { fetchTagArchiveArticles } from "../../../redux/actions/tagArchiveActions";
 
 import SectionTitle from "../../../components/SectionTitle/SectionTitle.js";
@@ -12,6 +12,12 @@ import CalResWidget from "../../../components/CalResWidget/CalResWidget.js";
 import Divider from "../../../components/Divider.js";
 import PopularBox from "../../../components/PopularBox/PopularBox.js";
 import ArchiveArticlesRenderer from "../../../components/ArchivArticles/ArchiveArticlesRenderer.js";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 const PER_PAGE = 12;
 
@@ -57,9 +63,9 @@ function Archiv() {
           content={`https://f1online.sk/clanky`}
         />
       </Head>
-      <main className="contentsPage">
-        <div className="page">
-          <div className="mainContent">
+      <MAIN>
+        <COLUMNED_PAGE>
+          <PAGE_MAIN_COL>
             <SectionTitle title="Všetky správy" />
             <ArchiveArticlesRenderer
               articles={articles}
@@ -70,8 +76,8 @@ function Archiv() {
               perPage={PER_PAGE}
               pageClickCallback={selectedPage => onPageClicked(selectedPage)}
             />
-          </div>
-          <aside className="sideBar">
+          </PAGE_MAIN_COL>
+          <SIDEBAR>
             <Divider height="40px" />
             <PopularBox
               pickedSlug={router.query.slug ? router.query.slug : ""}
@@ -79,9 +85,9 @@ function Archiv() {
             <Divider height="25px" />
             <QuickNews />
             <CalResWidget />
-          </aside>
-        </div>
-      </main>
+          </SIDEBAR>
+        </COLUMNED_PAGE>
+      </MAIN>
     </>
   );
   //}

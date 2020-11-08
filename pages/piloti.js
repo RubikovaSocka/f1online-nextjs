@@ -10,6 +10,12 @@ import DriverPreview from "../components/DriverPreview/DriverPreview.js";
 import SectionTitle from "../components/SectionTitle";
 import Divider from "../components/Divider.js";
 import LoadingSpinner from "../components/LoadingSpinner";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 import styles from "../styles/piloti.module.scss";
 
@@ -44,22 +50,22 @@ export default function Drivers({ teamsData }) {
           content={`https://f1online.sk/piloti`}
         />
       </Head>
-      <main className="contentsPage">
-        <div className="page">
-          <div className="mainContent">
+      <MAIN>
+        <COLUMNED_PAGE>
+          <PAGE_MAIN_COL>
             <SectionTitle title="Piloti" />
             <Divider height="20px" />
             <div className={styles.driversContainer}>{dataBlock}</div>
-          </div>
-          <aside className="sideBar">
+          </PAGE_MAIN_COL>
+          <SIDEBAR>
             <Divider height="50px" />
             <QuickNews />
             <Divider height="15px" />
             <Divider height="15px" />
             <CalResWidget />
-          </aside>
-        </div>
-      </main>
+          </SIDEBAR>
+        </COLUMNED_PAGE>
+      </MAIN>
     </>
   );
 }

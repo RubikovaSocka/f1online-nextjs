@@ -11,12 +11,20 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import Head from "next/head";
 import styles from "./DriverPage.module.scss";
 import ArchivArticles from "../../components/ArchivArticles/ArchivArticles.js";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 //import ImageGallery from "../../components/react-image-gallery/src/ImageGallery";
 import SideRePanel from "../../components/Ads/SideRePanel/SideRePanel.js";
 
 import dynamic from "next/dynamic";
-const ImageGallery = dynamic(() => import('../../components/react-image-gallery/src/ImageGallery'))
+const ImageGallery = dynamic(() =>
+  import("../../components/react-image-gallery/src/ImageGallery")
+);
 
 class DriverPage extends Component {
   constructor() {
@@ -142,9 +150,9 @@ class DriverPage extends Component {
             content={`${driverData.img800}`}
           />
         </Head>
-        <main className="contentsPage">
-          <div className="page">
-            <div className="mainContent">
+        <MAIN>
+          <COLUMNED_PAGE>
+            <PAGE_MAIN_COL>
               {/*<img className={styles.image} src='' />*/}
 
               <div className={styles.container}>
@@ -187,17 +195,17 @@ class DriverPage extends Component {
                   </div>
                 </div>
               </div>
-            </div>
-            <aside className="sideBar">
+            </PAGE_MAIN_COL>
+            <SIDEBAR>
               <Divider height="50px" />
               <QuickNews />
               {/*<Divider height="15px" />
               <SideRePanel />*/}
               <Divider height="15px" />
               <CalResWidget />
-            </aside>
-          </div>
-        </main>
+            </SIDEBAR>
+          </COLUMNED_PAGE>
+        </MAIN>
       </>
     );
   }

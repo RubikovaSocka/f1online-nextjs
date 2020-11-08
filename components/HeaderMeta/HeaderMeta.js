@@ -38,8 +38,6 @@ export default function HeaderMeta({ theme }) {
       />
       <link rel="preload" as="style" href="/light-theme.css" />
       <link rel="preload" as="style" href="/dark-theme.css" />
-      <link rel="preload" as="style" href="/index.css" />
-      <link rel="stylesheet" href="/index.css" />
       {theme ? <link rel="stylesheet" href={theme} /> : ""}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta key="meta_ogtitle" property="og:title" content={`F1online.sk`} />

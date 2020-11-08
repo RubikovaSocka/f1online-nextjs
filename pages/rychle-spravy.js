@@ -11,6 +11,12 @@ import Divider from "../components/Divider";
 
 import EmbedContainer from "react-oembed-container";
 import styles from "../styles/rychle-spravy.module.scss";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 export class QuickNewsPage extends Component {
   state = {
@@ -90,18 +96,15 @@ export class QuickNewsPage extends Component {
             content={`https://f1online.sk/rychle-spravy`}
           />
         </Head>
-        <main className="contentsPage">
-          <div className="page">
-            <div className="mainContent">
-              {/*<img className={styles.image} src='' />*/}
-              {news}
-            </div>
-            <aside className="sideBar">
+        <MAIN>
+          <COLUMNED_PAGE>
+            <PAGE_MAIN_COL>{news}</PAGE_MAIN_COL>
+            <SIDEBAR>
               <Divider height="50px" />
               <CalResWidget />
-            </aside>
-          </div>
-        </main>
+            </SIDEBAR>
+          </COLUMNED_PAGE>
+        </MAIN>
       </>
     );
   }

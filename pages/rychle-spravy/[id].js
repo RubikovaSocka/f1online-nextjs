@@ -13,6 +13,12 @@ import EmbedContainer from "react-oembed-container";
 import styles from "./QuickNewsPage.module.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 //const useMountEffect = (fun) => useEffect(fun, [])
 
@@ -70,9 +76,9 @@ export default class QuickNewsPage extends Component {
             content={`https://f1online.sk/rychle-spravy`}
           />
         </Head>
-        <main className="contentsPage">
-          <div className="page">
-            <div className="mainContent">
+        <MAIN>
+          <COLUMNED_PAGE>
+            <PAGE_MAIN_COL>
               {/*<img className={styles.image} src='' />*/}
               <SectionTitle title="Rýchle správy" />
               <Divider height="20px" />
@@ -119,13 +125,13 @@ export default class QuickNewsPage extends Component {
                 {/*<Link href="/rychle-spravy"><a className="basicButton" style={{marginTop: '10px', width:'200px'}}>Viac rýchlych správ</a></Link>*/}
                 {/*</div>*/}
               </InfiniteScroll>
-            </div>
-            <aside className="sideBar">
+            </PAGE_MAIN_COL>
+            <SIDEBAR>
               <Divider height="50px" />
               <CalResWidget />
-            </aside>
-          </div>
-        </main>
+            </SIDEBAR>
+          </COLUMNED_PAGE>
+        </MAIN>
       </>
     );
   }

@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styles from "../styles/chcemVasPodporit.module.scss";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 export default class chcemVasPodporit extends Component {
   constructor(props) {
@@ -24,7 +30,7 @@ export default class chcemVasPodporit extends Component {
 
   render() {
     return (
-      <div className="contentsPage">
+      <MAIN>
         <div className={styles.fullpage}>
           {this.state.loaded ? (
             <div
@@ -66,7 +72,7 @@ export default class chcemVasPodporit extends Component {
             </form>
           </div>
         </div>
-      </div>
+      </MAIN>
     );
   }
 }

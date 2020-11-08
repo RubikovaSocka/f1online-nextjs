@@ -13,9 +13,17 @@ import Divider from "../../components/Divider.js";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import styles from "./TeamPage.module.scss";
 import ArchivArticles from "../../components/ArchivArticles/ArchivArticles.js";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 import dynamic from "next/dynamic";
-const ImageGallery = dynamic(() => import('../../components/react-image-gallery/src/ImageGallery'))
+const ImageGallery = dynamic(() =>
+  import("../../components/react-image-gallery/src/ImageGallery")
+);
 
 function getCName(team) {
   switch (team) {
@@ -198,10 +206,10 @@ export default class TeamPage extends Component {
             content={`${teamData.img800}`}
           />
         </Head>
-        <main className="contentsPage">
-          <div className="page">
-            <div className="mainContent">
-              {/*<img className={styles.image} src='' />*/}
+
+        <MAIN>
+          <COLUMNED_PAGE>
+            <PAGE_MAIN_COL>
               <div className={styles.container}>
                 {teamDataBlock}
 
@@ -226,16 +234,16 @@ export default class TeamPage extends Component {
                   </div>
                 </div>
               </div>
-            </div>
-            <aside className="sideBar">
+            </PAGE_MAIN_COL>
+            <SIDEBAR>
               <Divider height="50px" />
               <QuickNews />
               <Divider height="15px" />
               <Divider height="15px" />
               <CalResWidget />
-            </aside>
-          </div>
-        </main>
+            </SIDEBAR>
+          </COLUMNED_PAGE>
+        </MAIN>
       </>
     );
   }
@@ -255,7 +263,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     return {
       props: {
-        teamData: responseTeamData.data,
+        teamData: responseTeamData.data
       }
     };
   }

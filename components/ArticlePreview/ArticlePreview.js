@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import formatDate from "../../utils/dateFormatter.js";
-//import LazyLoad from "react-lazyload";
 import LazyLoad from "react-lazy-load";
 import styled from "styled-components";
 import getImageSrc from "../../utils/getImagePreview.js";
@@ -119,7 +118,7 @@ function ArticlePreview({ id, slug, title, date, better_featured_image }) {
           <LazyLoad offsetVertical={120}>
             <ImgContainer>
               <img
-                alt={`fotka k článku ${title.rendered}`}
+                alt={`${title.rendered}`}
                 src={getImageSrc(better_featured_image, "medium")}
               />
             </ImgContainer>

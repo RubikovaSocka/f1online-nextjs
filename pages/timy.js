@@ -11,6 +11,12 @@ import Divider from "../components/Divider.js";
 import SectionTitle from "../components/SectionTitle";
 
 import styles from "../styles/timy.module.scss";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 export default function Teams({ teamsData }) {
   return (
@@ -28,9 +34,9 @@ export default function Teams({ teamsData }) {
           content={`https://f1online.sk/timy`}
         />
       </Head>
-      <main className="contentsPage">
-        <div className="page">
-          <div className="mainContent">
+      <MAIN>
+        <COLUMNED_PAGE>
+          <PAGE_MAIN_COL>
             <SectionTitle title="Tímy" />
             <Divider height="20px" />
             {/*<img className={styles.image} src='' />*/}
@@ -40,16 +46,16 @@ export default function Teams({ teamsData }) {
                 <TeamPreview constructor={constructor} />
               ))}
             </div>
-          </div>
-          <aside className="sideBar">
+          </PAGE_MAIN_COL>
+          <SIDEBAR>
             <Divider height="50px" />
             <QuickNews />
             <Divider height="15px" />
             <Divider height="15px" />
             <CalResWidget />
-          </aside>
-        </div>
-      </main>
+          </SIDEBAR>
+        </COLUMNED_PAGE>
+      </MAIN>
     </>
   );
 }

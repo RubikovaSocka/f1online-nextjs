@@ -13,10 +13,16 @@ import { URLS } from "../../../redux/apis/urls";
 import { fetchNewQuickNews } from "../../../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../../../redux/actions/f1ResultsActions";
 import { fetchProgramme } from "../../../redux/actions/programmeActions";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 export default function Post({ postData }) {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchF1Results({ perPage: 1 }));
     dispatch(fetchProgramme());
@@ -39,19 +45,19 @@ export default function Post({ postData }) {
   return (
     <>
       <PostMeta {...postData} />
-      <main className="contentsPage">
-        <div className="page">
-          <div id="cn" className="mainContent">
+      <MAIN>
+        <COLUMNED_PAGE>
+          <PAGE_MAIN_COL id="cn">
             <PostRendered key={postData.id} {...postData} />
-          </div>
-          <aside className="sideBar">
+          </PAGE_MAIN_COL>
+          <SIDEBAR>
             <QuickNews />
             <Divider height="15px" />
             <CalResWidget />
             <TrackedSidePanel />
-          </aside>
-        </div>
-      </main>
+          </SIDEBAR>
+        </COLUMNED_PAGE>
+      </MAIN>
     </>
   );
 }

@@ -9,6 +9,12 @@ import SectionTitle from "../components/SectionTitle";
 import CalendarBox from "../components/Calendar/CalendarBox.js";
 import { fetchCalendar } from "../redux/actions/calendarActions";
 import Divider from "../components/Divider.js";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 function Calendar() {
   const calendarData = useSelector(({ calendar }) => calendar.events);
@@ -28,28 +34,30 @@ function Calendar() {
           content={`https://f1online.sk/kalendar`}
         />
       </Head>
-      <main className="contentsPage">
-        <div className="page">
-          <div className="mainContent">
+      <MAIN>
+        <COLUMNED_PAGE>
+          <PAGE_MAIN_COL>
             <SectionTitle title="Kalendár" />
             <Divider height="28px" />
             <CalendarBox data={calendarData} />
-          </div>
-          <aside className="sideBar">
+          </PAGE_MAIN_COL>
+          <SIDEBAR>
             <Divider height="50px" />
             <QuickNews />
-          </aside>
-        </div>
-      </main>
+          </SIDEBAR>
+        </COLUMNED_PAGE>
+      </MAIN>
     </>
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
-  store.dispatch(fetchCalendar());
-  store.dispatch(END);
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store }) => {
+    store.dispatch(fetchCalendar());
+    store.dispatch(END);
 
-  await store.sagaTask.toPromise();
-});
+    await store.sagaTask.toPromise();
+  }
+);
 
 export default Calendar;

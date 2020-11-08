@@ -19,6 +19,12 @@ import { fetchNewArticles } from "../redux/actions/articlesActions";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 import { fetchProgramme } from "../redux/actions/programmeActions";
+import {
+  MAIN,
+  COLUMNED_PAGE,
+  PAGE_MAIN_COL,
+  SIDEBAR
+} from "../components/PageLayout";
 
 import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
@@ -49,11 +55,11 @@ function Home() {
           content="Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky..."
         />
       </Head>
-      <main className="contentsPage">
+      <MAIN>
         <TitleArea posts={postsData.slice(0, 5)} />
         <Divider height="25px" />
-        <div className="page">
-          <div className="mainContent">
+        <COLUMNED_PAGE>
+          <PAGE_MAIN_COL>
             <SectionTitle title="Ďalšie správy" />
             <Divider height="10px" />
             <ArticlesPanel posts={postsData.slice(5, 11)} />
@@ -75,8 +81,8 @@ function Home() {
                 <ResultsLarge />
               </>
             )}
-          </div>
-          <aside className={`sideBar`}>
+          </PAGE_MAIN_COL>
+          <SIDEBAR>
             <Divider height="15px" />
             <div
               style={{
@@ -87,18 +93,9 @@ function Home() {
             </div>
             <Divider height="15px" />
             <QuickNews />
-          </aside>
-
-          {onClient() && isScreenMobile ? (
-            <div className="mainContent">
-              <CalResWidget />
-              <Divider height="110px" />
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-      </main>
+          </SIDEBAR>
+        </COLUMNED_PAGE>
+      </MAIN>
     </>
   );
 }
