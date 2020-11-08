@@ -1,7 +1,4 @@
-import React from "react";
-import MainArticlePreview from "../MainArticlePreview";
 import TitleArticlePreview from "../TitleArticlePreview";
-
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -12,7 +9,6 @@ const Container = styled.div`
   justify-content: center;
 
   @media only screen and (min-width: 1024px) {
-    //width: calc(100% - 40px);
     width: initial;
     padding: 0 20px;
     display: grid;
@@ -59,40 +55,25 @@ const Art4 = styled.div`
 `;
 
 function TitleArea({ posts }) {
-  if (posts.length === 3) {
-    //show for mobile version
-    return (
-      <Container>
-        {posts.map((article, index) => (
-          <div key={index}>
-            <TitleArticlePreview {...article} />
-          </div>
-        ))}
-      </Container>
-    );
-  } else if (posts.length === 5) {
-    //show desktop version
-    return (
-      <Container>
-        <Art0>
-          <MainArticlePreview {...posts[0]} />
-        </Art0>
-        <Art1>
-          <TitleArticlePreview {...posts[1]} />
-        </Art1>
-        <Art2>
-          <TitleArticlePreview {...posts[3]} />
-        </Art2>
-        <Art3>
-          <TitleArticlePreview {...posts[2]} />
-        </Art3>
-        <Art4>
-          <TitleArticlePreview {...posts[4]} />
-        </Art4>
-      </Container>
-    );
-  }
-  return null;
+  return (
+    <Container>
+      <Art0>
+        <TitleArticlePreview {...posts[0]} top />
+      </Art0>
+      <Art1>
+        <TitleArticlePreview {...posts[1]} />
+      </Art1>
+      <Art2>
+        <TitleArticlePreview {...posts[3]} />
+      </Art2>
+      <Art3>
+        <TitleArticlePreview {...posts[2]} />
+      </Art3>
+      <Art4>
+        <TitleArticlePreview {...posts[4]} />
+      </Art4>
+    </Container>
+  );
 }
 
 export default TitleArea;

@@ -1,8 +1,6 @@
-import React from "react";
 import Link from "next/link";
-import getImagePreview from "../../utils/getImagePreview.js";
-
 import styled from "styled-components";
+import getImageSrc from "../../utils/getImagePreview.js";
 
 const Container = styled.div`
   position: relative;
@@ -77,14 +75,15 @@ const Title = styled.h3`
 `;
 
 function MainArticlePreview({ id, slug, better_featured_image, title }) {
+  console.log(better_featured_image)
   return (
     <Container>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
         <a>
-          {getImagePreview({
-            imgData: better_featured_image,
-            imgSize: "medium_large"
-          })}
+          <img
+            alt={`fotka k článku ${title.rendered}`}
+            src={getImageSrc(better_featured_image, "medium_large")}
+          />
           <TitleContainer>
             <Title dangerouslySetInnerHTML={{ __html: title.rendered }} />
           </TitleContainer>

@@ -38,4 +38,9 @@ const isMobile = () => {
   return dimensions && dimensions.width < 1024;
 };
 
+const getWindowWidth = () => {
+  return useWindowSize().width;
+}
+
+export { getWindowWidth}
 export default isMobile;

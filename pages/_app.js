@@ -8,7 +8,6 @@ import HeaderRePanel from "../components/Ads/HeaderRePanel";
 import ThemeSwitcher from "../components/ThemeSwitcher";
 import CookieBanner from "../components/CookieBanner";
 
-import "./index.css";
 import NProgress from "../components/nprogress";
 import "../components/nprogress/nprogress.css";
 

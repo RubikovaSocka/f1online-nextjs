@@ -50,23 +50,13 @@ function Home() {
         />
       </Head>
       <main className="contentsPage">
-        {isScreenMobile ? (
-          <TitleArea posts={postsData.slice(0, 3)} />
-        ) : (
-          <TitleArea posts={postsData.slice(0, 5)} />
-        )}
+        <TitleArea posts={postsData.slice(0, 5)} />
         <Divider height="25px" />
         <div className="page">
           <div className="mainContent">
             <SectionTitle title="Ďalšie správy" />
-
             <Divider height="10px" />
-            {isScreenMobile ? (
-              <ArticlesPanel posts={postsData.slice(3, 9)} />
-            ) : (
-              <ArticlesPanel posts={postsData.slice(5, 11)} />
-            )}
-
+            <ArticlesPanel posts={postsData.slice(5, 11)} />
             <div className="basicButtonContainer">
               <ButtonWB
                 hrefProp="/archiv"

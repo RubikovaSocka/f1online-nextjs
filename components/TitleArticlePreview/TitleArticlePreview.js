@@ -1,11 +1,10 @@
-import React from "react";
 import Link from "next/link";
-import getImagePreview from "../../utils/getImagePreview.js";
-
+import getImageSrc from "../../utils/getImagePreview.js";
 import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
+  height: calc(62.5vw - 25px);
   position: relative;
   overflow: hidden;
   text-decoration: none;
@@ -21,38 +20,20 @@ const Container = styled.div`
   }
 
   @media only screen and (min-width: 1024px) {
-    height: 141px;
-
+    height: 100%;
     img {
       min-height: 100%;
       min-width: 100%;
       margin: auto;
     }
   }
-
-  @media only screen and (min-width: 1280px) {
-    height: 150px;
-  }
-`;
-
-const TitleContainer = styled.div`
-  width: 100%;
-  height: 72px;
-  bottom: 0px;
-  margin: 0;
-
-  position: absolute;
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-
-  @media only screen and (min-width: 1024px) {
-    height: 82px;
-  }
 `;
 
 const Title = styled.h3`
+  position: absolute;
+  bottom: 0;
   padding: 10px;
+  width: calc(100% - 20px);
   margin: 0;
 
   font: 700 17px "Cabin", "Source Sans Pro";
@@ -71,25 +52,28 @@ const Title = styled.h3`
 
   @media only screen and (min-width: 1024px) {
     padding: 8px 9px;
+    width: calc(100% - 16px);
 
-    line-height: 17px;
+    /*line-height: 17px;*/
     scroll-behavior: none;
     font-size: 14px;
+    ${props => (props.top ? `font-size: 20px; padding: 11px 15px` : "")}
   }
 `;
 
-function TitleArticlePreview({ id, slug, title, better_featured_image }) {
+function TitleArticlePreview({ id, slug, title, better_featured_image, top }) {
   return (
     <Container>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
         <a>
-          {getImagePreview({
-            imgData: better_featured_image,
-            imgSize: "medium_large"
-          })}
-          <TitleContainer>
-            <Title dangerouslySetInnerHTML={{ __html: title.rendered }} />
-          </TitleContainer>
+          <img
+            alt={`fotka k článku ${title.rendered}`}
+            src={getImageSrc(better_featured_image, "medium_large")}
+          />
+          <Title
+            top={top}
+            dangerouslySetInnerHTML={{ __html: title.rendered }}
+          />
         </a>
       </Link>
     </Container>

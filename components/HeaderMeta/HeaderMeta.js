@@ -19,13 +19,13 @@ export default function HeaderMeta({ theme }) {
         crossorigin="anonymous"
       />
       <link
-        rel="preload"
+        rel="prefetch"
         href="/fonts/HKGrotesk/hkgrotesk-semibold-webfont.ttf"
         as="font"
         crossorigin="anonymous"
       />
       <link
-        rel="preload"
+        rel="prefetch"
         href="/fonts/HKGrotesk/hkgrotesk-bold-webfont.ttf"
         as="font"
         crossorigin="anonymous"
@@ -36,20 +36,11 @@ export default function HeaderMeta({ theme }) {
         as="font"
         crossorigin="anonymous"
       />
-
-      <link
-        key="meta_style"
-        rel="preload"
-        as="stylesheet"
-        href="/light-theme.css"
-      />
-      <link
-        key="meta_style"
-        rel="preload"
-        as="stylesheet"
-        href="/dark-theme.css"
-      />
-      <link key="meta_style" rel="stylesheet" href={theme} />
+      <link rel="preload" as="style" href="/light-theme.css" />
+      <link rel="preload" as="style" href="/dark-theme.css" />
+      <link rel="preload" as="style" href="/index.css" />
+      <link rel="stylesheet" href="/index.css" />
+      {theme ? <link rel="stylesheet" href={theme} /> : ""}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta key="meta_ogtitle" property="og:title" content={`F1online.sk`} />
       <meta key="meta_type" property="og:type" content="website" />
