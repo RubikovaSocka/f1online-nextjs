@@ -43,35 +43,7 @@
     url("/fonts/FontAwesome/fa-solid-900.woff2") format("woff2");
 }
 
-*,
-input,
-button {
-  outline: none !important;
-}
-a {
-  text-decoration: none;
-}
 
-html,
-body {
-  margin: 0;
-  height: 100%;
-}
-
-.noOutline {
-  text-decoration: none;
-  outline: none;
-}
-
-#__next {
-  min-height: calc(100% - 60px);
-  padding-bottom: 60px;
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 /* EXPORT */
 .wp-block-embed-youtube div {

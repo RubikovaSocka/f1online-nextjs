@@ -119,7 +119,9 @@ const WhiteBack = styled.div`
   }
 `;
 
-const Logo = styled.img`
+const Logo = styled.img.attrs(props => ({
+  src: props.theme.LOGO_URL
+}))`
   height: 42px;
   display: inline-block;
 `;
@@ -142,14 +144,7 @@ function Header({ theme }) {
             <SocialMediaBasicPlugin />
             <Link href="/">
               <a style={{ display: `${logoShown ? "inline-block" : "none"}` }}>
-                <Logo
-                  alt="-"
-                  src={
-                    theme === THEMES.DARK
-                      ? "https://f1online.sk/images/logo-dark.png"
-                      : "https://f1online.sk/images/logo-light.png"
-                  }
-                />
+                <Logo alt="-" />
               </a>
             </Link>
             <SearchBar />
