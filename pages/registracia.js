@@ -6,7 +6,7 @@ import QuickNews from "../components/QuickNews/QuickNews.js";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import Divider from "../components/Divider.js";
 import styles from "../styles/registracia.module.scss";
-import LoadingSpinner from "../components/LoadingSpinner.js";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 class Registracia extends Component {
   constructor(props) {

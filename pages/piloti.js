@@ -9,7 +9,7 @@ import CalResWidget from "../components/CalResWidget";
 import DriverPreview from "../components/DriverPreview/DriverPreview.js";
 import SectionTitle from "../components/SectionTitle";
 import Divider from "../components/Divider.js";
-import LoadingSpinner from "../components/LoadingSpinner.js";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 import styles from "../styles/piloti.module.scss";
 

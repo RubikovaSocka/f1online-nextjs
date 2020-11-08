@@ -10,7 +10,7 @@ import QuickNews from "../../components/QuickNews/QuickNews.js";
 import CalResWidget from "../../components/CalResWidget/CalResWidget.js";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
 import Divider from "../../components/Divider.js";
-import LoadingSpinner from "../../components/LoadingSpinner.js";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import styles from "./TeamPage.module.scss";
 import ArchivArticles from "../../components/ArchivArticles/ArchivArticles.js";
 
