@@ -19,6 +19,33 @@ const Container = styled.div`
   @media only screen and (min-width: 1280px) {
     grid-template-columns: auto 328px 17px 328px 38px 320px auto;
   }
+
+  ${props =>
+    props.loading
+      ? `
+    margin: 15px 10px;
+
+    background-color: ${props.theme.FILLER_COLOR};
+    overflow: hidden;
+    position: relative;
+    @keyframes slide {
+      0% {transform:translateX(-100%);}
+      100% {transform:translateX(100%);}
+    }
+    :after {
+      content:'';
+      top:0;
+      transform:translateX(100%);
+      width:100%;
+      height:100%;
+      position: absolute;
+      z-index:1;
+      animation: slide 1s infinite;
+
+      background: ${props.theme.FILLER_SHINE_GRADIENT};
+    }
+    `
+      : ""};
 `;
 
 const Table = styled.div`
@@ -41,7 +68,6 @@ const VenueName = styled.p`
   margin: 0;
   font-size: 16px;
   font-weight: 600;
-  
 `;
 
 const VenueDate = styled.p`
@@ -80,6 +106,8 @@ const GPImage = styled.img`
   grid-column: 2 / span 1;
   grid-row: 2 / span 1;
   height: 100%;
+  color: transparent;
+  background-color: ${props => props.theme.FILLER_COLOR};
 `;
 
 const getTvText = tv => {
@@ -88,6 +116,7 @@ const getTvText = tv => {
 
 function CalendarLarge() {
   const {
+    isLoading,
     venue_name,
     venue_date,
     fp1_time,
@@ -103,6 +132,14 @@ function CalendarLarge() {
     circuit_image
   } = useSelector(({ programme }) => programme.event);
 
+  if (isLoading) {
+    return (
+      <>
+        <SideSectionTitle title="Najbližšie preteky" />
+        <Container loading />
+      </>
+    );
+  }
   return (
     <>
       <SideSectionTitle title="Najbližšie preteky" />

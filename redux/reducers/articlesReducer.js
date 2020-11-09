@@ -3,7 +3,7 @@ import { HYDRATE } from "next-redux-wrapper";
 
 const defaultState = {
   indexArticles: [],
-  isLoading: false,
+  isLoading: true,
   error: null
 };
 
@@ -16,13 +16,15 @@ const articlesReducer = (state = defaultState, action) => {
         indexArticles:
           action.payload.articles.indexArticles.length > 0
             ? action.payload.articles.indexArticles
-            : state.indexArticles
+            : state.indexArticles,
+        isLoading: action.payload.articles.indexArticles.length === 0
       };
 
     case INDEX_ARTICLES.FETCH:
       return {
         ...state,
-        error: null
+        error: null,
+        isLoading: true
       };
     case INDEX_ARTICLES.FETCH_SUCCESS:
       return {
@@ -31,7 +33,13 @@ const articlesReducer = (state = defaultState, action) => {
         error: null,
         indexArticles: action.articles
       };
-
+    case INDEX_ARTICLES.FETCH_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error,
+        indexArticles: []
+      };
     default:
       return state;
   }

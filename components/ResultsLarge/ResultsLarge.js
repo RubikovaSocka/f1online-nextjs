@@ -16,14 +16,50 @@ const Container = styled.div`
   @media only screen and (min-width: 1280px) {
     width: 673px;
   }
+
+  ${props =>
+    props.loading
+      ? `
+    > div {
+      width: 48%;
+    }
+  `
+      : ""}
 `;
 
 const TableContainer = styled.div`
   width: 310px;
 
-  @media only screen and (min-width: 1280px) {
-    width: 320px;
-  }
+  ${props =>
+    props.loading
+      ? `
+    margin: 15px 10px;
+    width: 95%;
+    height: 240px;
+    background-color: ${props.theme.FILLER_COLOR};
+    overflow: hidden;
+    position: relative;
+    @keyframes slide {
+      0% {transform:translateX(-100%);}
+      100% {transform:translateX(100%);}
+    }
+    :after {
+      content:'';
+      top:0;
+      transform:translateX(100%);
+      width:100%;
+      height:100%;
+      position: absolute;
+      z-index:1;
+      animation: slide 1s infinite;
+
+      background: ${props.theme.FILLER_SHINE_GRADIENT};
+    }
+    `
+      : `@media only screen and (min-width: 1280px) {
+          width: 320px;
+        }
+    `};
 `;
 
 function ResultsLarge() {
@@ -39,7 +75,18 @@ function ResultsLarge() {
   );
 
   if (isLoading) {
-    return <Container>LOADING</Container>;
+    return (
+      <Container loading>
+        <div>
+          <SideSectionTitle title={`Výsledky`} />
+          <TableContainer loading />
+        </div>
+        <div>
+          <SideSectionTitle title={`Šampionát`} />
+          <TableContainer loading />
+        </div>
+      </Container>
+    );
   }
   return (
     <Container>

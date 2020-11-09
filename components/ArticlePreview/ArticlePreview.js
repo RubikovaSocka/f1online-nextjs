@@ -13,6 +13,31 @@ const Container = styled.div`
   justify-content: flex-start;
   margin: 4px 0;
 
+  ${props =>
+    props.loading
+      ? `
+    background-color: ${props.theme.FILLER_COLOR};
+    overflow: hidden;
+    position: relative;
+    @keyframes slide {
+      0% {transform:translateX(-100%);}
+      100% {transform:translateX(100%);}
+    }
+    :after {
+      content:'';
+      top:0;
+      transform:translateX(100%);
+      width:100%;
+      height:100%;
+      position: absolute;
+      z-index:1;
+      animation: slide 1s infinite;
+
+      background: ${props.theme.FILLER_SHINE_GRADIENT};
+    }
+    `
+      : ""};
+
   @media only screen and (min-width: 1024px) {
     width: 100%;
     height: 220px;
@@ -34,14 +59,42 @@ const Container = styled.div`
 const ImgContainer = styled.div`
   height: 60px;
   width: 96px;
+  background-color: ${props => props.theme.FILLER_COLOR};
   position: relative;
   overflow: hidden;
 
+  background-color: ${props => props.theme.FILLER_COLOR};
+  @keyframes slide {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  :after {
+    content: "";
+    top: 0;
+    transform: translateX(100%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    animation: slide 1s infinite;
+
+    background: ${props => props.theme.FILLER_SHINE_GRADIENT};
+  }
   img {
     position: absolute;
     height: 100%;
     min-width: 100%;
     cursor: pointer;
+
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    color: transparent;
+    z-index: 2;
   }
 
   @media only screen and (min-width: 1024px) {
@@ -110,19 +163,23 @@ const Date = styled.span`
   }
 `;
 
-function ArticlePreview({ id, slug, title, date, better_featured_image }) {
+function ArticlePreview(props) {
+  const { isLoading, id, slug, title, date, better_featured_image } = props;
+  if (isLoading) {
+    return <Container loading />;
+  }
   return (
     <Container>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
         <a>
-          <LazyLoad offsetVertical={120}>
-            <ImgContainer>
+          <ImgContainer>
+            <LazyLoad height="100%" width="100%">
               <img
                 alt={`${title ? title.rendered : ""}`}
                 src={getImageSrc(better_featured_image, "medium")}
               />
-            </ImgContainer>
-          </LazyLoad>
+            </LazyLoad>
+          </ImgContainer>
         </a>
       </Link>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>

@@ -62,21 +62,14 @@ function ArchiveArticlesRenderer({
   currentPage,
   pageClickCallback
 }) {
-  return isLoading ? (
-    <TemporaryInfoPanel
-      loader
-      margin="20px 10px 0 10px"
-      width="calc(100% - 20px)"
-      height="250px"
-    />
-  ) : error ? (
+  return !isLoading && error ? (
     <TemporaryInfoPanel
       margin="20px 10px 0 10px"
       width="calc(100% - 20px)"
       height="250px"
       title={error}
     />
-  ) : articles.length === 0 ? (
+  ) : !isLoading && articles.length === 0 ? (
     <TemporaryInfoPanel
       margin="20px 10px 0 10px"
       width="calc(100% - 20px)"
@@ -85,7 +78,7 @@ function ArchiveArticlesRenderer({
     />
   ) : showPagination ? (
     <>
-      <ArticlesPanel posts={articles} />
+      <ArticlesPanel isLoading={isLoading} posts={articles} />
       <Paginate>
         <ReactPaginate
           forcePage={currentPage - 1}
@@ -104,7 +97,7 @@ function ArchiveArticlesRenderer({
       </Paginate>
     </>
   ) : (
-    <ArticlesPanel posts={articles} />
+    <ArticlesPanel isLoading={isLoading} posts={articles} />
   );
 }
 

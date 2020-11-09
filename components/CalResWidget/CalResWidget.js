@@ -32,9 +32,39 @@ const Buttons = styled.div`
 `;
 
 const Content = styled.div`
-  //width: 100%;
   height: 100%;
   margin: 0;
+
+  ${props =>
+    props.loading
+      ? `
+    margin: 15px 10px;
+    width: 95%;
+    height: 330px;
+    background-color: ${props.theme.FILLER_COLOR};
+    overflow: hidden;
+    position: relative;
+    @keyframes slide {
+      0% {transform:translateX(-100%);}
+      100% {transform:translateX(100%);}
+    }
+    :after {
+      content:'';
+      top:0;
+      transform:translateX(100%);
+      width:100%;
+      height:100%;
+      position: absolute;
+      z-index:1;
+      animation: slide 1s infinite;
+
+      background: ${props.theme.FILLER_SHINE_GRADIENT};
+    }
+    `
+      : `@media only screen and (min-width: 1280px) {
+          width: 320px;
+        }
+    `};
 `;
 
 const WIDGETS = {
@@ -51,10 +81,6 @@ function CalResWidget() {
 
   const calendarData = useSelector(({ programme }) => programme.event);
 
-  if (isLoading) {
-    return <div>LOADING</div>;
-  }
-  const { venueName, race, driverChamp } = venue;
   return (
     <WidgetContainer>
       <SideSectionTitle title="Boxová tabuľa" />
@@ -76,25 +102,29 @@ function CalResWidget() {
             selected={selectedWidget === WIDGETS.CHAMP ? true : false}
           />
         </Buttons>
-        <Content>
-          {selectedWidget === WIDGETS.CAL ? (
-            <CalendarWidget data={calendarData} />
-          ) : selectedWidget === WIDGETS.RACE ? (
-            <ResultsWidget
-              title={`Výsledky VC ${venueName}`}
-              dataTitle="Čas/strata"
-              data={race}
-            />
-          ) : selectedWidget === WIDGETS.CHAMP ? (
-            <ResultsWidget
-              title={`Šampionát po VC ${venueName}`}
-              dataTitle="Body"
-              data={driverChamp}
-            />
-          ) : (
-            ""
-          )}
-        </Content>
+        {isLoading ? (
+          <Content loading />
+        ) : (
+          <Content loading={isLoading}>
+            {selectedWidget === WIDGETS.CAL ? (
+              <CalendarWidget data={calendarData} />
+            ) : selectedWidget === WIDGETS.RACE ? (
+              <ResultsWidget
+                title={`Výsledky VC ${venue.venueName}`}
+                dataTitle="Čas/strata"
+                data={venue.race}
+              />
+            ) : selectedWidget === WIDGETS.CHAMP ? (
+              <ResultsWidget
+                title={`Šampionát po VC ${venue.venueName}`}
+                dataTitle="Body"
+                data={venue.driverChamp}
+              />
+            ) : (
+              ""
+            )}
+          </Content>
+        )}
       </WidgetContent>
     </WidgetContainer>
   );

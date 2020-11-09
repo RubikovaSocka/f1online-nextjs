@@ -55,14 +55,14 @@ const ArticleContainer = styled.div`
   }
 `;
 
-function ArticlesPanel({ posts }) {
+function ArticlesPanel({ posts, isLoading }) {
   if (posts.length > 6) {
     return (
       <>
         <Container>
           {posts.slice(0, 6).map((post, index) => (
             <ArticleContainer key={index}>
-              <ArticlePreview {...post} />
+              <ArticlePreview isLoading={isLoading} {...post} />
             </ArticleContainer>
           ))}
           {/* Fill empty space (on right) in rows with less than 3 posts*/}
@@ -75,7 +75,7 @@ function ArticlesPanel({ posts }) {
         <Container>
           {posts.slice(6, 12).map((post, index) => (
             <ArticleContainer key={index}>
-              <ArticlePreview {...post} />
+              <ArticlePreview isLoading={isLoading} {...post} />
             </ArticleContainer>
           ))}
           <i aria-hidden="true"></i>
@@ -88,7 +88,7 @@ function ArticlesPanel({ posts }) {
     <Container>
       {posts.map((post, index) => (
         <ArticleContainer key={index}>
-          <ArticlePreview {...post} />
+          <ArticlePreview isLoading={isLoading} {...post} />
         </ArticleContainer>
       ))}
       <i aria-hidden="true"></i>

@@ -20,12 +20,47 @@ const Container = styled.div`
   margin-bottom: 25px;
 `;
 
+const Item = styled.div`
+  background-color: ${props => props.theme.FILLER_COLOR};
+  overflow: hidden;
+  position: relative;
+  margin: 10px 0;
+  height: 82px;
+  width: 100%;
+
+  @keyframes slide {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  :after {
+    content: "";
+    top: 0;
+    transform: translateX(100%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    animation: slide 1s infinite;
+    animation-delay: ${props => props.delay};
+    background: ${props => props.theme.FILLER_SHINE_GRADIENT};
+  }
+`;
+
+const LoaderPanel = styled.div`
+  width: 93%;
+  margin: auto;
+`;
+
 function QuickNews() {
   const dispatch = useDispatch();
   const [shownItem, setShownItem] = useState({ index: 0, isShown: false });
   const state = useSelector(state => state.quickNews);
-  const { news, error, isLoading, totalNewsCount } = state;
-
+  const { news, error, /*isLoading,*/ totalNewsCount } = state;
+  const isLoading = true;
   let newsTriggersArray = news.map((newsItem, index) => (
     <OneLineNewsItem
       key={index}
@@ -65,7 +100,13 @@ function QuickNews() {
         next={() => dispatch(fetchMoreQuickNews())}
         hasMore={isLoading || totalNewsCount > news.length}
         loader={
-          <TemporaryInfoPanel loader width="286px" height="440px" margin="20px auto" />
+          <LoaderPanel loader width="286px" height="440px" margin="20px auto">
+            <Item delay="0" className="shine" />
+            <Item delay="0.1s" className="shine" />
+            <Item delay="0.2s" className="shine" />
+            <Item delay="0.3s" className="shine" />
+            <Item delay="0.4s" className="shine" />
+          </LoaderPanel>
         }
         height={480}
         endMessage={
@@ -86,7 +127,7 @@ function QuickNews() {
               setShownItem({ index: index, isShown: true });
             }}
           />
-        ))}
+          ))}
       </InfiniteScroll>
     </Container>
   );

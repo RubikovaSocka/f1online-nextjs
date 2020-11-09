@@ -1,8 +1,3 @@
-import Loadable from "react-loadable";
+import CalResWidget from "./CalResWidget";
 
-const AsyncPage = Loadable({
-  loader: () => import("./CalResWidget"),
-  loading: "Loading"
-});
-
-export default AsyncPage;
+export default CalResWidget;

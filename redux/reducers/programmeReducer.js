@@ -4,7 +4,7 @@ import { HYDRATE } from "next-redux-wrapper";
 const defaultState = {
   event: {},
   error: null,
-  isLoading: false
+  isLoading: true
 };
 
 const programmeReducer = (state = defaultState, action) => {
@@ -15,6 +15,11 @@ const programmeReducer = (state = defaultState, action) => {
         return {
           ...action.payload.programme
         };
+      } else {
+        return {
+          ...state,
+          isLoading: true
+        }
       }
     }
     case TYPES.FETCH:

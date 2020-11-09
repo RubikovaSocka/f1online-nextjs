@@ -34,17 +34,15 @@ import fontawesomeSubset from "fontawesome-subset";
 function Home() {
   const dispatch = useDispatch();
 
-  const dd = dateInISO => {};
-
   useEffect(() => {
-    let x = dd("2020-05-04T22:50:23");
-    //console.log(x);
     dispatch(fetchF1Results({ perPage: 1 }));
     dispatch(fetchProgramme());
     dispatch(fetchNewQuickNews());
   }, []);
 
-  const postsData = useSelector(state => state.articles.indexArticles);
+  const state = useSelector(state => state.articles);
+  const postsData = state.indexArticles;
+  const isLoading = state.isLoading;
   const isScreenMobile = isMobile();
 
   return (
@@ -56,13 +54,16 @@ function Home() {
         />
       </Head>
       <MAIN>
-        <TitleArea posts={postsData.slice(0, 5)} />
+        <TitleArea isLoading={isLoading} posts={postsData.slice(0, 5)} />
         <Divider height="25px" />
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL>
             <SectionTitle title="Ďalšie správy" />
             <Divider height="10px" />
-            <ArticlesPanel posts={postsData.slice(5, 11)} />
+            <ArticlesPanel
+              isLoading={isLoading}
+              posts={postsData.slice(5, 11)}
+            />
             <div className="basicButtonContainer">
               <ButtonWB
                 hrefProp="/archiv"

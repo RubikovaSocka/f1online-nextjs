@@ -1,5 +1,6 @@
 import TitleArticlePreview from "../TitleArticlePreview";
 import styled from "styled-components";
+import TemporaryInfoPanel from "../TemporaryInfoPanel";
 
 const Container = styled.div`
   padding: 0;
@@ -54,23 +55,23 @@ const Art4 = styled.div`
   }
 `;
 
-function TitleArea({ posts }) {
+function TitleArea({ posts, isLoading }) {
   return (
     <Container>
       <Art0>
-        <TitleArticlePreview {...posts[0]} top />
+        <TitleArticlePreview {...posts[0]} isLoading={isLoading} top />
       </Art0>
       <Art1>
-        <TitleArticlePreview {...posts[1]} />
+        <TitleArticlePreview {...posts[1]} isLoading={isLoading} />
       </Art1>
       <Art2>
-        <TitleArticlePreview {...posts[3]} />
+        <TitleArticlePreview {...posts[3]} isLoading={isLoading} />
       </Art2>
       <Art3>
-        <TitleArticlePreview {...posts[2]} />
+        <TitleArticlePreview {...posts[2]} isLoading={isLoading} />
       </Art3>
       <Art4>
-        <TitleArticlePreview {...posts[4]} />
+        <TitleArticlePreview {...posts[4]} isLoading={isLoading} />
       </Art4>
     </Container>
   );

@@ -10,10 +10,38 @@ const Container = styled.div`
   text-decoration: none;
   margin-bottom: 20px;
 
+  ${props =>
+    props.loading
+      ? `background-color: ${props.theme.FILLER_COLOR};
+
+    @keyframes slide {
+      0% {transform:translateX(-100%);}
+      100% {transform:translateX(100%);}
+    }
+    :after {
+      content:'';
+      top:0;
+      transform:translateX(100%);
+      width:100%;
+      height:100%;
+      position: absolute;
+      z-index:1;
+      animation: slide 1s infinite;
+
+      background: ${props.theme.FILLER_SHINE_GRADIENT};
+    }
+    `
+      : ""};
+
   img {
     width: 100%;
     vertical-align: middle;
     transition: transform 0.3s ease;
+
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    color: transparent;
   }
   &:hover img {
     transform: scale(1.05);
@@ -64,7 +92,17 @@ const Title = styled.h3`
   }
 `;
 
-function TitleArticlePreview({ id, slug, title, better_featured_image, top }) {
+function TitleArticlePreview({
+  isLoading,
+  id,
+  slug,
+  title,
+  better_featured_image,
+  top
+}) {
+  if (isLoading) {
+    return <Container loading></Container>;
+  }
   return (
     <Container>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>

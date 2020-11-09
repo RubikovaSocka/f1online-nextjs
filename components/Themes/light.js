@@ -29,6 +29,9 @@ const THEME = {
   CALENDAR_LEFT_LINE: "3px solid #d4d4d4",
   CALENDAR_HEADER_COLOR: "#f1f1f1",
 
+  FILLER_COLOR: "#f1f1f1",
+  FILLER_SHINE_GRADIENT: "linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%)",
+
   TABLE_PRIMARY_COLOR: "#1a1a1a",
   TABLE_SECONDARY_COLOR: "#4a4a4a",
 
