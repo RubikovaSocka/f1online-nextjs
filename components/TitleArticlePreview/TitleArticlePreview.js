@@ -57,7 +57,10 @@ const Title = styled.h3`
     /*line-height: 17px;*/
     scroll-behavior: none;
     font-size: 14px;
-    ${props => (props.top ? `font-size: 20px; padding: 11px 15px` : "")}
+    ${props =>
+      props.top
+        ? `font-size: 20px; padding: 11px 15px;  width: calc(100% - 30px);`
+        : ""}
   }
 `;
 
@@ -67,7 +70,7 @@ function TitleArticlePreview({ id, slug, title, better_featured_image, top }) {
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
         <a>
           <img
-            alt={`fotka k článku ${title.rendered}`}
+            alt={`fotka k článku ${title ? title.rendered : ""}`}
             src={getImageSrc(better_featured_image, "medium_large")}
           />
           <Title

@@ -17,7 +17,7 @@ import {
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
   SIDEBAR
-} from "../components/PageLayout";
+} from "../../../components/PageLayout";
 
 const PER_PAGE = 12;
 

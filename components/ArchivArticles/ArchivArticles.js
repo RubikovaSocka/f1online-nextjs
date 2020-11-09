@@ -3,8 +3,8 @@ import axios from "axios";
 import ReactPaginate from "react-paginate";
 import ArticlesPanel from "../ArticlesPanel";
 
-import styles from "./style.module.scss";
 import LoadingSpinner from "../LoadingSpinner";
+const styles = {};
 
 export class ArchivArticles extends Component {
   constructor(props) {

@@ -1,52 +1,51 @@
-import React from "react";
 import { useSelector } from "react-redux";
 
-import styles from "./style.module.scss";
 import SideSectionTitle from "../SideSectionTitle";
 import LinkAsButton from "../LinkAsButton/LinkAsButton";
 import Divider from "../Divider";
-import onClient from "../../utils/onClient";
+import DriverDataItem from "./ResultsRowItem";
 
-function DriverDataItem({ pos, renderID, name, team, time }) {
-  return (
-    <div className={styles.dataItem}>
-      <span className={styles.position}>{pos}.</span>
-      <div
-        className={`${styles.driverBox} ${pos < 4 ? styles.red : ""}
-                            ${
-                              renderID === "gp"
-                                ? styles.driverBoxWidthLV
-                                : styles.driverBoxWidthC
-                            }`}
-      >
-        <span className={styles.name}>{name}</span>
-        <span className={styles.team}>{team}</span>
-      </div>
-      <span className={styles.time}>{time}</span>
-    </div>
-  );
-}
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 635px;
+
+  @media only screen and (min-width: 1280px) {
+    width: 673px;
+  }
+`;
+
+const TableContainer = styled.div`
+  width: 310px;
+
+  @media only screen and (min-width: 1280px) {
+    width: 320px;
+  }
+`;
 
 function ResultsLarge() {
-  const isLoading = useSelector(
-    ({ f1Results }) => f1Results.isLoading
-  )
-  const venueName = useSelector(
-    ({ f1Results }) => f1Results.results[0] ? f1Results.results[0].venueName : ""
+  const isLoading = useSelector(({ f1Results }) => f1Results.isLoading);
+  const venueName = useSelector(({ f1Results }) =>
+    f1Results.results[0] ? f1Results.results[0].venueName : ""
   );
-  const raceData = useSelector(({ f1Results }) => f1Results.results[0] ? f1Results.results[0].race : "");
-  const champData = useSelector(
-    ({ f1Results }) => f1Results.results[0] ? f1Results.results[0].driverChamp : ""
+  const raceData = useSelector(({ f1Results }) =>
+    f1Results.results[0] ? f1Results.results[0].race : ""
   );
-  
-  if(isLoading) {
-    return <div className={styles.outerContainer}>LOADING</div>
+  const champData = useSelector(({ f1Results }) =>
+    f1Results.results[0] ? f1Results.results[0].driverChamp : ""
+  );
+
+  if (isLoading) {
+    return <Container>LOADING</Container>;
   }
   return (
-    <div className={styles.outerContainer}>
+    <Container>
       <div>
         <SideSectionTitle title={`Výsledky VC ${venueName}`} />
-        <div className={styles.container}>
+        <TableContainer>
           {raceData.slice(1, 6).map((item, index) => (
             <DriverDataItem
               renderID="gp"
@@ -62,11 +61,11 @@ function ResultsLarge() {
             target="/vysledky"
             title="Kompletné výsledky pretekov"
           />
-        </div>
+        </TableContainer>
       </div>
       <div>
         <SideSectionTitle title={`Šampionát po VC ${venueName}`} />
-        <div className={styles.container}>
+        <TableContainer>
           {champData.slice(1, 6).map((item, index) => (
             <DriverDataItem
               key={index}
@@ -81,9 +80,9 @@ function ResultsLarge() {
             target="/vysledky"
             title="Priebežné poradie šampionátu"
           />
-        </div>
+        </TableContainer>
       </div>
-    </div>
+    </Container>
   );
 }
 

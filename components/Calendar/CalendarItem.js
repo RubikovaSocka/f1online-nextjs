@@ -6,6 +6,7 @@ import {
   SESSION_DURATIONS,
   getSesDurationText
 } from "../../utils/sessions";
+import { Chevron, Container } from "./Containers";
 
 const getTvText = tv => {
   return `${tv ? tv : "doplníme..."}`;
@@ -31,122 +32,110 @@ function CalendarItem({
   const [isOpened, setIsOpened] = useState(false);
 
   return (
-    <div
-      className={`${styles.container} ${
-        isOpened ? styles.opened : styles.closed
-      }`}
-    >
+    <Container className={`${isOpened ? "opened" : "closed"}`}>
       {onMobile() ? (
         <div
-          className={`${styles.header} ${
-            isOpened ? styles.opened : styles.closed
-          }`}
+          className={`header ${isOpened ? "opened" : "closed"}`}
           onClick={() => setIsOpened(prev => !prev)}
         >
           <div>
-            <span className={styles.venueName}>{`${position +
+            <span className="venueName">{`${position +
               1}. VC ${venue_name}`}</span>
-            <div className={styles.venueHeaderDate}>
-              <span className={styles.date}>{venue_date}</span>
-              <span className={styles.raceTime}>{r_time}</span>
+            <div className="venueHeaderDate">
+              <span className="date">{venue_date}</span>
+              <span className="raceTime">{r_time}</span>
             </div>
           </div>
           <i className={`fas fa-chevron-${isOpened ? "up" : "down"}`}></i>
         </div>
       ) : (
         <div
-          className={`${styles.header} ${
-            isOpened ? styles.opened : styles.closed
-          }`}
+          className={`header ${isOpened ? "opened" : "closed"}`}
           onClick={() => setIsOpened(prev => !prev)}
         >
-          <i className={`fas fa-chevron-${isOpened ? "up" : "down"}`}></i>
-          <span className={styles.venueName}>{`${position +
+          <Chevron isOpened={isOpened} />
+          <span className="venueName">{`${position +
             1}. VC ${venue_name}`}</span>
-          <div className={styles.venueHeaderDate}>
-            <span className={styles.date}>
+          <div className="venueHeaderDate">
+            <span className="date">
               {venue_date
                 .split("-")[1]
                 .trim()
                 .replace(" 2020", "")}
             </span>
-            <span className={styles.raceTime}>{r_time}</span>
+            <span className="raceTime">{r_time}</span>
           </div>
         </div>
       )}
 
-      <div
-        className={`${styles.contentBox} ${
-          isOpened ? styles.opened : styles.closed
-        }`}
-      >
-        <div className={styles.table}>
-          <div className={`${styles.timesRow} ${styles.timesRowHeader}`}>
-            <span className={styles.session}>Časť</span>
-            <span className={styles.sessionTime}>Čas</span>
-            <span className={styles.sessionTv}>Vysiela</span>
+      <div className={`contentBox ${isOpened ? "opened" : "closed"}`}>
+        <div className="table">
+          <div className="timesRow timesRowHeader">
+            <span className="session">Časť</span>
+            <span className="sessionTime">Čas</span>
+            <span className="sessionTV">Vysiela</span>
           </div>
           {fp1_time ? (
-            <div className={styles.timesRow}>
-              <span className={styles.session}>{SESSION_NAMES.FP1}</span>
-              <span className={styles.sessionTime}>
+            <div className="timesRow">
+              <span className="session">{SESSION_NAMES.FP1}</span>
+              <span className="sessionTime">
                 {getSesDurationText(fp1_time, SESSION_DURATIONS.FP1)}
               </span>
-              <span className={styles.sessionTv}>{getTvText(fp1_tv)}</span>
+              <span className="sessionTV">{getTvText(fp1_tv)}</span>
             </div>
           ) : (
             ""
           )}
 
           {fp2_time ? (
-            <div className={styles.timesRow}>
-              <span className={styles.session}>{SESSION_NAMES.FP2}</span>
-              <span className={styles.sessionTime}>
+            <div className="timesRow">
+              <span className="session">{SESSION_NAMES.FP2}</span>
+              <span className="sessionTime">
                 {getSesDurationText(fp2_time, SESSION_DURATIONS.FP2)}
               </span>
-              <span className={styles.sessionTv}>{getTvText(fp2_tv)}</span>
+              <span className="sessionTV">{getTvText(fp2_tv)}</span>
             </div>
           ) : (
             ""
           )}
           {fp3_time ? (
-            <div className={styles.timesRow}>
-              <span className={styles.session}>{SESSION_NAMES.FP3}</span>
-              <span className={styles.sessionTime}>
+            <div className="timesRow">
+              <span className="session">{SESSION_NAMES.FP3}</span>
+              <span className="sessionTime">
                 {getSesDurationText(fp3_time, SESSION_DURATIONS.FP3)}
               </span>
-              <span className={styles.sessionTv}>{getTvText(fp3_tv)}</span>
+              <span className="sessionTV">{getTvText(fp3_tv)}</span>
             </div>
           ) : (
             ""
           )}
           {q_time ? (
-            <div className={styles.timesRow}>
-              <span className={styles.session}>{SESSION_NAMES.Q}</span>
-              <span className={styles.sessionTime}>
+            <div className="timesRow">
+              <span className="session">{SESSION_NAMES.Q}</span>
+              <span className="sessionTime">
                 {getSesDurationText(q_time, SESSION_DURATIONS.Q)}
               </span>
-              <span className={styles.sessionTv}>{getTvText(q_tv)}</span>
+              <span className="sessionTV">{getTvText(q_tv)}</span>
             </div>
           ) : (
             ""
           )}
           {r_time ? (
-            <div className={styles.timesRow}>
-              <span className={styles.session}>{SESSION_NAMES.R}</span>
-              <span className={styles.sessionTime}>{`${r_time}`}</span>
-              <span className={styles.sessionTv}>{getTvText(r_tv)}</span>
+            <div className="timesRow">
+              <span className="session">{SESSION_NAMES.R}</span>
+              <span className="sessionTime">{`${r_time}`}</span>
+              <span className="sessionTV">{getTvText(r_tv)}</span>
             </div>
           ) : (
             ""
           )}
         </div>
-        <div className={styles.circuitContainer}>
+        <div className="circuitContainer">
           <img src={circuit_map}></img>
           <span>{circuit_name}</span>
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

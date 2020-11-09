@@ -1,46 +1,40 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import styles from './PopularBox.module.scss'
-import BoxItem from './BoxItem';
-import SideRePanel from '../Ads/SideRePanel/SideRePanel';
-import SideSectionTitle from '../SideSectionTitle/SideSectionTitle';
-import Divider from '../Divider';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import BoxItem from "./BoxItem";
+import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
+import Divider from "../Divider";
+import { fetchCategories } from "../../redux/actions/categoriesActions";
+import TemporaryInfoPanel from "../TemporaryInfoPanel";
 
-export default class PopularBox extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      popular: {},
-      popularLoaded: false
-    }
-  }
+function PopularBox({ pickedSlug }) {
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.categories);
+  const { isLoading, json, error } = state;
 
-  componentDidMount() {
-    axios.get("https://wpadmin.f1online.sk/wp-content/uploads/popular.json")
-      .then(res => {
-        this.setState({
-          popular: res.data,
-          popularLoaded: true
+  useEffect(() => {
+    !json && dispatch(fetchCategories());
+  }, []);
+
+  return (
+    <div style={{ width: "100%", fontFamily: "HK Grotesk" }}>
+      <SideSectionTitle title="Kategórie" />
+      <Divider height="10px" />
+      {isLoading ? (
+        <TemporaryInfoPanel
+          loader
+          margin="auto"
+          height="230px"
+          width="calc(100% - 20px)"
+        />
+      ) : error ? (
+        error
+      ) : (
+        json.map((item, index) => {
+          return <BoxItem key={index} {...item} pickedSlug={pickedSlug} />;
         })
-      })
-  }
-
-  render() {
-    return (
-      <div className={styles.container}>
-        <SideSectionTitle title="Kategórie" />
-        <Divider height="10px" />
-        {
-          this.state.popularLoaded ? 
-          
-          this.state.popular.map((item, index) => {
-            return (
-              <BoxItem key={index} data={item} pickedSlug={this.props.pickedSlug}/>
-            )
-          }) :
-          ""
-        }
-      </div>
-    )
-  }
+      )}
+    </div>
+  );
 }
+
+export default PopularBox;

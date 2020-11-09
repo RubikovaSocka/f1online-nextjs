@@ -19,6 +19,19 @@ const NAVBAR = styled.nav`
   flex-direction: column;
   justify-content: flex-start;
 
+  ${props =>
+    props.isMenuOpened
+      ? ` @media only screen and (max-width: 1023px) {
+            padding-top: 85px;
+            opacity: 1;
+            z-index: 30;
+          }`
+      : ` @media only screen and (max-width: 1023px) {
+            width: 0;
+            height: 0;
+            display: none;
+          }`}
+
   @media only screen and (min-width: 1024px) {
     height: 38px;
     margin-top: 0;
@@ -100,18 +113,6 @@ const NAVBAR = styled.nav`
       }
     }
   }
-  ${props =>
-    props.isMenuOpened
-      ? `opacity: 1;
-          z-index: 30;
-          @media only screen and (max-width: 1023px) {
-            padding-top: 85px;
-        }`
-      : `@media only screen and (max-width: 1023px) {
-            width: 0;
-            height: 0;
-            display: none;
-          }`}
 `;
 
 const BUTTON = styled.div`
@@ -136,8 +137,8 @@ const BUTTON = styled.div`
 
   ${props =>
     props.isMenuOpened
-      ? `background-image: url("./x-button.png");`
-      : `background-image: var(--mobile-b-button);`}
+      ? `background-image: url("/images/x-button.png");`
+      : `background-image: url(${props.theme.MOBILE_BURGER_BUT});`}
 `;
 
 const links = [
@@ -165,10 +166,9 @@ function MyNavbar() {
   } else {
     enableBodyScroll(targetElement);
   }
-
   return (
     <>
-      <NAVBAR isMenuOpened>
+      <NAVBAR isMenuOpened={isMenuOpened}>
         {links.map((item, index) => (
           <Link key={index} activeClassName="selected" href={item.href}>
             <a onClick={() => setIsMenuOpened(false)}>
@@ -178,7 +178,10 @@ function MyNavbar() {
           </Link>
         ))}
       </NAVBAR>
-      <BUTTON onClick={() => setIsMenuOpened(prev => !prev)} isMenuOpened />
+      <BUTTON
+        onClick={() => setIsMenuOpened(prev => !prev)}
+        isMenuOpened={isMenuOpened}
+      />
     </>
   );
 }

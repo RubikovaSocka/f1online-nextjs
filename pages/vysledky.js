@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Head from "next/head";
+import { connect } from "react-redux";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import Divider from "../components/Divider.js";
-import styles from "../styles/vysledky.module.scss";
 import LastVenueResBox from "../components/Results/LastVenueResBox.js";
 import DriverChampResBox from "../components/Results/DriverChampResBox.js";
 import TeamChampResBox from "../components/Results/TeamChampResBox.js";
+import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
+import { fetchF1Results } from "../redux/actions/f1ResultsActions";
+import { fetchProgramme } from "../redux/actions/programmeActions";
+
 import {
   MAIN,
   COLUMNED_PAGE,
@@ -46,6 +50,7 @@ class Results extends Component {
   }
 
   componentDidMount() {
+    this.props.initialize();
     axios
       .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=5`)
       .then(res => {
@@ -212,4 +217,21 @@ class Results extends Component {
     );
   }
 }
-export default Results;
+
+const mapDispatchToProps = dispatch => ({
+  initialize: () => {
+    dispatch(fetchNewQuickNews());
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Results);
+
+/*
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store }) => {
+    store.dispatch(END);
+  }
+);*/

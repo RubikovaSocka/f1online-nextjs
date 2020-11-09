@@ -29,7 +29,7 @@ import {
 import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
-//import fontawesomeSubset from "fontawesome-subset";
+import fontawesomeSubset from "fontawesome-subset";
 
 function Home() {
   const dispatch = useDispatch();
@@ -93,6 +93,7 @@ function Home() {
             </div>
             <Divider height="15px" />
             <QuickNews />
+            <CalResWidget />
           </SIDEBAR>
         </COLUMNED_PAGE>
       </MAIN>
@@ -103,7 +104,16 @@ function Home() {
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
     /*fontawesomeSubset(
-      ["circle-notch", "spin", "fa-spin", "paperclip", "play-circle"],
+      [
+        "circle-notch",
+        "chevron-up",
+        "chevron-down",
+        "spin",
+        "fa-spin",
+        "paperclip",
+        "play-circle",
+        "circle"
+      ],
       "public/fonts/FontAwesome"
     );*/
     store.dispatch(fetchNewArticles());

@@ -1,5 +1,74 @@
-import React from "react";
-import styles from "./style.module.scss";
+import styled from "styled-components";
+
+const Table = styled.table`
+  width: 100%;
+  font-family: "HK Grotesk";
+  font-size: 13px;
+  border-spacing: 0;
+  color: ${props => props.theme.TEXT_COLOR_MILD};
+  font-weight: 600;
+
+  td {
+    border-top: 1px solid ${props => props.theme.WIDGET_DIVIDER_COLOR};
+  }
+
+  tr {
+    margin: 0;
+    padding: 6px 5px;
+    height: 31px;
+
+    &.noBorder td {
+      border: none;
+    }
+  }
+
+  th {
+    height: 32px;
+    text-align: start;
+    background-color: ${props => props.theme.WIDGET_UNSELECT_BACK};
+
+    &.position {
+      text-align: center;
+    }
+    &.time {
+      font-weight: 600;
+    }
+  }
+
+  td span,
+  th span {
+    line-height: 30px;
+  }
+`;
+
+const Caption = styled.caption`
+  margin-left: 10px;
+  padding: 7px 5px;
+  font-size: 16px;
+  text-align: start;
+`;
+
+const TBody = styled.tbody`
+  .position {
+    text-align: center;
+    padding-left: 5px;
+    width: 35px;
+  }
+  .time {
+    width: 100px;
+    font-weight: 400;
+
+    @media only screen and (min-width: 370px) {
+      width: 120px;
+    }
+    @media only screen and (min-width: 1024px) {
+      width: 100px;
+    }
+    @media only screen and (min-width: 1366px) {
+      width: 115px;
+    }
+  }
+`;
 
 const getBodyText = pts => {
   if (pts == 1) {
@@ -13,35 +82,35 @@ const getBodyText = pts => {
 
 function ResultsWidget({ data, title, dataTitle }) {
   return (
-    <table className={styles.table}>
-      <caption className={styles.caption}>{title}</caption>
-      <tbody>
-        <tr className={styles.header}>
-          <th className={styles.position}>
+    <Table>
+      <Caption>{title}</Caption>
+      <TBody>
+        <tr>
+          <th className="position">
             <span>Poz.</span>
           </th>
-          <th className={styles.driver}>
+          <th>
             <span>Pilot</span>
           </th>
-          <th className={styles.time}>
+          <th className="time">
             <span>{dataTitle}</span>
           </th>
         </tr>
         {data.slice(1, 11).map(({ position, driverName, split, points }) => (
-          <tr className={`${position === "1" ? styles.noBorder : ""}`}>
-            <td className={styles.position}>
+          <tr className={`${position === "1" ? "noBorder" : ""}`}>
+            <td className="position">
               <span>{position}.</span>
             </td>
-            <td className={styles.driver}>
+            <td>
               <span>{driverName}</span>
             </td>
-            <td className={styles.time}>
+            <td className="time">
               <span>{split ? split : points ? getBodyText(points) : ""}</span>
             </td>
           </tr>
         ))}
-      </tbody>
-    </table>
+      </TBody>
+    </Table>
   );
 }
 export default ResultsWidget;

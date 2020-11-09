@@ -14,6 +14,7 @@ import fetchProgrammeSaga from "./handlers/fetchProgrammeSaga";
 import fetchCalendarSaga from "./handlers/fetchCalendarSaga";
 import initializeThemeSaga from "./handlers/initializeThemeSaga";
 import saveThemeSaga from "./handlers/saveThemeSaga";
+import fetchCategoriesSaga from "./handlers/fetchCategoriesSaga";
 import fetchTagArchiveArticlesSaga from "./handlers/fetchTagArchiveArticlesSaga";
 
 import { TYPES as F1_RESULTS } from "../actions/f1ResultsActions";
@@ -21,6 +22,7 @@ import { TYPES as CALENDAR } from "../actions/calendarActions";
 import { TYPES as PROGRAMME } from "../actions/programmeActions";
 import { TYPES as THEME } from "../actions/themeActions";
 import { TYPES as TAG_ARCHIV } from "../actions/tagArchiveActions";
+import { TYPES as CATEGORIES } from "../actions/categoriesActions";
 
 //watcher
 function* rootSaga() {
@@ -35,6 +37,7 @@ function* rootSaga() {
   yield takeLatest(F1_RESULTS.FETCH, fetchF1ResultsSaga);
   yield takeLatest(CALENDAR.FETCH, fetchCalendarSaga);
   yield takeLatest(PROGRAMME.FETCH, fetchProgrammeSaga);
+  yield takeLatest(CATEGORIES.FETCH, fetchCategoriesSaga);
 
   yield takeLatest(THEME.INITIALIZE, initializeThemeSaga);
   yield takeLatest(THEME.SET, saveThemeSaga);

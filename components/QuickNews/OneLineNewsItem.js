@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ItemContainer = styled.div`
   z-index: 5;
-  color: var(--sub-title-color);
+  color: ${props => props.theme.SUBTITLE_COLOR};
   padding: 0 10px;
 `;
 
@@ -20,19 +20,15 @@ const Date = styled.p`
   z-index: 3;
   font-family: "HK Grotesk";
   font-size: 12px;
-  background-color: var(--basic-back-color);
+  background-color: ${props => props.theme.PAGE_BACK_COLOR};
 `;
 
 const MessageContainer = styled.div`
-  border: 1px solid var(--lines-color);
+  border: ${props => props.theme.QUICKNEWS_BORDER};
   padding-bottom: 5px;
   padding-right: 5px;
   text-decoration: none;
-  color: var(--article-text-color);
-  /*
-  .clickable:hover {
-    text-decoration: underline;
-  }*/
+  color: ${props => props.theme.TEXT_COLOR_MILD}; 
 `;
 
 const BasicMessage = styled.div`
@@ -49,27 +45,6 @@ const BasicMessage = styled.div`
     cursor: pointer;
     text-decoration: underline;
   }
-  /* Step 1: Common Properties: All required to make icons render reliably */
-  /*&.icon p::before {
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    margin-right: 4px;
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    color: #e10600;
-  }
-*/
-  /* Step 2: Reference Individual Icons */ /*
-  &.video p::before {
-    content: "\f144";
-  }
-  &.post p::before {
-    //content: "\f06e";
-    content: "\f0c6";
-  }*/
 `;
 
 const VideoMessage = styled(BasicMessage)`
@@ -88,7 +63,7 @@ const VideoMessage = styled(BasicMessage)`
 `;
 
 const PostMessage = styled(BasicMessage)`
-  p::before {
+  p:first-of-type::before {
     display: inline-block;
     font-style: normal;
     font-variant: normal;

@@ -10,7 +10,7 @@ import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import CalResWidget from "../components/CalResWidget";
 import Divider from "../components/Divider.js";
-import PopularBox from "../components/PopularBox/PopularBox.js";
+import PopularBox from "../components/PopularBox";
 import ArchiveArticlesRenderer from "../components/ArchivArticles/ArchiveArticlesRenderer.js";
 import { fetchArchiveArticles } from "../redux/actions/archiveActions";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";

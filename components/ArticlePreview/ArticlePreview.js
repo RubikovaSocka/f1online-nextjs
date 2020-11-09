@@ -27,7 +27,7 @@ const Container = styled.div`
 
   @media only screen and (min-width: 1280px) {
     height: 210px;
-    background-color: var(--basic-back-color);
+    /**background-color: var(--basic-back-color);*/
   }
 `;
 
@@ -82,7 +82,7 @@ const TitleContainer = styled.a`
 
 const Title = styled.h3`
   margin: 0;
-  color: var(--basic-text-color);
+  color: ${props => props.theme.TEXT_COLOR_MILD};
   font-size: 14px;
   cursor: pointer;
 
@@ -100,7 +100,7 @@ const Date = styled.span`
   @media only screen and (min-width: 1024px) {
     display: inline-block;
     margin-top: 5px;
-    color: var(--sub-title-color);
+    color: ${props => props.theme.SUBTITLE_COLOR};
 
     font-size: 13px;
     font-weight: 400;
@@ -118,7 +118,7 @@ function ArticlePreview({ id, slug, title, date, better_featured_image }) {
           <LazyLoad offsetVertical={120}>
             <ImgContainer>
               <img
-                alt={`${title.rendered}`}
+                alt={`${title ? title.rendered : ""}`}
                 src={getImageSrc(better_featured_image, "medium")}
               />
             </ImgContainer>

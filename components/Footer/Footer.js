@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import styled from "styled-components";
 
 const Container = styled.footer`
@@ -16,7 +15,7 @@ const Container = styled.footer`
   justify-content: flex-start;
   align-items: center;
 
-  background-color: var(--footer-back-color);
+  background-color: ${props => props.theme.FOOTER_COLOR};
   color: #f0f0f0;
 
   font: 13px "HK Grotesk";

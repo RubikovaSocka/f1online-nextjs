@@ -1,113 +1,78 @@
-import React, { Component } from "react";
-import styles from "./BasicStyle.module.scss";
-import Media from "react-media";
-export default class DriverChampResBox extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      opened: false
-    };
-  }
+import React, { useState } from "react";
+import onMobile from "../../utils/onMobile";
+import { Container, Chevron } from "./Containers";
 
-  changeState() {
-    this.setState(prev => {
-      return {
-        opened: !prev.opened
-      };
-    });
-  }
+export default function DriverChampResBox({ data, venueName }) {
+  const [opened, setOpened] = useState(false);
 
-  render() {
-    return (
+  return (
+    <Container className={opened ? "opened" : "closed"}>
       <div
-        className={`${styles.container} ${
-          this.state.opened ? styles.opened : styles.closed
-        }`}
+        onClick={() => setOpened(prev => !prev)}
+        className={`header ${opened ? "opened" : "closed"}`}
       >
-        <div
-          className={`${styles.header} ${
-            this.state.opened ? styles.opened : styles.closed
-          } ${styles.champResult}`}
-          onClick={() => this.changeState()}
-        >
-          <i
-            className={`fas fa-chevron-${this.state.opened ? "up" : "down"}`}
-          ></i>
-          <span>Poradie jazdcov po VC {this.props.venueName} 2020</span>
-        </div>
-
-        <Media query={{ maxWidth: 1023 }}>
-          {matches =>
-            matches ? (
-              <div
-                className={`${styles.contentBox} ${
-                  this.state.opened ? styles.opened : styles.closed
-                } ${styles.champResult}`}
-              >
-                <div className={styles.table}>
-                  {this.props.data.map((item, index) =>
-                    index === 0 ? (
-                      <div
-                        key={index}
-                        className={`${styles.tableRow} ${styles.tableHeader}`}
-                      >
-                        <span className={styles.position}>{item.position}</span>
-                        <span className={styles.name}>{item.driverName}</span>
-                        <span className={styles.points}>{item.points}</span>
-                      </div>
-                    ) : (
-                      <div key={index} className={`${styles.tableRow}`}>
-                        <span className={styles.position}>
-                          {item.position}
-                          {item.position === "-" ? "" : "."}
-                        </span>
-                        <span className={styles.name}>{item.driverName}</span>
-                        <span className={styles.points}>{item.points}</span>
-                      </div>
-                    )
-                  )}
-                </div>
-              </div>
-            ) : (
-              <div
-                className={`${styles.contentBox} ${
-                  this.state.opened ? styles.opened : styles.closed
-                } ${styles.champResult}`}
-              >
-                <div className={styles.table}>
-                  {this.props.data.map((item, index) =>
-                    index === 0 ? (
-                      <div
-                        key={index}
-                        className={`${styles.tableRow} ${styles.tableHeader}`}
-                      >
-                        <span className={styles.position}>{item.position}</span>
-                        <span className={styles.name}>{item.driverName}</span>
-                        <span className={styles.team}>{item.teamName}</span>
-                        <span className={styles.laps}>{item.laps}</span>
-                        <span className={styles.split}>{item.split}</span>
-                        <span className={styles.points}>{item.points}</span>
-                      </div>
-                    ) : (
-                      <div key={index} className={`${styles.tableRow}`}>
-                        <span className={styles.position}>
-                          {item.position}
-                          {item.position === "-" ? "" : "."}
-                        </span>
-                        <span className={styles.name}>{item.driverName}</span>
-                        <span className={styles.team}>{item.teamName}</span>
-                        <span className={styles.laps}>{item.laps}</span>
-                        <span className={styles.split}>{item.split}</span>
-                        <span className={styles.points}>{item.points}</span>
-                      </div>
-                    )
-                  )}
-                </div>
-              </div>
-            )
-          }
-        </Media>
+        <Chevron isOpened={opened} />
+        <span>Poradie jazdcov po VC {venueName} 2020</span>
       </div>
-    );
-  }
+      <div className={`contentBox venueResult ${opened ? "opened" : "closed"}`}>
+        {onMobile() ? (
+          <div
+            className={`contentBox champResult ${opened ? "opened" : "closed"}`}
+          >
+            <div className="table">
+              {data.map((item, index) =>
+                index === 0 ? (
+                  <div key={index} className={`tableRow tableHeader`}>
+                    <span className="position">{item.position}</span>
+                    <span className="name">{item.driverName}</span>
+                    <span className="points">{item.points}</span>
+                  </div>
+                ) : (
+                  <div key={index} className="tableRow">
+                    <span className="position">
+                      {item.position}
+                      {item.position === "-" ? "" : "."}
+                    </span>
+                    <span className="name">{item.driverName}</span>
+                    <span className="points">{item.points}</span>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        ) : (
+          <div
+            className={`contentBox champResult ${opened ? "opened" : "closed"}`}
+          >
+            <div className="table">
+              {data.map((item, index) =>
+                index === 0 ? (
+                  <div key={index} className={`tableRow tableHeader`}>
+                    <span className="position">{item.position}</span>
+                    <span className="name">{item.driverName}</span>
+                    <span className="team">{item.teamName}</span>
+                    <span className="laps">{item.laps}</span>
+                    <span className="split">{item.split}</span>
+                    <span className="points">{item.points}</span>
+                  </div>
+                ) : (
+                  <div key={index} className="tableRow">
+                    <span className="position">
+                      {item.position}
+                      {item.position === "-" ? "" : "."}
+                    </span>
+                    <span className="name">{item.driverName}</span>
+                    <span className="team">{item.teamName}</span>
+                    <span className="laps">{item.laps}</span>
+                    <span className="split">{item.split}</span>
+                    <span className="points">{item.points}</span>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </Container>
+  );
 }

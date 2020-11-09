@@ -41,17 +41,31 @@ const Container = styled.div`
   }
 `;
 
+const FB_LOGO = styled.img.attrs(props => ({
+  src: props.theme.FB_LOGO,
+  alt: "Facebook logo"
+}))``;
+
+const YT_LOGO = styled.img.attrs(props => ({
+  src: props.theme.YT_LOGO,
+  alt: "Youtube logo"
+}))``;
+
+const IG_LOGO = styled.img.attrs(props => ({
+  src: props.theme.IG_LOGO,
+  alt: "Instagram logo"
+}))``;
+
 function SocialMediaBasicPlugin() {
   return (
     <Container>
       <div className="item">
         <a
-          className="noOutline"
           href="https://www.facebook.com/f1online.sk/"
           rel="noreferrer"
           target="_blank"
         >
-          <img alt="FB icon" className="fbImg" />
+          <FB_LOGO />
         </a>
       </div>
       <div className="item">
@@ -59,9 +73,8 @@ function SocialMediaBasicPlugin() {
           href="https://www.instagram.com/stevoeiselef1/"
           rel="noreferrer"
           target="_blank"
-          className="noOutline"
         >
-          <img alt="Instagram Icon" className="instaImg" />
+          <IG_LOGO />
         </a>
       </div>
       <div className="item">
@@ -69,9 +82,8 @@ function SocialMediaBasicPlugin() {
           href="https://www.youtube.com/channel/UCE54uS8jp-tlGC7wjUhnt4A"
           rel="noreferrer"
           target="_blank"
-          className="noOutline"
         >
-          <img alt="Youtube Icon" className="youtubeImg" />
+          <YT_LOGO />
         </a>
       </div>
     </Container>

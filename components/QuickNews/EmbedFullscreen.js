@@ -20,8 +20,8 @@ const Container = styled.div`
 
   padding: 10px 0;
 
-  background-color: var(--basic-back-color);
-  box-shadow: var(--popup-shadow);
+  background-color: ${props => props.theme.PAGE_BACK_COLOR};
+  box-shadow: ${props => props.theme.POPUP_SHADOW};
   overflow: hidden;
 
   @media only screen and (min-width: 1024px) {
@@ -40,7 +40,7 @@ const MessageText = styled.div`
   font-size: 14px;
   z-index: 0;
   width: calc(100% - 16px);
-  color: var(--article-text-color);
+  color: ${props => props.theme.TEXT_COLOR_MILD};
   p {
     margin-bottom: 3px;
   }
@@ -57,14 +57,14 @@ const CloseButton = styled.button`
   font-size: 24px;
   padding: 5px 12px;
   cursor: pointer;
-  color: var(--sub-title-color);
+  color: ${props => props.theme.SUBTITLE_COLOR};
 
   display: flex;
   flex-direction: row;
   align-items: center;
 
   &:hover {
-    color: var(--basic-text-color);
+    color: ${props => props.theme.TEXT_COLOR};
   }
   span {
     text-transform: uppercase;

@@ -1,12 +1,9 @@
-//import React from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
 import MyNavbar from "../Navbar";
 import SocialMediaBasicPlugin from "../SocialMediaPlugin";
 import SearchBar from "../SearchBar";
-
-import { THEMES } from "../../constants";
 
 import styled from "styled-components";
 
@@ -16,14 +13,14 @@ const Container = styled.div`
   width: 100%;
   padding-top: 0px;
   z-index: 14;
-  background-color: var(--basic-back-color);
+  background-color: ${props => props.theme.PAGE_BACK_COLOR};
 
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: flex-end;
   z-index: 13;
-  border-bottom: var(--mobile-header-border);
+  border-bottom: ${props => props.theme.HEADER_BOTTOM_BORDER_MOBILE};
 
   position: sticky;
   top: 0;
@@ -44,7 +41,7 @@ const ShadowOverlap = styled.div`
   height: 10px;
   margin-top: -2px;
   background-color: white;
-  background-color: var(--basic-back-color);
+  background-color: ${props => props.theme.PAGE_BACK_COLOR};
   z-index: 11;
 
   @media only screen and (min-width: 1024px) {
@@ -55,7 +52,7 @@ const ShadowOverlap = styled.div`
 const TopStripe = styled.div`
   height: 61px;
   width: calc(100% - 40px);
-  background-color: var(--basic-back-color);
+  background-color: ${props => props.theme.PAGE_BACK_COLOR};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -104,7 +101,7 @@ const HeaderContents = styled.div`
 const WhiteBack = styled.div`
   width: calc(100% - 30px);
 
-  background-color: var(--basic-back-color);
+  background-color: ${props => props.theme.PAGE_BACK_COLOR};
   z-index: 13;
 
   display: flex;
@@ -132,7 +129,7 @@ const Shadow = styled.div`
   }
 `;
 
-function Header({ theme }) {
+function Header() {
   const logoShown = useSelector(({ logoTrigger }) => logoTrigger.logoShown);
 
   return (

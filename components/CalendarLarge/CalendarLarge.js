@@ -29,6 +29,7 @@ const Table = styled.div`
   font-family: "HK Grotesk", "Source Sans Pro";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  color: ${props => props.theme.TEXT_COLOR_MILD};
 `;
 
 const VenueHeader = styled.div`
@@ -40,12 +41,11 @@ const VenueName = styled.p`
   margin: 0;
   font-size: 16px;
   font-weight: 600;
-  color: var(--basic-text-color);
+  
 `;
 
 const VenueDate = styled.p`
   margin: 0;
-  color: var(--basic-text-color);
 `;
 
 const TimesContainer = styled.div`
@@ -61,7 +61,7 @@ const TimesFirstColumn = styled.div`
 const TimesSecondColumn = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: flex-end;
 `;
 

@@ -18,7 +18,7 @@ import {
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
   SIDEBAR
-} from "../components/PageLayout";
+} from "../../../components/PageLayout";
 
 export default function Post({ postData }) {
   const dispatch = useDispatch();

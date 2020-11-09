@@ -1,14 +1,17 @@
-import React from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";
 import Head from "next/head";
-
+import { useDispatch } from "react-redux";
 import QuickNews from "../components/QuickNews";
 import CalResWidget from "../components/CalResWidget";
 import TeamPreview from "../components/TeamPreview/TeamPreview.js";
 import Divider from "../components/Divider.js";
 import SectionTitle from "../components/SectionTitle";
+import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
+import { fetchF1Results } from "../redux/actions/f1ResultsActions";
+import { fetchProgramme } from "../redux/actions/programmeActions";
 
 import styles from "../styles/timy.module.scss";
 import {
@@ -19,6 +22,14 @@ import {
 } from "../components/PageLayout";
 
 export default function Teams({ teamsData }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchF1Results({ perPage: 1 }));
+    dispatch(fetchProgramme());
+    dispatch(fetchNewQuickNews());
+  }, []);
+
   return (
     <>
       <Head>

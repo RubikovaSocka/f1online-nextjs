@@ -11,6 +11,7 @@ import CookieBanner from "../components/CookieBanner";
 import "./index.css";
 import NProgress from "../components/nprogress";
 import "../components/nprogress/nprogress.css";
+import "../components/react-image-gallery/styles/css/image-gallery.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { wrapper } from "../redux/store/store.js";
@@ -52,6 +53,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: ${props => props.theme.PAGE_BACK_COLOR}
   }
 `;
 

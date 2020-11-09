@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";
@@ -9,7 +9,12 @@ import CalResWidget from "../components/CalResWidget";
 import DriverPreview from "../components/DriverPreview/DriverPreview.js";
 import SectionTitle from "../components/SectionTitle";
 import Divider from "../components/Divider.js";
-import LoadingSpinner from "../components/LoadingSpinner";
+
+import { useDispatch } from "react-redux";
+import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
+import { fetchF1Results } from "../redux/actions/f1ResultsActions";
+import { fetchProgramme } from "../redux/actions/programmeActions";
+
 import {
   MAIN,
   COLUMNED_PAGE,
@@ -19,21 +24,14 @@ import {
 
 import styles from "../styles/piloti.module.scss";
 
-export default function Drivers({ teamsData }) {
-  let dataBlock = teamsData.ConstructorTable.Constructors.map(
-    (constructor, index) => {
-      return constructor.Drivers.map((driver, index2) => {
-        return (
-          <DriverPreview
-            key={`${index}-${index2}`}
-            driver={driver}
-            team={constructor.name}
-            teamColor={constructor.teamColor}
-          />
-        );
-      });
-    }
-  );
+function Drivers({ teamsData }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchF1Results({ perPage: 1 }));
+    dispatch(fetchProgramme());
+    dispatch(fetchNewQuickNews());
+  }, []);
 
   return (
     <>
@@ -55,7 +53,20 @@ export default function Drivers({ teamsData }) {
           <PAGE_MAIN_COL>
             <SectionTitle title="Piloti" />
             <Divider height="20px" />
-            <div className={styles.driversContainer}>{dataBlock}</div>
+            <div className={styles.driversContainer}>
+              {teamsData.ConstructorTable.Constructors.map(
+                (constructor, index) => {
+                  return constructor.Drivers.map((driver, index2) => (
+                    <DriverPreview
+                      key={`${index}-${index2}`}
+                      driver={driver}
+                      team={constructor.name}
+                      teamColor={constructor.teamColor}
+                    />
+                  ));
+                }
+              )}
+            </div>
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="50px" />
@@ -87,3 +98,5 @@ export const getServerSideProps = wrapper.getServerSideProps(
     };
   }
 );
+
+export default Drivers;

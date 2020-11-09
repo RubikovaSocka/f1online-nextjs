@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const itemWidth = "152px";
-const borderLeftWidth = "3px";
 
 const OverlapContainer = styled.div`
   position: relative;
@@ -9,7 +8,7 @@ const OverlapContainer = styled.div`
   width: 138px;
   height: 20px;
   overflow: hidden;
-  color: var(--basic-text-color);
+  color: ${props => props.theme.TEXT_COLOR};
 
   @media only screen and (min-width: 1280px) {
     width: 155px;
@@ -20,14 +19,14 @@ const Event = styled.span`
   height: 22px;
   padding-left: 7px;
   font-weight: 600;
-  color: var(--basic-text-color);
+  /*color: var(--basic-text-color);*/
 `;
 
 const TVStations = styled.span`
   position: absolute;
   right: calc(${itemWidth} + 3px);
   width: 135px;
-  background-color: var(--calendar-verline-color);
+  background-color: ${props => props.theme.CALENDAR_LEFT_LINE_COLOR};
 
   padding-left: 5px;
   padding-right: 4px;
@@ -46,7 +45,7 @@ const Time = styled.span`
   width: ${itemWidth};
   position: absolute;
   padding-left: 7px;
-  color: var(--basic-text-color);
+  /*color: var(--basic-text-color);*/
   z-index: 1;
 `;
 
@@ -57,7 +56,7 @@ const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border-left: ${borderLeftWidth} solid #d4d4d4;
+  border-left: ${props => props.theme.CALENDAR_LEFT_LINE};
 
   z-index: 0;
 
@@ -69,7 +68,6 @@ const ItemContainer = styled.div`
   @media only screen and (min-width: 1280px) {
     margin-right: 10px;
     width: ${itemWidth};
-    border-left: ${borderLeftWidth} solid var(--calendar-verline-color);
   }
 
   &:hover ${TVStations} {

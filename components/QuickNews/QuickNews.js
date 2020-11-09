@@ -4,6 +4,7 @@ import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 //import EmbedFullscreen from "./EmbedFullscreen.js";
 import Popup from "reactjs-popup";
+import TemporaryInfoPanel from "../TemporaryInfoPanel";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMoreQuickNews } from "../../redux/actions/quickNewsActions";
@@ -13,7 +14,7 @@ import OneLineNewsItem from "./OneLineNewsItem";
 import styled from "styled-components";
 
 import dynamic from "next/dynamic";
-const EmbedFullscreen = dynamic(() => import('./EmbedFullscreen.js'))
+const EmbedFullscreen = dynamic(() => import("./EmbedFullscreen.js"));
 
 const Container = styled.div`
   margin-bottom: 25px;
@@ -22,14 +23,10 @@ const Container = styled.div`
 function QuickNews() {
   const dispatch = useDispatch();
   const [shownItem, setShownItem] = useState({ index: 0, isShown: false });
-  const newsArray = useSelector(({ quickNews }) => quickNews.news);
-  //const isLoading = useSelector(({ quickNews }) => quickNews.isLoading);
-  const error = useSelector(({ quickNews }) => quickNews.error);
-  const totalNewsCount = useSelector(
-    ({ quickNews }) => quickNews.totalNewsCount
-  );
+  const state = useSelector(state => state.quickNews);
+  const { news, error, isLoading, totalNewsCount } = state;
 
-  let newsTriggersArray = newsArray.map((newsItem, index) => (
+  let newsTriggersArray = news.map((newsItem, index) => (
     <OneLineNewsItem
       key={index}
       id={newsItem.id}
@@ -64,10 +61,12 @@ function QuickNews() {
         ""
       )}
       <InfiniteScroll
-        dataLength={newsArray.length}
+        dataLength={news.length}
         next={() => dispatch(fetchMoreQuickNews())}
-        hasMore={totalNewsCount > newsArray.length}
-        loader={<LoadingSpinner />}
+        hasMore={isLoading || totalNewsCount > news.length}
+        loader={
+          <TemporaryInfoPanel loader width="286px" height="440px" margin="20px auto" />
+        }
         height={480}
         endMessage={
           <p style={{ fontFamily: "HK Grotesk", textAlign: "center" }}>
@@ -75,7 +74,7 @@ function QuickNews() {
           </p>
         }
       >
-        {newsArray.map((newsItem, index) => (
+        {news.map((newsItem, index) => (
           <OneLineNewsItem
             key={index}
             id={newsItem.id}

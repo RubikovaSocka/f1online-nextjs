@@ -1,11 +1,5 @@
 .container {
-  width: 100%;
-  margin-bottom: 10px;
-  overflow: hidden;
-  &.opened {
-    background-color: var(--table-back-color);
-    color: white;
-  }
+  
 }
 .date {
   display: inline-block;
