@@ -5,62 +5,8 @@ import LinkAsButton from "../LinkAsButton/LinkAsButton";
 import Divider from "../Divider";
 import DriverDataItem from "./ResultsRowItem";
 
-import styled from "styled-components";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 635px;
-
-  @media only screen and (min-width: 1280px) {
-    width: 673px;
-  }
-
-  ${props =>
-    props.loading
-      ? `
-    > div {
-      width: 48%;
-    }
-  `
-      : ""}
-`;
-
-const TableContainer = styled.div`
-  width: 310px;
-
-  ${props =>
-    props.loading
-      ? `
-    margin: 15px 10px;
-    width: 95%;
-    height: 240px;
-    background-color: ${props.theme.FILLER_COLOR};
-    overflow: hidden;
-    position: relative;
-    @keyframes slide {
-      0% {transform:translateX(-100%);}
-      100% {transform:translateX(100%);}
-    }
-    :after {
-      content:'';
-      top:0;
-      transform:translateX(100%);
-      width:100%;
-      height:100%;
-      position: absolute;
-      z-index:1;
-      animation: slide 1s infinite;
-
-      background: ${props.theme.FILLER_SHINE_GRADIENT};
-    }
-    `
-      : `@media only screen and (min-width: 1280px) {
-          width: 320px;
-        }
-    `};
-`;
+import { Container, TableContainer } from './StyledComponents'
+import Filler from "./Filler";
 
 function ResultsLarge() {
   const isLoading = useSelector(({ f1Results }) => f1Results.isLoading);
@@ -76,16 +22,7 @@ function ResultsLarge() {
 
   if (isLoading) {
     return (
-      <Container loading>
-        <div>
-          <SideSectionTitle title={`Výsledky`} />
-          <TableContainer loading />
-        </div>
-        <div>
-          <SideSectionTitle title={`Šampionát`} />
-          <TableContainer loading />
-        </div>
-      </Container>
+      <Filler />
     );
   }
   return (

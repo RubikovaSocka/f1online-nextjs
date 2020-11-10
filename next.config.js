@@ -3,7 +3,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 module.exports = withBundleAnalyzer({});
-
+/*
 module.exports = {
   webpack: (config, { isServer }) => {
     // Fixes npm packages that depend on `fs` module
@@ -15,4 +15,4 @@ module.exports = {
 
     return config
   }
-}
+}*/

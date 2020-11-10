@@ -1,3 +1,9 @@
-import QuickNews from "./QuickNews";
+import Loadable from "react-loadable";
+import Filler from "./Filler";
 
-export default QuickNews;
+const AsyncPage = Loadable({
+  loader: () => import("./QuickNews"),
+  loading: Filler
+});
+
+export default AsyncPage;

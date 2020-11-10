@@ -1,59 +1,22 @@
-import React, { useState } from "react";
-import formatDate from "../../utils/dateFormatter";
-import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-//import EmbedFullscreen from "./EmbedFullscreen.js";
-import Popup from "reactjs-popup";
-import TemporaryInfoPanel from "../TemporaryInfoPanel";
+import { useState } from "react";
+import Loadable from "react-loadable";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchMoreQuickNews } from "../../redux/actions/quickNewsActions";
-
+import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
 import OneLineNewsItem from "./OneLineNewsItem";
 
-import styled from "styled-components";
+import { Item, Container, LoaderPanel } from "./StyledComponents";
+import { fetchMoreQuickNews } from "../../redux/actions/quickNewsActions";
+import formatDate from "../../utils/dateFormatter";
 
-import dynamic from "next/dynamic";
-const EmbedFullscreen = dynamic(() => import("./EmbedFullscreen.js"));
-
-const Container = styled.div`
-  margin-bottom: 25px;
-`;
-
-const Item = styled.div`
-  background-color: ${props => props.theme.FILLER_COLOR};
-  overflow: hidden;
-  position: relative;
-  margin: 10px 0;
-  height: 82px;
-  width: 100%;
-
-  @keyframes slide {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-  :after {
-    content: "";
-    top: 0;
-    transform: translateX(100%);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 1;
-    animation: slide 1s infinite;
-    animation-delay: ${props => props.delay};
-    background: ${props => props.theme.FILLER_SHINE_GRADIENT};
-  }
-`;
-
-const LoaderPanel = styled.div`
-  width: 93%;
-  margin: auto;
-`;
+const EmbedFullscreen = Loadable({
+  loader: () => import("./EmbedFullscreen.js"),
+  loading: "true"
+});
+const Popup = Loadable({
+  loader: () => import("reactjs-popup"),
+  loading: "true"
+});
 
 function QuickNews() {
   const dispatch = useDispatch();
@@ -127,7 +90,7 @@ function QuickNews() {
               setShownItem({ index: index, isShown: true });
             }}
           />
-          ))}
+        ))}
       </InfiniteScroll>
     </Container>
   );

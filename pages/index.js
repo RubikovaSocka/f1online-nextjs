@@ -29,7 +29,7 @@ import {
 import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
-import fontawesomeSubset from "fontawesome-subset";
+//import fontawesomeSubset from "fontawesome-subset";
 
 function Home() {
   const dispatch = useDispatch();
