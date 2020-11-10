@@ -74,9 +74,10 @@ const initialize = () => {
 function App({ Component, pageProps }) {
   const dispatch = useDispatch();
   const theme = useSelector(({ theme }) => theme.theme);
+
   useEffect(() => {
+    dispatch(initializeTheme());
     initialize();
-    () => dispatch(initializeTheme());
     () => dispatch(fetchPanels());
   }, []);
 

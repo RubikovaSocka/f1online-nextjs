@@ -10,32 +10,39 @@ export default function HeaderMeta({ theme }) {
         rel="preload"
         href="/fonts/FontAwesome/fa-solid-900.ttf"
         as="font"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       />
       <link
         rel="preload"
         href="/fonts/HKGrotesk/hkgrotesk-regular-webfont.ttf"
         as="font"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       />
       <link
-        rel="prefetch"
+        rel="preload"
         href="/fonts/HKGrotesk/hkgrotesk-semibold-webfont.ttf"
         as="font"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       />
       <link
-        rel="prefetch"
+        rel="preload"
         href="/fonts/HKGrotesk/hkgrotesk-bold-webfont.ttf"
         as="font"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       />
       <link
         rel="preload"
         href="/fonts/Cabin/cabin-bold.ttf"
         as="font"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       />
+      <link
+        rel="preload"
+        href="/fonts/FontAwesome/fa-solid-900.ttf"
+        as="font"
+        crossOrigin="anonymous"
+      />
+
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta key="meta_ogtitle" property="og:title" content={`F1online.sk`} />
       <meta key="meta_type" property="og:type" content="website" />

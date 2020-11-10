@@ -4,13 +4,13 @@ import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";
 import { useDispatch, useSelector } from "react-redux";
 
-import CalResWidget from "../components/CalResWidget";
 import TitleArea from "../components/TitleArea";
 import ArticlesPanel from "../components/ArticlesPanel";
 import SectionTitle from "../components/SectionTitle";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
 
+import CalResWidget from "../components/CalResWidget";
 import QuickNews from "../components/QuickNews";
 import CalendarLarge from "../components/CalendarLarge";
 import ResultsLarge from "../components/ResultsLarge";

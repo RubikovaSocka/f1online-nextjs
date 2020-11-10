@@ -1,6 +1,5 @@
 import TitleArticlePreview from "../TitleArticlePreview";
 import styled from "styled-components";
-import TemporaryInfoPanel from "../TemporaryInfoPanel";
 
 const Container = styled.div`
   padding: 0;

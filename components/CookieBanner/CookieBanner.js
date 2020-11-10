@@ -6,7 +6,9 @@ function CookieBanner() {
 
   useEffect(() => {
     if (!(localStorage.getItem("f1online-cookie-ok") === "suhlasOK")) {
-      setIsAllowed(false);
+      setTimeout(() => {
+        setIsAllowed(false);
+      }, 4000);
     }
   }, []);
 
