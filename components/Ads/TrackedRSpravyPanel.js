@@ -7,20 +7,29 @@ import AdSense from "react-adsense";
 const showGASPercentage = 85; //X% chance to show GAS
 
 export default class TrackedRSpravyPanel extends Component {
-  
   render() {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       let randomNumber = Math.floor(Math.random() * 100);
       if (randomNumber < showGASPercentage) {
         return (
           //google ad if user does not have adblock
           <>
             <AdBlockDetect>
-              <TrackVisibility partialVisibility style={{ height: "100%", width: "100%" }}>
+              <TrackVisibility
+                partialVisibility
+                style={{ height: "100%", width: "100%" }}
+              >
                 <RSpravyPanel />
               </TrackVisibility>
             </AdBlockDetect>
-            <div style={{ height: "100%", width: "100%", minWidth: "290px", overflow: "hidden" }}>
+            <div
+              style={{
+                height: "100%",
+                width: "100%",
+                minWidth: "290px",
+                overflow: "hidden"
+              }}
+            >
               <AdSense.Google
                 client="ca-pub-2681240380511410"
                 slot="3932644685"
@@ -37,7 +46,10 @@ export default class TrackedRSpravyPanel extends Component {
         );
       } else {
         return (
-          <TrackVisibility partialVisibility style={{ height: "100%", width: "100%" }}>
+          <TrackVisibility
+            partialVisibility
+            style={{ height: "100%", width: "100%" }}
+          >
             <RSpravyPanel />
           </TrackVisibility>
         );

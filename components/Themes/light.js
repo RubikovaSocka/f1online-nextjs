@@ -39,7 +39,7 @@ const THEME = {
 
   POPUP_SHADOW: "0 0 8px rgba(0, 0, 0, 0.4)",
   POPUP_BORDER: "1px solid rgba(0, 0, 0, 0.3)",
-
+  HEADER_PANEL_BACK_COLOR: "#f1f1f1",
   //timy
   Mercedes: "#00d2be",
   Ferrari: "#DC0000",

@@ -1,8 +1,40 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPanels } from "../../../redux/actions/panelsActions";
-import styles from "./HeaderRePanel.module.scss";
 import ReactGA from "react-ga";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: none;
+
+  @media only screen and (min-width: 1024px) {
+    margin: 0;
+    width: 100%;
+    height: 110px;
+
+    background-color: ${props => props.theme.HEADER_PANEL_BACK_COLOR};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .panel {
+      display: initial;
+      max-width: 970px;
+      height: 90px;
+      background-color: none;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      img {
+        width: auto;
+        height: 100%;
+      }
+    }
+  }
+`;
 
 class HeaderRePanel extends Component {
   constructor(props) {
@@ -91,7 +123,7 @@ class HeaderRePanel extends Component {
     if (Object.keys(panels).length > 0) {
       const { lastShownSrc, lastShownLink } = this.state;
       return (
-        <div className={styles.container}>
+        <Container>
           <a
             href={lastShownLink}
             rel="noreferrer"
@@ -100,11 +132,11 @@ class HeaderRePanel extends Component {
               this.handleClick({ link: lastShownLink, src: lastShownSrc });
             }}
           >
-            <div className={styles.panel}>
+            <div className="panel">
               <img src={lastShownSrc} />
             </div>
           </a>
-        </div>
+        </Container>
       );
     } else return null;
   }
