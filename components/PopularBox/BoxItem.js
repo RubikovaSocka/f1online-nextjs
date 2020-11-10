@@ -40,7 +40,7 @@ const Header = styled.div`
   &.selected,
   &.selected a {
     background-color: ${props => props.theme.TABLE_SECONDARY_COLOR};
-    color: ${props => props.theme.PAGE_BACK_COLOR};
+    color: white;
   }
 `;
 
