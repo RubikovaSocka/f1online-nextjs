@@ -22,6 +22,7 @@ const Container = styled.div`
 
   background-color: ${props => props.theme.PAGE_BACK_COLOR};
   box-shadow: ${props => props.theme.POPUP_SHADOW};
+  border: ${props => props.theme.POPUP_BORDER};
   overflow: hidden;
 
   @media only screen and (min-width: 1024px) {

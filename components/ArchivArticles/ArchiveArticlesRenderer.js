@@ -10,13 +10,18 @@ const Paginate = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-
+  ul {
+    max-width: 100%;
+    padding: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    height: 55px;
+  }
   li {
     display: inline-block;
     padding-left: 0;
     list-style: none;
     font-family: "HK Grotesk";
-
     a,
     span {
       position: relative;
@@ -84,7 +89,7 @@ function ArchiveArticlesRenderer({
           forcePage={currentPage - 1}
           previousLabel={"<"}
           nextLabel={">"}
-          breakLabel={"..."}
+          breakLabel={"…"}
           breakClassName={"break-me"}
           pageCount={getPageCount(totalPosts, perPage)}
           marginPagesDisplayed={1}

@@ -12,7 +12,7 @@ export default class DiskusnyBox extends React.Component {
     super(props);
     this.state = {
       onClient: false
-    }
+    };
     this.postMessageReceived = this.postMessageReceived.bind(this);
   }
 

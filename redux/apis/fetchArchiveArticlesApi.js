@@ -2,9 +2,7 @@ import axios from "axios";
 
 import { URLS } from "./urls";
 const PER_PAGE = 12;
-const FIELDS =
-  "_fields=id,date,title,slug,better_featured_image.media_details,featured_media";
-
+ 
 export default async function fetchArchiveArticles({
   pageNumber,
   perPage,
@@ -16,7 +14,7 @@ export default async function fetchArchiveArticles({
 
   return await axios
     .get(
-      `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}?page=${pageNumber}&per_page=${perPage}&${FIELDS}${TAG}${SEARCH}`
+      `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}?page=${pageNumber}&per_page=${perPage}&${URLS.previewFields}${TAG}${SEARCH}`
     )
     .then(res => {
       return {

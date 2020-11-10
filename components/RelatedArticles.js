@@ -1,64 +1,53 @@
-import React, { Component } from "react";
-import axios from "axios";
-import ArchivArticles from "./ArchivArticles/ArchivArticles";
+import { useState, useEffect } from "react";
 import ArticlesPanel from "./ArticlesPanel/ArticlesPanel";
-import LoadingSpinner from "./LoadingSpinner";
+import { URLS } from "../redux/apis/urls";
+import fetchArchiveArticles from "../redux/apis/fetchArchiveArticlesApi";
+import SectionTitle from "./SectionTitle";
 
-export default class RelatedArticles extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: false,
-      articles: [],
-      tag: 0,
-      loadByTag: false
-    };
-  }
+//fetch 3 articles by tag or max6 articles by ids
+function RelatedArticles({ ids, tagID, except }) {
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  componentDidMount() {
-    if (this.props.ids && this.props.ids.length > 0) {
-      axios
-        .all(
-          this.props.ids.map(item => {
-            return axios.get(
-              `https://wpadmin.f1online.sk/wp-json/wp/v2/posts/${item}`
-            );
-          })
+  useEffect(() => {
+    if (ids && ids.length > 0) {
+      Promise.all(
+        ids.map(id =>
+          fetch(
+            `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}${id}?${URLS.previewFields}`
+          )
         )
-        .then(
-          axios.spread((...responses) => {
-            this.setState({
-              loaded: true,
-              articles: responses.map(item => {
-                return item.data;
-              })
-            });
-          })
-        )
-        .catch(errors => {
-          // react on errors.
+      )
+        .then(res => Promise.all(res.map(r => r.json())))
+        .then(res => {
+          setIsLoading(false);
+          setArticles(res);
         });
-    } else {
-      this.setState({
-        loadByTag: true,
-        tag: this.props.tagID
-      });
-    }
-  }
-
-  render() {
-    if (this.state.loadByTag) {
-      return (
-        <ArchivArticles
-          key={this.props.tag}
-          tagID={this.state.tag}
-          except={this.props.except}
-          perpage="4"
-        />
+    } else if (tagID) {
+      fetchArchiveArticles({ pageNumber: 1, perPage: 4, tagID: tagID }).then(
+        res => {
+          console.log(
+            res.articles
+              .filter(post => (except ? post.id !== except : true))
+              .slice(0, 3)
+          );
+          setArticles(
+            res.articles
+              .filter(post => (except ? post.id !== except : true))
+              .slice(0, 3)
+          );
+          setIsLoading(false);
+        }
       );
-    } else if (this.state.loaded) {
-      return <ArticlesPanel posts={this.state.articles} />;
     }
-    return <LoadingSpinner />;
-  }
+  });
+
+  return (
+    <>
+      <SectionTitle title="Možno vás zaujme" />
+      <ArticlesPanel isLoading={isLoading} posts={articles} />
+    </>
+  );
 }
+
+export default RelatedArticles;

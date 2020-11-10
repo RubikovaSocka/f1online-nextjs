@@ -5,16 +5,7 @@ import PostExtrasArea from "./PostExtrasArea.js";
 import PostFooterArea from "./PostFooterArea.js";
 
 function PostRendered(props) {
-  const {
-    title,
-    date,
-    better_featured_image,
-    id,
-    slug,
-    content,
-    acf,
-    _embedded
-  } = props;
+  const { title, date, id, slug, content, acf, _embedded } = props;
 
   return (
     <article>
@@ -22,7 +13,7 @@ function PostRendered(props) {
         title={title.rendered}
         authorName={_embedded.author[0].name}
         date={date}
-        imageData={better_featured_image}
+        imageData={_embedded["wp:featuredmedia"][0]}
         id={id}
         slug={slug}
       />

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import getImageSrc from "../../utils/getImagePreview.js";
 import styled from "styled-components";
+import onClient from "../../utils/onClient.js";
 
 const Container = styled.div`
   width: 100%;
@@ -13,7 +14,11 @@ const Container = styled.div`
   ${props =>
     props.loading
       ? `background-color: ${props.theme.FILLER_COLOR};
-
+    
+    @media only screen and (max-width: 720px) {
+      height: ${Math.floor(((props.width - 40) * 5) / 8)}px;
+      width: calc(100vw - 40px);
+    }
     @keyframes slide {
       0% {transform:translateX(-100%);}
       100% {transform:translateX(100%);}
@@ -101,7 +106,12 @@ function TitleArticlePreview({
   top
 }) {
   if (isLoading) {
-    return <Container loading></Container>;
+    return (
+      <Container
+        width={onClient() ? window.innerWidth : "0"}
+        loading
+      ></Container>
+    );
   }
   return (
     <Container>

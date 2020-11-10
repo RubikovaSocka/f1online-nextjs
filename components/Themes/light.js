@@ -25,17 +25,20 @@ const THEME = {
 
   HEADER_BOTTOM_BORDER_MOBILE: "none",
   QUICKNEWS_BORDER: "1px solid rgba(0, 0, 0, 0.3)",
+  BASIC_LINE_COLOR: "rgba(0, 0, 0, 0.3)",
   CALENDAR_LEFT_LINE_COLOR: "#d4d4d4",
   CALENDAR_LEFT_LINE: "3px solid #d4d4d4",
   CALENDAR_HEADER_COLOR: "#f1f1f1",
 
   FILLER_COLOR: "#f1f1f1",
-  FILLER_SHINE_GRADIENT: "linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%)",
+  FILLER_SHINE_GRADIENT:
+    "linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%)",
 
   TABLE_PRIMARY_COLOR: "#1a1a1a",
   TABLE_SECONDARY_COLOR: "#4a4a4a",
 
   POPUP_SHADOW: "0 0 8px rgba(0, 0, 0, 0.4)",
+  POPUP_BORDER: "1px solid rgba(0, 0, 0, 0.3)",
 
   //timy
   Mercedes: "#00d2be",
@@ -58,7 +61,7 @@ const THEME = {
   Alfa_Romeo_Font: "white",
   Alpha_Tauri_Font: "black",
   Haas_Font: "white",
-  Williams_Font: "#white",
+  Williams_Font: "#white"
 };
 
 export default THEME;

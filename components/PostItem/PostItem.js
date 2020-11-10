@@ -1,21 +1,92 @@
-import formatDate from "../../utils/dateFormatter.js";
+import formatDate, { formatDateToHHmm } from "../../utils/dateFormatter.js";
 import EmbedContainer from "react-oembed-container";
-import styles from "./PostItem.module.scss";
+
+import styled from "styled-components";
+
+const Container = styled.div`
+  margin: 15px 20px 0 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .textContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .postTime {
+    font-family: "HK Grotesk";
+    font-size: 14px;
+    font-weight: 600;
+    width: 40px;
+    flex-shrink: 0;
+    color: ${props => props.theme.TEXT_COLOR_MILD};
+  }
+  .postTextContent {
+    width: calc(100% - 40px);
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .text {
+    font-family: "HK Grotesk";
+    font-size: 14px;
+    color: ${props => props.theme.TEXT_COLOR_MILD};
+  }
+  .embed {
+    width: 100%;
+    margin: 10px 0;
+    iframe {
+      width: calc(100% - 42px) !important;
+      min-width: 0 !important;
+    }
+  }
+  .img {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .embed {
+      width: 370px;
+      margin-left: 47px;
+    }
+    .img {
+      width: 450px;
+      margin-left: 47px;
+    }
+  }
+
+  @media only screen and (min-width: 1120px) {
+    .embed {
+      width: 410px;
+    }
+  }
+
+  @media only screen and (min-width: 1280px) {
+    .embed {
+      width: 450px;
+    }
+  }
+`;
 
 function PostItem({ post }) {
   const { date, acf } = post;
   return (
-    <div className={styles.container}>
-      <div className={styles.textContainer}>
-        <div className={styles.postTime}>
-          <span>{formatDate(date)}</span>
+    <Container>
+      <div className="textContainer">
+        <div className="postTime">
+          <span>{formatDateToHHmm(date)}</span>
         </div>
-        <div className={`${styles.postTextContent} ${styles.text}`}>
-          {acf.sprava}
-        </div>
+        <div className="postTextContent text">{acf.sprava}</div>
       </div>
       {acf.embed ? (
-        <EmbedContainer markup={acf.embed} className={styles.embed}>
+        <EmbedContainer markup={acf.embed} className="embed">
           <div
             dangerouslySetInnerHTML={{
               __html: acf.embed
@@ -25,8 +96,8 @@ function PostItem({ post }) {
       ) : (
         ""
       )}
-      {acf.foto ? <img className={styles.img} src={acf.foto}></img> : ""}
-    </div>
+      {acf.foto ? <img className="img" src={acf.foto}></img> : ""}
+    </Container>
   );
 }
 

@@ -25,6 +25,7 @@ const THEME = {
 
   HEADER_BOTTOM_BORDER_MOBILE: "1px solid #2b2b2b",
   QUICKNEWS_BORDER: "1px solid #606060",
+  BASIC_LINE_COLOR: "#606060",
   CALENDAR_LEFT_LINE_COLOR: "#d4d4d4",
   CALENDAR_LEFT_LINE: "3px solid #d4d4d4",
   CALENDAR_HEADER_COLOR: "#4a4a4a",
@@ -36,6 +37,7 @@ const THEME = {
   TABLE_SECONDARY_COLOR: "#4a4a4a",
 
   POPUP_SHADOW: "none",
+  POPUP_BORDER: "1px solid #606060",
 
   //timy
   Mercedes: "#00d2be",

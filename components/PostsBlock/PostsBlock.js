@@ -5,6 +5,131 @@ import LoadingSpinner from "../LoadingSpinner";
 import styles from "./PostsBlock.module.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactGA from "react-ga";
+import styled from "styled-components";
+
+const Container = styled.div`
+  //height: 100%;
+  width: 100%;
+  //overflow-y: auto;
+  margin-bottom: 20px;
+
+  .headerToolbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    font-family: "HK Grotesk";
+    font-size: 14px;
+    margin: 0 15px;
+    margin-top: 5px;
+  }
+
+  .autoloadBox {
+    label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      input {
+        cursor: pointer;
+      }
+    }
+    &:hover {
+      color: black;
+      cursor: pointer;
+    }
+  }
+  .refreshButton {
+    margin-right: 10px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 12px;
+    }
+    &:hover {
+      &.refreshButtonEnabled span {
+        text-decoration: underline;
+      }
+    }
+    .buttonText {
+      margin-left: 5px;
+    }
+    &.refreshButtonDisabled {
+      color: #878787;
+      cursor: default;
+    }
+  }
+  .scrollButton {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 755px;
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    border: 1px solid #b2b2b2;
+    color: #b2b2b2;
+    padding: 0;
+
+    &:hover {
+      border-color: black;
+      color: black;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    i {
+      font-size: 20px;
+    }
+  }
+  .hideButton {
+    display: none;
+  }
+  .loadingSpinnerContainer {
+    padding-bottom: 25px;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .scrollButton {
+      display: initial;
+      left: 625px;
+    }
+  }
+
+  @media only screen and (min-width: 1120px) {
+    .scrollButton {
+      left: 710px;
+    }
+  }
+
+  @media only screen and (min-width: 1280px) {
+    .scrollButton {
+      left: 705px;
+    }
+  }
+
+  @media only screen and (min-width: 1360px) {
+    .scrollButton {
+      left: 770px;
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    .scrollButton {
+      left: 860px;
+    }
+  }
+
+  @media only screen and (min-width: 1600px) {
+    .scrollButton {
+      left: 1020px;
+    }
+  }
+`;
 
 export default class PostsBlock extends Component {
   constructor(props) {
@@ -47,14 +172,14 @@ export default class PostsBlock extends Component {
   render() {
     const { posts } = this.state;
     return (
-      <div className={styles.container}>
+      <Container>
         <InfiniteScroll
           dataLength={posts.length}
           next={this.fetchMoreOldPosts}
           hasMore={this.state.hasMoreOldPosts}
           height={this.state.windowHeight - 150}
           loader={
-            <div className={styles.loadingSpinnerContainer}>
+            <div className="loadingSpinnerContainer">
               <LoadingSpinner />
             </div>
           }
@@ -68,7 +193,7 @@ export default class PostsBlock extends Component {
             <PostItem key={item.id} post={item} />
           ))}
         </InfiniteScroll>
-      </div>
+      </Container>
     );
   }
 }

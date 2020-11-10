@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import { useEffect } from "react";
+import fetch from "isomorphic-fetch";
+import { END } from "redux-saga";
 import { useDispatch } from "react-redux";
+import { wrapper } from "../../../redux/store/store";
 
 import QuickNews from "../../../components/QuickNews";
 import CalResWidget from "../../../components/CalResWidget";
 import Divider from "../../../components/Divider.js";
 import TrackedSidePanel from "../../../components/Ads/TrackedSidePanel.js";
-import PostRendered from "../../../components/PostRendered/PostRendered.js";
+import PostRendered from "../../../components/PostRendered";
 import PostMeta from "../../../components/PostRendered/PostMeta.js";
 import { URLS } from "../../../redux/apis/urls";
 
@@ -20,26 +22,23 @@ import {
   SIDEBAR
 } from "../../../components/PageLayout";
 
-export default function Post({ postData }) {
+function Post({ postData }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchF1Results({ perPage: 1 }));
     dispatch(fetchProgramme());
     dispatch(fetchNewQuickNews());
-    axios
-      .post(
-        `https://wpadmin.f1online.sk//wp-json/wordpress-popular-posts/v1/popular-posts`,
-        {
-          wpp_id: postData.id
-        }
-      )
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    fetch(
+      "https://wpadmin.f1online.sk//wp-json/wordpress-popular-posts/v1/popular-posts",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ wpp_id: postData.id })
+      }
+    )
+      .then(response => response.json())
+      .then(data => console.log(data));
   }, []);
 
   return (
@@ -48,7 +47,10 @@ export default function Post({ postData }) {
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL id="cn">
-            <PostRendered key={postData.id} {...postData} />
+            <PostRendered
+              key={postData.id} //Do not reuse component from previous render
+              {...postData}
+            />
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <QuickNews />
@@ -62,17 +64,25 @@ export default function Post({ postData }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
-  const response = await axios({
-    method: "get",
-    url: `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}${params.id}?_embed`
-    //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-  });
-  axios.get(`${URLS.BASE}wp-content/plugins/counter/count.php?id=${params.id}`);
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store, params }) => {
+    store.dispatch(END);
 
-  return {
-    props: {
-      postData: response.data
-    }
-  };
-}
+    const response = await fetch(
+      `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}${params.id}?_embed=wp:featuredmedia,author&_fields=id,date,excerpt,slug,title,content,tags,acf`
+    )
+      .then(res => res.json())
+      .then(res => res);
+    fetch(`${URLS.BASE}wp-content/plugins/counter/count.php?id=${params.id}`);
+
+    await store.sagaTask.toPromise();
+
+    return {
+      props: {
+        postData: response
+      }
+    };
+  }
+);
+
+export default Post;

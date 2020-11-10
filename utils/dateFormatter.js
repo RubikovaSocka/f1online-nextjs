@@ -33,4 +33,9 @@ const formatDate = dateInISO => {
   }
 };
 
+const formatDateToHHmm = dateInISO => {
+  const inputDate = parse(dateInISO, "isoDateTime");
+  return format(inputDate, "HH:mm");
+};
+export { formatDateToHHmm };
 export default formatDate;

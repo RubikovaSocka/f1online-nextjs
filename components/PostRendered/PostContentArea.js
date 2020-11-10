@@ -1,8 +1,29 @@
-import React from "react";
 import EmbedContainer from "react-oembed-container";
 import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
+import styled from "styled-components";
+import EmbedExorcist from '../EmbedExorcist'
 
-import styles from "./style.module.scss";
+const ArticleDiv = styled(EmbedExorcist)`
+  font-family: "HK Grotesk";
+  font-size: 16px;
+  line-height: 28px;
+  color: ${props => props.theme.TEXT_COLOR_MILD};
+  overflow: hidden;
+
+  p {
+    padding: 3px 0;
+    margin: 8px 0;
+  }
+  a {
+    text-decoration: none;
+    color: #e10600;
+  }
+  
+  .setFirst p:first-of-type {
+    font-weight: 600;
+    margin-top: 20px;
+  }
+`;
 
 function InjectAds({ article }) {
   let nrOfParagraphs = (article.match(/<p>/g) || []).length;
@@ -12,8 +33,8 @@ function InjectAds({ article }) {
   //Don't show ads
   if (nrOfParagraphs < 6) {
     return (
-      <div
-        className={`${styles.articleContent} ${styles.setFirst}`}
+      <ArticleDiv
+        className="setFirst"
         dangerouslySetInnerHTML={{ __html: article }}
       />
     );
@@ -26,11 +47,8 @@ function InjectAds({ article }) {
           counter++;
           return index > 0 ? (
             <div key={counter}>
-              <div
-                
-                className={`${styles.articleContent} ${
-                  index === 1 ? styles.firstPar : ""
-                }`}
+              <ArticleDiv
+                className={`${index === 1 ? "setFirst" : ""}`}
                 dangerouslySetInnerHTML={{
                   __html: "<p>".concat(paragraph)
                 }}
@@ -55,11 +73,8 @@ function InjectAds({ article }) {
           counter++;
           return index > 0 ? (
             <div key={counter}>
-              <div
-                
-                className={`${styles.articleContent} ${
-                  index === 1 ? styles.firstPar : ""
-                }`}
+              <ArticleDiv
+                className={`${index === 1 ? "setFirst" : ""}`}
                 dangerouslySetInnerHTML={{
                   __html: "<p>".concat(paragraph)
                 }}

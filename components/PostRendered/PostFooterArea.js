@@ -1,18 +1,27 @@
 import React from "react";
 import ReportBox from "../ReportBox/ReportBox";
-import SectionTitle from "../SectionTitle/SectionTitle";
+import SectionTitle from "../SectionTitle";
 import Divider from "../Divider";
 import RelatedArticles from "../RelatedArticles";
 import DiskusnyBox from "../DiskusnyBox/DiskusnyBox";
 import decodeHtml from "../../utils/decodeHtml";
 
 import styles from "./style.module.scss";
+import styled from "styled-components";
 
-function PostFooterArea({ title, id, slug, acf, tags}) {
+const ButtonRow = styled.div`
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+function PostFooterArea({ title, id, slug, acf, tags }) {
   return (
     <>
       <Divider height="10px" />
-      <div className={styles.shareButtonRow}>
+      <ButtonRow>
         <iframe
           src={`https://www.facebook.com/plugins/like.php?href=${encodeURI(
             `https://f1online.sk/clanky/${id}/${slug}`
@@ -23,15 +32,15 @@ function PostFooterArea({ title, id, slug, acf, tags}) {
           scrolling="no"
           frameBorder="0"
           allow="encrypted-media"
-        ></iframe>
-      </div>
+        />
+      </ButtonRow>
       <ReportBox
         artLink={`https://f1online.sk/clanky/${id}/${slug}`}
         title={decodeHtml(title.rendered)}
         articleID={id}
       />
       <Divider height="10px" />
-      <SectionTitle title="Možno vás zaujme" />
+      {/*<RelatedArticles ids={acf.suvisiace_clanky} tagID={tags[0]} except={id} />*/}
       <RelatedArticles ids={acf.suvisiace_clanky} tagID={tags[0]} except={id} />
       <Divider height="10px" />
       <SectionTitle title="Komentáre" />

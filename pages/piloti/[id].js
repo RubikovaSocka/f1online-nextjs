@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { END } from "redux-saga";
 import { wrapper } from "../../redux/store/store";
 import fetch from "isomorphic-fetch";
-import QuickNews from "../../components/QuickNews/QuickNews.js";
-import CalResWidget from "../../components/CalResWidget/CalResWidget.js";
-import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
+import QuickNews from "../../components/QuickNews";
+import CalResWidget from "../../components/CalResWidget";
+import SectionTitle from "../../components/SectionTitle";
 import Divider from "../../components/Divider.js";
 import Head from "next/head";
-import ArchivArticles from "../../components/ArchivArticles/ArchivArticles.js";
+import ArchivArticles from "../../components/ArchivArticles";
 import {
   MAIN,
   COLUMNED_PAGE,
@@ -23,7 +23,6 @@ import { useDispatch } from "react-redux";
 import { fetchNewQuickNews } from "../../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../../redux/actions/f1ResultsActions";
 import { fetchProgramme } from "../../redux/actions/programmeActions";
-
 
 const Container = styled.div`
   .briefInfoContainer {

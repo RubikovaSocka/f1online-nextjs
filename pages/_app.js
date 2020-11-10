@@ -11,7 +11,7 @@ import CookieBanner from "../components/CookieBanner";
 import "./index.css";
 import NProgress from "../components/nprogress";
 import "../components/nprogress/nprogress.css";
-import "../components/react-image-gallery/styles/css/image-gallery.css";
+import "../components/react-image-gallery/styles/scss/image-gallery.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { wrapper } from "../redux/store/store.js";

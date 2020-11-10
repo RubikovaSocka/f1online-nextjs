@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const WidgetContainer = styled.div`
   width: 100%;
-  height: 480px;
+  height: 530px;
 
   display: flex;
   flex-direction: column;
