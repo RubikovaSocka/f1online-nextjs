@@ -2,15 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import PostItem from "../PostItem/PostItem";
 import LoadingSpinner from "../LoadingSpinner";
-import styles from "./PostsBlock.module.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
-import ReactGA from "react-ga";
 import styled from "styled-components";
 
 const Container = styled.div`
-  //height: 100%;
   width: 100%;
-  //overflow-y: auto;
   margin-bottom: 20px;
 
   .headerToolbox {
