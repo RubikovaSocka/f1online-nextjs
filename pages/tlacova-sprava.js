@@ -7,6 +7,6 @@ export default function tlacovaSprava() {
     if (pathname == "/tlacova-sprava") {
       Router.push("/clanky/585/tlacova-sprava");
     }
-  });
+  }, []);
   return null;
 }

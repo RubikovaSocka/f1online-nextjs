@@ -18,6 +18,7 @@ const ButtonRow = styled.div`
 `;
 
 function PostFooterArea({ title, id, slug, acf, tags }) {
+  console.log("RENDERING FOOTER AREA _-----------")
   return (
     <>
       <Divider height="10px" />

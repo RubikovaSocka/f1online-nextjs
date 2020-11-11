@@ -26,6 +26,7 @@ function Post({ postData }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("USE EFFECT [slug]")
     dispatch(fetchF1Results({ perPage: 1 }));
     dispatch(fetchProgramme());
     dispatch(fetchNewQuickNews());

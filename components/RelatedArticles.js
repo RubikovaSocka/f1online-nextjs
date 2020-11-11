@@ -10,6 +10,7 @@ function RelatedArticles({ ids, tagID, except }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log("RELATED ARTICLES USEEFFECT")
     if (ids && ids.length > 0) {
       Promise.all(
         ids.map(id =>
@@ -40,7 +41,7 @@ function RelatedArticles({ ids, tagID, except }) {
         }
       );
     }
-  });
+  }, []);
 
   return (
     <>
