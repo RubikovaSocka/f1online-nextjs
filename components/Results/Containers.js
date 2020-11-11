@@ -6,7 +6,7 @@ const Container = styled.div`
   overflow: hidden;
 
   &.opened {
-    background-color: var(--table-back-color);
+    //background-color: var(--table-back-color);
     color: white;
   }
   background-color: ${props => props.theme.CALENDAR_HEADER_COLOR};
@@ -19,9 +19,7 @@ const Container = styled.div`
 
     padding: 10px 15px;
     background-color: ${props => props.theme.CALENDAR_HEADER_COLOR};
-    //border: 1px solid var(--lines-color);
-    //border-bottom: none;
-
+    
     cursor: pointer;
     //font-family: "HK Grotesk"
     transition-delay: 0.1s;
@@ -31,8 +29,8 @@ const Container = styled.div`
 
     &:hover,
     &.opened {
-      background-color: ${props => props.theme.TABLE_SECONDARY_COLOR};
-      color: ${props => props.theme.PAGE_BACK_COLOR};
+      background-color: ${props => props.theme.TABLE_PRIMARY_COLOR};
+      color: white;
     }
     &.opened {
       border-bottom: none;
@@ -40,7 +38,7 @@ const Container = styled.div`
   }
 
   .contentBox {
-    background-color: ${props => props.theme.TABLE_SECONDARY_COLOR};
+    background-color: ${props => props.theme.TABLE_PRIMARY_COLOR};
     transition: ease-in-out 0.25s;
     &.closed {
       height: 0px;
@@ -51,7 +49,7 @@ const Container = styled.div`
     font-family: "HK Grotesk";
     font-size: 15px;
     padding: 10px 10px 20px 10px;
-    color: ${props => props.theme.PAGE_BACK_COLOR};
+    color: white;
     overflow: scroll;
     span {
       display: inline-block;

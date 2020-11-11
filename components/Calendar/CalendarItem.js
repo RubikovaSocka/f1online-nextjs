@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./style.module.scss";
 import onMobile from "../../utils/onMobile";
 import {
   SESSION_NAMES,

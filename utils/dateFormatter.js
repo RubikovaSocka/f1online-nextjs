@@ -1,7 +1,7 @@
 import { format, parse } from "fecha";
 
 const formatDate = dateInISO => {
-  const inputDate = parse(dateInISO, "isoDateTime");
+  const inputDate = parse(`${dateInISO}+01:00`, "isoDateTime");
   const dateToday = new Date(Date.now());
   const dateYesterday = new Date(Date.now() - 864e5);
 
@@ -34,7 +34,7 @@ const formatDate = dateInISO => {
 };
 
 const formatDateToHHmm = dateInISO => {
-  const inputDate = parse(dateInISO, "isoDateTime");
+  const inputDate = parse(`${dateInISO}+01:00`, "isoDateTime");
   return format(inputDate, "HH:mm");
 };
 export { formatDateToHHmm };
