@@ -26,11 +26,6 @@ function RelatedArticles({ ids, tagID, except }) {
     } else if (tagID) {
       fetchArchiveArticles({ pageNumber: 1, perPage: 4, tagID: tagID }).then(
         res => {
-          console.log(
-            res.articles
-              .filter(post => (except ? post.id !== except : true))
-              .slice(0, 3)
-          );
           setArticles(
             res.articles
               .filter(post => (except ? post.id !== except : true))
@@ -42,12 +37,14 @@ function RelatedArticles({ ids, tagID, except }) {
     }
   }, []);
 
-  return (
-    <>
-      <SectionTitle title="Možno vás zaujme" />
-      <ArticlesPanel isLoading={isLoading} posts={articles} />
-    </>
-  );
+  if (isLoading || articles.length !== 0)
+    return (
+      <>
+        <SectionTitle title="Možno vás zaujme" />
+        <ArticlesPanel isLoading={isLoading} posts={articles} />
+      </>
+    );
+  return null;
 }
 
 export default RelatedArticles;

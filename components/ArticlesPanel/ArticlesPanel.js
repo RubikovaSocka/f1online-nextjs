@@ -56,8 +56,6 @@ const ArticleContainer = styled.div`
 `;
 
 function ArticlesPanel({ posts, isLoading }) {
-  console.log("ARTICLES PPANEL")
-  console.log(posts)
   if (posts.length > 6) {
     return (
       <>

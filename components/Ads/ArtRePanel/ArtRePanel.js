@@ -66,7 +66,6 @@ class ArtRePanel extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("ss " + this.props.changeable)
     const { lastShownSrc, lastShownLink } = this.state;
     if (!nextProps.loaded) {
       return;
