@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { URLS } from "./urls";
 const PER_PAGE = 12;
- 
+
 export default async function fetchArchiveArticles({
   pageNumber,
   perPage,
@@ -10,7 +10,12 @@ export default async function fetchArchiveArticles({
   searchPhrase
 }) {
   const TAG = tagID ? `&tags=${tagID}` : "";
-  const SEARCH = searchPhrase && !tagID ? `&search=${searchPhrase.normalize("NFD").replace(/[\u0300-\u036f]/g, "")}` : "";
+  const SEARCH =
+    searchPhrase && !tagID
+      ? `&search=${searchPhrase
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")}`
+      : "";
 
   return await axios
     .get(
