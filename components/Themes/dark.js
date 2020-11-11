@@ -39,6 +39,8 @@ const THEME = {
   POPUP_SHADOW: "none",
   POPUP_BORDER: "1px solid #606060",
   HEADER_PANEL_BACK_COLOR: "#2a2a2a",
+  DISCUSS_BACKGROUND: "#787878",
+  DISCUSS_SHADOW: "0 0 10px gray",
 
   //timy
   Mercedes: "#00d2be",

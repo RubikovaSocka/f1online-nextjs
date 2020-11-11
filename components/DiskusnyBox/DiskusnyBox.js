@@ -1,6 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./DiskusnyBox.module.scss";
+import styled from "styled-components";
+
+const Container = styled.div`
+  background-color: ${props => props.theme.DISCUSS_BACKGROUND};
+  box-shadow: ${props => props.theme.DISCUSS_SHADOW};
+  width: calc(100% - 30px);
+  margin: 15px 0;
+  padding: 5px 20px 5px 10px;
+`;
 
 export default class DiskusnyBox extends React.Component {
   static propTypes = {
@@ -95,7 +103,7 @@ export default class DiskusnyBox extends React.Component {
   render() {
     if (this.state.onClient) {
       return (
-        <div className={`discussion-box-container ${styles.box}`}>
+        <Container className={`discussion-box-container`}>
           <iframe
             title="discussion box"
             ref={el => {
@@ -106,7 +114,7 @@ export default class DiskusnyBox extends React.Component {
             width="100%"
             frameBorder="0"
           />
-        </div>
+        </Container>
       );
     }
     return null;

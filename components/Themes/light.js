@@ -36,6 +36,8 @@ const THEME = {
 
   TABLE_PRIMARY_COLOR: "#1a1a1a",
   TABLE_SECONDARY_COLOR: "#4a4a4a",
+  DISCUSS_BACKGROUND: "white",
+  DISCUSS_SHADOW: "none",
 
   POPUP_SHADOW: "0 0 8px rgba(0, 0, 0, 0.4)",
   POPUP_BORDER: "1px solid rgba(0, 0, 0, 0.3)",
