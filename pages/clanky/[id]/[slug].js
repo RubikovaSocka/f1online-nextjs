@@ -1,7 +1,5 @@
-import { useEffect } from "react";
 import fetch from "isomorphic-fetch";
 import { END } from "redux-saga";
-import { useDispatch } from "react-redux";
 import { wrapper } from "../../../redux/store/store";
 
 import QuickNews from "../../../components/QuickNews";
@@ -20,21 +18,6 @@ import {
 } from "../../../components/PageLayout";
 
 function Post({ postData }) {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    fetch(
-      "https://wpadmin.f1online.sk//wp-json/wordpress-popular-posts/v1/popular-posts",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ wpp_id: postData.id })
-      }
-    )
-      .then(response => response.json())
-      .then(data => console.log(data));
-  }, []);
-
   return (
     <>
       <PostMeta {...postData} />
@@ -68,7 +51,14 @@ export const getServerSideProps = wrapper.getServerSideProps(
       .then(res => res.json())
       .then(res => res);
     fetch(`${URLS.BASE}wp-content/plugins/counter/count.php?id=${params.id}`);
-
+    fetch(
+      "https://wpadmin.f1online.sk//wp-json/wordpress-popular-posts/v1/popular-posts",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ wpp_id: postData.id })
+      }
+    );
     await store.sagaTask.toPromise();
 
     return {
