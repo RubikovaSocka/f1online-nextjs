@@ -22,6 +22,7 @@ const Paginate = styled.div`
     padding-left: 0;
     list-style: none;
     font-family: "HK Grotesk";
+    cursor: pointer;
     a,
     span {
       position: relative;
@@ -34,21 +35,15 @@ const Paginate = styled.div`
 
       color: ${props => props.theme.TEXT_COLOR};
       background-color: ${props => props.theme.PAGE_BACK_COLOR};
-      border: 1px solid ${props => props.theme.TABLE_SECONDARY_COLOR};
+      border: 1px solid ${props => props.theme.TABLE_PRIMARY_COLOR};
 
       margin-left: 2px;
       margin-right: 2px;
     }
-    &.active a {
-      color: ${props => props.theme.PAGE_BACK_COLOR};
-      background-color: ${props => props.theme.TABLE_SECONDARY_COLOR};
-      border-color: ${props => props.theme.TABLE_SECONDARY_COLOR};
-    }
+    &.active a,
     a:hover {
-      color: ${props => props.theme.PAGE_BACK_COLOR};
-      background-color: ${props => props.theme.TABLE_SECONDARY_COLOR};
-      border-color: ${props => props.theme.TABLE_SECONDARY_COLOR};
-      cursor: pointer;
+      color: white;
+      background-color: ${props => props.theme.TABLE_PRIMARY_COLOR};
     }
   }
 `;

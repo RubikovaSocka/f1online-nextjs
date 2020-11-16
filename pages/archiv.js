@@ -46,12 +46,14 @@ function Archiv() {
     );
   };
 
-  //console.log(router);
-
   return (
     <>
       <Head>
-        <title key="meta_title">Správy | F1online.sk</title>
+        <title key="meta_title">{`${
+          router.query.search
+            ? `Vyhľadávanie: \"${router.query.search}\"`
+            : "Správy"
+        } | F1online.sk`}</title>
         <meta
           key="meta_ogtitle"
           property="og:title"

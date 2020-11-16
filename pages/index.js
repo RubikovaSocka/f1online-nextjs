@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 import Head from "next/head";
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import TitleArea from "../components/TitleArea";
 import ArticlesPanel from "../components/ArticlesPanel";

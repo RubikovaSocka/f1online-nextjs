@@ -25,7 +25,7 @@ function Post({ postData }) {
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL id="cn">
             <PostRendered
-              key={postData.id} //Do not reuse component from previous render
+              key={postData.id} //Why? To prevent component reuse from previous render
               {...postData}
             />
           </PAGE_MAIN_COL>
