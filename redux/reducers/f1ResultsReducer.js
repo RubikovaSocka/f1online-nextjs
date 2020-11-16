@@ -13,6 +13,7 @@ const f1ResultsReducer = (state = defaultState, action) => {
       //hydrate only if server sends all results (results page visited)
       if (state.results.length < action.payload.f1Results.results.length) {
         return {
+          ...state,
           ...action.payload.f1Results
         };
       }

@@ -25,16 +25,20 @@ const quickNewsReducer = (state = defaultState, action) => {
       if (action.news.length > 0) {
         const newArray = [...action.news, ...state.news];
         return {
+          ...state,
           news: newArray,
           isLoading: false,
           error: null,
-          totalNewsCount: action.totalNewsCount,
+          //If zero, this is first time load. Otherwise new items were created, add them to the count
+          totalNewsCount:
+            state.totalNewsCount === 0
+              ? action.totalNewsCount
+              : state.totalNewsCount + action.news.length,
           latestItemTime: newArray.length > 0 ? newArray[0].date : null,
           oldestItemTime:
             newArray.length > 0 ? newArray[newArray.length - 1].date : null
         };
       }
-
     case TYPES.AUTOFETCH_FAIL:
       return {
         ...state,
@@ -50,10 +54,10 @@ const quickNewsReducer = (state = defaultState, action) => {
     case TYPES.FETCH_ARCHIVE_SUCCESS:
       const newsArray = [...state.news, ...action.news];
       return {
+        ...state,
         news: newsArray,
         isLoading: false,
         error: null,
-        totalNewsCount: action.totalNewsCount,
         latestItemTime: newsArray.length > 0 ? newsArray[0].date : null,
         oldestItemTime:
           newsArray.length > 0 ? newsArray[newsArray.length - 1].date : null
