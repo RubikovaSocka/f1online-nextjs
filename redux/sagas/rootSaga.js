@@ -1,13 +1,12 @@
-import { fork, takeLatest, take, takeEvery } from "redux-saga/effects";
+import { takeLatest } from "redux-saga/effects";
 import {
   PANELS,
   INDEX_ARTICLES,
-  QUICK_NEWS,
   ARCHIVE_ARTICLES
 } from "../constants";
 import handleFetchPanels from "./handlers/handleFetchPanels";
 import fetchArticlesSaga from "./handlers/fetchArticlesSaga";
-import fetchQuickNewsSaga from "./handlers/fetchQuickNewsSaga";
+import quickNewsAutofetchSaga from "./handlers/quickNewsAutofetchSaga";
 import fetchArchiveArticlesSaga from "./handlers/fetchArchiveArticlesSaga";
 import fetchF1ResultsSaga from "./handlers/fetchF1ResultsSaga";
 import fetchProgrammeSaga from "./handlers/fetchProgrammeSaga";
@@ -17,6 +16,7 @@ import saveThemeSaga from "./handlers/saveThemeSaga";
 import fetchCategoriesSaga from "./handlers/fetchCategoriesSaga";
 import fetchTagArchiveArticlesSaga from "./handlers/fetchTagArchiveArticlesSaga";
 
+import { TYPES as QUICK_NEWS } from "../actions/quickNewsActions";
 import { TYPES as F1_RESULTS } from "../actions/f1ResultsActions";
 import { TYPES as CALENDAR } from "../actions/calendarActions";
 import { TYPES as PROGRAMME } from "../actions/programmeActions";
@@ -30,8 +30,7 @@ function* rootSaga() {
   yield takeLatest(TAG_ARCHIV.FETCH, fetchTagArchiveArticlesSaga);
   yield takeLatest(INDEX_ARTICLES.FETCH, fetchArticlesSaga);
 
-  yield takeLatest(QUICK_NEWS.FETCH, fetchQuickNewsSaga);
-  yield takeLatest(QUICK_NEWS.FETCH_MORE, fetchQuickNewsSaga);
+  yield takeLatest(QUICK_NEWS.START, quickNewsAutofetchSaga);
 
   yield takeLatest(ARCHIVE_ARTICLES.FETCH, fetchArchiveArticlesSaga);
   yield takeLatest(F1_RESULTS.FETCH, fetchF1ResultsSaga);

@@ -40,9 +40,8 @@ const articlesReducer = (state = defaultState, action) => {
         error: action.error,
         indexArticles: []
       };
-    default:
-      return state;
   }
+  return state;
 };
 
 export default articlesReducer;

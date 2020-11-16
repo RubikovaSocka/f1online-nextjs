@@ -2,10 +2,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { wrapper } from "../redux/store/store";
 import { END } from "redux-saga";
-import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
-import { fetchF1Results } from "../redux/actions/f1ResultsActions";
-import { fetchProgramme } from "../redux/actions/programmeActions";
-
 import Head from "next/head";
 import QuickNews from "../components/QuickNews";
 import SectionTitle from "../components/SectionTitle";
@@ -23,11 +19,6 @@ function Calendar() {
   const calendarData = useSelector(({ calendar }) => calendar.events);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchF1Results({ perPage: 1 }));
-    dispatch(fetchProgramme());
-    dispatch(fetchNewQuickNews());
-  }, []);
   return (
     <>
       <Head>

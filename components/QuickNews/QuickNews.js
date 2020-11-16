@@ -6,7 +6,7 @@ import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
 import OneLineNewsItem from "./OneLineNewsItem";
 
 import { Item, Container, LoaderPanel } from "./StyledComponents";
-import { fetchMoreQuickNews } from "../../redux/actions/quickNewsActions";
+import { fetchQuickNewsArchive } from "../../redux/actions/quickNewsActions";
 import formatDate from "../../utils/dateFormatter";
 
 const EmbedFullscreen = Loadable({
@@ -22,20 +22,8 @@ function QuickNews() {
   const dispatch = useDispatch();
   const [shownItem, setShownItem] = useState({ index: 0, isShown: false });
   const state = useSelector(state => state.quickNews);
-  const { news, error, /*isLoading,*/ totalNewsCount } = state;
-  const isLoading = true;
-  let newsTriggersArray = news.map((newsItem, index) => (
-    <OneLineNewsItem
-      key={index}
-      id={newsItem.id}
-      date={formatDate(newsItem.date)}
-      content={newsItem.acf.obsah_rychlej_spravy}
-      embed={newsItem.acf.embed_zo_socialnych_sieti}
-      hasvideo={newsItem.acf.hasvideo}
-      callback={() => setShownItem({ index: index, isShown: true })}
-    />
-  ));
-
+  const { news, error, isLoading, totalNewsCount } = state;
+  
   return (
     <Container>
       <SideSectionTitle title="Rýchle správy" />
@@ -49,7 +37,11 @@ function QuickNews() {
         >
           {close => (
             <EmbedFullscreen
-              {...newsTriggersArray[shownItem.index].props}
+              //{...newsTriggersArray[shownItem.index].props}
+              id={news[shownItem.index].id}
+              date={formatDate(news[shownItem.index].date)}
+              content={news[shownItem.index].acf.obsah_rychlej_spravy}
+              embed={news[shownItem.index].acf.embed_zo_socialnych_sieti}
               hideClick={close}
               hidePopup={() => setShownItem({ index: 0, isShown: false })}
             />
@@ -60,7 +52,7 @@ function QuickNews() {
       )}
       <InfiniteScroll
         dataLength={news.length}
-        next={() => dispatch(fetchMoreQuickNews())}
+        next={() => dispatch(fetchQuickNewsArchive())}
         hasMore={isLoading || totalNewsCount > news.length}
         loader={
           <LoaderPanel loader width="286px" height="440px" margin="20px auto">

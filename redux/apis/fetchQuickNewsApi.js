@@ -3,9 +3,13 @@ import { URLS } from "./urls";
 const PER_PAGE = 15;
 const FIELDS = "_fields=acf,date";
 
-export default async function fetchQuickNews(pageNumber) {
+export default async function fetchQuickNews({ before, after }) {
+  const time = `${before || after ? "&" : ""}${
+    before ? `before=${before}` : ""
+  }${before && after ? "&" : ""}${after ? `after=${after}` : ""}`;
+
   return await fetch(
-    `${URLS.BASE}${URLS.QUICK_NEWS_ENDPOINT}?page=${pageNumber}&per_page=${PER_PAGE}&${FIELDS}`
+    `${URLS.BASE}${URLS.QUICK_NEWS_ENDPOINT}?per_page=${PER_PAGE}&${FIELDS}${time}`
   )
     .then(res =>
       res.json().then(json => ({

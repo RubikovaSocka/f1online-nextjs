@@ -4,10 +4,13 @@ const TYPES = {
   ERROR: "F1_RESULTS_ERROR"
 };
 
-const fetchF1Results = ({ perPage }) => ({
-  type: TYPES.FETCH,
-  perPage
-});
+const fetchF1Results = ({ perPage }) => {
+  console.log("HAHAHAHA");
+  return {
+    type: TYPES.FETCH,
+    perPage
+  };
+};
 
 const setF1Results = results => ({
   type: TYPES.SUCCESS,

@@ -5,25 +5,20 @@ import LinkAsButton from "../LinkAsButton/LinkAsButton";
 import Divider from "../Divider";
 import DriverDataItem from "./ResultsRowItem";
 
-import { Container, TableContainer } from './StyledComponents'
+import { Container, TableContainer } from "./StyledComponents";
 import Filler from "./Filler";
 
 function ResultsLarge() {
-  const isLoading = useSelector(({ f1Results }) => f1Results.isLoading);
-  const venueName = useSelector(({ f1Results }) =>
-    f1Results.results[0] ? f1Results.results[0].venueName : ""
-  );
-  const raceData = useSelector(({ f1Results }) =>
-    f1Results.results[0] ? f1Results.results[0].race : ""
-  );
-  const champData = useSelector(({ f1Results }) =>
-    f1Results.results[0] ? f1Results.results[0].driverChamp : ""
-  );
+  const state = useSelector(state => state.f1Results);
+  const { isLoading } = state;
+  const last = state.results[0];
+  const venueName = last ? last.venueName : "";
+  const raceData = last ? last.race : "";
+  const champData = last ? last.driverChamp : "";
 
+  console.log(state);
   if (isLoading) {
-    return (
-      <Filler />
-    );
+    return <Filler />;
   }
   return (
     <Container>

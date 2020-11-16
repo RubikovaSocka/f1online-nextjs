@@ -49,7 +49,7 @@ const archiveArticlesReducer = (state = defaultState, action) => {
         }
       };
     }
-    
+
     case ARCHIVE_ARTICLES.FETCH_SUCCESS_CLIENT: {
       return {
         ...state,
@@ -61,10 +61,8 @@ const archiveArticlesReducer = (state = defaultState, action) => {
         }
       };
     }
-
-    default:
-      return state;
   }
+  return state;
 };
 
 export default archiveArticlesReducer;

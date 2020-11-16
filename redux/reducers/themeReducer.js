@@ -13,10 +13,8 @@ const themeReducer = (state = defaultState, action) => {
       };
     case TYPES.CHANGE:
       return state;
-
-    default:
-      return state;
   }
+  return state;
 };
 
 export default themeReducer;

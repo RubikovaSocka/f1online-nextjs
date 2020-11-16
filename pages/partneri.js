@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import ArchivArticles from "../components/ArchivArticles/ArchivArticles.js";
 import QuickNews from "../components/QuickNews/QuickNews.js";
@@ -11,18 +9,9 @@ import {
   PAGE_MAIN_COL,
   SIDEBAR
 } from "../components/PageLayout";
-import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
-import { fetchF1Results } from "../redux/actions/f1ResultsActions";
-import { fetchProgramme } from "../redux/actions/programmeActions";
 import Divider from "../components/Divider.js";
 
 export default function Partneri() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchF1Results({ perPage: 1 }));
-    dispatch(fetchProgramme());
-    dispatch(fetchNewQuickNews());
-  }, []);
 
   return (
     <>

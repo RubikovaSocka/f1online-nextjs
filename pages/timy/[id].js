@@ -24,10 +24,6 @@ import dynamic from "next/dynamic";
 const ImageGallery = dynamic(() =>
   import("../../components/react-image-gallery/src/ImageGallery")
 );
-import { useDispatch } from "react-redux";
-import { fetchNewQuickNews } from "../../redux/actions/quickNewsActions";
-import { fetchF1Results } from "../../redux/actions/f1ResultsActions";
-import { fetchProgramme } from "../../redux/actions/programmeActions";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -243,13 +239,9 @@ const Container = styled.div`
 `;
 
 function TeamPage({ teamData }) {
-  const dispatch = useDispatch();
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchF1Results({ perPage: 1 }));
-    dispatch(fetchProgramme());
-    dispatch(fetchNewQuickNews());
     fetch(
       `https://wpadmin.f1online.sk/wp-json/wp/v2/media?search=${teamData.name}&per_page=15`
     )

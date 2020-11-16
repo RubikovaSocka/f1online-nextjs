@@ -9,8 +9,6 @@ import LastVenueResBox from "../components/Results/LastVenueResBox.js";
 import DriverChampResBox from "../components/Results/DriverChampResBox.js";
 import TeamChampResBox from "../components/Results/TeamChampResBox.js";
 import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
-import { fetchF1Results } from "../redux/actions/f1ResultsActions";
-import { fetchProgramme } from "../redux/actions/programmeActions";
 
 import {
   MAIN,

@@ -17,9 +17,8 @@ const logoHideReducer = (state = defaultState, action) => {
       return {
         logoShown: false
       };
-    default:
-      return state;
   }
+  return state;
 };
 
 export default logoHideReducer;

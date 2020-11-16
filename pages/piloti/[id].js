@@ -19,10 +19,6 @@ import dynamic from "next/dynamic";
 const ImageGallery = dynamic(() =>
   import("../../components/react-image-gallery/src/ImageGallery")
 );
-import { useDispatch } from "react-redux";
-import { fetchNewQuickNews } from "../../redux/actions/quickNewsActions";
-import { fetchF1Results } from "../../redux/actions/f1ResultsActions";
-import { fetchProgramme } from "../../redux/actions/programmeActions";
 
 const Container = styled.div`
   .briefInfoContainer {
@@ -172,13 +168,9 @@ const Container = styled.div`
 `;
 
 function DriverPage({ driverData }) {
-  const dispatch = useDispatch();
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchF1Results({ perPage: 1 }));
-    dispatch(fetchProgramme());
-    dispatch(fetchNewQuickNews());
     fetch(
       `https://wpadmin.f1online.sk/wp-json/wp/v2/media?search=${driverData.givenName}+${driverData.familyName}&per_page=15`
     )

@@ -26,10 +26,8 @@ const panelReducer = (state = defaultState, action) => {
         isLoading: false,
         error: action.error
       };
-
-    default:
-      return state;
   }
+  return state;
 };
 
 export default panelReducer;

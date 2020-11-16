@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import Head from "next/head";
 import { END } from "redux-saga";
 import { useRouter } from "next/router";
@@ -13,9 +12,6 @@ import Divider from "../components/Divider.js";
 import PopularBox from "../components/PopularBox";
 import ArchiveArticlesRenderer from "../components/ArchivArticles/ArchiveArticlesRenderer.js";
 import { fetchArchiveArticles } from "../redux/actions/archiveActions";
-import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
-import { fetchF1Results } from "../redux/actions/f1ResultsActions";
-import { fetchProgramme } from "../redux/actions/programmeActions";
 import {
   MAIN,
   COLUMNED_PAGE,
@@ -37,12 +33,6 @@ function Archiv() {
   const { articles, isLoading } = useSelector(({ archiveArticles }) => {
     return pageNumber === 1 ? archiveArticles.server : archiveArticles.client;
   });
-
-  useEffect(() => {
-    dispatch(fetchF1Results({ perPage: 1 }));
-    dispatch(fetchProgramme());
-    dispatch(fetchNewQuickNews());
-  }, []);
 
   const onPageClicked = pageNumber => {
     window.scrollTo(0, 0);

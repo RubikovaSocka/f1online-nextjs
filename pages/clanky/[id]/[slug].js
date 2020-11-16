@@ -12,9 +12,6 @@ import PostRendered from "../../../components/PostRendered";
 import PostMeta from "../../../components/PostRendered/PostMeta.js";
 import { URLS } from "../../../redux/apis/urls";
 
-import { fetchNewQuickNews } from "../../../redux/actions/quickNewsActions";
-import { fetchF1Results } from "../../../redux/actions/f1ResultsActions";
-import { fetchProgramme } from "../../../redux/actions/programmeActions";
 import {
   MAIN,
   COLUMNED_PAGE,
@@ -26,9 +23,6 @@ function Post({ postData }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchF1Results({ perPage: 1 }));
-    dispatch(fetchProgramme());
-    dispatch(fetchNewQuickNews());
     fetch(
       "https://wpadmin.f1online.sk//wp-json/wordpress-popular-posts/v1/popular-posts",
       {

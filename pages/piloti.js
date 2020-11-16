@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import axios from "axios";
 import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";
@@ -10,11 +9,6 @@ import DriverPreview from "../components/DriverPreview/DriverPreview.js";
 import SectionTitle from "../components/SectionTitle";
 import Divider from "../components/Divider.js";
 
-import { useDispatch } from "react-redux";
-import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
-import { fetchF1Results } from "../redux/actions/f1ResultsActions";
-import { fetchProgramme } from "../redux/actions/programmeActions";
-
 import {
   MAIN,
   COLUMNED_PAGE,
@@ -25,13 +19,6 @@ import {
 import styles from "../styles/piloti.module.scss";
 
 function Drivers({ teamsData }) {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchF1Results({ perPage: 1 }));
-    dispatch(fetchProgramme());
-    dispatch(fetchNewQuickNews());
-  }, []);
 
   return (
     <>

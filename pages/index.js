@@ -16,9 +16,6 @@ import CalendarLarge from "../components/CalendarLarge";
 import ResultsLarge from "../components/ResultsLarge";
 
 import { fetchNewArticles } from "../redux/actions/articlesActions";
-import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
-import { fetchF1Results } from "../redux/actions/f1ResultsActions";
-import { fetchProgramme } from "../redux/actions/programmeActions";
 import {
   MAIN,
   COLUMNED_PAGE,
@@ -32,14 +29,6 @@ import onClient from "../utils/onClient";
 //import fontawesomeSubset from "fontawesome-subset";
 
 function Home() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchF1Results({ perPage: 1 }));
-    dispatch(fetchProgramme());
-    dispatch(fetchNewQuickNews());
-  }, []);
-
   const state = useSelector(state => state.articles);
   const postsData = state.indexArticles;
   const isLoading = state.isLoading;

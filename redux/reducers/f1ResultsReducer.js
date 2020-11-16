@@ -16,6 +16,7 @@ const f1ResultsReducer = (state = defaultState, action) => {
           ...action.payload.f1Results
         };
       }
+      break;
     }
     case TYPES.FETCH:
       return {
@@ -38,9 +39,8 @@ const f1ResultsReducer = (state = defaultState, action) => {
         error: action.error
       };
     }
-    default:
-      return state;
   }
+  return state;
 };
 
 export default f1ResultsReducer;

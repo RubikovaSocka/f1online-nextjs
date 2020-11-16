@@ -1,27 +1,51 @@
-import { QUICK_NEWS } from "../constants";
+const TYPES = {
+  START: "QUICK_NEWS_START",
+  AUTOFETCH_SUCCESS: "QUICK_NEWS_AUTOFETCH_SUCCESS",
+  AUTOFETCH_FAIL: "QUICK_NEWS_AUTOFETCH_FAIL",
 
-const fetchNewQuickNews = () => ({
-  type: QUICK_NEWS.FETCH
+  FETCH_ARCHIVE: "QUICK_NEWS_FETCH_ARCHIVE",
+  FETCH_ARCHIVE_SUCCESS: "QUICK_NEWS_FETCH_ARCHIVE_SUCC",
+  FETCH_ARCHIVE_FAIL: "QUICK_NEWS_FETCH_ARCHIVE_FAIL"
+};
+
+// actions for fetching new quicknews
+const startQuickNewsAutoFetch = () => ({
+  type: TYPES.START
 });
 
-const fetchMoreQuickNews = () => ({
-  type: QUICK_NEWS.FETCH_MORE
-});
-
-const setArchiveArticles = payload => ({
-  type: QUICK_NEWS.FETCH_SUCCESS,
+const addNewQuickNews = payload => ({
+  type: TYPES.AUTOFETCH_SUCCESS,
   news: payload.news,
   totalNewsCount: payload.totalNewsCount
 });
 
-const setArchiveArticlesError = payload => ({
-  type: QUICK_NEWS.FETCH_FAIL,
-  payload
+const setNewQuickNewsError = error => ({
+  type: TYPES.AUTOFETCH_FAIL,
+  error
+});
+
+// actions for fetching older items on scroll
+const fetchQuickNewsArchive = () => ({
+  type: TYPES.FETCH_ARCHIVE
+});
+
+const addQuickNewsArchive = payload => ({
+  type: TYPES.FETCH_ARCHIVE_SUCCESS,
+  news: payload.news,
+  totalNewsCount: payload.totalNewsCount
+});
+
+const setQuickNewsArchiveError = error => ({
+  type: TYPES.FETCH_ARCHIVE_FAIL,
+  error
 });
 
 export {
-  fetchNewQuickNews,
-  fetchMoreQuickNews,
-  setArchiveArticles,
-  setArchiveArticlesError
+  TYPES,
+  startQuickNewsAutoFetch,
+  addNewQuickNews,
+  setNewQuickNewsError,
+  fetchQuickNewsArchive,
+  addQuickNewsArchive,
+  setQuickNewsArchiveError
 };
