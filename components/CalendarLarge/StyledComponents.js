@@ -9,7 +9,7 @@ const Container = styled.div`
     grid-template-columns: auto 328px 17px 328px 38px 320px auto;
   }
 
-  ${props =>
+  ${(props) =>
     props.loading
       ? `
   margin: 15px 10px;
@@ -45,7 +45,7 @@ const Table = styled.div`
   font-family: "HK Grotesk", "Source Sans Pro";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  color: ${props => props.theme.TEXT_COLOR_MILD};
+  color: ${(props) => props.theme.TEXT_COLOR_MILD};
 `;
 
 const VenueHeader = styled.div`
@@ -96,7 +96,7 @@ const GPImage = styled.img`
   grid-row: 2 / span 1;
   height: 100%;
   color: transparent;
-  background-color: ${props => props.theme.FILLER_COLOR};
+  background-color: ${(props) => props.theme.FILLER_COLOR};
 `;
 
 export {
@@ -109,5 +109,5 @@ export {
   Table,
   TimesFirstColumn,
   TimesSecondColumn,
-  ShowAllButton
+  ShowAllButton,
 };

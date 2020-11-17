@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import {
   SESSION_NAMES,
   SESSION_DURATIONS,
-  getSesDurationText
+  getSesDurationText,
 } from "../../utils/sessions";
 
 import {
@@ -15,7 +15,7 @@ import {
   Table,
   TimesFirstColumn,
   TimesSecondColumn,
-  ShowAllButton
+  ShowAllButton,
 } from "./StyledComponents";
 
 import LinkAsButton from "../LinkAsButton/LinkAsButton";
@@ -23,7 +23,7 @@ import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
 import CalendarItem from "./CalendarItem";
 import Filler from "../CalResWidget/Filler";
 
-const getTvText = tv => {
+const getTvText = (tv) => {
   return `vysiela ${tv ? tv : "doplníme..."}`;
 };
 
@@ -42,7 +42,7 @@ function CalendarLarge() {
     fp3_tv,
     q_tv,
     r_tv,
-    circuit_image
+    circuit_image,
   } = useSelector(({ programme }) => programme.event);
 
   if (isLoading) {
