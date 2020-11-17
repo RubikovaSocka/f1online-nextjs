@@ -1,5 +1,8 @@
 import Link from "next/link";
-import getImageSrc from "../../utils/getImagePreview.js";
+import Image from "next/image";
+import getImageSrc, {
+  getImageDimensions,
+} from "../../utils/getImagePreview.js";
 import styled from "styled-components";
 import onClient from "../../utils/onClient.js";
 
@@ -11,7 +14,7 @@ const Container = styled.div`
   text-decoration: none;
   margin-bottom: 20px;
 
-  ${props =>
+  ${(props) =>
     props.loading
       ? `background-color: ${props.theme.FILLER_COLOR};
     
@@ -90,7 +93,7 @@ const Title = styled.h3`
     /*line-height: 17px;*/
     scroll-behavior: none;
     font-size: 14px;
-    ${props =>
+    ${(props) =>
       props.top
         ? `font-size: 20px; padding: 11px 15px;  width: calc(100% - 30px);`
         : ""}
@@ -103,7 +106,7 @@ function TitleArticlePreview({
   slug,
   title,
   better_featured_image,
-  top
+  top,
 }) {
   if (isLoading) {
     return (
@@ -117,9 +120,17 @@ function TitleArticlePreview({
     <Container>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
         <a>
-          <img
-            alt={`fotka k článku ${title ? title.rendered : ""}`}
+          <Image
+            width={
+              getImageDimensions(better_featured_image, "medium_large").width
+            }
+            height={
+              getImageDimensions(better_featured_image, "medium_large").height
+            }
             src={getImageSrc(better_featured_image, "medium_large")}
+            alt={`fotka k článku ${title ? title.rendered : ""}`}
+            loading="eager"
+            priority={true}
           />
           <Title
             top={top}
