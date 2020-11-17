@@ -1,9 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import formatDate from "../../utils/dateFormatter.js";
-import LazyLoad from "react-lazy-load";
 import styled from "styled-components";
-import getImageSrc from "../../utils/getImagePreview.js";
+import getImageSrc, {
+  getImageDimensions,
+} from "../../utils/getImagePreview.js";
 
 const Container = styled.div`
   height: 60px;
@@ -13,7 +15,7 @@ const Container = styled.div`
   justify-content: flex-start;
   margin: 4px 0;
 
-  ${props =>
+  ${(props) =>
     props.loading
       ? `
     background-color: ${props.theme.FILLER_COLOR};
@@ -59,11 +61,16 @@ const Container = styled.div`
 const ImgContainer = styled.div`
   height: 60px;
   width: 96px;
-  background-color: ${props => props.theme.FILLER_COLOR};
+  background-color: ${(props) => props.theme.FILLER_COLOR};
   position: relative;
   overflow: hidden;
 
-  background-color: ${props => props.theme.FILLER_COLOR};
+  > div {
+    height: 100%;
+    width: 100%;
+  }
+
+  background-color: ${(props) => props.theme.FILLER_COLOR};
   @keyframes slide {
     0% {
       transform: translateX(-100%);
@@ -82,7 +89,7 @@ const ImgContainer = styled.div`
     z-index: 1;
     animation: slide 1s infinite;
 
-    background: ${props => props.theme.FILLER_SHINE_GRADIENT};
+    background: ${(props) => props.theme.FILLER_SHINE_GRADIENT};
   }
   img {
     position: absolute;
@@ -135,7 +142,7 @@ const TitleContainer = styled.a`
 
 const Title = styled.h3`
   margin: 0;
-  color: ${props => props.theme.TEXT_COLOR_MILD};
+  color: ${(props) => props.theme.TEXT_COLOR_MILD};
   font-size: 14px;
   cursor: pointer;
 
@@ -153,7 +160,7 @@ const Date = styled.span`
   @media only screen and (min-width: 1024px) {
     display: inline-block;
     margin-top: 5px;
-    color: ${props => props.theme.SUBTITLE_COLOR};
+    color: ${(props) => props.theme.SUBTITLE_COLOR};
 
     font-size: 13px;
     font-weight: 400;
@@ -162,6 +169,8 @@ const Date = styled.span`
     text-rendering: optimizeLegibility;
   }
 `;
+
+const FlickeringImage = styled(Image)``;
 
 function ArticlePreview(props) {
   const { isLoading, id, slug, title, date, better_featured_image } = props;
@@ -173,12 +182,16 @@ function ArticlePreview(props) {
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
         <a>
           <ImgContainer>
-            <LazyLoad height="100%" width="100%">
-              <img
-                alt={`${title ? title.rendered : ""}`}
-                src={getImageSrc(better_featured_image, "medium")}
-              />
-            </LazyLoad>
+            <FlickeringImage
+              key={id}
+              width={getImageDimensions(better_featured_image, "medium").width}
+              height={
+                getImageDimensions(better_featured_image, "medium").height
+              }
+              src={getImageSrc(better_featured_image, "medium")}
+              alt={`fotka k článku ${title ? title.rendered : ""}`}
+              loading="lazy"
+            />
           </ImgContainer>
         </a>
       </Link>
