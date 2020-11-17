@@ -1,8 +1,7 @@
-import React from "react";
-import PostTitleArea from "./PostTitleArea.js";
-import PostContentArea from "./PostContentArea.js";
-import PostExtrasArea from "./PostExtrasArea.js";
-import PostFooterArea from "./PostFooterArea.js";
+import PostTitleArea from "./PostTitleArea";
+import PostContentArea from "./PostContentArea";
+import PostExtrasArea from "./PostExtrasArea";
+import PostFooterArea from "./PostFooterArea";
 
 function PostRendered(props) {
   const { title, date, id, slug, content, acf, _embedded } = props;

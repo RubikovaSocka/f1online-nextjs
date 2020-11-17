@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import ArticlesPanel from "./ArticlesPanel/ArticlesPanel";
+import ArticlesPanel from "./ArticlesPanel";
 import { URLS } from "../redux/apis/urls";
 import fetchArchiveArticles from "../redux/apis/fetchArchiveArticlesApi";
 import SectionTitle from "./SectionTitle";

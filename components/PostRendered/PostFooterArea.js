@@ -1,12 +1,10 @@
-import React from "react";
-import ReportBox from "../ReportBox/ReportBox";
+import ReportBox from "../ReportBox";
 import SectionTitle from "../SectionTitle";
 import Divider from "../Divider";
 import RelatedArticles from "../RelatedArticles";
-import DiskusnyBox from "../DiskusnyBox/DiskusnyBox";
+import DiskusnyBox from "../DiskusnyBox";
 import decodeHtml from "../../utils/decodeHtml";
 
-import styles from "./style.module.scss";
 import styled from "styled-components";
 
 const ButtonRow = styled.div`
@@ -40,7 +38,6 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
         articleID={id}
       />
       <Divider height="10px" />
-      {/*<RelatedArticles ids={acf.suvisiace_clanky} tagID={tags[0]} except={id} />*/}
       <RelatedArticles ids={acf.suvisiace_clanky} tagID={tags[0]} except={id} />
       <Divider height="10px" />
       <SectionTitle title="Komentáre" />

@@ -1,8 +1,9 @@
 import EmbedContainer from "react-oembed-container";
+import parse from "html-react-parser";
 import EmbedExorcist from "../EmbedExorcist";
 import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
+
 import styled from "styled-components";
-import ReactHtmlParser from "react-html-parser";
 
 const ArticleDiv = styled(EmbedExorcist)`
   font-family: "HK Grotesk";
@@ -33,7 +34,7 @@ function AdsInjector({ inputHtml }) {
   if (nrPars > 5) {
     return inputHtml.split("</p>\n\n\n\n").map((chunk, i) => (
       <>
-        {ReactHtmlParser(chunk.concat("</p>"))}
+        {parse(chunk.concat("</p>"))}
         {(i + 1) % NR_PARS_BET_ADS === 0 ? (
           <TrackedArtRePanel
             GASpercentage={i > 3 ? 100 : 65}
@@ -46,7 +47,7 @@ function AdsInjector({ inputHtml }) {
       </>
     ));
   }
-  return ReactHtmlParser(inputHtml);
+  return parse(inputHtml);
 }
 
 function PostContentArea({ article }) {
@@ -54,7 +55,7 @@ function PostContentArea({ article }) {
     <EmbedContainer markup={article}>
       <ArticleDiv>
         <AdsInjector inputHtml={article} />
-      </ArticleDiv> 
+      </ArticleDiv>
     </EmbedContainer>
   );
 }

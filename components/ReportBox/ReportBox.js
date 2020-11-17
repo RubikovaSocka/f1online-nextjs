@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Popup from "reactjs-popup";
 import axios from "axios";
-import styles from "./ReportBox.module.scss";
 import LoadingSpinner from "../LoadingSpinner";
 import styled from "styled-components";
 

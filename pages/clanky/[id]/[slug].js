@@ -51,14 +51,14 @@ export const getServerSideProps = wrapper.getServerSideProps(
       .then(res => res.json())
       .then(res => res);
     fetch(`${URLS.BASE}wp-content/plugins/counter/count.php?id=${params.id}`);
-    /*fetch(
+    fetch(
       "https://wpadmin.f1online.sk//wp-json/wordpress-popular-posts/v1/popular-posts",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ wpp_id: params.id })
       }
-    );*/
+    );
     await store.sagaTask.toPromise();
 
     return {
