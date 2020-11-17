@@ -20,7 +20,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: row;
 
-  ${props =>
+  ${(props) =>
     props.isOpenedMobile
       ? ` @media only screen and (max-width: 1023px) {
             border: solid 1px #c0c0c0;
@@ -41,7 +41,7 @@ const Form = styled.form`
 
     font-family: "HK Grotesk";
 
-    ${props =>
+    ${(props) =>
       props.isOpenedMobile
         ? ` height: 30px;
             width: 135px;
@@ -61,7 +61,7 @@ const Form = styled.form`
 
       font-size: 14px;
       font-weight: 400;
-      color: ${props => props.theme.SEARCH_TEXT_COLOR};
+      color: ${(props) => props.theme.SEARCH_TEXT_COLOR};
       padding-right: 5px;
     }
   }
@@ -79,11 +79,9 @@ const Button = styled.button`
   height: 22px;
   padding: 0;
 
-  ${props =>
+  ${(props) =>
     props.isOpenedMobile
-      ? ` width: 18px;
-          height: 18px;
-          margin: auto 0 auto 10px;
+      ? ` margin: auto 0 auto 10px;
 
           @media only screen and (min-width: 1024px) {
             width: 16px;
@@ -94,13 +92,13 @@ const Button = styled.button`
 `;
 
 const XButton = styled(Button)`
-  background-image: url(${props => props.theme.XBUTTON});
-  ${props =>
+  background-image: url(${(props) => props.theme.XBUTTON});
+  ${(props) =>
     props.isOpenedMobile ? `display: inline-block;` : `display: none;`}
 `;
 
 const SearchButton = styled(Button)`
-  background-image: url(${props => props.theme.SEARCH_BUT});
+  background-image: url(${(props) => props.theme.SEARCH_BUT});
 `;
 
 function SearchBar() {
@@ -109,7 +107,7 @@ function SearchBar() {
   const [searchPhrase, setSearchPhrase] = useState("");
 
   const isOpenedChange = () => {
-    setIsOpenedMobile(wasOpened => {
+    setIsOpenedMobile((wasOpened) => {
       dispatch({ type: `${wasOpened ? LOGOTRIGGER.SHOW : LOGOTRIGGER.HIDE}` });
       return !wasOpened;
     });
@@ -126,20 +124,20 @@ function SearchBar() {
           placeholder="Hľadať"
           //className={`ifont ${isOpenedMobile ? styles.show : ""}`}
           aria-label="Search"
-          onChange={e => setSearchPhrase(e.target.value)}
+          onChange={(e) => setSearchPhrase(e.target.value)}
         />
         {isMobile ? (
           <>
             <SearchButton
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 if (isOpenedMobile) {
                   isOpenedChange();
                   Router.push({
                     pathname: "/archiv",
                     query: {
-                      search: searchPhrase
-                    }
+                      search: searchPhrase,
+                    },
                   });
                 } else {
                   isOpenedChange();
@@ -149,7 +147,7 @@ function SearchBar() {
               isOpenedMobile={isOpenedMobile}
             />
             <XButton
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 if (searchPhrase.length === 0) {
                   isOpenedChange();
@@ -161,13 +159,13 @@ function SearchBar() {
           </>
         ) : (
           <SearchButton
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               Router.push({
                 pathname: "/archiv",
                 query: {
-                  search: searchPhrase
-                }
+                  search: searchPhrase,
+                },
               });
             }}
             type={"submit"}
