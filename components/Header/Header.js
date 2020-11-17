@@ -137,7 +137,12 @@ function Header() {
           <HeaderContents>
             <SocialMediaBasicPlugin />
             <Link href="/">
-              <a style={{ display: `${logoShown ? "inline-block" : "none"}` }}>
+              <a
+                style={{
+                  display: `${logoShown ? "inline-block" : "none"}`,
+                  color: "transparent",
+                }}
+              >
                 {onClient() ? "" : ""}
                 <Image
                   src={themeContext.LOGO_URL}
