@@ -9,6 +9,7 @@ function PostRendered(props) {
   return (
     <article>
       <PostTitleArea
+        key={id}
         title={title.rendered}
         authorName={_embedded.author[0].name}
         date={date}

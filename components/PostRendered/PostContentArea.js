@@ -4,6 +4,7 @@ import EmbedExorcist from "../EmbedExorcist";
 import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
 
 import styled from "styled-components";
+import { Fragment } from "react";
 
 const ArticleDiv = styled(EmbedExorcist)`
   font-family: "HK Grotesk";
@@ -21,7 +22,7 @@ const ArticleDiv = styled(EmbedExorcist)`
     color: #e10600;
   }
 
-  .setFirst p:first-of-type {
+  p:first-of-type {
     font-weight: 600;
     margin-top: 20px;
   }
@@ -33,7 +34,7 @@ function AdsInjector({ inputHtml }) {
   const nrPars = inputHtml.split("</p>\n\n\n\n").length;
   if (nrPars > 5) {
     return inputHtml.split("</p>\n\n\n\n").map((chunk, i) => (
-      <>
+      <Fragment key={i}>
         {parse(chunk.concat("</p>"))}
         {(i + 1) % NR_PARS_BET_ADS === 0 ? (
           <TrackedArtRePanel
@@ -44,7 +45,7 @@ function AdsInjector({ inputHtml }) {
         ) : (
           ""
         )}
-      </>
+      </Fragment>
     ));
   }
   return parse(inputHtml);

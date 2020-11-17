@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import SectionTitle from "../SectionTitle";
-import Divider from "../Divider";
-import PostsBlock from "../PostsBlock";
-import ImageGallery from "../react-image-gallery/index";
+import SectionTitle from "../../SectionTitle";
+import Divider from "../../Divider";
+import PostsBlock from "../../PostsBlock";
+import ImageGallery from "../../react-image-gallery/index";
 
 function PostExtrasArea({ gallery, start_time, end_time }) {
   const [images, setImages] = useState({ array: [], loaded: false });

@@ -1,9 +1,9 @@
-import ReportBox from "../ReportBox";
-import SectionTitle from "../SectionTitle";
-import Divider from "../Divider";
-import RelatedArticles from "../RelatedArticles";
-import DiskusnyBox from "../DiskusnyBox";
-import decodeHtml from "../../utils/decodeHtml";
+import ReportBox from "../../ReportBox";
+import SectionTitle from "../../SectionTitle";
+import Divider from "../../Divider";
+import RelatedArticles from "../../RelatedArticles";
+import DiskusnyBox from "../../DiskusnyBox";
+import decodeHtml from "../../../utils/decodeHtml";
 
 import styled from "styled-components";
 
@@ -17,7 +17,7 @@ const ButtonRow = styled.div`
 
 function PostFooterArea({ title, id, slug, acf, tags }) {
   return (
-    <>
+    <div style={{ minHeight: "350px" }}>
       <Divider height="10px" />
       <ButtonRow>
         <iframe
@@ -45,7 +45,7 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
         discourseUrl="https://forum.f1online.sk/"
         discourseEmbedUrl={`https://f1online.sk/clanky/${id}/${slug}`}
       />
-    </>
+    </div>
   );
 }
 
