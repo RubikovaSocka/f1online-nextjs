@@ -2,12 +2,14 @@ import React from "react";
 import axios from "axios";
 import QuickNews from "../components/QuickNews";
 import Divider from "../components/Divider.js";
+import SectionTitle from "../components/SectionTitle";
 import styles from "../styles/zasady.module.scss";
+
 import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../components/PageLayout";
 
 export default function privacy({ pageData }) {
@@ -20,7 +22,7 @@ export default function privacy({ pageData }) {
           <div
             className={styles.container}
             /*className={styles.articleContent}*/ dangerouslySetInnerHTML={{
-              __html: pageData.content.rendered
+              __html: pageData.content.rendered,
             }}
           />{" "}
         </PAGE_MAIN_COL>
@@ -36,12 +38,12 @@ export default function privacy({ pageData }) {
 export async function getServerSideProps(context) {
   const response = await axios({
     method: "get",
-    url: "https://wpadmin.f1online.sk/wp-json/wp/v2/pages/3"
+    url: "https://wpadmin.f1online.sk/wp-json/wp/v2/pages/3",
     //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
   });
   return {
     props: {
-      pageData: response.data
-    }
+      pageData: response.data,
+    },
   };
 }

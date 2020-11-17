@@ -13,7 +13,10 @@ function TrackedSidePanel() {
         //google ad if user does not have adblock
         <>
           <AdBlockDetect>
-            <TrackVisibility partialVisibility>
+            <TrackVisibility
+              partialVisibility
+              style={{ height: "55px", width: "100%" }}
+            >
               <SideRePanel />
             </TrackVisibility>
           </AdBlockDetect>
@@ -44,7 +47,10 @@ function TrackedSidePanel() {
       );
     }
     return (
-      <TrackVisibility partialVisibility style={{ width: "100%" }}>
+      <TrackVisibility
+        partialVisibility
+        style={{ height: "55px", width: "100%" }}
+      >
         <SideRePanel />
       </TrackVisibility>
     );

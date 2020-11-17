@@ -10,7 +10,6 @@ import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
 
 import TrackedSidePanel from "../components/Ads/TrackedSidePanel";
-import CalResWidget from "../components/CalResWidget";
 import QuickNews from "../components/QuickNews";
 import CalendarLarge from "../components/CalendarLarge";
 import ResultsLarge from "../components/ResultsLarge";
@@ -74,16 +73,14 @@ function Home() {
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="15px" />
-            <div
+            {/*<div
               style={{
                 width: "100%",
               }}
             >
-              {/*<FBPageBox />*/}
-            </div>
-            <Divider height="15px" />
+              <FBPageBox />
+            </div>*/}
             <TrackedSidePanel />
-            <Divider height="15px" />
             <QuickNews />
           </SIDEBAR>
         </COLUMNED_PAGE>
