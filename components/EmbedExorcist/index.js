@@ -15,7 +15,7 @@ const Exorcist = styled.div`
       font-family: "HK Grotesk";
       font-size: 12px;
       line-height: 18px;
-      color: ${props => props.theme.SUBTITLE_COLOR};
+      color: ${(props) => props.theme.SUBTITLE_COLOR};
       text-align: right;
     }
   }
@@ -33,24 +33,6 @@ const Exorcist = styled.div`
     margin: 10px auto !important;
   }
   position: relative !important;
-  ${props =>
-    props.embedOnlyContainer
-      ? ` margin: auto;
-          position: relative !important;
-          padding-bottom: 56.25% !important;
-          height: 0 !important;
-          
-          > iframe {
-            position: absolute !important;
-            position: relative !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-          }
-
-          `
-      : ""}
 
   > iframe {
     position: absolute !important;
@@ -60,6 +42,25 @@ const Exorcist = styled.div`
     width: 100% !important;
     //height: 100% !important;
   }
+
+  ${(props) =>
+    props.embedOnlyContainer
+      ? ` margin: auto;
+          position: relative !important;
+          padding-bottom: 56.25% !important;
+          height: 0 !important;
+          
+          > iframe {
+            position: absolute !important;
+            //position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+          }
+
+          `
+      : ""}
 
   .wp-block-embed-youtube div {
     position: relative !important;

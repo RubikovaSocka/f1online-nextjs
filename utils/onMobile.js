@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import onClient from "./onClient";
 
 // Hook
 function useWindowSize() {
@@ -33,8 +34,24 @@ function useWindowSize() {
   return windowSize;
 }
 
+const getWindowSize = () => {
+  if (onClient()) {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+  }
+  return undefined;
+};
+
+const isMobile2 = () => {
+  const dimensions = getWindowSize();
+  return dimensions && dimensions.width < 1024;
+};
+
 const isMobile = () => {
   const dimensions = useWindowSize();
+  console.log(dimensions);
   return dimensions && dimensions.width < 1024;
 };
 
@@ -43,4 +60,4 @@ const getWindowWidth = () => {
 };
 
 export { getWindowWidth };
-export default isMobile;
+export default isMobile2;
