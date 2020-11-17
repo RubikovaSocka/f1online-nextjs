@@ -47,7 +47,6 @@ const recordClickToGA = (current, positionName) => {
 };
 
 function ChangeablePanel({ isVisible, panels, changeable, positionName }) {
-  console.log(`${onClient()} ${onMobile()} ${panels.m.length} ${panels.pc.length}`)
   if (onClient()) {
     if (onMobile() && panels.m.length === 0) {
       return null;

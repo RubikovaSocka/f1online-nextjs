@@ -5,7 +5,6 @@ const TYPES = {
 };
 
 const fetchF1Results = ({ perPage }) => {
-  console.log("HAHAHAHA");
   return {
     type: TYPES.FETCH,
     perPage

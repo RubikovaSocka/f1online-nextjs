@@ -51,7 +51,6 @@ const isMobile2 = () => {
 
 const isMobile = () => {
   const dimensions = useWindowSize();
-  console.log(dimensions);
   return dimensions && dimensions.width < 1024;
 };
 

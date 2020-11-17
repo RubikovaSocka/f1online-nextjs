@@ -1,5 +1,4 @@
 const getImageSrc = (image, size) => {
-  console.log("SMKRMISAIFNSAJFNJANSFJASNJFNASJFNAJSF")
   if (image) {
     if (image.media_details.sizes[`${size}`]) {
       return image.media_details.sizes[`${size}`].source_url;

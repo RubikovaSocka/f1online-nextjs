@@ -37,9 +37,7 @@ const Container = styled.div`
 function HeaderRePanel(props) {
   const panelsState = useSelector((state) => state.panels);
   const { isLoading, json, error } = panelsState;
-console.log("HEADER /ANEL")
   if (isLoading || error) {
-    console.log("NULL")
     return null;
   }
   return (

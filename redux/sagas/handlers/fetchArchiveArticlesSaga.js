@@ -7,7 +7,6 @@ import {
 } from "../../actions/archiveActions";
 
 function* fetchArchiveArticlesSaga({ pageNumber, perPage, searchPhrase, isServer }) {
-  console.log("HAAAA \n\nHAAAA")
   try {
     const data = yield call(fetchArchiveArticles, {
       pageNumber: pageNumber,

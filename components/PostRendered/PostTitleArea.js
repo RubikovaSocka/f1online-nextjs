@@ -44,7 +44,6 @@ const ButtonRow = styled.div`
 `;
 
 function PostTitleArea({ title, authorName, date, imageData, id, slug }) {
-  console.log("POST TITLE RENDERS AGAIN")
   return (
     <>
       <Title>{decodeHtml(title)}</Title>

@@ -3,8 +3,7 @@ import TrackVisibility from "react-on-screen";
 import AdBlockDetect from "react-ad-block-detect";
 import AdSense from "react-adsense";
 
-//const GASdefault = 65; //X% chance to show GAS
-const GASdefault = 5;
+const GASdefault = 65; //X% chance to show GAS
 
 export default function TrackedArtRePanel({
   GASpercentage,
@@ -13,8 +12,6 @@ export default function TrackedArtRePanel({
 }) {
   if (typeof window !== "undefined") {
     let randomNumber = Math.floor(Math.random() * 100);
-    console.log(randomNumber);
-    console.log(GASpercentage);
     if (
       randomNumber <
       (GASpercentage || GASpercentage === 0 || GASpercentage === 1

@@ -9,6 +9,7 @@ import SectionTitle from "../components/SectionTitle";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
 
+import TrackedSidePanel from "../components/Ads/TrackedSidePanel";
 import CalResWidget from "../components/CalResWidget";
 import QuickNews from "../components/QuickNews";
 import CalendarLarge from "../components/CalendarLarge";
@@ -19,7 +20,7 @@ import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../components/PageLayout";
 
 import isMobile from "../utils/onMobile";
@@ -28,7 +29,7 @@ import onClient from "../utils/onClient";
 //import fontawesomeSubset from "fontawesome-subset";
 
 function Home() {
-  const state = useSelector(state => state.articles);
+  const state = useSelector((state) => state.articles);
   const postsData = state.indexArticles;
   const isLoading = state.isLoading;
   const isScreenMobile = isMobile();
@@ -75,14 +76,15 @@ function Home() {
             <Divider height="15px" />
             <div
               style={{
-                width: "100%"
+                width: "100%",
               }}
             >
               {/*<FBPageBox />*/}
             </div>
             <Divider height="15px" />
+            <TrackedSidePanel />
+            <Divider height="15px" />
             <QuickNews />
-            <CalResWidget />
           </SIDEBAR>
         </COLUMNED_PAGE>
       </MAIN>

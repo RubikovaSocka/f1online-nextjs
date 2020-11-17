@@ -16,7 +16,6 @@ function ResultsLarge() {
   const raceData = last ? last.race : "";
   const champData = last ? last.driverChamp : "";
 
-  console.log(state);
   if (isLoading) {
     return <Filler />;
   }
