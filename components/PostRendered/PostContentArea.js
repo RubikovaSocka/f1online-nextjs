@@ -46,7 +46,7 @@ function AdsInjector({ inputHtml }) {
       </>
     ));
   }
-  return ReactHtmlParser(article);
+  return ReactHtmlParser(inputHtml);
 }
 
 function PostContentArea({ article }) {

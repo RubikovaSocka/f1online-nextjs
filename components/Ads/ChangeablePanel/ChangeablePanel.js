@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactGA from "react-ga";
 import onClient from "../../../utils/onClient";
-import onMobile from "../../../utils/onClient";
+import onMobile from "../../../utils/onMobile";
 
 const randomIndex = (totalElements) => {
   return Math.floor(Math.random() * totalElements);
@@ -47,6 +47,7 @@ const recordClickToGA = (current, positionName) => {
 };
 
 function ChangeablePanel({ isVisible, panels, changeable, positionName }) {
+  console.log(`${onClient()} ${onMobile()} ${panels.m.length} ${panels.pc.length}`)
   if (onClient()) {
     if (onMobile() && panels.m.length === 0) {
       return null;
