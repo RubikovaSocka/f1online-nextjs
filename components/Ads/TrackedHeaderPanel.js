@@ -1,11 +1,10 @@
-import dynamic from "next/dynamic";
 import HeaderRePanel from "./HeaderRePanel";
-const TrackVisibility = dynamic(() => import("react-on-screen"));
+import TrackVisibility from "react-on-screen";
 
-function TrackedHeaderPanel() {
+function TrackedHeaderPanel({ changeable }) {
   return (
     <TrackVisibility partialVisibility style={{ width: "100%" }}>
-      <HeaderRePanel />
+      <HeaderRePanel changeable={changeable} />
     </TrackVisibility>
   );
 }

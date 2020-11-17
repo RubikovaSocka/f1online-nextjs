@@ -3,11 +3,6 @@ import styled from "styled-components";
 const Exorcist = styled.div`
   figure {
     width: 100%;
-    //width: calc(100vw - 20px);
-
-    @media only screen and (min-width: 350px) {
-      //width: calc(100vw - 40px);
-    }
 
     margin: 25px 0;
 
@@ -24,11 +19,11 @@ const Exorcist = styled.div`
       text-align: right;
     }
   }
+
   div {
-    
     margin: 10px auto !important;
-    
   }
+
   iframe {
     background-color: white;
     width: 100%;
@@ -36,6 +31,34 @@ const Exorcist = styled.div`
   }
   .twitter-tweet {
     margin: 10px auto !important;
+  }
+  position: relative !important;
+  ${props =>
+    props.embedOnlyContainer
+      ? ` margin: auto;
+          position: relative !important;
+          padding-bottom: 56.25% !important;
+          height: 0 !important;
+          
+          > iframe {
+            position: absolute !important;
+            position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+          }
+
+          `
+      : ""}
+
+  > iframe {
+    position: absolute !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    //height: 100% !important;
   }
 `;
 

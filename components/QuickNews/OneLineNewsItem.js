@@ -28,7 +28,7 @@ const MessageContainer = styled.div`
   padding-bottom: 5px;
   padding-right: 5px;
   text-decoration: none;
-  color: ${props => props.theme.TEXT_COLOR_MILD}; 
+  color: ${props => props.theme.TEXT_COLOR_MILD};
 `;
 
 const BasicMessage = styled.div`
@@ -77,17 +77,17 @@ const PostMessage = styled(BasicMessage)`
   }
 `;
 
-function OneLineNewsItem({ hasvideo, content, date, embed, callback }) {
+function OneLineNewsItem({ hasVideo, hasAttachment, content, date, callback }) {
   return (
     <ItemContainer>
       <Date>{date}</Date>
       <MessageContainer>
-        {hasvideo && hasvideo === "Áno" ? (
+        {hasVideo ? (
           <VideoMessage
             dangerouslySetInnerHTML={{ __html: content }}
             onClick={callback}
           />
-        ) : embed.length > 0 ? (
+        ) : hasAttachment ? (
           <PostMessage
             dangerouslySetInnerHTML={{ __html: content }}
             onClick={callback}

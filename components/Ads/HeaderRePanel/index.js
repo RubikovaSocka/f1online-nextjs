@@ -1,8 +1,3 @@
-import Loadable from "react-loadable";
+import HeaderRePanel from "./HeaderRePanel";
 
-const AsyncPage = Loadable({
-  loader: () => import("./HeaderRePanel"),
-  loading: "Loading"
-});
-
-export default AsyncPage;
+export default HeaderRePanel;

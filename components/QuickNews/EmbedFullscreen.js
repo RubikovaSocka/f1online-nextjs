@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
-import EmbedContainer from "react-oembed-container";
+import Image from "next/image";
 import TrackedRSpravyPanel from "../Ads/TrackedRSpravyPanel";
 import ReactGA from "react-ga";
 import AdSense from "react-adsense";
 
 import styled from "styled-components";
 import onMobile from "../../utils/onMobile";
+
+import EmbedContainer from "react-oembed-container";
+import EmbedExorcist from "../EmbedExorcist";
 
 const Container = styled.div`
   z-index: 150;
@@ -43,7 +46,15 @@ const MessageText = styled.div`
   width: calc(100% - 16px);
   color: ${props => props.theme.TEXT_COLOR_MILD};
   p {
-    margin-bottom: 3px;
+    margin: 5px 0;
+
+    &:last-of-type {
+      margin-bottom: 20px;
+    }
+    &:first-of-type {
+      margin-bottom: 12px;
+      color: ${props => props.theme.SUBTITLE_COLOR};
+    }
   }
 `;
 
@@ -86,11 +97,15 @@ const Content = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  width: calc(100% - 20px);
+  width: calc(100% - 30px);
 
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 10px;
+  padding: 15px;
+
+  > div {
+    width: 100%;
+  }
 
   @media only screen and (max-width: 1023px) {
     height: ${props =>
@@ -102,6 +117,10 @@ const Content = styled.div`
     width: calc(100% - 360px);
     height: calc(100% - 60px);
     padding: 0;
+
+    > div {
+      width: calc(100% - 20px);
+    }
   }
 `;
 
@@ -124,43 +143,16 @@ const RPanel = styled.div`
   }
 `;
 
-const Embed = styled(EmbedContainer)`
-  margin-top: 10px;
-  width: calc(100% - 20px);
-
-  div iframe {
-    width: 100%;
-  }
-  > div > iframe {
-    width: 100%;
-    max-height: 280px;
-  }
-
-  > div {
-    position: relative !important;
-    padding-bottom: 56.25% !important; /* 16:9 */
-    height: 0 !important;
-  }
-  > div > iframe {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
+const ExorcistContainer = styled(EmbedExorcist)`
+  //margin-top: 10px;
+  width: 100%;
   @media only screen and (min-width: 1024px) {
-    margin-top: 20px;
-    width: calc(100% - 80px);
-
-    > div > iframe {
-      width: 100%;
-      max-height: 280px;
-    }
+    width: calc(100% - 20px);
   }
 `;
 
-function EmbedFullscreen({ id, date, embed, content, hideClick, hidePopup }) {
+function EmbedFullscreen(props) {
+  const { id, date, embed, image, content, hideClick, hidePopup } = props;
   useEffect(() => {
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
@@ -169,22 +161,29 @@ function EmbedFullscreen({ id, date, embed, content, hideClick, hidePopup }) {
 
   return (
     <Container>
-      <Content textOnly={embed.length === 0}>
+      <Content textOnly={embed.length === 0 && !image}>
         <MessageText
           dangerouslySetInnerHTML={{
-            __html: date.concat("").concat(content)
+            __html: `<p>${date}</p>${content}`
           }}
         />
-        <Embed markup={embed}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: embed
-            }}
-          />
-        </Embed>
+        {embed ? (
+          <EmbedContainer markup={embed}>
+            <ExorcistContainer
+              embedOnlyContainer
+              dangerouslySetInnerHTML={{
+                __html: embed
+              }}
+            />
+          </EmbedContainer>
+        ) : image ? (
+          <Image src={image.url} width={image.width} height={image.height} />
+        ) : (
+          ""
+        )}
       </Content>
       <RPanel>
-        {onMobile ? (
+        {onMobile() ? (
           <AdSense.Google
             client="ca-pub-2681240380511410"
             slot="3863813186"

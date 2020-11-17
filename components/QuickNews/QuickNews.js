@@ -23,7 +23,7 @@ function QuickNews() {
   const [shownItem, setShownItem] = useState({ index: 0, isShown: false });
   const state = useSelector(state => state.quickNews);
   const { news, error, isLoading, totalNewsCount } = state;
-  
+
   return (
     <Container>
       <SideSectionTitle title="Rýchle správy" />
@@ -42,6 +42,7 @@ function QuickNews() {
               date={formatDate(news[shownItem.index].date)}
               content={news[shownItem.index].acf.obsah_rychlej_spravy}
               embed={news[shownItem.index].acf.embed_zo_socialnych_sieti}
+              image={news[shownItem.index].acf.image}
               hideClick={close}
               hidePopup={() => setShownItem({ index: 0, isShown: false })}
             />
@@ -76,8 +77,11 @@ function QuickNews() {
             id={newsItem.id}
             date={formatDate(newsItem.date)}
             content={newsItem.acf.obsah_rychlej_spravy}
-            embed={newsItem.acf.embed_zo_socialnych_sieti}
-            hasvideo={newsItem.acf.hasvideo}
+            hasVideo={newsItem.acf.hasvideo && newsItem.acf.hasvideo === "Áno"}
+            hasAttachment={
+              newsItem.acf.embed_zo_socialnych_sieti.length > 0 ||
+              newsItem.acf.image
+            }
             callback={() => {
               setShownItem({ index: index, isShown: true });
             }}

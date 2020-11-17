@@ -3,7 +3,7 @@ import { PANELS } from "../constants";
 const defaultState = {
   json: {},
   error: null,
-  isLoading: false
+  isLoading: true,
 };
 
 const panelReducer = (state = defaultState, action) => {
@@ -12,19 +12,19 @@ const panelReducer = (state = defaultState, action) => {
       return {
         ...state,
         isLoading: true,
-        error: null
+        error: null,
       };
     case PANELS.FETCH_SUCCESS:
       return {
         ...state,
         json: action.json,
-        isLoading: false
+        isLoading: false,
       };
     case PANELS.FETCH_FAIL:
       return {
         ...state,
         isLoading: false,
-        error: action.error
+        error: action.error,
       };
   }
   return state;

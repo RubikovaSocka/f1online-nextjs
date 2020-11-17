@@ -44,9 +44,11 @@
 }
 
 /* EXPORT */
+
+/*
 .wp-block-embed-youtube div {
   position: relative !important;
-  padding-bottom: 56.25% !important; /* 16:9 */
+  padding-bottom: 56.25% !important;
   height: 0 !important;
 }
 .wp-block-embed-youtube div iframe {
@@ -68,7 +70,7 @@
     max-height: 360px !important;
     width: 100%;
   }
-} /*
+} *//*
 .wp-block-gallery {
   display: none;
 }*/

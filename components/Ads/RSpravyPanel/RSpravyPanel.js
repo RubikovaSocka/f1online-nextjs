@@ -1,124 +1,61 @@
-import React, { Component } from "react";
-import { Provider, connect } from "react-redux";
-import PropTypes from "prop-types";
-import { fetchPanels } from "../../../redux/actions/panelsActions";
-import styles from "./RSpravyPanel.module.scss";
-import ReactGA from "react-ga";
-import AdBlockDetect from "react-ad-block-detect";
-import AdSense from "react-adsense";
+import { useSelector } from "react-redux";
+import ChangeablePanel from "../ChangeablePanel";
+import styled from "styled-components";
 
-class RSpravyPanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      alreadyShown: [],
-      lastShownLink: "",
-      lastShownSrc: ""
-    };
+const Container = styled.div`
+  margin: 30px 0;
 
-    this.pickBanner = this.pickBanner.bind(this);
+  @media only screen and (min-width: 340px) {
+    margin: 10px 0;
+  }
+  @media only screen and (min-width: 1024px) {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    background-color: none;
   }
 
-  componentDidMount() {
-    if (!this.props.loaded) {
-      this.props.fetchPanels();
+  .container {
+    height: 100%;
+  }
+
+  .panel {
+    width: 100%;
+    @media only screen and (min-width: 1024px) {
+      display: inline-block;
+      background-color: none;
+      height: 100%;
     }
-  }
+    img {
+      width: 290px;
+      display: block;
+      margin: auto;
 
-  handleClick(e) {
-    ReactGA.event({
-      category: "partnerClicked",
-      action: "click-pc-rsp",
-      label: `${e.link}*${e.src}`
-    });
-  }
-
-  handleShown(e) {
-    ReactGA.event({
-      category: "partnerShown",
-      action: "click-pc-rsp",
-      label: `${e.link}*${e.src}`,
-      nonInteraction: true
-    });
-  }
-
-  pickBanner(nextProps) {
-    const { panelsJSON } = nextProps ? nextProps : this.props;
-    let partnerPick =
-      panelsJSON.bSide[Math.floor(Math.random() * panelsJSON.bSide.length)];
-    let panelPick =
-      partnerPick.banners[
-        Math.floor(Math.random() * partnerPick.banners.length)
-      ];
-
-    return {
-      lastShownSrc: panelPick.imgSrc,
-      lastShownLink: panelPick.linkTo
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { lastShownSrc, lastShownLink } = this.state;
-    if (!nextProps.loaded) {
-      return;
-    }
-    if (this.state.lastShownSrc === "") {
-      this.setState(this.pickBanner(nextProps));
-      return;
-    }
-
-    if (nextProps.isVisible) {
-      if (!this.state.alreadyShown.includes(lastShownSrc)) {
-        this.handleShown({ link: lastShownLink, src: lastShownSrc });
-        this.setState(prev => {
-          return {
-            alreadyShown: prev.alreadyShown.concat(lastShownSrc)
-          };
-        });
+      @media only screen and (min-width: 340px) {
+        width: 300px;
       }
-    } else {
-      const nextShow = this.pickBanner();
-      if (
-        nextShow.lastShownSrc != lastShownSrc ||
-        nextShow.lastShownLink != lastShownLink
-      ) {
-        this.setState(nextShow);
+      @media only screen and (min-width: 1024px) {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
       }
     }
   }
+`;
 
-  render() {
-    if (this.props.loaded) {
-      const { lastShownSrc, lastShownLink } = this.state;
-      return (
-        <div className={styles.container}>
-          <a
-            href={lastShownLink}
-            rel="noreferrer"
-            target="_blank"
-            onClick={() => {
-              this.handleClick({ link: lastShownLink, src: lastShownSrc });
-            }}
-          >
-            <div className={styles.panel}>
-              <img src={lastShownSrc} />
-            </div>
-          </a>
-        </div>
-      );
-    } else return null;
+function RSpravyPanel(props) {
+  const panelsState = useSelector((state) => state.panels);
+  const { isLoading, json, error } = panelsState;
+
+  if (isLoading || error) {
+    return null;
   }
+  return (
+    <Container>
+      <ChangeablePanel panels={json.side} positionName="side" {...props} />
+    </Container>
+  );
 }
 
-const mapStateToProps = ({panels}) => ({
-  json: panels.json
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchPanels: () => dispatch(fetchPanels())
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RSpravyPanel);
+export default RSpravyPanel;
