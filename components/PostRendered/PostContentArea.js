@@ -2,8 +2,6 @@ import EmbedContainer from "react-oembed-container";
 import EmbedExorcist from "../EmbedExorcist";
 import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
 import styled from "styled-components";
-import { renderToString } from "react-dom/server";
-import { connect } from "react-redux";
 import ReactHtmlParser from "react-html-parser";
 
 const ArticleDiv = styled(EmbedExorcist)`
@@ -56,8 +54,7 @@ function PostContentArea({ article }) {
     <EmbedContainer markup={article}>
       <ArticleDiv>
         <AdsInjector inputHtml={article} />
-      </ArticleDiv>
-      {/*<ArticleDiv>{ReactHtmlParser(article)}</ArticleDiv>*/}
+      </ArticleDiv> 
     </EmbedContainer>
   );
 }

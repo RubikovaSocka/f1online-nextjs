@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactGA from "react-ga";
+import onClient from "../../../utils/onClient";
+import onMobile from "../../../utils/onClient";
 
 const randomIndex = (totalElements) => {
   return Math.floor(Math.random() * totalElements);
@@ -45,9 +47,17 @@ const recordClickToGA = (current, positionName) => {
 };
 
 function ChangeablePanel({ isVisible, panels, changeable, positionName }) {
+  if (onClient()) {
+    if (onMobile() && panels.m.length === 0) {
+      return null;
+    } else if (panels.pc.length === 0) {
+      return null;
+    }
+  }
+
   const [shownPanels, setShownPanels] = useState([]);
   const [current, setCurrent] = useState({ src: "", link: "" });
-  
+
   //INITIAL PICK
   useEffect(() => {
     const newPick = pickRandomBanner(panels);

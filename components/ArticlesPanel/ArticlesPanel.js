@@ -69,8 +69,8 @@ function ArticlesPanel({ posts, isLoading }) {
           <i aria-hidden="true"></i>
           <i aria-hidden="true"></i>
         </Container>
-        <div /*counter={counter}*/ style={{ width: "100%" }}>
-          <TrackedArtRePanel changeable={true} report={true} />
+        <div /*key={counter}*/ style={{ width: "100%" }}>
+          <TrackedArtRePanel key={50522} changeable={true} report={true} />
         </div>
         <Container>
           {posts.slice(6, 12).map((post, index) => (

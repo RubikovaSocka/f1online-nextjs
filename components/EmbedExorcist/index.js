@@ -60,6 +60,19 @@ const Exorcist = styled.div`
     width: 100% !important;
     //height: 100% !important;
   }
+
+  .wp-block-embed-youtube div {
+    position: relative !important;
+    padding-bottom: 56.25% !important;
+    height: 0 !important;
+  }
+  .wp-block-embed-youtube div iframe {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
 `;
 
 export default Exorcist;
