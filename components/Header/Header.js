@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
@@ -5,7 +6,9 @@ import MyNavbar from "../Navbar";
 import SocialMediaBasicPlugin from "../SocialMediaPlugin";
 import SearchBar from "../SearchBar";
 
-import styled from "styled-components";
+import styled, { ThemeContext } from "styled-components";
+import Image from "next/image";
+import onClient from "../../utils/onClient";
 
 const shadowMobile = "0 0px 8px rgba(0, 0, 0, 0.25);";
 
@@ -13,14 +16,14 @@ const Container = styled.div`
   width: 100%;
   padding-top: 0px;
   z-index: 14;
-  background-color: ${props => props.theme.PAGE_BACK_COLOR};
+  background-color: ${(props) => props.theme.PAGE_BACK_COLOR};
 
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: flex-end;
   z-index: 13;
-  border-bottom: ${props => props.theme.HEADER_BOTTOM_BORDER_MOBILE};
+  border-bottom: ${(props) => props.theme.HEADER_BOTTOM_BORDER_MOBILE};
 
   position: sticky;
   top: 0;
@@ -41,7 +44,7 @@ const ShadowOverlap = styled.div`
   height: 10px;
   margin-top: -2px;
   background-color: white;
-  background-color: ${props => props.theme.PAGE_BACK_COLOR};
+  background-color: ${(props) => props.theme.PAGE_BACK_COLOR};
   z-index: 11;
 
   @media only screen and (min-width: 1024px) {
@@ -52,7 +55,7 @@ const ShadowOverlap = styled.div`
 const TopStripe = styled.div`
   height: 61px;
   width: calc(100% - 40px);
-  background-color: ${props => props.theme.PAGE_BACK_COLOR};
+  background-color: ${(props) => props.theme.PAGE_BACK_COLOR};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -101,7 +104,7 @@ const HeaderContents = styled.div`
 const WhiteBack = styled.div`
   width: calc(100% - 30px);
 
-  background-color: ${props => props.theme.PAGE_BACK_COLOR};
+  background-color: ${(props) => props.theme.PAGE_BACK_COLOR};
   z-index: 13;
 
   display: flex;
@@ -116,13 +119,6 @@ const WhiteBack = styled.div`
   }
 `;
 
-const Logo = styled.img.attrs(props => ({
-  src: props.theme.LOGO_URL
-}))`
-  height: 42px;
-  display: inline-block;
-`;
-
 const Shadow = styled.div`
   @media only screen and (min-width: 1024px) {
     display: none;
@@ -131,6 +127,7 @@ const Shadow = styled.div`
 
 function Header() {
   const logoShown = useSelector(({ logoTrigger }) => logoTrigger.logoShown);
+  const themeContext = useContext(ThemeContext);
 
   return (
     <Container>
@@ -141,7 +138,16 @@ function Header() {
             <SocialMediaBasicPlugin />
             <Link href="/">
               <a style={{ display: `${logoShown ? "inline-block" : "none"}` }}>
-                <Logo alt="-" />
+                {onClient() ? "" : ""}
+                <Image
+                  src={themeContext.LOGO_URL}
+                  height={42}
+                  width={142}
+                  alt="Logo F1online.sk"
+                  style={{ display: "inline-block", color: "transparent" }}
+                  loading="eager"
+                  priority={true}
+                />
               </a>
             </Link>
             <SearchBar />
