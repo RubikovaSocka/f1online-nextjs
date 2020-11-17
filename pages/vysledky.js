@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Head from "next/head";
-import { connect } from "react-redux";
 import QuickNews from "../components/QuickNews/QuickNews.js";
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
 import Divider from "../components/Divider.js";
 import LastVenueResBox from "../components/Results/LastVenueResBox.js";
 import DriverChampResBox from "../components/Results/DriverChampResBox.js";
 import TeamChampResBox from "../components/Results/TeamChampResBox.js";
-import { fetchNewQuickNews } from "../redux/actions/quickNewsActions";
 
 import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../components/PageLayout";
 
 class Results extends Component {
@@ -43,53 +41,52 @@ class Results extends Component {
       driverChampResults2: {},
       driverChampLoaded2: false,
       teamChampResults2: {},
-      teamChampLoaded2: false
+      teamChampLoaded2: false,
     };
   }
 
   componentDidMount() {
-    this.props.initialize();
     axios
       .get(`https://wpadmin.f1online.sk/wp-json/wp/v2/results?per_page=5`)
-      .then(res => {
-        axios.get(res.data[0].acf.results_json).then(res2 => {
+      .then((res) => {
+        axios.get(res.data[0].acf.results_json).then((res2) => {
           this.setState({
             lastVenueResults0: res2.data,
             lastVenueLoaded0: true,
-            venueName0: res.data[0].acf.venue_name
+            venueName0: res.data[0].acf.venue_name,
           });
         });
-        axios.get(res.data[0].acf.cd_results_json).then(res => {
+        axios.get(res.data[0].acf.cd_results_json).then((res) => {
           this.setState({
             driverChampResults0: res.data,
-            driverChampLoaded0: true
+            driverChampLoaded0: true,
           });
         });
-        axios.get(res.data[0].acf.cc_results_json).then(res => {
+        axios.get(res.data[0].acf.cc_results_json).then((res) => {
           this.setState({
             teamChampResults0: res.data,
-            teamChampLoaded0: true
+            teamChampLoaded0: true,
           });
         });
 
         if (res.data[1]) {
-          axios.get(res.data[1].acf.results_json).then(res2 => {
+          axios.get(res.data[1].acf.results_json).then((res2) => {
             this.setState({
               lastVenueResults1: res2.data,
               lastVenueLoaded1: true,
-              venueName1: res.data[1].acf.venue_name
+              venueName1: res.data[1].acf.venue_name,
             });
           });
-          axios.get(res.data[1].acf.cd_results_json).then(res => {
+          axios.get(res.data[1].acf.cd_results_json).then((res) => {
             this.setState({
               driverChampResults1: res.data,
-              driverChampLoaded1: true
+              driverChampLoaded1: true,
             });
           });
-          axios.get(res.data[1].acf.cc_results_json).then(res => {
+          axios.get(res.data[1].acf.cc_results_json).then((res) => {
             this.setState({
               teamChampResults1: res.data,
-              teamChampLoaded1: true
+              teamChampLoaded1: true,
             });
           });
         } /*
@@ -115,7 +112,7 @@ class Results extends Component {
           });
         }*/
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -216,16 +213,7 @@ class Results extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  initialize: () => {
-    dispatch(fetchNewQuickNews());
-  }
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Results);
+export default Results;
 
 /*
 export const getServerSideProps = wrapper.getServerSideProps(
