@@ -6,7 +6,7 @@ const frontendUrl = "https://f1online.sk";
 const buildUrlObject = (path, updatedAt) => {
   return {
     loc: { "#text": `${frontendUrl}${path}` },
-    lastmod: { "#text": updatedAt },
+    lastmod: { "#text": `${updatedAt}+01:00` },
     changefreq: { "#text": "daily" },
     priority: { "#text": "1.0" },
   };

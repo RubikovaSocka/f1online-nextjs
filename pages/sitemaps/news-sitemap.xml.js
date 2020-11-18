@@ -14,7 +14,7 @@ const buildUrlObject = (path, updatedAt, title) => {
         ["news:name"]: { "#text": "F1online.sk" },
         ["news:language"]: { "#text": "sk" },
       },
-      ["news:publication_date"]: { "#text": updatedAt },
+      ["news:publication_date"]: { "#text": `${updatedAt}+01:00` },
       ["news:title"]: { "#text": title.rendered },
     },
   };
