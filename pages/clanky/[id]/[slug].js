@@ -14,7 +14,7 @@ import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../../../components/PageLayout";
 
 function Post({ postData }) {
@@ -48,23 +48,23 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const response = await fetch(
       `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}${params.id}?_embed=wp:featuredmedia,author&_fields=id,date,excerpt,slug,title,content,tags,acf`
     )
-      .then(res => res.json())
-      .then(res => res);
-    fetch(`${URLS.BASE}wp-content/plugins/counter/count.php?id=${params.id}`);
+      .then((res) => res.json())
+      .then((res) => res);
+
     fetch(
-      "https://wpadmin.f1online.sk//wp-json/wordpress-popular-posts/v1/popular-posts",
+      "https://wpadmin.f1online.sk/wp-json/wordpress-popular-posts/v1/popular-posts",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ wpp_id: params.id })
+        body: JSON.stringify({ wpp_id: params.id }),
       }
     );
     await store.sagaTask.toPromise();
 
     return {
       props: {
-        postData: response
-      }
+        postData: response,
+      },
     };
   }
 );
