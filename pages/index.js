@@ -9,7 +9,7 @@ import SectionTitle from "../components/SectionTitle";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
 
-//import TrackedSidePanel from "../components/Ads/TrackedSidePanel";
+import TrackedSidePanel from "../components/Ads/TrackedSidePanel";
 import QuickNews from "../components/QuickNews";
 import CalendarLarge from "../components/CalendarLarge";
 import ResultsLarge from "../components/ResultsLarge";
@@ -80,8 +80,9 @@ function Home() {
             >
               <FBPageBox />
             </div>*/}
-            {/*<TrackedSidePanel />*/}
             <QuickNews />
+            <Divider height="15px" />
+            <TrackedSidePanel />
           </SIDEBAR>
         </COLUMNED_PAGE>
       </MAIN>
