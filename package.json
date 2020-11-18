@@ -60,7 +60,8 @@
     "remark-html": "^11.0.1",
     "resize-observer-polyfill": "^1.5.1",
     "sass": "^1.26.5",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "xmlbuilder": "^15.1.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",

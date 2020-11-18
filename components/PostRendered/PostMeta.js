@@ -1,18 +1,18 @@
 import Head from "next/head";
 import decodeHtml from "../../utils/decodeHtml";
 
-function PostMeta({
-  title,
-  excerpt,
-  id,
-  slug,
-  _embedded,
-  better_featured_image,
-}) {
+function PostMeta({ title, excerpt, id, date, slug, _embedded }) {
   const regex = /(<([^>]+)>)/gi;
   return (
     <Head>
       <title key="meta_title">{decodeHtml(title.rendered)} | F1online.sk</title>
+      <meta key="meta_oglocale" property="og:locale" content="sk_SK" />
+      <meta name="robots" content="index, follow" />
+      <meta
+        key="meta_publishtime"
+        property="article:published_time"
+        content={date}
+      />
       <meta
         name="description"
         content={`${decodeHtml(excerpt.rendered).replace(regex, "")}`}
@@ -36,11 +36,6 @@ function PostMeta({
       <meta
         key="meta_image"
         property="og:image"
-        /*content={
-          better_featured_image
-            ? `${better_featured_image.source_url}`
-            : "https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png"
-        }*/
         content={
           _embedded["wp:featuredmedia"][0].source_url
             ? _embedded["wp:featuredmedia"][0].source_url
@@ -51,21 +46,11 @@ function PostMeta({
         key="meta_image_height"
         property="og:image:height"
         content={_embedded["wp:featuredmedia"][0].media_details.height}
-        /*content={
-          better_featured_image
-            ? `${better_featured_image.media_details.height}`
-            : "630"
-        }*/
       />
       <meta
         key="meta_image_width"
         property="og:image:width"
         content={_embedded["wp:featuredmedia"][0].media_details.width}
-        /*content={
-          better_featured_image
-            ? `${better_featured_image.media_details.width}`
-            : "1200"
-        }*/
       />
     </Head>
   );
