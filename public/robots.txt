@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: https://f1online.sk/sitemaps/sitemap.xml
+Sitemap: https://f1online.sk/sitemaps/news-sitemap.xml
