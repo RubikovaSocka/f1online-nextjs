@@ -1,4 +1,5 @@
 const TYPES = {
+  INITALIZE: "LIVE_INITALIZE",
   START_AUTOFETCH: "LIVE_START_AUTOFETCH",
   PAUSE_AUTOFETCH: "LIVE_PAUSE_AUTOFETCH",
 
@@ -6,6 +7,10 @@ const TYPES = {
   SUCCESS: "LIVE_SUCCESS",
   FAIL: "LIVE_FAIL",
 };
+
+const initalize = () => ({
+  type: TYPES.INITALIZE,
+});
 
 const startLiveAutofetch = () => ({
   type: TYPES.START_AUTOFETCH,
@@ -31,6 +36,7 @@ const setLiveNewsError = (error) => ({
 
 export {
   TYPES,
+  initalize,
   startLiveAutofetch,
   pauseLiveAutofetch,
   fetchLiveNews,
