@@ -25,11 +25,11 @@ function Post({ postData }) {
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL id="cn">
+            <Live />
             <PostRendered
               key={postData.id} //Why? To prevent component reuse from previous render
               {...postData}
             />
-            <Live />
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <QuickNews />

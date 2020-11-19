@@ -1,15 +1,20 @@
 const TYPES = {
-  INITALIZE: "LIVE_INITALIZE",
+  INITIALIZE: "LIVE_INITIALIZE",
   START_AUTOFETCH: "LIVE_START_AUTOFETCH",
   PAUSE_AUTOFETCH: "LIVE_PAUSE_AUTOFETCH",
 
-  FETCH: "LIVE_FETCH",
-  SUCCESS: "LIVE_SUCCESS",
-  FAIL: "LIVE_FAIL",
+  AUTO_SUCCESS: "LIVE_SUCCESS",
+  AUTO_FAIL: "LIVE_FAIL",
+
+  FETCH_ARCHIVE: "LIVE_FETCH_ARCHIVE",
+  FETCH_ARCHIVE_SUCCESS: "LIVE_FETCH_ARCHIVE_SUCCESS",
+  FETCH_ARCHIVE_FAIL: "LIVE_FETCH_ARCHIVE_FAIL",
 };
 
-const initalize = () => ({
-  type: TYPES.INITALIZE,
+const initialize = (payload) => ({
+  type: TYPES.INITIALIZE,
+  start: payload.start,
+  end: payload.end,
 });
 
 const startLiveAutofetch = () => ({
@@ -20,26 +25,41 @@ const pauseLiveAutofetch = () => ({
   type: TYPES.PAUSE_AUTOFETCH,
 });
 
-const fetchLiveNews = () => ({
-  type: TYPES.FETCH,
-});
-
-const setLiveNews = (news) => ({
-  type: TYPES.SUCCESS,
-  news,
+const addLiveNews = (payload) => ({
+  type: TYPES.AUTO_SUCCESS,
+  news: payload.news,
+  totalNewsCount: payload.totalNewsCount
 });
 
 const setLiveNewsError = (error) => ({
-  type: TYPES.FAIL,
+  type: TYPES.AUTO_FAIL,
+  error,
+});
+
+// actions for fetching older items on scroll
+const fetchLiveNewsArchive = () => ({
+  type: TYPES.FETCH_ARCHIVE,
+});
+
+const addLiveNewsArchive = (payload) => ({
+  type: TYPES.FETCH_ARCHIVE_SUCCESS,
+  news: payload.news,
+  totalNewsCount: payload.totalNewsCount,
+});
+
+const setLiveNewsArchiveError = (error) => ({
+  type: TYPES.FETCH_ARCHIVE_FAIL,
   error,
 });
 
 export {
   TYPES,
-  initalize,
+  initialize,
   startLiveAutofetch,
   pauseLiveAutofetch,
-  fetchLiveNews,
-  setLiveNews,
+  addLiveNews,
   setLiveNewsError,
+  fetchLiveNewsArchive,
+  addLiveNewsArchive,
+  setLiveNewsArchiveError,
 };

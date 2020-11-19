@@ -10,6 +10,7 @@ import programmeReducer from "./programmeReducer";
 import tagArchiveArticlesReducer from "./tagArchiveReducer";
 import logoHideReducer from "./logoHideReducer";
 import categoriesReducer from "./categoriesReducer";
+import liveReducer from "./liveReducer";
 
 export default combineReducers({
   panels: panelReducer,
@@ -22,5 +23,6 @@ export default combineReducers({
   programme: programmeReducer,
   tagArchiveArticles: tagArchiveArticlesReducer,
   logoTrigger: logoHideReducer,
-  categories: categoriesReducer
+  categories: categoriesReducer,
+  live: liveReducer,
 });
