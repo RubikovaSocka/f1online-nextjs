@@ -1,5 +1,9 @@
-import React from "react";
+import Loadable from "react-loadable";
+import Filler from "../Filler";
 
-export default function index() {
-  return <div></div>;
-}
+const AsyncPage = Loadable({
+  loader: () => import("./Live"),
+  loading: () => <Filler height="300px" width="100%" />,
+});
+
+export default AsyncPage;
