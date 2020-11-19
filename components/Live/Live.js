@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-export default function Live() {
-  return (
-    <div>
-      
-    </div>
-  )
+function Live() {
+  return <div></div>;
 }
+
+export default Live;
