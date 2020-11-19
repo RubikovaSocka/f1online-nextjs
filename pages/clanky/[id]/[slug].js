@@ -9,6 +9,7 @@ import TrackedSidePanel from "../../../components/Ads/TrackedSidePanel.js";
 import PostRendered from "../../../components/PostRendered";
 import PostMeta from "../../../components/PostRendered/PostMeta.js";
 import { URLS } from "../../../redux/apis/urls";
+import Live from "../../../components/Live";
 
 import {
   MAIN,
@@ -28,6 +29,7 @@ function Post({ postData }) {
               key={postData.id} //Why? To prevent component reuse from previous render
               {...postData}
             />
+            <Live />
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <QuickNews />
