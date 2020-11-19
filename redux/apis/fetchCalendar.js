@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { URLS } from "./urls";
 const PER_PAGE = 30;
-const FIELDS = "_fields=acf"
+const FIELDS = "_fields=acf,type,id"
 
 export default async function fetchCalendar() {
   return await axios

@@ -1,7 +1,7 @@
 import fetch from "isomorphic-fetch";
 
 import { URLS } from "./urls";
-const FIELDS = "&_fields=acf";
+const FIELDS = "&_fields=acf,type,id";
 
 export default async function fetchProgramme() {
   try {

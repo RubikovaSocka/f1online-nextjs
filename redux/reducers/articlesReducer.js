@@ -8,7 +8,7 @@ const defaultState = {
 };
 
 const articlesReducer = (state = defaultState, action) => {
-  //console.log(action);
+  console.log(action);
   switch (action.type) {
     case HYDRATE:
       return {

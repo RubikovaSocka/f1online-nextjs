@@ -8,7 +8,7 @@ const URLS = {
   NEXT_VENUE_ID_ENDPOINT: "wp-json/wp/v2/online_details/",
   TAGS_ENDPOINT: "wp-json/wp/v2/tags/",
 
-  previewFields: "_fields=id,date,title,slug,better_featured_image.media_details,featured_media"
+  previewFields: "_fields=id,type,date,title,slug,better_featured_image.media_details,featured_media"
 };
 
 export { URLS };

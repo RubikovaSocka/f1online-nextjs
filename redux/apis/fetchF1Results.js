@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { URLS } from "./urls";
-const FIELDS = "_fields=acf";
+const FIELDS = "_fields=acf,id,type";
 
 export default async function fetch(perPage) {
   let response = await axios.get(

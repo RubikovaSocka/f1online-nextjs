@@ -1,7 +1,7 @@
 import fetch from "isomorphic-fetch";
 import { URLS } from "./urls";
 const PER_PAGE = 15;
-const FIELDS = "_fields=id,acf,date";
+const FIELDS = "_fields=id,type,acf,date";
 
 export default async function fetchQuickNews({ before, after }) {
   const time = `${before || after ? "&" : ""}${

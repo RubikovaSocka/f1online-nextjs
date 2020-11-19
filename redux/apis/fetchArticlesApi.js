@@ -4,7 +4,7 @@ import { URLS } from "./urls";
 const STICKY = "sticky=true&per_page=3";
 const NONSTICKY = "sticky=false&per_page=11";
 const FIELDS =
-  "_fields=id,date,title,slug,better_featured_image.media_details,featured_media";
+  "_fields=id,date,type,title,slug,better_featured_image.media_details,featured_media";
 
 export default async function fetchArticles() {
   try {
