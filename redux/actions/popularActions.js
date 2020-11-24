@@ -4,6 +4,12 @@ const TYPES = {
   FAIL: "FETCH_POPULAR_ARTICLES_FAIL",
 };
 
+const TIMEFRAMES = {
+  TODAY: "POPULAR_TIMEFRAMES_TODAY",
+  DAYS: "POPULAR_TIMEFRAMES_DAYS",
+  WEEK: "POPULAR_TIMEFRAMES_WEEK",
+};
+
 const fetchPopularArticles = (timeframe) => ({
   type: TYPES.FETCH,
   timeframe,
@@ -21,4 +27,10 @@ const setPopularError = ({ error, timeframe }) => ({
   timeframe,
 });
 
-export { TYPES, fetchPopularArticles, setPopularArticles, setPopularError };
+export {
+  TYPES,
+  TIMEFRAMES,
+  fetchPopularArticles,
+  setPopularArticles,
+  setPopularError,
+};

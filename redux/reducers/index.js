@@ -11,6 +11,7 @@ import tagArchiveArticlesReducer from "./tagArchiveReducer";
 import logoHideReducer from "./logoHideReducer";
 import categoriesReducer from "./categoriesReducer";
 import liveReducer from "./liveReducer";
+import popularReducer from "./popularReducer";
 
 export default combineReducers({
   panels: panelReducer,
@@ -25,4 +26,5 @@ export default combineReducers({
   logoTrigger: logoHideReducer,
   categories: categoriesReducer,
   live: liveReducer,
+  popular: popularReducer,
 });
