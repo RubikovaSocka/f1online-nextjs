@@ -3,17 +3,22 @@ import { URLS } from "./urls";
 const PER_PAGE = 15;
 const FIELDS = "_fields=id,type,acf,date";
 
-async function fetchLiveNews({ before, after, start, end }) {
-  console.log(`LIVEB${before} S${start} A${after} E${end}`);
-  let timeBlock =
-    before && start
-      ? `&before=${before}&after=${start}`
-      : after && end
-      ? `&before=${end}&after=${after}`
-      : "";
+async function fetchLiveNews({ before, after, start, end, initialLoad }) {
+  console.log(`LIVE B${before} S${start} A${after} E${end}`);
+
+  const archiveLoading =
+    before && start && before.length > 0 && start.length > 0;
+  //if autoloading and not initial batch size 100
+  const batchSize = initialLoad || archiveLoading ? PER_PAGE : 100;
+
+  let timeBlock = archiveLoading
+    ? `&before=${before}&after=${start}`
+    : `${after && after.length > 0 ? `&after=${after}` : ""}${
+        end && end.length > 0 ? `&before=${end}` : ""
+      }`;
 
   return await fetch(
-    `${URLS.BASE}${URLS.LIVE_ENDPOINT}?per_page=${PER_PAGE}&${FIELDS}${timeBlock}`
+    `${URLS.BASE}${URLS.LIVE_ENDPOINT}?per_page=${batchSize}&${FIELDS}${timeBlock}`
   )
     .then((res) =>
       res.json().then((json) => ({

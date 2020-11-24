@@ -1,52 +1,70 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
+import LiveNewsItem from "../LiveNewsItem";
 import Filler from "../Filler";
 import {
   fetchLiveNewsArchive,
   initialize,
+  pauseLiveAutofetch,
   startLiveAutofetch,
 } from "../../redux/actions/liveActions";
 
 function Live({ startTime, endTime }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.live);
-  const { news, isLoading, error, hasMore } = state;
-  console.log("LIVE NEWS");
-  console.log(state);
+  const { news, isLoading, error, hasMore, hasEnded } = state;
+  const ended = hasEnded || (startTime && endTime);
+
   const fetchMore = () => {
     dispatch(fetchLiveNewsArchive());
+  };
+
+  const onBlur = () => {
+    dispatch(pauseLiveAutofetch());
+  };
+
+  const onFocus = () => {
+    dispatch(startLiveAutofetch());
   };
 
   useEffect(() => {
     dispatch(
       initialize({
-        start: "2020-11-15T11:00:05",
-        end: "2020-11-20T23:00:01",
+        start: startTime,
+        end: endTime,
       })
     );
-    dispatch(startLiveAutofetch());
-    //dispatch(fetchLiveNewsArchive());
+
+    if (ended) {
+      fetchMore();
+    } else {
+      dispatch(startLiveAutofetch());
+      window.addEventListener("blur", onBlur);
+      window.addEventListener("focus", onFocus);
+    }
+
+    return () => dispatch(pauseLiveAutofetch());
   }, []);
 
   return (
     <InfiniteScroll
       dataLength={news.length}
-      next={() => fetchMore()}
+      next={fetchMore}
       hasMore={hasMore}
-      height={200}
-      loader={<Filler height="100px" width="100%" />}
+      height="100%"
+      loader={[0, 1, 2, 3, 4].map((item) => (
+        <Filler height="30px" width="100%" />
+      ))}
       endMessage={
         <p style={{ fontFamily: "HK Grotesk", textAlign: "center" }}>
-          <b>Toto bola posledná správa onlinu.</b>
+          <b>To bola posledná správa.</b>
         </p>
       }
+      style={{ padding: "0 10px" }}
     >
-      {news.map((item, i) => (
-        <div height="40px" key={i}>
-          <span>{item.date.split("T")[1]}</span> <span>{item.acf.sprava}</span>
-          <br />
-        </div>
+      {news.map((item) => (
+        <LiveNewsItem key={item.id} post={item} />
       ))}
     </InfiniteScroll>
   );

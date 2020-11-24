@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import PostItem from "../PostItem/PostItem";
+import PostItem from "../LiveNewsItem";
 import LoadingSpinner from "../LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 import styled from "styled-components";

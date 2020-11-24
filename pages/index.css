@@ -43,6 +43,15 @@
     url("/fonts/FontAwesome/fa-solid-900.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Font Awesome 5 Free";
+  font-style: bold;
+  font-weight: 400;
+  src: url("/fonts/FontAwesome/fa-regular-400.ttf") format("truetype"),
+    url("/fonts/FontAwesome/fa-regular-400.woff") format("woff"),
+    url("/fonts/FontAwesome/fa-regular-400.woff2") format("woff2");
+}
+
 /* EXPORT */
 
 /*
@@ -70,7 +79,7 @@
     max-height: 360px !important;
     width: 100%;
   }
-} *//*
+} */ /*
 .wp-block-gallery {
   display: none;
 }*/

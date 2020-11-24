@@ -4,7 +4,6 @@ import {
   call,
   fork,
   cancel,
-  cancelled,
   delay,
   takeLatest,
   select,
@@ -22,6 +21,7 @@ const getEndTime = (state) => state.live.end;
 const getLatestTime = (state) => state.live.latestItemTime;
 const getOldestTime = (state) => state.live.oldestItemTime;
 const getStartTime = (state) => state.live.start;
+const initialLoad = (state) => state.live.news.length === 0;
 
 function* loadOlder() {
   try {
@@ -45,6 +45,7 @@ function* bgLoader() {
       const result = yield call(fetchLiveNews, {
         after: latest,
         end: end,
+        initialLoad: initialLoad,
       });
       yield put(addLiveNews(result));
       yield delay(DELAY.LIVE_NEWS_DELAY);
@@ -52,12 +53,11 @@ function* bgLoader() {
   } catch (err) {
     console.log(err);
   } finally {
-    if (yield cancelled()) yield put(actions.requestFailure("Sync cancelled!"));
+    console.log("FINALLY");
   }
 }
 
 function* main() {
-  console.log("LIVE-ok");
   yield takeLatest(TYPES.FETCH_ARCHIVE, loadOlder);
 
   while (yield take(TYPES.START_AUTOFETCH)) {
@@ -66,7 +66,6 @@ function* main() {
     // wait for the user stop action
     yield take(TYPES.PAUSE_AUTOFETCH);
     // user clicked stop. cancel the background task
-    // this will cause the forked bgSync task to jump into its finally block
     yield cancel(bgSyncTask);
   }
 }

@@ -2,7 +2,7 @@ import Loadable from "react-loadable";
 import Filler from "../Filler";
 
 const AsyncPage = Loadable({
-  loader: () => import("./Live"),
+  loader: () => import("./LiveBox"),
   loading: () => <Filler height="300px" width="100%" />,
 });
 

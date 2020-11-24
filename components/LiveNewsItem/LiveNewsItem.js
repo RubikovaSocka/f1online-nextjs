@@ -4,7 +4,7 @@ import EmbedContainer from "react-oembed-container";
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin: 15px 20px 0 20px;
+  margin: 12px 8px 0 5px;
 
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ const Container = styled.div`
     font-weight: 600;
     width: 40px;
     flex-shrink: 0;
-    color: ${props => props.theme.TEXT_COLOR_MILD};
+    color: ${(props) => props.theme.TEXT_COLOR_MILD};
   }
   .postTextContent {
     width: calc(100% - 40px);
@@ -36,7 +36,7 @@ const Container = styled.div`
   .text {
     font-family: "HK Grotesk";
     font-size: 14px;
-    color: ${props => props.theme.TEXT_COLOR_MILD};
+    color: ${(props) => props.theme.TEXT_COLOR_MILD};
   }
   .embed {
     width: 100%;
@@ -44,6 +44,34 @@ const Container = styled.div`
     iframe {
       width: calc(100% - 42px) !important;
       min-width: 0 !important;
+    }
+
+    .isStreamable {
+      margin: auto;
+      position: relative !important;
+      padding-bottom: 56.25% !important;
+      height: 0 !important;
+      > iframe {
+        position: absolute !important;
+        //position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    .wp-block-embed-youtube div {
+      position: relative !important;
+      padding-bottom: 56.25% !important;
+      height: 0 !important;
+    }
+    .wp-block-embed-youtube div iframe {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
     }
   }
   .img {
@@ -88,9 +116,13 @@ function PostItem({ post }) {
       {acf.embed ? (
         <EmbedContainer markup={acf.embed} className="embed">
           <div
-            dangerouslySetInnerHTML={{
-              __html: acf.embed
-            }}
+            className={
+              acf.embed.includes("//streamable.com") ||
+              acf.embed.includes("youtu")
+                ? "isStreamable"
+                : ""
+            }
+            dangerouslySetInnerHTML={{ __html: acf.embed }}
           />
         </EmbedContainer>
       ) : (

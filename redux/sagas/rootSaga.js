@@ -24,7 +24,6 @@ import { TYPES as LIVE } from "../actions/liveActions";
 
 //watcher
 function* rootSaga() {
-  /*console.log("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd")*/
   yield takeLatest(TAG_ARCHIV.FETCH, fetchTagArchiveArticlesSaga);
   yield takeLatest(INDEX_ARTICLES.FETCH, fetchArticlesSaga);
 
@@ -39,8 +38,6 @@ function* rootSaga() {
   yield takeLatest(THEME.INITIALIZE, initializeThemeSaga);
   yield takeLatest(THEME.SET, saveThemeSaga);
 
-  //yield takeLatest(ARCHIVE_ARTICLES.FETCH_SERVER, fetchArchiveArticlesSaga)
-  //yield takeLatest(ARTICLES.FETCH, handleFetchArticles);
   yield takeLatest(PANELS.FETCH, handleFetchPanels);
   yield takeLatest(LIVE.INITIALIZE, liveSaga);
 }

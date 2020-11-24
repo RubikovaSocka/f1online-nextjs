@@ -9,7 +9,6 @@ import TrackedSidePanel from "../../../components/Ads/TrackedSidePanel.js";
 import PostRendered from "../../../components/PostRendered";
 import PostMeta from "../../../components/PostRendered/PostMeta.js";
 import { URLS } from "../../../redux/apis/urls";
-import Live from "../../../components/Live";
 
 import {
   MAIN,
@@ -25,7 +24,6 @@ function Post({ postData }) {
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL id="cn">
-            <Live />
             <PostRendered
               key={postData.id} //Why? To prevent component reuse from previous render
               {...postData}

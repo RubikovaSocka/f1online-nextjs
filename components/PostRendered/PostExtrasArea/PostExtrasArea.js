@@ -3,6 +3,7 @@ import SectionTitle from "../../SectionTitle";
 import Divider from "../../Divider";
 import PostsBlock from "../../PostsBlock";
 import ImageGallery from "../../react-image-gallery/index";
+import Live from "../../Live";
 
 function PostExtrasArea({ gallery, start_time, end_time }) {
   const [images, setImages] = useState({ array: [], loaded: false });
@@ -33,16 +34,13 @@ function PostExtrasArea({ gallery, start_time, end_time }) {
 
   return (
     <>
-      {start_time && end_time ? (
+      {start_time ? (
         <>
           <Divider height="10px" />
-          <SectionTitle title="Príspevky z onlinu:" />
+          <SectionTitle title="LIVE" />
           <Divider height="30px" />
-          <PostsBlock
-            key={1847083}
-            start={start_time.replace(" ", "T")}
-            end={end_time.replace(" ", "T")}
-          />
+          <Live startTime={start_time} endTime={end_time} />
+          <Divider height="10px" />
         </>
       ) : (
         ""

@@ -25,7 +25,7 @@ import {
 import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
-//import fontawesomeSubset from "fontawesome-subset";
+import fontawesomeSubset from "fontawesome-subset";
 
 function Home() {
   const state = useSelector((state) => state.articles);
@@ -92,19 +92,23 @@ function Home() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
-    /*fontawesomeSubset(
-      [
-        "circle-notch",
-        "chevron-up",
-        "chevron-down",
-        "spin",
-        "fa-spin",
-        "paperclip",
-        "play-circle",
-        "circle"
-      ],
+    fontawesomeSubset(
+      {
+        solid: [
+          "circle-notch",
+          "chevron-up",
+          "chevron-down",
+          "spin",
+          "fa-spin",
+          "paperclip",
+          "play-circle",
+          "circle",
+          "comment-slash",
+        ],
+        regular: ["comments", "comment"],
+      },
       "public/fonts/FontAwesome"
-    );*/
+    );
     store.dispatch(fetchNewArticles());
     store.dispatch(END);
 

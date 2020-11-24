@@ -9,18 +9,24 @@ const defaultState = {
   isLoading: true,
   error: null,
   hasMore: true,
+  hasEnded: false,
 };
 
 const liveReducer = (state = defaultState, action) => {
   switch (action.type) {
     case TYPES.INITIALIZE:
       return {
-        ...state,
+        ...defaultState,
         start: action.start,
         end: action.end,
         oldestItemTime: action.end,
         latestItemTime: action.start,
         error: null,
+        hasEnded:
+          action.start &&
+          action.end &&
+          action.start.length > 0 &&
+          action.end.length > 0,
       };
     case TYPES.AUTO_SUCCESS:
       const newArray = [...action.news, ...state.news];
@@ -31,6 +37,7 @@ const liveReducer = (state = defaultState, action) => {
         oldestItemTime: newArray[newArray.length - 1]
           ? newArray[newArray.length - 1].date
           : null,
+        hasEnded: newArray[0].acf.hasEnded === "Áno" || state.hasEnded,
         error: null,
       };
     case TYPES.AUTO_FAIL:
@@ -54,6 +61,7 @@ const liveReducer = (state = defaultState, action) => {
         oldestItemTime: newArray2[newArray2.length - 1]
           ? newArray2[newArray2.length - 1].date
           : null,
+        hasEnded: newArray2[0].acf.hasEnded === "Áno" || state.hasEnded,
         hasMore: parseInt(action.totalNewsCount) !== 0,
       };
     case TYPES.FETCH_ARCHIVE_FAIL:
