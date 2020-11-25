@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { usePageVisibility } from "react-page-visibility";
 import Live from "./Live";
 import ChatContainer from "./ChatContainer";
 import onMobile from "../../utils/onMobile";
@@ -162,6 +163,8 @@ function LiveBox(props) {
   const state = useSelector((state) => state.live);
   const { hasEnded } = state;
 
+  const isVisible = usePageVisibility();
+
   useEffect(() => {
     onMobile() && (document.body.style.overflow = "hidden");
     return () => onMobile() && (document.body.style.overflow = "");
@@ -190,7 +193,7 @@ function LiveBox(props) {
             CHAT
           </ChatButton>
         </ButtonsRow>
-        <Live {...props} />
+        <Live isVisible={isVisible} {...props} />
       </Container>
       {chatOpened ? chat : ""}
       <CloseButton onClick={chatButtonPressed} isOpened={chatOpened} />

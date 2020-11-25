@@ -39,7 +39,10 @@ function PostExtrasArea({ gallery, start_time, end_time }) {
           <Divider height="10px" />
           <SectionTitle title="LIVE" />
           <Divider height="30px" />
-          <Live startTime={start_time} endTime={end_time} />
+          <Live
+            startTime={start_time.replace(" ", "T")} //to match ISO format for subsequent requests
+            endTime={end_time.replace(" ", "T")}
+          />
           <Divider height="10px" />
         </>
       ) : (

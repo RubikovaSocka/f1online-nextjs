@@ -9,13 +9,18 @@ import {
   pauseLiveAutofetch,
   startLiveAutofetch,
 } from "../../redux/actions/liveActions";
+import Divider from "../Divider";
 
-function Live({ startTime, endTime }) {
+const Loader = () => {
+  return [0, 1, 2, 3, 4].map((item) => <Filler height="30px" width="100%" />);
+};
+
+function Live({ isVisible, startTime, endTime }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.live);
   const { news, isLoading, error, hasMore, hasEnded } = state;
   const ended = hasEnded || (startTime && endTime);
-
+  console.log(state);
   const fetchMore = () => {
     dispatch(fetchLiveNewsArchive());
   };
@@ -29,6 +34,11 @@ function Live({ startTime, endTime }) {
   };
 
   useEffect(() => {
+    isVisible ? onFocus() : onBlur();
+    return () => onBlur();
+  }, [isVisible]);
+
+  useEffect(() => {
     dispatch(
       initialize({
         start: startTime,
@@ -40,10 +50,7 @@ function Live({ startTime, endTime }) {
       fetchMore();
     } else {
       dispatch(startLiveAutofetch());
-      window.addEventListener("blur", onBlur);
-      window.addEventListener("focus", onFocus);
     }
-
     return () => dispatch(pauseLiveAutofetch());
   }, []);
 
@@ -53,19 +60,28 @@ function Live({ startTime, endTime }) {
       next={fetchMore}
       hasMore={hasMore}
       height="100%"
-      loader={[0, 1, 2, 3, 4].map((item) => (
-        <Filler height="30px" width="100%" />
-      ))}
       endMessage={
-        <p style={{ fontFamily: "HK Grotesk", textAlign: "center" }}>
-          <b>To bola posledná správa.</b>
+        <p
+          style={{
+            fontFamily: "HK Grotesk",
+            textAlign: "center",
+            fontWeight: "600",
+          }}
+        >
+          {ended
+            ? "To bolo všetko v rámci tohto LIVE prenosu."
+            : "LIVE sa práve začal."}
         </p>
       }
       style={{ padding: "0 10px" }}
     >
-      {news.map((item) => (
-        <LiveNewsItem key={item.id} post={item} />
-      ))}
+      <>
+        {news.map((item) => (
+          <LiveNewsItem key={item.id} post={item} />
+        ))}
+        {isLoading ? Loader() : ""}
+        <Divider height="10px" />
+      </>
     </InfiniteScroll>
   );
 }

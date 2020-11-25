@@ -1,4 +1,4 @@
-import { TYPES } from "../actions/liveActions";
+import { startLiveAutofetch, TYPES } from "../actions/liveActions";
 
 const defaultState = {
   news: [],
@@ -32,17 +32,22 @@ const liveReducer = (state = defaultState, action) => {
       const newArray = [...action.news, ...state.news];
       return {
         ...state,
+        isLoading: false,
         news: newArray,
-        latestItemTime: newArray[0] ? newArray[0].date : null,
+        latestItemTime: newArray[0] ? newArray[0].date : state.latestItemTime,
         oldestItemTime: newArray[newArray.length - 1]
           ? newArray[newArray.length - 1].date
-          : null,
-        hasEnded: newArray[0].acf.hasEnded === "Áno" || state.hasEnded,
+          : state.oldestItemTime,
+        hasEnded:
+          state.hasEnded ||
+          (newArray[0] ? newArray[0].acf.hasEnded === "Áno" : false),
+        hasMore: newArray.length !== 0,
         error: null,
       };
     case TYPES.AUTO_FAIL:
       return {
         ...state,
+        isLoading: false,
         error: action.error,
       };
     case TYPES.FETCH_ARCHIVE:
@@ -57,11 +62,13 @@ const liveReducer = (state = defaultState, action) => {
         news: newArray2,
         isLoading: false,
         error: null,
-        latestItemTime: newArray2[0] ? newArray2[0].date : null,
+        latestItemTime: newArray2[0] ? newArray2[0].date : state.latestItemTime,
         oldestItemTime: newArray2[newArray2.length - 1]
           ? newArray2[newArray2.length - 1].date
-          : null,
-        hasEnded: newArray2[0].acf.hasEnded === "Áno" || state.hasEnded,
+          : state.oldestItemTime,
+        hasEnded:
+          state.hasEnded ||
+          (newArray2[0] ? newArray2[0].acf.hasEnded === "Áno" : false),
         hasMore: parseInt(action.totalNewsCount) !== 0,
       };
     case TYPES.FETCH_ARCHIVE_FAIL:
