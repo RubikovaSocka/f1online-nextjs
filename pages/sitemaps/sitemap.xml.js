@@ -23,9 +23,7 @@ Sitemap.getInitialProps = async ({ res }) => {
         pageNumber: i,
         perPage: "50",
       });
-      console.log(batch);
       articles = articles.concat(batch.articles);
-      console.log(articles);
     }
 
     let feedObject = {

@@ -51,9 +51,9 @@ function* bgLoader() {
       yield delay(DELAY.LIVE_NEWS_DELAY);
     }
   } catch (err) {
-    console.log(err);
+    yield put(setLiveNewsArchiveError(err.toString()));
   } finally {
-    console.log("FINALLY");
+    //console.log("FINALLY");
   }
 }
 

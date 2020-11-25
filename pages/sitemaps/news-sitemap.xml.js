@@ -24,20 +24,7 @@ const Sitemap = () => null;
 
 Sitemap.getInitialProps = async ({ res }) => {
   try {
-    /*
-    
-    let articles = [];
-    for (let i = 1; i < 2; i++) {
-      const batch = await fetchArchiveArticles({
-        pageNumber: i,
-        perPage: "60",
-      });
-      console.log(batch);
-      articles = articles.concat(batch.articles);
-      console.log(articles);
-    }
-    
-    */
+   
 
     const articles = await fetchArchiveArticles({
       pageNumber: 1,

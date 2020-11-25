@@ -4,8 +4,6 @@ const PER_PAGE = 15;
 const FIELDS = "_fields=id,type,acf,date";
 
 async function fetchLiveNews({ before, after, start, end, initialLoad }) {
-  console.log(`LIVE B${before} S${start} A${after} E${end}`);
-
   const archiveLoading =
     before && start && before.length > 0 && start.length > 0;
   //if autoloading and not initial batch size 100

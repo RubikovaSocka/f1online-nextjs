@@ -3,7 +3,7 @@ import Filler from "./Filler";
 
 const AsyncPage = Loadable({
   loader: () => import("./CalResWidget"),
-  loading: Filler
+  loading: () => <Filler />,
 });
 
 export default AsyncPage;

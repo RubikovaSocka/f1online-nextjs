@@ -20,7 +20,7 @@ function Live({ isVisible, startTime, endTime }) {
   const state = useSelector((state) => state.live);
   const { news, isLoading, error, hasMore, hasEnded } = state;
   const ended = hasEnded || (startTime && endTime);
-  console.log(state);
+
   const fetchMore = () => {
     dispatch(fetchLiveNewsArchive());
   };
