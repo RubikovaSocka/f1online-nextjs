@@ -23,7 +23,7 @@ const Container = styled.div`
     height: calc(100vh);
     width: calc(50vw - 515px + 340px);
     z-index: 15;
-    box-shadow: 0 28px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 34px 8px rgba(0, 0, 0, 0.4);
   }
 `;
 

@@ -15,7 +15,7 @@ const Container = styled.div`
   margin-bottom: 20px;
 
   ${(props) =>
-    props.loading
+    props.isLoading
       ? `background-color: ${props.theme.FILLER_COLOR};
     
     @media only screen and (max-width: 720px) {
@@ -112,8 +112,8 @@ function TitleArticlePreview({
     return (
       <Container
         width={onClient() ? window.innerWidth : "0"}
-        loading
-      ></Container>
+        isLoading={true}
+      />
     );
   }
   return (

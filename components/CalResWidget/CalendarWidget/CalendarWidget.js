@@ -1,7 +1,7 @@
 import {
   SESSION_NAMES,
   SESSION_DURATIONS,
-  getSesDurationText
+  getSesDurationText,
 } from "../../../utils/sessions";
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const Table = styled.table`
   font-family: "HK Grotesk";
   font-size: 13px;
   border-spacing: 0;
-  color: ${props => props.theme.TEXT_COLOR_MILD};
+  color: ${(props) => props.theme.TEXT_COLOR_MILD};
 
   tr {
     margin: 0;
@@ -25,14 +25,14 @@ const Table = styled.table`
   th {
     height: 32px;
     text-align: start;
-    background-color: ${props => props.theme.WIDGET_UNSELECT_BACK};
+    background-color: ${(props) => props.theme.WIDGET_UNSELECT_BACK};
 
     &.position {
       text-align: center;
     }
   }
   td {
-    border-top: 1px solid ${props => props.theme.WIDGET_DIVIDER_COLOR};
+    border-top: 1px solid ${(props) => props.theme.WIDGET_DIVIDER_COLOR};
   }
 
   td span,
@@ -117,7 +117,7 @@ const TBody = styled.tbody`
   }
 `;
 
-const getTvText = tv => {
+const getTvText = (tv) => {
   return `${tv ? tv : "doplníme..."}`;
 };
 
@@ -146,45 +146,35 @@ function CalendarWidget({ data }) {
             <td>{getSesDurationText(data.fp1_time, SESSION_DURATIONS.FP1)}</td>
             <td className="tv">{getTvText(data.fp1_tv)}</td>
           </tr>
-        ) : (
-          ""
-        )}
+        ) : null}
         {data.fp2_time ? (
           <tr>
             <td className="event">{SESSION_NAMES.FP2}</td>
             <td>{getSesDurationText(data.fp2_time, SESSION_DURATIONS.FP2)}</td>
             <td className="tv">{getTvText(data.fp2_tv)}</td>
           </tr>
-        ) : (
-          ""
-        )}
+        ) : null}
         {data.fp3_time ? (
           <tr>
             <td className="event">{SESSION_NAMES.FP3}</td>
             <td>{getSesDurationText(data.fp3_time, SESSION_DURATIONS.FP3)}</td>
             <td className="tv">{getTvText(data.fp3_tv)}</td>
           </tr>
-        ) : (
-          ""
-        )}
+        ) : null}
         {data.q_time ? (
           <tr>
             <td className="event">{SESSION_NAMES.Q}</td>
             <td>{getSesDurationText(data.q_time, SESSION_DURATIONS.Q)}</td>
             <td className="tv">{getTvText(data.q_tv)}</td>
           </tr>
-        ) : (
-          ""
-        )}
+        ) : null}
         {data.r_time ? (
           <tr>
             <td className="event">{SESSION_NAMES.R}</td>
             <td>{data.r_time}</td>
             <td className="tv">{getTvText(data.r_tv)}</td>
           </tr>
-        ) : (
-          ""
-        )}
+        ) : null}
       </TBody>
     </Table>
   );

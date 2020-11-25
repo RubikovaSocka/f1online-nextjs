@@ -1,6 +1,6 @@
 const DELAY = {
-  QUICK_NEWS_DELAY: 80000, //ms
-  LIVE_NEWS_DELAY: 20000,
+  QUICK_NEWS_DELAY: 85000, //ms
+  LIVE_NEWS_DELAY: 25000,
 };
 
 export { DELAY };

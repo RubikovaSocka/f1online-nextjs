@@ -69,27 +69,21 @@ function CalendarLarge() {
                   time={getSesDurationText(fp1_time, SESSION_DURATIONS.FP1)}
                   tv={getTvText(fp1_tv)}
                 />
-              ) : (
-                ""
-              )}
+              ) : null}
               {fp2_time ? (
                 <CalendarItem
                   event={SESSION_NAMES.FP2}
                   time={getSesDurationText(fp2_time, SESSION_DURATIONS.FP2)}
                   tv={getTvText(fp2_tv)}
                 />
-              ) : (
-                ""
-              )}
+              ) : null}
               {fp3_time ? (
                 <CalendarItem
                   event={SESSION_NAMES.FP3}
                   time={getSesDurationText(fp3_time, SESSION_DURATIONS.FP3)}
                   tv={getTvText(fp3_tv)}
                 />
-              ) : (
-                ""
-              )}
+              ) : null}
             </TimesFirstColumn>
             <TimesSecondColumn>
               {q_time ? (
@@ -98,18 +92,14 @@ function CalendarLarge() {
                   time={getSesDurationText(q_time, SESSION_DURATIONS.Q)}
                   tv={getTvText(q_tv)}
                 />
-              ) : (
-                ""
-              )}
+              ) : null}
               {r_time ? (
                 <CalendarItem
                   event={SESSION_NAMES.R}
                   time={`${r_time}`}
                   tv={getTvText(r_tv)}
                 />
-              ) : (
-                ""
-              )}
+              ) : null}
             </TimesSecondColumn>
           </TimesContainer>
         </Table>

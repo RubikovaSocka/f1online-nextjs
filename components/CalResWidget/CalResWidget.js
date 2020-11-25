@@ -11,13 +11,13 @@ import {
   WidgetContainer,
   WidgetContent,
   Content,
-  Buttons
+  Buttons,
 } from "./StyledComponents";
 
 const WIDGETS = {
   CAL: "CALENDAR",
   RACE: "RACE",
-  CHAMP: "CHAMP"
+  CHAMP: "CHAMP",
 };
 
 function CalResWidget() {
@@ -49,9 +49,9 @@ function CalResWidget() {
           />
         </Buttons>
         {isLoading ? (
-          <Content loading />
+          <Content isLoading={true} />
         ) : (
-          <Content loading={isLoading}>
+          <Content isLoading={false}>
             {selectedWidget === WIDGETS.CAL ? (
               <CalendarWidget data={calendarData} />
             ) : selectedWidget === WIDGETS.RACE ? (

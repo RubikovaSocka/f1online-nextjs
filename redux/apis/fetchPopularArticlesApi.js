@@ -7,7 +7,6 @@ const DAYS3 = "range=custom&time_unit=day&time_quantity=3";
 const WEEK = "range=last7days";
 
 export default async function fetchPopularArticles() {
-  console.log("FETCHING ARTICES \n\n\n\n");
   try {
     return await Promise.all([
       fetch(

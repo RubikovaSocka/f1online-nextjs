@@ -8,20 +8,21 @@ import OneLineNewsItem from "./OneLineNewsItem";
 import { Item, Container, LoaderPanel } from "./StyledComponents";
 import { fetchQuickNewsArchive } from "../../redux/actions/quickNewsActions";
 import formatDate from "../../utils/dateFormatter";
+import Filler from "../Filler";
 
 const EmbedFullscreen = Loadable({
   loader: () => import("./EmbedFullscreen.js"),
-  loading: "true"
+  loading: () => <Filler height="300px" width="100%" />,
 });
 const Popup = Loadable({
   loader: () => import("reactjs-popup"),
-  loading: "true"
+  loading: () => <Filler height="300px" width="100%" />,
 });
 
 function QuickNews() {
   const dispatch = useDispatch();
   const [shownItem, setShownItem] = useState({ index: 0, isShown: false });
-  const state = useSelector(state => state.quickNews);
+  const state = useSelector((state) => state.quickNews);
   const { news, error, isLoading, totalNewsCount } = state;
 
   return (
@@ -35,7 +36,7 @@ function QuickNews() {
           open={true}
           closeOnDocumentClick={false}
         >
-          {close => (
+          {(close) => (
             <EmbedFullscreen
               //{...newsTriggersArray[shownItem.index].props}
               id={news[shownItem.index].id}

@@ -3,7 +3,7 @@ import Filler from "./Filler";
 
 const AsyncPage = Loadable({
   loader: () => import("./QuickNews"),
-  loading: Filler
+  loading: () => <Filler />,
 });
 
 export default AsyncPage;

@@ -127,8 +127,9 @@ function PopularArticles() {
       </Buttons>
       <Divider height="10px" />
       {isLoading ? (
-        [0, 1, 2, 3, 4].map((item) => (
+        [0, 1, 2, 3, 4].map((item, i) => (
           <Filler
+            key={i}
             style={{ margin: "5px 0 5px 10px" }}
             height="40px"
             width="calc(100% - 20px)"

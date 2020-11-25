@@ -4,13 +4,17 @@ import { createWrapper } from "next-redux-wrapper";
 import reducer from "../reducers";
 import saga from "../sagas";
 
-export const makeStore = context => {
+export const makeStore = (context) => {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(reducer, /*context, */applyMiddleware(sagaMiddleware));
+  const store = createStore(
+    reducer,
+    /*context, */ applyMiddleware(sagaMiddleware)
+  );
 
   store.sagaTask = sagaMiddleware.run(saga);
 
   return store;
 };
 
-export const wrapper = createWrapper(makeStore, { debug: true });
+//changed debug to false
+export const wrapper = createWrapper(makeStore, { debug: false });

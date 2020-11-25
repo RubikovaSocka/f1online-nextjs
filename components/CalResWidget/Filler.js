@@ -2,7 +2,7 @@ import {
   WidgetContainer,
   Content,
   WidgetContent,
-  Buttons
+  Buttons,
 } from "./StyledComponents";
 import SideSectionTitle from "../SideSectionTitle";
 import SideWidgetButton from "./SideWidgetButton";
@@ -21,7 +21,7 @@ function Filler() {
           />
           <SideWidgetButton title="Šampionát" selected={false} />
         </Buttons>
-        <Content loading />
+        <Content isLoading={true} />
       </WidgetContent>
     </WidgetContainer>
   );

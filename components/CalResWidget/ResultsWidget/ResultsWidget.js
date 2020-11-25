@@ -5,11 +5,11 @@ const Table = styled.table`
   font-family: "HK Grotesk";
   font-size: 13px;
   border-spacing: 0;
-  color: ${props => props.theme.TEXT_COLOR_MILD};
+  color: ${(props) => props.theme.TEXT_COLOR_MILD};
   font-weight: 600;
 
   td {
-    border-top: 1px solid ${props => props.theme.WIDGET_DIVIDER_COLOR};
+    border-top: 1px solid ${(props) => props.theme.WIDGET_DIVIDER_COLOR};
   }
 
   tr {
@@ -25,7 +25,7 @@ const Table = styled.table`
   th {
     height: 32px;
     text-align: start;
-    background-color: ${props => props.theme.WIDGET_UNSELECT_BACK};
+    background-color: ${(props) => props.theme.WIDGET_UNSELECT_BACK};
 
     &.position {
       text-align: center;
@@ -70,7 +70,7 @@ const TBody = styled.tbody`
   }
 `;
 
-const getBodyText = pts => {
+const getBodyText = (pts) => {
   if (pts == 1) {
     return "1 bod";
   }
@@ -96,8 +96,8 @@ function ResultsWidget({ data, title, dataTitle }) {
             <span>{dataTitle}</span>
           </th>
         </tr>
-        {data.slice(1, 11).map(({ position, driverName, split, points }) => (
-          <tr className={`${position === "1" ? "noBorder" : ""}`}>
+        {data.slice(1, 11).map(({ position, driverName, split, points }, i) => (
+          <tr key={i} className={`${position === "1" ? "noBorder" : ""}`}>
             <td className="position">
               <span>{position}.</span>
             </td>

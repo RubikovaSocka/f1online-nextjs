@@ -6,7 +6,7 @@ function Filler() {
 
 const AsyncPage = Loadable({
   loader: () => import("./ReportBox"),
-  loading: Filler,
+  loading: () => <Filler />,
 });
 
 export default AsyncPage;

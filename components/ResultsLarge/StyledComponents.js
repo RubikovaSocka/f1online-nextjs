@@ -11,8 +11,8 @@ const Container = styled.div`
     width: 673px;
   }
 
-  ${props =>
-    props.loading
+  ${(props) =>
+    props.isLoading
       ? `
     > div {
       width: 48%;
@@ -24,8 +24,8 @@ const Container = styled.div`
 const TableContainer = styled.div`
   width: 310px;
 
-  ${props =>
-    props.loading
+  ${(props) =>
+    props.isLoading
       ? `
     margin: 15px 10px;
     width: 95%;

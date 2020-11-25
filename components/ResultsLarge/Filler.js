@@ -3,14 +3,14 @@ import SideSectionTitle from "../SideSectionTitle";
 
 function Filler() {
   return (
-    <Container loading>
+    <Container isLoading={true}>
       <div>
         <SideSectionTitle title={`Výsledky`} />
-        <TableContainer loading />
+        <TableContainer isLoading={true} />
       </div>
       <div>
         <SideSectionTitle title={`Šampionát`} />
-        <TableContainer loading />
+        <TableContainer isLoading={true} />
       </div>
     </Container>
   );

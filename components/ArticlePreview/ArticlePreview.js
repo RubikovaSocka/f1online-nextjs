@@ -16,7 +16,7 @@ const Container = styled.div`
   margin: 4px 0;
 
   ${(props) =>
-    props.loading
+    props.isLoading
       ? `
     background-color: ${props.theme.FILLER_COLOR};
     overflow: hidden;
@@ -175,7 +175,7 @@ const FlickeringImage = styled(Image)``;
 function ArticlePreview(props) {
   const { isLoading, id, slug, title, date, better_featured_image } = props;
   if (isLoading) {
-    return <Container loading />;
+    return <Container isLoading={true} />;
   }
   return (
     <Container>

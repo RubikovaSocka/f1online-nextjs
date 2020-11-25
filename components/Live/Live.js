@@ -12,7 +12,9 @@ import {
 import Divider from "../Divider";
 
 const Loader = () => {
-  return [0, 1, 2, 3, 4].map((item) => <Filler height="30px" width="100%" />);
+  return [0, 1, 2, 3, 4].map((item, i) => (
+    <Filler key={i} height="30px" width="100%" />
+  ));
 };
 
 function Live({ isVisible, startTime, endTime }) {

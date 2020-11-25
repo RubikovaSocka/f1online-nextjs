@@ -5,7 +5,7 @@ function Filler() {
   return (
     <>
       <SideSectionTitle title="Najbližšie preteky" />
-      <Container loading />
+      <Container isLoading={true} />
     </>
   );
 }

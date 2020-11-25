@@ -10,7 +10,7 @@ const Container = styled.div`
   }
 
   ${(props) =>
-    props.loading
+    props.isLoading
       ? `
   margin: 15px 10px;
 

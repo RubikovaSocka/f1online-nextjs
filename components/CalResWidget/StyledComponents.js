@@ -26,8 +26,8 @@ const Content = styled.div`
   height: 100%;
   margin: 0;
 
-  ${props =>
-    props.loading
+  ${(props) =>
+    props.isLoading
       ? `
     margin: 15px 10px;
     width: 95%;
