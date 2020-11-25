@@ -19,12 +19,9 @@ const popularReducer = (state = defaultState, action) => {
       return {
         ...state,
         isLoading: false,
-        today:
-          action.timeframe === TIMEFRAMES.TODAY ? action.articles : state.today,
-        days:
-          action.timeframe === TIMEFRAMES.DAYS ? action.articles : state.days,
-        week:
-          action.timeframe === TIMEFRAMES.WEEK ? action.articles : state.week,
+        today: action.articles.today,
+        days: action.articles.days,
+        week: action.articles.week,
       };
     case TYPES.FAIL:
       return {

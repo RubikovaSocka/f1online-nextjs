@@ -15,10 +15,9 @@ const fetchPopularArticles = (timeframe) => ({
   timeframe,
 });
 
-const setPopularArticles = ({ articles, timeframe }) => ({
+const setPopularArticles = (articles) => ({
   type: TYPES.SUCCESS,
   articles,
-  timeframe,
 });
 
 const setPopularError = ({ error, timeframe }) => ({

@@ -26,6 +26,7 @@ import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
 import fontawesomeSubset from "fontawesome-subset";
+import PopularArticles from "../components/PopularArticles/PopularArticles";
 
 function Home() {
   const state = useSelector((state) => state.articles);
@@ -80,6 +81,7 @@ function Home() {
             >
               <FBPageBox />
             </div>*/}
+            <PopularArticles />
             <QuickNews />
             <Divider height="15px" />
             <TrackedSidePanel />
@@ -104,6 +106,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
           "play-circle",
           "circle",
           "comment-slash",
+          "burn"
         ],
         regular: ["comments", "comment"],
       },

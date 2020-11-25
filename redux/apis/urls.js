@@ -8,6 +8,7 @@ const URLS = {
   NEXT_VENUE_ID_ENDPOINT: "wp-json/wp/v2/online_details/",
   TAGS_ENDPOINT: "wp-json/wp/v2/tags/",
   LIVE_ENDPOINT: "wp-json/wp/v2/online_spravy/",
+  POPULAR_ENDPOINT: "wp-json/wordpress-popular-posts/v1/popular-posts",
 
   previewFields:
     "_fields=id,type,date,title,slug,better_featured_image.media_details,featured_media",
