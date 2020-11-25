@@ -17,7 +17,7 @@ function PostRendered(props) {
         id={id}
         slug={slug}
       />
-      <PostContentArea article={content.rendered} />
+      <PostContentArea article={content.rendered} adsAllow={acf.a_disallow} />
       <PostExtrasArea {...acf} />
       <PostFooterArea {...props} />
     </article>

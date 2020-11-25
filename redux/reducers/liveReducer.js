@@ -39,8 +39,7 @@ const liveReducer = (state = defaultState, action) => {
           ? newArray[newArray.length - 1].date
           : state.oldestItemTime,
         hasEnded:
-          state.hasEnded ||
-          (newArray[0] ? newArray[0].acf.hasEnded === "Áno" : false),
+          state.hasEnded || (newArray[0] ? newArray[0].acf.hasEnded : false),
         hasMore: newArray.length !== 0,
         error: null,
       };
@@ -67,8 +66,7 @@ const liveReducer = (state = defaultState, action) => {
           ? newArray2[newArray2.length - 1].date
           : state.oldestItemTime,
         hasEnded:
-          state.hasEnded ||
-          (newArray2[0] ? newArray2[0].acf.hasEnded === "Áno" : false),
+          state.hasEnded || (newArray2[0] ? newArray2[0].acf.hasEnded : false),
         hasMore: parseInt(action.totalNewsCount) !== 0,
       };
     case TYPES.FETCH_ARCHIVE_FAIL:

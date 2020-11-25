@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import SectionTitle from "../../SectionTitle";
 import Divider from "../../Divider";
-import PostsBlock from "../../PostsBlock";
 import ImageGallery from "../../react-image-gallery/index";
 import Live from "../../Live";
 
@@ -40,7 +39,7 @@ function PostExtrasArea({ gallery, start_time, end_time }) {
           <SectionTitle title="LIVE" />
           <Divider height="30px" />
           <Live
-            startTime={start_time.replace(" ", "T")} //to match ISO format for subsequent requests
+            startTime={start_time.replace(" ", "T")} //to match ISO format for subsequent saga requestss
             endTime={end_time.replace(" ", "T")}
           />
           <Divider height="10px" />

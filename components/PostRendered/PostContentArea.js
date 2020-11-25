@@ -30,9 +30,9 @@ const ArticleDiv = styled(EmbedExorcist)`
 
 const NR_PARS_BET_ADS = 4;
 
-function AdsInjector({ inputHtml }) {
+function AdsInjector({ inputHtml, adsAllow }) {
   const nrPars = inputHtml.split("</p>\n\n\n\n").length;
-  if (nrPars > 5) {
+  if (adsAllow && nrPars > 5) {
     return inputHtml.split("</p>\n\n\n\n").map((chunk, i) => (
       <Fragment key={i}>
         {parse(chunk.concat("</p>"))}
@@ -51,11 +51,11 @@ function AdsInjector({ inputHtml }) {
   return parse(inputHtml);
 }
 
-function PostContentArea({ article }) {
+function PostContentArea({ article, adsAllow }) {
   return (
     <EmbedContainer markup={article}>
       <ArticleDiv>
-        <AdsInjector inputHtml={article} />
+        <AdsInjector inputHtml={article} adsAllow={adsAllow} />
       </ArticleDiv>
     </EmbedContainer>
   );
