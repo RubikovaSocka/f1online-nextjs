@@ -46,7 +46,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     store.dispatch(END);
 
     const response = await fetch(
-      `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}${params.id}?_embed=wp:featuredmedia,author&_fields=id,date,excerpt,slug,title,content,tags,acf`
+      `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}${params.id}?_embed=wp:featuredmedia,author&_fields=id,type,date,excerpt,slug,title,content,tags,acf`
     )
       .then((res) => res.json())
       .then((res) => res);
