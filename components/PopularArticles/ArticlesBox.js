@@ -56,7 +56,10 @@ function ArticlesBox({ articles }) {
           <a>
             <Article color={RED[i]} red={i < 6}>
               {/*<span>{i + 1}.</span>*/}
-              <span className="title">{item.title.rendered}</span>
+              <span
+                className="title"
+                dangerouslySetInnerHTML={{ __html: item.title.rendered }}
+              ></span>
             </Article>
           </a>
         </Link>
