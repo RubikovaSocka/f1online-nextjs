@@ -2,9 +2,9 @@ import fetch from "isomorphic-fetch";
 import { URLS } from "./urls";
 
 const LIMIT = "limit=5";
-const HOURS24 = "range=last24hours";
+const HOURS24 = "range=custom&time_unit=day&time_quantity=1";
 const DAYS3 = "range=custom&time_unit=day&time_quantity=3";
-const WEEK = "range=last7days";
+const WEEK = "range=custom&time_unit=day&time_quantity=7";
 const FIELDS = "_fields=id,type,title,slug";
 
 export default async function fetchPopularArticles() {
