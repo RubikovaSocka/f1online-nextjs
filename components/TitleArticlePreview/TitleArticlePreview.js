@@ -86,6 +86,22 @@ const Title = styled.h3`
     rgba(0, 0, 0, 0) 100%
   );
 
+  ${(props) =>
+    props.hasVideo
+      ? `&:before {
+          display: inline-block;
+          font-style: normal;
+          font-variant: normal;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          margin-right: 4px;
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          color: #e10600;
+          content: "\f144";
+        }`
+      : null}
+
   @media only screen and (min-width: 1024px) {
     padding: 8px 9px;
     width: calc(100% - 16px);
@@ -107,6 +123,7 @@ function TitleArticlePreview({
   title,
   better_featured_image,
   top,
+  tags,
 }) {
   if (isLoading) {
     return (
@@ -133,6 +150,7 @@ function TitleArticlePreview({
             priority={true}
           />
           <Title
+            hasVideo={tags.includes(209)}
             top={top}
             dangerouslySetInnerHTML={{ __html: title.rendered }}
           />

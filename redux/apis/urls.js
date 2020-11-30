@@ -13,5 +13,4 @@ const URLS = {
   previewFields:
     "_fields=id,type,date,title,slug,tags,better_featured_image.media_details,featured_media",
 };
-
 export { URLS };

@@ -189,7 +189,7 @@ const Date = styled.span`
 const FlickeringImage = styled(Image)``;
 
 function ArticlePreview(props) {
-  const { isLoading, id, slug, title, date, better_featured_image } = props;
+  const { isLoading, id, slug, title, date, tags, better_featured_image } = props;
   if (isLoading) {
     return <Container isLoading={true} />;
   }
@@ -213,7 +213,7 @@ function ArticlePreview(props) {
       </Link>
       <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
         <TitleContainer>
-          <Title dangerouslySetInnerHTML={{ __html: title.rendered }} />
+          <Title hasVideo={tags.includes(209)} dangerouslySetInnerHTML={{ __html: title.rendered }} />
           {/*<h3 className={styles.title}>{title.rendered}</h3>*/}
           <Date>{formatDate(date)}</Date>
         </TitleContainer>
