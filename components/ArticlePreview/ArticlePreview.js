@@ -146,6 +146,22 @@ const Title = styled.h3`
   font-size: 14px;
   cursor: pointer;
 
+  ${(props) =>
+    props.hasVideo
+      ? `&:before {
+          display: inline-block;
+          font-style: normal;
+          font-variant: normal;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          margin-right: 4px;
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          color: #e10600;
+          content: "\f144";
+        }`
+      : null}
+
   &:hover {
     text-decoration: underline;
   }
