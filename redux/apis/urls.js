@@ -11,7 +11,7 @@ const URLS = {
   POPULAR_ENDPOINT: "wp-json/wordpress-popular-posts/v1/popular-posts",
 
   previewFields:
-    "_fields=id,type,date,title,slug,better_featured_image.media_details,featured_media",
+    "_fields=id,type,date,title,slug,tags,better_featured_image.media_details,featured_media",
 };
 
 export { URLS };
