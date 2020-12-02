@@ -80,7 +80,8 @@ function QuickNews() {
             content={newsItem.acf.obsah_rychlej_spravy}
             hasVideo={newsItem.acf.hasvideo && newsItem.acf.hasvideo === "Áno"}
             hasAttachment={
-              newsItem.acf.embed_zo_socialnych_sieti.length > 0 ||
+              (newsItem.acf.embed_zo_socialnych_sieti &&
+                newsItem.acf.embed_zo_socialnych_sieti.length > 0) ||
               newsItem.acf.image
             }
             callback={() => {
