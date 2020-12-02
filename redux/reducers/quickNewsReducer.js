@@ -7,7 +7,7 @@ const defaultState = {
   error: null,
   totalNewsCount: 0,
   latestItemTime: null,
-  oldestItemTime: null
+  oldestItemTime: null,
 };
 
 const quickNewsReducer = (state = defaultState, action) => {
@@ -16,7 +16,7 @@ const quickNewsReducer = (state = defaultState, action) => {
       if (action.payload.quickNews.news.length !== 0) {
         return {
           ...state,
-          ...action.payload.quickNews
+          ...action.payload.quickNews,
         };
       }
       break;
@@ -36,20 +36,20 @@ const quickNewsReducer = (state = defaultState, action) => {
               : state.totalNewsCount + action.news.length,
           latestItemTime: newArray.length > 0 ? newArray[0].date : null,
           oldestItemTime:
-            newArray.length > 0 ? newArray[newArray.length - 1].date : null
+            newArray.length > 0 ? newArray[newArray.length - 1].date : null,
         };
       }
     case TYPES.AUTOFETCH_FAIL:
       return {
         ...state,
         isLoading: false,
-        error: action.error
+        error: action.error,
       };
     case TYPES.FETCH_ARCHIVE:
       return {
         ...state,
         archiveLoading: true,
-        error: null
+        error: null,
       };
     case TYPES.FETCH_ARCHIVE_SUCCESS:
       const newsArray = [...state.news, ...action.news];
@@ -60,14 +60,14 @@ const quickNewsReducer = (state = defaultState, action) => {
         error: null,
         latestItemTime: newsArray.length > 0 ? newsArray[0].date : null,
         oldestItemTime:
-          newsArray.length > 0 ? newsArray[newsArray.length - 1].date : null
+          newsArray.length > 0 ? newsArray[newsArray.length - 1].date : null,
       };
 
     case TYPES.FETCH_ARCHIVE_FAIL:
       return {
         ...state,
         isLoading: false,
-        error: action.error
+        error: action.error,
       };
   }
   return state;

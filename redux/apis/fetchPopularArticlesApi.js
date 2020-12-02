@@ -2,7 +2,7 @@ import fetch from "isomorphic-fetch";
 import { URLS } from "./urls";
 
 const LIMIT = "limit=5";
-const HOURS24 = "range=custom&time_unit=hour&time_quantity=24";
+const HOURS24 = "freshness=1&range=custom&time_unit=hour&time_quantity=24";
 const DAYS3 = "range=custom&time_unit=day&time_quantity=3";
 const WEEK = "range=custom&time_unit=day&time_quantity=7";
 const FIELDS = "_fields=id,type,title,slug";

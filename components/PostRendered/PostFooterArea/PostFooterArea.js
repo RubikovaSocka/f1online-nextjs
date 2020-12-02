@@ -40,11 +40,15 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
       <Divider height="10px" />
       <RelatedArticles ids={acf.suvisiace_clanky} tagID={tags[0]} except={id} />
       <Divider height="10px" />
-      <SectionTitle title="Komentáre" />
-      <DiskusnyBox
-        discourseUrl="https://forum.f1online.sk/"
-        discourseEmbedUrl={`https://f1online.sk/clanky/${id}/${slug}`}
-      />
+      {acf.no_comments ? null : (
+        <>
+          <SectionTitle title="Komentáre" />
+          <DiskusnyBox
+            discourseUrl="https://forum.f1online.sk/"
+            discourseEmbedUrl={`https://f1online.sk/clanky/${id}/${slug}`}
+          />
+        </>
+      )}
     </div>
   );
 }
