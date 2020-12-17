@@ -27,6 +27,7 @@ import { fetchProgramme } from "../redux/actions/programmeActions";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/Themes";
 import { THEMES } from "../constants";
+import { fetchProducts } from "../redux/actions/productsActions";
 
 const GlobalStyle = createGlobalStyle`
     *,
@@ -86,6 +87,7 @@ function App({ Component, pageProps }) {
     dispatch(fetchProgramme());
     dispatch(startQuickNewsAutoFetch());
     dispatch(fetchPanels());
+    dispatch(fetchProducts());
   }, []);
 
   return (

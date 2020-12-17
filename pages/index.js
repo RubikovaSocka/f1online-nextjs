@@ -25,7 +25,7 @@ import {
 import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
-import fontawesomeSubset from "fontawesome-subset";
+//import fontawesomeSubset from "fontawesome-subset";
 import PopularArticles from "../components/PopularArticles/PopularArticles";
 import SideProduct from "../components/Ads/Products/SideProduct";
 
@@ -90,7 +90,7 @@ function Home() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
-    fontawesomeSubset(
+    /*fontawesomeSubset(
       {
         solid: [
           "circle-notch",
@@ -109,7 +109,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         regular: ["comments", "comment"],
       },
       "public/fonts/FontAwesome"
-    );
+    );*/
     store.dispatch(fetchNewArticles());
     store.dispatch(END);
 

@@ -7,11 +7,23 @@ import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../components/PageLayout";
 import Divider from "../components/Divider.js";
+import { useEffect } from "react";
 
 export default function Partneri() {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      return await fetch(
+        `https://www.formulastore.sk/56BD1E6B-0AC0-42FC-826A-8FBA487D9DBB/tovar.json`
+      )
+        .then((res) => res.json())
+        .then((res) => console.log(res));
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <>

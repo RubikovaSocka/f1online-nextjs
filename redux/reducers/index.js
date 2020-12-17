@@ -12,6 +12,7 @@ import logoHideReducer from "./logoHideReducer";
 import categoriesReducer from "./categoriesReducer";
 import liveReducer from "./liveReducer";
 import popularReducer from "./popularReducer";
+import productsReducer from "./productsReducer";
 
 export default combineReducers({
   panels: panelReducer,
@@ -27,4 +28,5 @@ export default combineReducers({
   categories: categoriesReducer,
   live: liveReducer,
   popular: popularReducer,
+  products: productsReducer,
 });

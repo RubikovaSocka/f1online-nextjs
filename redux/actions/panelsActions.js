@@ -10,7 +10,7 @@ const setPanels = json => ({
 });
 
 const setPanelsError = error => ({
-  type: PANELS.FETCH_FAILs,
+  type: PANELS.FETCH_FAIL,
   error
 });
 

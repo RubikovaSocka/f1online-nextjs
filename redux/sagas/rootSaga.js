@@ -13,6 +13,7 @@ import fetchCategoriesSaga from "./handlers/fetchCategoriesSaga";
 import fetchTagArchiveArticlesSaga from "./handlers/fetchTagArchiveArticlesSaga";
 import liveSaga from "./handlers/liveSaga";
 import popularArticlesSaga from "./handlers/popularArticlesSaga";
+import productsSaga from "./handlers/productsSaga";
 
 import { TYPES as QUICK_NEWS } from "../actions/quickNewsActions";
 import { TYPES as F1_RESULTS } from "../actions/f1ResultsActions";
@@ -23,6 +24,7 @@ import { TYPES as TAG_ARCHIV } from "../actions/tagArchiveActions";
 import { TYPES as CATEGORIES } from "../actions/categoriesActions";
 import { TYPES as LIVE } from "../actions/liveActions";
 import { TYPES as POPULAR } from "../actions/popularActions";
+import { TYPES as PRODUCTS } from "../actions/productsActions";
 
 //watcher
 function* rootSaga() {
@@ -41,6 +43,7 @@ function* rootSaga() {
   yield takeLatest(THEME.SET, saveThemeSaga);
 
   yield takeLatest(PANELS.FETCH, handleFetchPanels);
+  yield takeLatest(PRODUCTS.FETCH, productsSaga);
   yield takeLatest(POPULAR.FETCH, popularArticlesSaga);
   yield takeLatest(LIVE.INITIALIZE, liveSaga);
 }

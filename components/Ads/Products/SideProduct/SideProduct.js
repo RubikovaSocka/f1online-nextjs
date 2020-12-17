@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import Filler from "../../../Filler";
 
 const Container = styled.a`
   //background-color: blue;
@@ -27,10 +29,12 @@ const ImageContainer = styled.div`
   padding: 5px;
   background-color: white;
   display: flex;
+  min-height: 170px;
 
   img {
     //width: 100%;
     margin: auto;
+    margin: 0 auto;
     max-width: 100%;
     max-height: 200px;
   }
@@ -47,7 +51,11 @@ const PartnerName = styled.span`
 const Title = styled.span`
   font-size: 14px;
   font-weight: 600;
+  margin: auto;
   color: ${(props) => props.theme.TEXT_COLOR_MILD};
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 const Price = styled.span`
   font-size: 15px;
@@ -114,20 +122,22 @@ const Button = styled.a`
 `;
 
 export default function SideProduct() {
+  const state = useSelector((state) => state.products);
+  const { isLoading, products, error } = state;
+  console.log(state);
+  const item = products[Math.floor(Math.random() * products.length)];
+
+  if (isLoading || error) return <Filler width="100%" height="300px" />;
   return (
-    <Container
-      rel="nofollow"
-      target="_blank"
-      href="https://www.formulastore.sk/"
-    >
+    <Container rel="nofollow" target="_blank" href={item.url}>
       <ImageContainer>
-        <img src="https://www.formulastore.sk/f/3308/panska-polo-kosela-scuderia-ferrari.jpg" />
+        <img src={item.img} />
       </ImageContainer>
 
       <PartnerName>Formulastore.sk</PartnerName>
 
-      <Title>Pánska Polo Košeľa Scuderia Ferrari</Title>
-      <Price>33,00</Price>
+      <Title>{item.title}</Title>
+      <Price>{item.price}</Price>
       <Button>
         <span>Do Eshopu</span>
       </Button>
