@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Filler from "../../../Filler";
+import ReactGA from "react-ga";
 
 const Container = styled.a`
   //background-color: blue;
@@ -77,7 +78,7 @@ const Price = styled.span`
   }
 `;
 
-const Button = styled.a`
+const Button = styled.button`
   margin: auto;
   margin-top: 10px;
   height: 40px;
@@ -129,7 +130,18 @@ export default function SideProduct() {
 
   if (isLoading || error) return <Filler width="100%" height="300px" />;
   return (
-    <Container rel="nofollow" target="_blank" href={item.url}>
+    <Container
+      onClick={() => {
+        ReactGA.event({
+          category: "partnerEshop",
+          action: `eshopEntered`,
+          label: `${item.url}`,
+        });
+      }}
+      rel="nofollow"
+      target="_blank"
+      href={item.url}
+    >
       <ImageContainer>
         <img src={item.img} />
       </ImageContainer>
