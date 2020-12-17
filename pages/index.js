@@ -25,8 +25,9 @@ import {
 import isMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
-//import fontawesomeSubset from "fontawesome-subset";
+import fontawesomeSubset from "fontawesome-subset";
 import PopularArticles from "../components/PopularArticles/PopularArticles";
+import SideProduct from "../components/Ads/Products/SideProduct";
 
 function Home() {
   const state = useSelector((state) => state.articles);
@@ -74,21 +75,8 @@ function Home() {
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="15px" />
-            {/*https://studio.youtube.com/live_chat?is_popout=1&v=o2jQNyIreNUss*/}
-{/*
-            <iframe
-              height="700"
-              width="100%"
-              src="https://www.youtube.com/live_chat?v=o2jQNyIreNU&embed_domain=localhost"
-              frameBorder="0"
-            ></iframe>*/}
-            {/*<div
-              style={{
-                width: "100%",
-              }}
-            >
-              <FBPageBox />
-            </div>*/}
+            <SideProduct />
+            <Divider height="15px" />
             <PopularArticles />
             <QuickNews />
             <Divider height="15px" />
@@ -102,7 +90,7 @@ function Home() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
-    /*fontawesomeSubset(
+    fontawesomeSubset(
       {
         solid: [
           "circle-notch",
@@ -114,12 +102,14 @@ export const getServerSideProps = wrapper.getServerSideProps(
           "play-circle",
           "circle",
           "comment-slash",
-          "burn"
+          "burn",
+          "external-link-alt",
+          "euro-sign"
         ],
         regular: ["comments", "comment"],
       },
       "public/fonts/FontAwesome"
-    );*/
+    );
     store.dispatch(fetchNewArticles());
     store.dispatch(END);
 

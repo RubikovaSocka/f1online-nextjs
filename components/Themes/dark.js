@@ -31,11 +31,13 @@ const THEME = {
   CALENDAR_HEADER_COLOR: "#4a4a4a",
 
   FILLER_COLOR: "#0c0c0c",
-  FILLER_SHINE_GRADIENT: "linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%)",
+  FILLER_SHINE_GRADIENT:
+    "linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%)",
 
   TABLE_PRIMARY_COLOR: "#2a2a2a",
   TABLE_SECONDARY_COLOR: "#4a4a4a",
 
+  PRODUCT_PANEL_SHADOW: "0 0 8px rgba(255,255,255, 0.4)",
   POPUP_SHADOW: "none",
   POPUP_BORDER: "1px solid #606060",
   HEADER_PANEL_BACK_COLOR: "#2a2a2a",
@@ -63,7 +65,7 @@ const THEME = {
   Alfa_Romeo_Font: "white",
   Alpha_Tauri_Font: "black",
   Haas_Font: "white",
-  Williams_Font: "#white"
+  Williams_Font: "#white",
 };
 
 export default THEME;

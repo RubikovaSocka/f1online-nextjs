@@ -39,6 +39,7 @@ const THEME = {
   DISCUSS_BACKGROUND: "white",
   DISCUSS_SHADOW: "none",
 
+  PRODUCT_PANEL_SHADOW: "0 0 8px rgba(0, 0, 0, 0.2)",
   POPUP_SHADOW: "0 0 8px rgba(0, 0, 0, 0.4)",
   POPUP_BORDER: "1px solid rgba(0, 0, 0, 0.3)",
   HEADER_PANEL_BACK_COLOR: "#f1f1f1",
