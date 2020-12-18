@@ -13,8 +13,8 @@ const URLS = {
   previewFields:
     "_fields=id,type,date,title,slug,tags,better_featured_image.media_details,featured_media",
   formulastore:
-    //"https://www.formulastore.sk/56BD1E6B-0AC0-42FC-826A-8FBA487D9DBB/tovar.json",
-    "https://wpadmin.f1online.sk/wp-content/uploads/tovar.json",
+    "https://www.formulastore.sk/56BD1E6B-0AC0-42FC-826A-8FBA487D9DBB/tovar.json",
+  //"https://wpadmin.f1online.sk/wp-content/uploads/tovar.json",
   blogokave: "https://wpadmin.f1online.sk/wp-content/uploads/blogokave.json",
 };
 export { URLS };
