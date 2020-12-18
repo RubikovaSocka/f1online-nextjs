@@ -137,7 +137,7 @@ const Button = styled.button`
 export default function SideProduct() {
   const state = useSelector((state) => state.products);
   const { isLoading, products, error } = state;
-  console.log(state);
+  //console.log(state);
   if (isLoading || error) return <Filler width="100%" height="300px" />;
   const partner = products[Math.floor(Math.random() * products.length)];
   const item = partner.items[Math.floor(Math.random() * partner.items.length)];
