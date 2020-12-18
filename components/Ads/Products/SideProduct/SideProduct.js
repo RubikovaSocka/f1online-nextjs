@@ -72,10 +72,22 @@ const Price = styled.span`
     font-family: "Font Awesome 5 Free";
     font-weight: 700;
     content: "\f153";
-    margin-left: 5px;
     font-size: 14px;
     line-height: 21px;
   }
+`;
+
+const RegularPrice = styled(Price)`
+  color: ${(props) => props.theme.TEXT_COLOR_MILD};
+  font-weight: 600;
+  text-decoration: line-through;
+  margin-right: 15px;
+`;
+
+const PriceContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 const Button = styled.button`
@@ -126,9 +138,10 @@ export default function SideProduct() {
   const state = useSelector((state) => state.products);
   const { isLoading, products, error } = state;
   console.log(state);
-  const item = products[Math.floor(Math.random() * products.length)];
-
   if (isLoading || error) return <Filler width="100%" height="300px" />;
+  const partner = products[Math.floor(Math.random() * products.length)];
+  const item = partner.items[Math.floor(Math.random() * partner.items.length)];
+  //const item = products[1].items[2];
   return (
     <Container
       onClick={() => {
@@ -146,10 +159,18 @@ export default function SideProduct() {
         <img src={item.img} />
       </ImageContainer>
 
-      <PartnerName>Formulastore.sk</PartnerName>
+      <PartnerName>{partner.partnerName}</PartnerName>
 
       <Title>{item.title}</Title>
-      <Price>{item.price}</Price>
+      {item.on_sale ? (
+        <PriceContainer>
+          <RegularPrice>{item.price.replace(".", ",")}&nbsp;</RegularPrice>
+          <Price>{item.sale_price.replace(".", ",")}&nbsp;</Price>
+        </PriceContainer>
+      ) : (
+        <Price>{item.price.replace(".", ",")}&nbsp;</Price>
+      )}
+
       <Button>
         <span>Do Eshopu</span>
       </Button>

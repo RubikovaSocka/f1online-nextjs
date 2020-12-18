@@ -76,10 +76,10 @@ function Home() {
           <SIDEBAR>
             <Divider height="15px" />
             <SideProduct />
-            <Divider height="15px" />
+            <Divider height="30px" />
             <PopularArticles />
             <QuickNews />
-            <Divider height="15px" />
+            <Divider height="20px" />
             {/*<TrackedSidePanel />*/}
           </SIDEBAR>
         </COLUMNED_PAGE>
