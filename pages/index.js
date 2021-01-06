@@ -28,6 +28,11 @@ import onClient from "../utils/onClient";
 //import fontawesomeSubset from "fontawesome-subset";
 import PopularArticles from "../components/PopularArticles/PopularArticles";
 import SideProduct from "../components/Ads/Products/SideProduct";
+import RelatedArticles from "../components/RelatedArticles";
+import TrackedArtRePanel from "../components/Ads/TrackedArtRePanel";
+//import Comments from "../components/Comments";
+
+const PODCAST_TAG = 180;
 
 function Home() {
   const state = useSelector((state) => state.articles);
@@ -48,23 +53,41 @@ function Home() {
         <Divider height="25px" />
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL>
+            {/*<Comments />*/}
             <SectionTitle title="Ďalšie správy" />
             <Divider height="10px" />
             <ArticlesPanel
               isLoading={isLoading}
               posts={postsData.slice(5, 11)}
             />
-            <div className="basicButtonContainer">
-              <ButtonWB
-                hrefProp="/archiv"
-                asProp="/archiv"
-                title="Pozrieť všetky"
-              />
-            </div>
+            <Divider height="10px" />
+            <ButtonWB
+              hrefProp="/archiv"
+              asProp="/archiv"
+              title="Pozrieť všetky"
+            />
             {onClient() && isScreenMobile ? (
-              ""
+              <>
+                <Divider height="20px" />
+                <RelatedArticles
+                  title="Najnovšie podcasty"
+                  tagID={PODCAST_TAG}
+                />
+              </>
             ) : (
               <>
+                <Divider height="10px" />
+                <div>
+                  <TrackedArtRePanel
+                    GASpercentage={65}
+                    report={true}
+                    changeable={true}
+                  />
+                </div>
+                <RelatedArticles
+                  title="Najnovšie podcasty"
+                  tagID={PODCAST_TAG}
+                />
                 <Divider height="30px" />
                 <SectionTitle title="Boxová tabuľa" />
                 <Divider height="15px" />
@@ -104,9 +127,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
           "comment-slash",
           "burn",
           "external-link-alt",
-          "euro-sign"
+          "euro-sign",
+          "heart",
+          "flag"
         ],
-        regular: ["comments", "comment"],
+        regular: ["comments", "comment", "heart", "flag"],
       },
       "public/fonts/FontAwesome"
     );*/

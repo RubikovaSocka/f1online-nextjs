@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Button = styled.a`
   margin: auto;
-  margin-top: 25px;
   height: 40px;
   width: 140px;
   border: 1px solid ${props => props.theme.TEXT_COLOR};

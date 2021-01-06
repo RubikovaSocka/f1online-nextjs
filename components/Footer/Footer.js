@@ -65,7 +65,7 @@ function Footer() {
         </Link>
       </Row>
       <div style={{ height: "20px" }}></div>
-      <span>&copy; 2020 F1online.sk</span>
+      <span>&copy; 2020-2021 F1online.sk</span>
     </Container>
   );
 }

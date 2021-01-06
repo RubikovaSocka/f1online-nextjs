@@ -13,6 +13,7 @@ import Divider from "../components/Divider.js";
 import { useEffect } from "react";
 
 export default function Partneri() {
+
   return (
     <>
       <Head>

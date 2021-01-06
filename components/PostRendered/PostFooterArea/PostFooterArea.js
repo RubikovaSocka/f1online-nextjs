@@ -38,7 +38,12 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
         articleID={id}
       />
       <Divider height="10px" />
-      <RelatedArticles ids={acf.suvisiace_clanky} tagID={tags[0]} except={id} />
+      <RelatedArticles
+        title="Možno vás zaujme"
+        ids={acf.suvisiace_clanky}
+        tagID={tags[0]}
+        except={id}
+      />
       <Divider height="10px" />
       {acf.no_comments ? null : (
         <>

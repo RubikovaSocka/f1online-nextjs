@@ -5,7 +5,7 @@ import fetchArchiveArticles from "../redux/apis/fetchArchiveArticlesApi";
 import SectionTitle from "./SectionTitle";
 
 //fetch 3 articles by tag or max6 articles by ids
-function RelatedArticles({ ids, tagID, except }) {
+function RelatedArticles({ ids, tagID, except, title }) {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,7 +40,7 @@ function RelatedArticles({ ids, tagID, except }) {
   if (isLoading || articles.length !== 0)
     return (
       <>
-        <SectionTitle title="Možno vás zaujme" />
+        <SectionTitle title={title} />
         <ArticlesPanel isLoading={isLoading} posts={articles} />
       </>
     );
