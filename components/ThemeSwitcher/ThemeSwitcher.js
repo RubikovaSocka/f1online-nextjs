@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { setTheme } from "../../redux/actions/themeActions";
 import { THEMES } from "../../constants";
@@ -23,6 +22,9 @@ const Container = styled.div`
   @media only screen and (min-width: 1280px) {
     width: 1032px;
   }
+  a {
+    display: inline-block;
+  }
 `;
 
 const ThemeSWButton = styled.button`
@@ -37,6 +39,7 @@ const ThemeSWButton = styled.button`
   background-color: lightgray;
   padding: 0;
   border: none;
+  margin-left: 10px;
 
   img {
     padding: 5px 7px;
@@ -46,14 +49,28 @@ const ThemeSWButton = styled.button`
 `;
 
 const DonateLink = styled.a`
-  margin-right: 15px;
+  margin-right: 4px;
   font-family: "HK Grotesk";
   font-size: 14px;
   font-weight: 600;
-  color: ${props => props.theme.TEXT_COLOR};
+  color: ${(props) => props.theme.TEXT_COLOR};
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;
+  }
+  &::after {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin-right: 4px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+    content: "\f35d";
+    margin-left: 5px;
+    font-size: 12px;
   }
 `;
 
@@ -63,7 +80,7 @@ const LIGHT_PICK = styled.img`
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.12);
   background-color: #f5f5f5;
 
-  content: url(${props => props.theme.SUN});
+  content: url(${(props) => props.theme.SUN});
 `;
 
 const DARK_PICK = styled.img`
@@ -72,10 +89,21 @@ const DARK_PICK = styled.img`
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.35);
   background-color: #a0a0a0;
 
-  content: url(${props => props.theme.MOON});
+  content: url(${(props) => props.theme.MOON});
 `;
 
-const getOtherTheme = theme => {
+const Img = styled.img`
+  height: 15px;
+  margin-right: 5px;
+`;
+
+const Notes = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+const getOtherTheme = (theme) => {
   switch (theme) {
     case THEMES.LIGHT:
       return THEMES.DARK;
@@ -93,9 +121,14 @@ function ThemeSwitcher() {
 
   return (
     <Container>
-      <Link href="/chcem-vas-podporit">
-        <DonateLink>Chcem podporiť F1online.sk</DonateLink>
-      </Link>
+      <Notes>
+        <DonateLink target="_blank" href="https://www.patreon.com/F1online">
+          Podporte nás na Patreone
+        </DonateLink>
+        <DonateLink target="_blank" href="/chcem-vas-podporit">
+          alebo cez PayPal
+        </DonateLink>
+      </Notes>
       <ThemeSWButton onClick={() => dispatch(setTheme(getOtherTheme(theme)))}>
         <LIGHT_PICK alt="Light theme icon" />
         <DARK_PICK alt="Dark theme icon" />
