@@ -4,7 +4,9 @@ import Divider from "../../Divider";
 import RelatedArticles from "../../RelatedArticles";
 import DiskusnyBox from "../../DiskusnyBox";
 import decodeHtml from "../../../utils/decodeHtml";
-
+import Product, {
+  POSITIONS as PRODUCT_POSITIONS,
+} from "../../Ads/Products";
 import styled from "styled-components";
 
 const ButtonRow = styled.div`
@@ -38,6 +40,8 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
         articleID={id}
       />
       <Divider height="10px" />
+      <Product position={PRODUCT_POSITIONS.MAIN} />
+      <Divider height="10px" />
       <RelatedArticles
         title="Možno vás zaujme"
         ids={acf.suvisiace_clanky}
@@ -45,6 +49,7 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
         except={id}
       />
       <Divider height="10px" />
+
       {acf.no_comments ? null : (
         <>
           <SectionTitle title="Komentáre" />

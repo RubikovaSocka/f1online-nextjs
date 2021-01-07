@@ -36,9 +36,10 @@ function AdsInjector({ inputHtml, adsDisallowed }) {
     return inputHtml.split("</p>\n\n\n\n").map((chunk, i) => (
       <Fragment key={i}>
         {parse(chunk.concat("</p>"))}
-        {(i + 1) % NR_PARS_BET_ADS === 0 ? (
+        {(i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars ? (
           <TrackedArtRePanel
             GASpercentage={i > 3 ? 100 : 65}
+            //GASpercentage={0}
             report={i === 3}
             changeable={i === 3}
           />

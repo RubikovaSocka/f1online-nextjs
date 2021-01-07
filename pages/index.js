@@ -9,7 +9,6 @@ import SectionTitle from "../components/SectionTitle";
 import ButtonWB from "../components/ButtonWB/ButtonWB.js";
 import Divider from "../components/Divider.js";
 
-import TrackedSidePanel from "../components/Ads/TrackedSidePanel";
 import QuickNews from "../components/QuickNews";
 import CalendarLarge from "../components/CalendarLarge";
 import ResultsLarge from "../components/ResultsLarge";
@@ -27,7 +26,9 @@ import onClient from "../utils/onClient";
 
 //import fontawesomeSubset from "fontawesome-subset";
 import PopularArticles from "../components/PopularArticles/PopularArticles";
-import SideProduct from "../components/Ads/Products/SideProduct";
+import Product, {
+  POSITIONS as PRODUCT_POSITIONS,
+} from "../components/Ads/Products";
 import RelatedArticles from "../components/RelatedArticles";
 import TrackedArtRePanel from "../components/Ads/TrackedArtRePanel";
 //import Comments from "../components/Comments";
@@ -98,7 +99,7 @@ function Home() {
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="15px" />
-            <SideProduct />
+            <Product position={PRODUCT_POSITIONS.SIDEBAR} />
             <Divider height="30px" />
             <PopularArticles />
             <QuickNews />

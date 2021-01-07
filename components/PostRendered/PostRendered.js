@@ -3,6 +3,7 @@ import PostContentArea from "./PostContentArea";
 import PostExtrasArea from "./PostExtrasArea";
 import PostFooterArea from "./PostFooterArea";
 
+
 function PostRendered(props) {
   const { title, date, id, slug, content, acf, _embedded } = props;
 
