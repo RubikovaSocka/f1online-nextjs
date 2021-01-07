@@ -84,6 +84,7 @@ function Home() {
                     changeable={true}
                   />
                 </div>
+                  <Divider height="15px" />
                 <RelatedArticles
                   title="Najnovšie podcasty"
                   tagID={PODCAST_TAG}
