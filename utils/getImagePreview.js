@@ -9,6 +9,7 @@ const getImageSrc = (image, size) => {
   }
   return "https://wpadmin.f1online.sk/wp-content/uploads/title-logo-wb.png";
 };
+
 const getImageDimensions = (image, size) => {
   if (image) {
     if (image.media_details.sizes[`${size}`]) {
@@ -19,8 +20,8 @@ const getImageDimensions = (image, size) => {
     }
     if (image.source_url) {
       return {
-        height: image.height,
-        width: image.width,
+        height: image.media_details.height,
+        width: image.media_details.width,
       };
     }
   }
