@@ -67,17 +67,16 @@ function Home() {
               asProp="/archiv"
               title="Pozrieť všetky"
             />
+            <Divider height="20px" />
             {onClient() && isScreenMobile ? (
-              <>
-                <Divider height="20px" />
+              <div>
                 <RelatedArticles
                   title="Najnovšie podcasty"
                   tagID={PODCAST_TAG}
                 />
-              </>
+              </div>
             ) : (
               <>
-                <Divider height="10px" />
                 <div>
                   <TrackedArtRePanel
                     GASpercentage={65}
