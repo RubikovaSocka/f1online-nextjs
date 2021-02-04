@@ -31,21 +31,21 @@ function ChatContainer({ isOpened }) {
   return (
     <Container isOpened={isOpened}>
       {onClient() ? (
-        /*<iframe
+        <iframe
           //className={`${styles.chatFrame}`}
           width="100%"
           height="100%"
           src="https://chat.f1online.sk/channel/chatf1online?layout=embedded"
           frameBorder="0"
           style={{ position: "relative", zIndex: "15" }}
-        />*/
+        />/*
         <iframe
           height="100%"
           width="100%"
-          src="https://www.youtube.com/live_chat?v=o2jQNyIreNU&embed_domain=localhost"
+          src={`https://www.youtube.com/live_chat?v=o2jQNyIreNU&embed_domain=${window.location.hostname}`}
           frameBorder="0"
           style={{ position: "relative", zIndex: "15" }}
-        ></iframe>
+        ></iframe>*/
       ) : (
         ""
       )}

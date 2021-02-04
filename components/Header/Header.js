@@ -146,8 +146,8 @@ function Header() {
                 {onClient() ? "" : ""}
                 <Image
                   src={themeContext.LOGO_URL}
-                  height={42}
-                  width={142}
+                  height={40}
+                  width={64}
                   alt="Logo F1online.sk"
                   style={{ display: "inline-block", color: "transparent" }}
                   loading="eager"

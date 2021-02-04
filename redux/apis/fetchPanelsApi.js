@@ -1,6 +1,6 @@
 import { URLS } from "./urls";
 
-const PANEL = "parts.json";
+const PANEL = "parts2.json";
 
 const fetchPanels = async () => {
   return await fetch(`${URLS.BASE}${URLS.UPLOADS}${PANEL}`)
