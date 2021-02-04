@@ -1,10 +1,13 @@
 import React from "react";
+import { PAGE_MAIN_TITLE } from "../../constants";
 import Head from "next/head";
 
 export default function HeaderMeta({ theme }) {
   return (
     <Head>
-      <title key="meta_title">F1online.sk</title>
+      <title key="meta_title">
+        Všetky novinky zo sveta F1 | {PAGE_MAIN_TITLE}
+      </title>
       <link rel="shortcut icon" href="/favicon.ico" />
       <link
         rel="preload"

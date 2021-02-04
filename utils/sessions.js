@@ -3,17 +3,17 @@ const SESSION_NAMES = {
   FP2: "2. tréning",
   FP3: "3. tréning",
   Q: "Kvalifikácia",
-  R: "Preteky"
+  R: "Preteky",
 };
 
 const SESSION_DURATIONS = {
-  FP1: 90,
-  FP2: 90,
+  FP1: 60,
+  FP2: 60,
   FP3: 60,
-  Q: 60
+  Q: 60,
 };
 
-const getTimeString = num => {
+const getTimeString = (num) => {
   if (num === 0) return "00";
   if (num < 10) return `0${num}`;
   return num;

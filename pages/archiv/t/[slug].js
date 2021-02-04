@@ -16,8 +16,9 @@ import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../../../components/PageLayout";
+import { PAGE_MAIN_TITLE } from "../../../constants";
 
 const PER_PAGE = 12;
 
@@ -36,14 +37,14 @@ function Archiv() {
       : tagArchiveArticles.client;
   });
 
-  const onPageClicked = pageNumber => {
+  const onPageClicked = (pageNumber) => {
     window.scrollTo(0, 0);
     dispatch(
       fetchTagArchiveArticles({
         pageNumber: pageNumber,
         perPage: PER_PAGE,
         tagSlug: router.query.slug,
-        isServer: false
+        isServer: false,
       })
     );
   };
@@ -51,11 +52,11 @@ function Archiv() {
   return (
     <>
       <Head>
-        <title key="meta_title">Správy | F1online.sk</title>
+        <title key="meta_title">{`Archív | ${PAGE_MAIN_TITLE}`}</title>
         <meta
           key="meta_ogtitle"
           property="og:title"
-          content={`Kalendár | F1online.sk`}
+          content={`Archív | ${PAGE_MAIN_TITLE}`}
         />
         <meta
           key="meta_url"
@@ -74,7 +75,7 @@ function Archiv() {
               showPagination={true}
               currentPage={pageNumber}
               perPage={PER_PAGE}
-              pageClickCallback={selectedPage => onPageClicked(selectedPage)}
+              pageClickCallback={(selectedPage) => onPageClicked(selectedPage)}
             />
           </PAGE_MAIN_COL>
           <SIDEBAR>
@@ -114,7 +115,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         pageNumber: 1,
         perPage: PER_PAGE,
         tagSlug: query.slug,
-        isServer: true
+        isServer: true,
       })
     );
     store.dispatch(END);

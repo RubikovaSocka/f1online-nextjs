@@ -12,13 +12,14 @@ import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../../components/PageLayout";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 const ImageGallery = dynamic(() =>
   import("../../components/react-image-gallery/src/ImageGallery")
 );
+import { PAGE_MAIN_TITLE } from "../../constants";
 
 const Container = styled.div`
   .briefInfoContainer {
@@ -45,10 +46,10 @@ const Container = styled.div`
     font-family: "HK Grotesk";
 
     .table {
-      background-color: ${props => props.theme.TABLE_PRIMARY_COLOR};
+      background-color: ${(props) => props.theme.TABLE_PRIMARY_COLOR};
       padding: 25px;
       color: white;
-      box-shadow: ${props => props.theme.POPUP_SHADOW};
+      box-shadow: ${(props) => props.theme.POPUP_SHADOW};
       position: relative;
       overflow: hidden;
     }
@@ -86,7 +87,7 @@ const Container = styled.div`
       margin: 0px;
       padding: 5px;
       font-size: 18px;
-      color: ${props => props.theme.TEXT_COLOR};
+      color: ${(props) => props.theme.TEXT_COLOR};
     }
   }
   .halfCircle {
@@ -100,7 +101,7 @@ const Container = styled.div`
     border-top-right-radius: 300px;
     border-bottom-left-radius: 300px;
     border-bottom-right-radius: 300px;
-    border: 45px solid ${props => props.theme.TABLE_SECONDARY_COLOR};
+    border: 45px solid ${(props) => props.theme.TABLE_SECONDARY_COLOR};
     z-index: 1;
 
     -webkit-box-sizing: border-box;
@@ -112,7 +113,7 @@ const Container = styled.div`
     font-family: "HK Grotesk";
     font-size: 14px;
     line-height: 24px;
-    color: ${props => props.theme.TEXT_COLOR_MILD};
+    color: ${(props) => props.theme.TEXT_COLOR_MILD};
   }
 
   @media only screen and (min-width: 1024px) {
@@ -174,9 +175,9 @@ function DriverPage({ driverData }) {
     fetch(
       `https://wpadmin.f1online.sk/wp-json/wp/v2/media?search=${driverData.givenName}+${driverData.familyName}&per_page=15`
     )
-      .then(res => res.json())
-      .then(res => {
-        let imagesLoaded = res.map(item => {
+      .then((res) => res.json())
+      .then((res) => {
+        let imagesLoaded = res.map((item) => {
           if (Object.keys(item.media_details).length > 0) {
             return {
               original: item.media_details.sizes.large
@@ -184,12 +185,12 @@ function DriverPage({ driverData }) {
                 : item.source_url,
               thumbnail: item.media_details.sizes.medium
                 ? item.media_details.sizes.medium.source_url
-                : item.source_url
+                : item.source_url,
             };
           }
           return null;
         });
-        var filtered = imagesLoaded.filter(el => {
+        var filtered = imagesLoaded.filter((el) => {
           return el != null;
         });
         setImages(filtered);
@@ -263,11 +264,11 @@ function DriverPage({ driverData }) {
   return (
     <>
       <Head>
-        <title key="meta_title">{`${driverData.givenName} ${driverData.familyName} | F1online.sk`}</title>
+        <title key="meta_title">{`${driverData.givenName} ${driverData.familyName} | ${PAGE_MAIN_TITLE}`}</title>
         <meta
           key="meta_ogtitle"
           property="og:title"
-          content={`${driverData.givenName} ${driverData.familyName} | F1online.sk`}
+          content={`${driverData.givenName} ${driverData.familyName} | ${PAGE_MAIN_TITLE}`}
         />
         <meta
           key="meta_url"
@@ -347,23 +348,23 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const responseDriverData = await fetch(
       `https://wpadmin.f1online.sk/wp-content/uploads/${params.id}.json`
     )
-      .then(res => res.json())
-      .then(res => res);
+      .then((res) => res.json())
+      .then((res) => res);
 
     //TODO: zmen na jazdcov tag
     const responseDriverPosts = await fetch(
       "https://wpadmin.f1online.sk/wp-json/wp/v2/posts?per_page=3"
     )
-      .then(res => res.json())
-      .then(res => res);
+      .then((res) => res.json())
+      .then((res) => res);
 
     await store.sagaTask.toPromise();
 
     return {
       props: {
         driverData: responseDriverData,
-        postsData: responseDriverPosts
-      }
+        postsData: responseDriverPosts,
+      },
     };
   }
 );

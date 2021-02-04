@@ -15,19 +15,19 @@ import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../components/PageLayout";
+import { PAGE_MAIN_TITLE } from "../constants";
 
 export default function Teams({ teamsData }) {
-
   return (
     <>
       <Head>
-        <title key="meta_title">Tímy | F1online.sk</title>
+        <title key="meta_title">{`Tímy | ${PAGE_MAIN_TITLE}`}</title>
         <meta
           key="meta_og_title"
           property="og:title"
-          content={`Tímy | F1online.sk`}
+          content={`Tímy | ${PAGE_MAIN_TITLE}`}
         />
         <meta
           key="meta_url"
@@ -43,7 +43,7 @@ export default function Teams({ teamsData }) {
             {/*<img className={styles.image} src='' />*/}
 
             <div className={styles.container}>
-              {teamsData.ConstructorTable.Constructors.map(constructor => (
+              {teamsData.ConstructorTable.Constructors.map((constructor) => (
                 <TeamPreview constructor={constructor} />
               ))}
             </div>
@@ -66,15 +66,15 @@ export const getServerSideProps = wrapper.getServerSideProps(
     store.dispatch(END);
     const response = await axios({
       method: "get",
-      url: "https://wpadmin.f1online.sk/wp-content/uploads/teams.json"
+      url: "https://wpadmin.f1online.sk/wp-content/uploads/teams.json",
       //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
     });
     await store.sagaTask.toPromise();
 
     return {
       props: {
-        teamsData: response.data
-      }
+        teamsData: response.data,
+      },
     };
   }
 );

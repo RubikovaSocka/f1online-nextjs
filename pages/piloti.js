@@ -15,6 +15,7 @@ import {
   PAGE_MAIN_COL,
   SIDEBAR
 } from "../components/PageLayout";
+import { PAGE_MAIN_TITLE } from "../constants";
 
 import styles from "../styles/piloti.module.scss";
 
@@ -23,11 +24,11 @@ function Drivers({ teamsData }) {
   return (
     <>
       <Head>
-        <title key="meta_title">Piloti | F1online.sk</title>
+        <title key="meta_title">{`Piloti | ${PAGE_MAIN_TITLE}`}</title>
         <meta
           key="meta_ogtitle"
           property="og:title"
-          content={`Piloti | F1online.sk`}
+          content={`Piloti | ${PAGE_MAIN_TITLE}`}
         />
         <meta
           key="meta_url"

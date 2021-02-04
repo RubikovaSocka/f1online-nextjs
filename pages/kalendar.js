@@ -12,8 +12,9 @@ import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../components/PageLayout";
+import { PAGE_MAIN_TITLE } from "../constants";
 
 function Calendar() {
   const calendarData = useSelector(({ calendar }) => calendar.events);
@@ -22,11 +23,11 @@ function Calendar() {
   return (
     <>
       <Head>
-        <title key="meta_title">Kalendár | F1online.sk</title>
+        <title key="meta_title">{`Kalendár | ${PAGE_MAIN_TITLE}`}</title>
         <meta
           key="meta_ogtitle"
           property="og:title"
-          content={`Kalendár | F1online.sk`}
+          content={`Kalendár | ${PAGE_MAIN_TITLE}`}
         />
         <meta
           key="meta_url"

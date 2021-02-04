@@ -16,6 +16,7 @@ import {
   PAGE_MAIN_COL,
   SIDEBAR,
 } from "../../../components/PageLayout";
+import { PAGE_MAIN_TITLE } from "../../../constants";
 
 function Post({ postData }) {
   return (

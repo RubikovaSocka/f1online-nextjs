@@ -17,6 +17,7 @@ import {
   PAGE_MAIN_COL,
   SIDEBAR
 } from "../components/PageLayout";
+import { PAGE_MAIN_TITLE } from "../constants";
 
 export class QuickNewsPage extends Component {
   state = {

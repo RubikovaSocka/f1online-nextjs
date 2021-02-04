@@ -46,7 +46,7 @@ function Home() {
       <Head>
         <meta
           name="description"
-          content="Najnovšie správy zo sveta Formuly 1. Piloti, tímy, okruhy, výsledky, štatistiky..."
+          content="Najnovšie správy zo sveta F1. Piloti, tímy, okruhy, výsledky, štatistiky..."
         />
       </Head>
       <MAIN>

@@ -16,8 +16,9 @@ import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../components/PageLayout";
+import { PAGE_MAIN_TITLE } from "../constants";
 
 const PER_PAGE = 12;
 
@@ -34,14 +35,14 @@ function Archiv() {
     return pageNumber === 1 ? archiveArticles.server : archiveArticles.client;
   });
 
-  const onPageClicked = pageNumber => {
+  const onPageClicked = (pageNumber) => {
     window.scrollTo(0, 0);
     dispatch(
       fetchArchiveArticles({
         pageNumber: pageNumber,
         perPage: PER_PAGE,
         isServer: false,
-        searchPhrase: router.query.search
+        searchPhrase: router.query.search,
       })
     );
   };
@@ -53,11 +54,11 @@ function Archiv() {
           router.query.search
             ? `Vyhľadávanie: \"${router.query.search}\"`
             : "Správy"
-        } | F1online.sk`}</title>
+        } | ${PAGE_MAIN_TITLE}`}</title>
         <meta
           key="meta_ogtitle"
           property="og:title"
-          content={`Kalendár | F1online.sk`}
+          content={`Kalendár | ${PAGE_MAIN_TITLE}`}
         />
         <meta
           key="meta_url"
@@ -83,7 +84,7 @@ function Archiv() {
               showPagination={true}
               currentPage={pageNumber}
               perPage={PER_PAGE}
-              pageClickCallback={selectedPage => onPageClicked(selectedPage)}
+              pageClickCallback={(selectedPage) => onPageClicked(selectedPage)}
             />
           </PAGE_MAIN_COL>
           <SIDEBAR>
@@ -107,7 +108,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         pageNumber: 1,
         perPage: 12,
         searchPhrase: query.search,
-        isServer: true
+        isServer: true,
       })
     );
     //store.dispatch(fetchNewQuickNews());

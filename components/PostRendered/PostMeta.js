@@ -1,11 +1,14 @@
 import Head from "next/head";
 import decodeHtml from "../../utils/decodeHtml";
+import { PAGE_MAIN_TITLE } from "../../constants";
 
 function PostMeta({ title, excerpt, id, date, slug, _embedded }) {
   const regex = /(<([^>]+)>)/gi;
   return (
     <Head>
-      <title key="meta_title">{decodeHtml(title.rendered)} | F1online.sk</title>
+      <title key="meta_title">{`${decodeHtml(
+        title.rendered
+      )} | ${PAGE_MAIN_TITLE}`}</title>
       <meta key="meta_oglocale" property="og:locale" content="sk_SK" />
       <meta name="robots" content="index, follow" />
       <meta
@@ -21,7 +24,7 @@ function PostMeta({ title, excerpt, id, date, slug, _embedded }) {
       <meta
         key="meta_ogtitle"
         property="og:title"
-        content={`${decodeHtml(title.rendered)} | F1online.sk`}
+        content={`${decodeHtml(title.rendered)} | ${PAGE_MAIN_TITLE}`}
       />
       <meta
         key="meta_description"

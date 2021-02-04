@@ -10,6 +10,7 @@ import {
   SIDEBAR,
 } from "../components/PageLayout";
 import Divider from "../components/Divider.js";
+import { PAGE_MAIN_TITLE } from "../constants";
 import { useEffect } from "react";
 
 export default function Partneri() {
@@ -17,11 +18,11 @@ export default function Partneri() {
   return (
     <>
       <Head>
-        <title key="meta_title">Správy | F1online.sk</title>
+        <title key="meta_title">{`Partneri | ${PAGE_MAIN_TITLE}`}</title>
         <meta
           key="meta_ogtitle"
           property="og:title"
-          content={`Kalendár | F1online.sk`}
+          content={`Partneri | ${PAGE_MAIN_TITLE}`}
         />
         <meta
           key="meta_url"

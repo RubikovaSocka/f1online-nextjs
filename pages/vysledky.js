@@ -14,6 +14,7 @@ import {
   PAGE_MAIN_COL,
   SIDEBAR,
 } from "../components/PageLayout";
+import { PAGE_MAIN_TITLE } from "../constants";
 
 class Results extends Component {
   constructor(props) {
@@ -183,11 +184,11 @@ class Results extends Component {
     return (
       <>
         <Head>
-          <title key="meta_title">Výsledky | F1online.sk</title>
+          <title key="meta_title">{`Výsledky | ${PAGE_MAIN_TITLE}`}</title>
           <meta
             key="meta_ogtitle"
             property="og:title"
-            content={`Výsledky | F1online.sk`}
+            content={`Výsledky | ${PAGE_MAIN_TITLE}`}
           />
           <meta
             key="meta_url"
