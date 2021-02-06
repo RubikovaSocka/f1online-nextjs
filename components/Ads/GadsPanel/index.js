@@ -81,8 +81,9 @@ function GadsPanel({ slot, isVisible, inset }) {
       client="ca-pub-2681240380511410"
       slot={slot}
       style={{ display: "block" }}
-      layout="in-article"
-      format=""
+      //layout="in-article"
+      format="auto"
+      responsive="true"
     />
   );
 }

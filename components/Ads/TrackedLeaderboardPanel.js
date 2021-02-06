@@ -4,7 +4,7 @@ import GadsPanel from "./GadsPanel";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: calc(100% - 40px);
+  width: 100vw;
   margin-top: 10px;
 
   @media only screen and (min-width: 1024px) {
