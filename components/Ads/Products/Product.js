@@ -18,7 +18,6 @@ function Product({ position }) {
   if (error) return null;
   const partner = products[Math.floor(Math.random() * products.length)];
   const item = partner.items[Math.floor(Math.random() * partner.items.length)];
-  //const item = products[0].items[2];
   const onClickedHandler = () => {
     ReactGA.event({
       category: "partnerEshop",
