@@ -1,6 +1,6 @@
 import ArticlePreview from "../ArticlePreview";
-import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
-
+import TrackedBasicPanel from "../Ads/TrackedBasicPanel";
+import { POSITION } from "../Ads/positions";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -69,9 +69,7 @@ function ArticlesPanel({ posts, isLoading }) {
           <i aria-hidden="true"></i>
           <i aria-hidden="true"></i>
         </Container>
-        <div /*key={counter}*/ style={{ width: "100%" }}>
-          <TrackedArtRePanel key={50522} changeable={true} report={true} />
-        </div>
+        <TrackedBasicPanel key={50522} position={POSITION.CONTENT_ARCHIVE} />
         <Container>
           {posts.slice(6, 12).map((post, index) => (
             <ArticleContainer key={index}>

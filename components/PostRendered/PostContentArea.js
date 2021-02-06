@@ -1,10 +1,13 @@
 import EmbedContainer from "react-oembed-container";
 import parse from "html-react-parser";
 import EmbedExorcist from "../EmbedExorcist";
-import TrackedArtRePanel from "../Ads/TrackedArtRePanel";
 
 import styled from "styled-components";
 import { Fragment } from "react";
+
+import onClient from "../../utils/onClient";
+import { POSITION } from "../Ads/positions";
+import TrackedBasicPanel from "../Ads/TrackedBasicPanel";
 
 const ArticleDiv = styled(EmbedExorcist)`
   font-family: "HK Grotesk";
@@ -36,16 +39,13 @@ function AdsInjector({ inputHtml, adsDisallowed }) {
     return inputHtml.split("</p>\n\n\n\n").map((chunk, i) => (
       <Fragment key={i}>
         {parse(chunk.concat("</p>"))}
-        {(i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars ? (
-          <TrackedArtRePanel
-            GASpercentage={i > 3 ? 100 : 65}
-            //GASpercentage={0}
-            report={i === 3}
-            changeable={i === 3}
-          />
-        ) : (
-          ""
-        )}
+        <div>
+          {onClient() && (i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars ? (
+            <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE} />
+          ) : (
+            ""
+          )}
+        </div>
       </Fragment>
     ));
   }

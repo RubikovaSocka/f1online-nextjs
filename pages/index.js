@@ -12,6 +12,7 @@ import Divider from "../components/Divider.js";
 import QuickNews from "../components/QuickNews";
 import CalendarLarge from "../components/CalendarLarge";
 import ResultsLarge from "../components/ResultsLarge";
+import CalResWidget from "../components/CalResWidget";
 
 import { fetchNewArticles } from "../redux/actions/articlesActions";
 import {
@@ -21,7 +22,7 @@ import {
   SIDEBAR,
 } from "../components/PageLayout";
 
-import isMobile from "../utils/onMobile";
+import onMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 
 //import fontawesomeSubset from "fontawesome-subset";
@@ -30,7 +31,8 @@ import Product, {
   POSITIONS as PRODUCT_POSITIONS,
 } from "../components/Ads/Products";
 import RelatedArticles from "../components/RelatedArticles";
-import TrackedArtRePanel from "../components/Ads/TrackedArtRePanel";
+import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
+import { POSITION } from "../components/Ads/positions";
 //import Comments from "../components/Comments";
 
 const PODCAST_TAG = 180;
@@ -39,7 +41,7 @@ function Home() {
   const state = useSelector((state) => state.articles);
   const postsData = state.indexArticles;
   const isLoading = state.isLoading;
-  const isScreenMobile = isMobile();
+  const isScreenMobile = onMobile();
 
   return (
     <>
@@ -68,41 +70,47 @@ function Home() {
               title="Pozrieť všetky"
             />
             <Divider height="20px" />
-            {onClient() && isScreenMobile ? (
-              <div>
-                <RelatedArticles
-                  title="Najnovšie podcasty"
-                  tagID={PODCAST_TAG}
-                />
-              </div>
-            ) : (
-              <>
-                <div>
-                  <TrackedArtRePanel
-                    GASpercentage={65}
-                    report={true}
-                    changeable={true}
-                  />
-                </div>
-                <Divider height="15px" />
-                <RelatedArticles
-                  title="Najnovšie podcasty"
-                  tagID={PODCAST_TAG}
-                />
-                <Divider height="30px" />
-                <SectionTitle title="Boxová tabuľa" />
-                <Divider height="15px" />
-                <CalendarLarge />
-                <ResultsLarge />
-              </>
-            )}
+            <div>
+              {onClient() ? (
+                isScreenMobile ? (
+                  <div>
+                    <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE} />
+                    <RelatedArticles
+                      title="Najnovšie podcasty"
+                      tagID={PODCAST_TAG}
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE} />
+                    <Divider height="15px" />
+                    <RelatedArticles
+                      title="Najnovšie podcasty"
+                      tagID={PODCAST_TAG}
+                    />
+                    <Divider height="30px" />
+                    <SectionTitle title="Boxová tabuľa" />
+                    <Divider height="15px" />
+                    <CalendarLarge />
+                    <ResultsLarge />
+                  </>
+                )
+              ) : null}
+            </div>
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="15px" />
-            <Product position={PRODUCT_POSITIONS.SIDEBAR} />
-            <Divider height="30px" />
+            <div>
+              {onClient() ? (
+                <>
+                  <TrackedBasicPanel position={POSITION.SIDEBAR_HOMEPAGE} />
+                  <Divider height="30px" />
+                </>
+              ) : null}
+            </div>
             <PopularArticles />
             <QuickNews />
+            <div>{onClient() && isScreenMobile ? <CalResWidget /> : null}</div>
             <Divider height="20px" />
             {/*<TrackedSidePanel />*/}
           </SIDEBAR>

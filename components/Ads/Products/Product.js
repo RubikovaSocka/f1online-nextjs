@@ -20,7 +20,6 @@ function Product({ position }) {
   const item = partner.items[Math.floor(Math.random() * partner.items.length)];
   //const item = products[0].items[2];
   const onClickedHandler = () => {
-    console.log("Clicked", item.url);
     ReactGA.event({
       category: "partnerEshop",
       action: `eshopEntered`,

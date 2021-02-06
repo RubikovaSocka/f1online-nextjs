@@ -7,20 +7,19 @@ const DriverBox = styled.div`
 
 const Slider = styled.div`
   ::before {
-    content: '${props => props.title}';
-    color: ${props => props.theme.TEXT_COLOR};
+    content: "${(props) => props.title}";
+    color: ${(props) => props.theme.TEXT_COLOR};
   }
 
   ::after {
-    background-color: ${props => props.theme[props.teamName.replace(" ", "_")]};
+    background-color: ${(props) =>
+      props.theme[props.teamName.replace(" ", "_")]};
   }
-
-
 
   @media only screen and (min-width: 1024px) {
     position: relative;
     ::after {
-      content: '${props => props.title}';
+      content: "${(props) => props.title}";
       position: absolute;
       padding-left: 0;
       left: 0px;
@@ -28,13 +27,13 @@ const Slider = styled.div`
       top: 0;
       bottom: 0;
       right: 0;
-      color: ${props =>
-        props.theme[`${props.teamName.replace(" ", "_")}_Font`]};;
+      color: ${(props) =>
+        props.theme[`${props.teamName.replace(" ", "_")}_Font`]};
       transition: width 0.28s ease-out;
       white-space: nowrap;
       overflow: hidden;
 
-      background-color: ${props =>
+      background-color: ${(props) =>
         props.theme[props.teamName.replace(" ", "_")]};
     }
 
@@ -55,7 +54,7 @@ const Driver = styled(Slider)`
   height: 20px;
   font-weight: 700;
   overflow: hidden;
-  color: ${props => props.theme.TEXT_COLOR};
+  color: ${(props) => props.theme.TEXT_COLOR};
 `;
 
 const DriverLine = styled.div`
@@ -63,7 +62,7 @@ const DriverLine = styled.div`
   margin: 10px 0;
   height: 20px;
   border-left: 3px solid
-    ${props => props.theme[props.teamName.replace(" ", "_")]};
+    ${(props) => props.theme[props.teamName.replace(" ", "_")]};
   padding-left: 4px;
   transition-delay: 0.23s;
   cursor: pointer;
@@ -107,7 +106,7 @@ const Container = styled.div`
     padding: 0;
     display: block;
     font-size: 13px;
-    color: ${props => props.theme.TEXT_COLOR};
+    color: ${(props) => props.theme.TEXT_COLOR};
   }
 
   @media only screen and (min-width: 1024px) {

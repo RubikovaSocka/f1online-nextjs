@@ -13,14 +13,17 @@ import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
-  SIDEBAR
+  SIDEBAR,
 } from "../components/PageLayout";
 import { PAGE_MAIN_TITLE } from "../constants";
+
+import onClient from "../utils/onClient";
+import { POSITION } from "../components/Ads/positions";
+import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
 
 import styles from "../styles/piloti.module.scss";
 
 function Drivers({ teamsData }) {
-
   return (
     <>
       <Head>
@@ -42,7 +45,26 @@ function Drivers({ teamsData }) {
             <SectionTitle title="Piloti" />
             <Divider height="20px" />
             <div className={styles.driversContainer}>
-              {teamsData.ConstructorTable.Constructors.map(
+              {teamsData.ConstructorTable.Constructors.slice(0, 4).map(
+                (constructor, index) => {
+                  return constructor.Drivers.map((driver, index2) => (
+                    <DriverPreview
+                      key={`${index}-${index2}`}
+                      driver={driver}
+                      team={constructor.name}
+                      teamColor={constructor.teamColor}
+                    />
+                  ));
+                }
+              )}
+            </div>
+            <div>
+              {onClient() ? (
+                <TrackedBasicPanel position={POSITION.CONTENT_DRIVERS_PAGE} />
+              ) : null}
+            </div>
+            <div className={styles.driversContainer}>
+              {teamsData.ConstructorTable.Constructors.slice(4).map(
                 (constructor, index) => {
                   return constructor.Drivers.map((driver, index2) => (
                     <DriverPreview
@@ -74,15 +96,15 @@ export const getServerSideProps = wrapper.getServerSideProps(
     store.dispatch(END);
     const response = await axios({
       method: "get",
-      url: "https://wpadmin.f1online.sk/wp-content/uploads/teams.json"
+      url: "https://wpadmin.f1online.sk/wp-content/uploads/teams2021.json",
       //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
     });
     await store.sagaTask.toPromise();
 
     return {
       props: {
-        teamsData: response.data
-      }
+        teamsData: response.data,
+      },
     };
   }
 );

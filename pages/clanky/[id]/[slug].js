@@ -17,6 +17,9 @@ import {
   SIDEBAR,
 } from "../../../components/PageLayout";
 import { PAGE_MAIN_TITLE } from "../../../constants";
+import onClient from "../../../utils/onClient";
+import { POSITION } from "../../../components/Ads/positions";
+import TrackedBasicPanel from "../../../components/Ads/TrackedBasicPanel";
 
 function Post({ postData }) {
   return (
@@ -34,7 +37,11 @@ function Post({ postData }) {
             <QuickNews />
             <Divider height="15px" />
             <CalResWidget />
-            <TrackedSidePanel />
+            <div>
+              {onClient() ? (
+                <TrackedBasicPanel position={POSITION.SIDEBAR_ARTICLE} />
+              ) : null}
+            </div>
           </SIDEBAR>
         </COLUMNED_PAGE>
       </MAIN>

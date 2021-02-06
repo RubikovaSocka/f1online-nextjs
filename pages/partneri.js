@@ -14,7 +14,6 @@ import { PAGE_MAIN_TITLE } from "../constants";
 import { useEffect } from "react";
 
 export default function Partneri() {
-
   return (
     <>
       <Head>

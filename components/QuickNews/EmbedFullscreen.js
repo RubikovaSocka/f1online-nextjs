@@ -6,6 +6,9 @@ import AdSense from "react-adsense";
 
 import styled from "styled-components";
 import onMobile from "../../utils/onMobile";
+import onClient from "../../utils/onClient";
+import { POSITION } from "../Ads/positions";
+import TrackedInsetPanel from "../Ads/TrackedInsetPanel";
 
 import EmbedContainer from "react-oembed-container";
 import EmbedExorcist from "../EmbedExorcist";
@@ -184,21 +187,7 @@ function EmbedFullscreen(props) {
         )}
       </Content>
       <RPanel>
-        {onMobile() ? (
-          <AdSense.Google
-            client="ca-pub-2681240380511410"
-            slot="3863813186"
-            style={{
-              display: "inline-block",
-              width: "100%",
-              height: "100%",
-            }}
-            layout="in-article"
-            format=""
-          />
-        ) : (
-          <TrackedRSpravyPanel />
-        )}
+        <TrackedInsetPanel position={POSITION.SIDEBAR_RYCHLESPRAVY} />
       </RPanel>
       <CloseButton
         onClick={() => {

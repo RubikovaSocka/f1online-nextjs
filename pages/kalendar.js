@@ -23,11 +23,11 @@ function Calendar() {
   return (
     <>
       <Head>
-        <title key="meta_title">{`Kalendár | ${PAGE_MAIN_TITLE}`}</title>
+        <title key="meta_title">{`Kalendár F1 pre sezónu 2021 | ${PAGE_MAIN_TITLE}`}</title>
         <meta
           key="meta_ogtitle"
           property="og:title"
-          content={`Kalendár | ${PAGE_MAIN_TITLE}`}
+          content={`Kalendár F1 pre sezónu 2021 | ${PAGE_MAIN_TITLE}`}
         />
         <meta
           key="meta_url"
@@ -38,7 +38,7 @@ function Calendar() {
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL>
-            <SectionTitle title="Kalendár" />
+            <SectionTitle title="Kalendár F1 pre sezónu 2021" />
             <Divider height="28px" />
             <CalendarBox data={calendarData} />
           </PAGE_MAIN_COL>

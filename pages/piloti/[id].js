@@ -20,6 +20,9 @@ const ImageGallery = dynamic(() =>
   import("../../components/react-image-gallery/src/ImageGallery")
 );
 import { PAGE_MAIN_TITLE } from "../../constants";
+import onClient from "../../utils/onClient";
+import { POSITION } from "../../components/Ads/positions";
+import TrackedBasicPanel from "../../components/Ads/TrackedBasicPanel";
 
 const Container = styled.div`
   .briefInfoContainer {
@@ -288,13 +291,18 @@ function DriverPage({ driverData }) {
 
             <Container>
               {driverBioData}
-
               <Divider height="30px" />
               <div className="titleContainer">
                 <h2 className="title">Najnovšie články</h2>
               </div>
               {driverPosts}
-
+              <div>
+                {onClient() ? (
+                  <TrackedBasicPanel
+                    position={POSITION.CONTENT_DRIVER_DETAIL}
+                  />
+                ) : null}
+              </div>
               {driverData.about ? (
                 <>
                   <Divider height="15px" />

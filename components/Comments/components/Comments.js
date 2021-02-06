@@ -18,7 +18,6 @@ export default function Comments() {
   }, []);
   if (!json) return null;
   const posts = makeThreads(json.post_stream.posts);
-  console.log(posts);
   return (
     <div>
       {posts.map((item, index) => {

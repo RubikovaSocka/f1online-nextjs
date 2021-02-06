@@ -4,9 +4,14 @@ import Divider from "../../Divider";
 import RelatedArticles from "../../RelatedArticles";
 import DiskusnyBox from "../../DiskusnyBox";
 import decodeHtml from "../../../utils/decodeHtml";
-import Product, {
+/*import Product, {
   POSITIONS as PRODUCT_POSITIONS,
-} from "../../Ads/Products";
+} from "../../Ads/Products";*/
+
+import onClient from "../../../utils/onClient";
+import { POSITION } from "../../Ads/positions";
+import TrackedBasicPanel from "../../Ads/TrackedBasicPanel";
+
 import styled from "styled-components";
 
 const ButtonRow = styled.div`
@@ -40,7 +45,12 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
         articleID={id}
       />
       <Divider height="10px" />
-      <Product position={PRODUCT_POSITIONS.MAIN} />
+      {/*<Product position={PRODUCT_POSITIONS.MAIN} />*/}
+      <div>
+        {onClient() ? (
+          <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE_END} />
+        ) : null}
+      </div>
       <Divider height="10px" />
       <RelatedArticles
         title="Možno vás zaujme"

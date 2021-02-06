@@ -24,6 +24,9 @@ import dynamic from "next/dynamic";
 const ImageGallery = dynamic(() =>
   import("../../components/react-image-gallery/src/ImageGallery")
 );
+import onClient from "../../utils/onClient";
+import { POSITION } from "../../components/Ads/positions";
+import TrackedBasicPanel from "../../components/Ads/TrackedBasicPanel";
 import { PAGE_MAIN_TITLE } from "../../constants";
 import styled from "styled-components";
 
@@ -327,7 +330,7 @@ function TeamPage({ teamData }) {
               href="/piloti/[id]"
               as={`/piloti/${teamData.Drivers[0].driverId}`}
             >
-              <a onClick={() => NProgress.start()}>
+              <a>
                 <img
                   alt={`${teamData.Drivers[0].givenName} ${teamData.Drivers[0].familyName} portrét`}
                   src={teamData.Drivers[0].img300}
@@ -343,7 +346,7 @@ function TeamPage({ teamData }) {
               href="/piloti/[id]"
               as={`/piloti/${teamData.Drivers[1].driverId}`}
             >
-              <a onClick={() => NProgress.start()}>
+              <a>
                 <img
                   alt={`${teamData.Drivers[1].givenName} ${teamData.Drivers[1].familyName} portrét`}
                   src={teamData.Drivers[1].img300}
@@ -391,12 +394,16 @@ function TeamPage({ teamData }) {
             <Container>
               {teamDataBlock}
 
+              <div>
+                {onClient() ? (
+                  <TrackedBasicPanel position={POSITION.CONTENT_TEAM_DETAIL} />
+                ) : null}
+              </div>
               <Divider height="30px" />
               <div className="titleContainer">
                 <h2 className="title">Najnovšie články</h2>
               </div>
               {teamPosts}
-
               <div className="titleContainer">
                 <Divider height="15px" />
                 <h2 className="title">Najnovšie z media zóny</h2>

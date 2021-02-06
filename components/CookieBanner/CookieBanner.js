@@ -5,10 +5,7 @@ function CookieBanner() {
   const [isAllowed, setIsAllowed] = useState(true);
 
   useEffect(() => {
-    console.log(
-      localStorage.getItem("f1online-cookie-ok"),
-      localStorage.getItem("f1online-cookie-ok") === "suhlasOK"
-    );  
+     
     if (!(localStorage.getItem("f1online-cookie-ok") === "suhlasOK")) {
       setTimeout(() => {
         setIsAllowed(false);
@@ -17,7 +14,6 @@ function CookieBanner() {
   }, []);
 
   const allowedPressed = () => {
-    console.log("allowed pressed");
     localStorage.setItem("f1online-cookie-ok", "suhlasOK");
     setIsAllowed(true);
   };

@@ -18,6 +18,9 @@ import {
   SIDEBAR,
 } from "../components/PageLayout";
 import { PAGE_MAIN_TITLE } from "../constants";
+import onClient from "../utils/onClient";
+import { POSITION } from "../components/Ads/positions";
+import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
 
 export default function Teams({ teamsData }) {
   return (
@@ -43,9 +46,23 @@ export default function Teams({ teamsData }) {
             {/*<img className={styles.image} src='' />*/}
 
             <div className={styles.container}>
-              {teamsData.ConstructorTable.Constructors.map((constructor) => (
-                <TeamPreview constructor={constructor} />
-              ))}
+              {teamsData.ConstructorTable.Constructors.slice(0, 4).map(
+                (constructor) => (
+                  <TeamPreview constructor={constructor} />
+                )
+              )}
+            </div>
+            <div>
+              {onClient() ? (
+                <TrackedBasicPanel position={POSITION.CONTENT_TEAMS_PAGE} />
+              ) : null}
+            </div>
+            <div className={styles.container}>
+              {teamsData.ConstructorTable.Constructors.slice(4).map(
+                (constructor) => (
+                  <TeamPreview constructor={constructor} />
+                )
+              )}
             </div>
           </PAGE_MAIN_COL>
           <SIDEBAR>
@@ -66,7 +83,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     store.dispatch(END);
     const response = await axios({
       method: "get",
-      url: "https://wpadmin.f1online.sk/wp-content/uploads/teams.json",
+      url: "https://wpadmin.f1online.sk/wp-content/uploads/teams2021.json",
       //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
     });
     await store.sagaTask.toPromise();

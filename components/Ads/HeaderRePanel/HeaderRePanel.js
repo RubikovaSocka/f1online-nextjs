@@ -34,6 +34,7 @@ const Container = styled.div`
     }
   }
 `;
+
 function HeaderRePanel(props) {
   const panelsState = useSelector((state) => state.panels);
   const { isLoading, json, error } = panelsState;
