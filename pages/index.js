@@ -24,6 +24,8 @@ import {
 
 import onMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
+import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
+import { POSITION } from "../components/Ads/positions";
 
 //import fontawesomeSubset from "fontawesome-subset";
 import PopularArticles from "../components/PopularArticles/PopularArticles";
@@ -31,8 +33,6 @@ import Product, {
   POSITIONS as PRODUCT_POSITIONS,
 } from "../components/Ads/Products";
 import RelatedArticles from "../components/RelatedArticles";
-import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
-import { POSITION } from "../components/Ads/positions";
 //import Comments from "../components/Comments";
 
 const PODCAST_TAG = 180;
@@ -41,7 +41,6 @@ function Home() {
   const state = useSelector((state) => state.articles);
   const postsData = state.indexArticles;
   const isLoading = state.isLoading;
-  const isScreenMobile = onMobile();
 
   return (
     <>
@@ -72,36 +71,32 @@ function Home() {
             <Divider height="20px" />
             <div>
               {onClient() ? (
-                isScreenMobile ? (
+                <>
+                  <TrackedBasicPanel position={POSITION.CONTENT_HP} />
+                  <Divider height="15px" />
+                  <RelatedArticles
+                    title="Najnovšie podcasty"
+                    tagID={PODCAST_TAG}
+                  />
                   <div>
-                    <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE} />
-                    <RelatedArticles
-                      title="Najnovšie podcasty"
-                      tagID={PODCAST_TAG}
-                    />
+                    {!onMobile() ? (
+                      <>
+                        <Divider height="30px" />
+                        <SectionTitle title="Boxová tabuľa" />
+                        <Divider height="15px" />
+                        <CalendarLarge />
+                        <ResultsLarge />
+                      </>
+                    ) : null}
                   </div>
-                ) : (
-                  <>
-                    <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE} />
-                    <Divider height="15px" />
-                    <RelatedArticles
-                      title="Najnovšie podcasty"
-                      tagID={PODCAST_TAG}
-                    />
-                    <Divider height="30px" />
-                    <SectionTitle title="Boxová tabuľa" />
-                    <Divider height="15px" />
-                    <CalendarLarge />
-                    <ResultsLarge />
-                  </>
-                )
+                </>
               ) : null}
             </div>
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="15px" />
             <div>
-              {onClient() ? (
+              {onClient() && !onMobile() ? (
                 <>
                   <TrackedBasicPanel position={POSITION.SIDEBAR_HOMEPAGE} />
                   <Divider height="30px" />
@@ -109,9 +104,25 @@ function Home() {
               ) : null}
             </div>
             <PopularArticles />
+            <div>
+              {onClient() && onMobile() ? (
+                <>
+                  <TrackedBasicPanel position={POSITION.SIDEBAR_HP_TOP} />
+                  <Divider height="20px" />
+                </>
+              ) : null}
+            </div>
             <QuickNews />
-            <div>{onClient() && isScreenMobile ? <CalResWidget /> : null}</div>
-            <Divider height="20px" />
+            <div>
+              {onClient() && onMobile() ? (
+                <>
+                  <CalResWidget />
+                  <TrackedBasicPanel position={POSITION.FOOTER_HP} />
+                  <Divider height="40px" />
+                </>
+              ) : null}
+            </div>
+
             {/*<TrackedSidePanel />*/}
           </SIDEBAR>
         </COLUMNED_PAGE>

@@ -21,6 +21,18 @@ import onClient from "../../../utils/onClient";
 import { POSITION } from "../../../components/Ads/positions";
 import TrackedBasicPanel from "../../../components/Ads/TrackedBasicPanel";
 
+import styled from "styled-components";
+
+const BContainer = styled.div`
+  margin-bottom: 40px;
+
+  @media only screen and (min-width: 1024px) {
+    margin-bottom: 0;
+    position: sticky;
+    top: 120px;
+  }
+`;
+
 function Post({ postData }) {
   return (
     <>
@@ -37,11 +49,11 @@ function Post({ postData }) {
             <QuickNews />
             <Divider height="15px" />
             <CalResWidget />
-            <div>
+            <BContainer>
               {onClient() ? (
                 <TrackedBasicPanel position={POSITION.SIDEBAR_ARTICLE} />
               ) : null}
-            </div>
+            </BContainer>
           </SIDEBAR>
         </COLUMNED_PAGE>
       </MAIN>

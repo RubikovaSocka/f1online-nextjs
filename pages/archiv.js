@@ -20,6 +20,11 @@ import {
 } from "../components/PageLayout";
 import { PAGE_MAIN_TITLE } from "../constants";
 
+import onMobile from "../utils/onMobile";
+import onClient from "../utils/onClient";
+import { POSITION } from "../components/Ads/positions";
+import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
+
 const PER_PAGE = 12;
 
 function Archiv() {
@@ -88,7 +93,12 @@ function Archiv() {
             />
           </PAGE_MAIN_COL>
           <SIDEBAR>
-            <Divider height="40px" />
+            <div>
+              {onClient() && onMobile() ? (
+                <TrackedBasicPanel position={POSITION.SIDEBAR_ARCHIVE_TOP} />
+              ) : null}
+            </div>
+            <Divider height="15px" />
             <PopularBox />
             <Divider height="25px" />
             <QuickNews />

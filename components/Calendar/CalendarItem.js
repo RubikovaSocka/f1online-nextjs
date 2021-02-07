@@ -3,11 +3,11 @@ import onMobile from "../../utils/onMobile";
 import {
   SESSION_NAMES,
   SESSION_DURATIONS,
-  getSesDurationText
+  getSesDurationText,
 } from "../../utils/sessions";
 import { Chevron, Container } from "./Containers";
 
-const getTvText = tv => {
+const getTvText = (tv) => {
   return `${tv ? tv : "doplníme..."}`;
 };
 
@@ -26,7 +26,7 @@ function CalendarItem({
   r_tv,
   position,
   circuit_map,
-  circuit_name
+  circuit_name,
 }) {
   const [isOpened, setIsOpened] = useState(false);
 
@@ -35,11 +35,12 @@ function CalendarItem({
       {onMobile() ? (
         <div
           className={`header ${isOpened ? "opened" : "closed"}`}
-          onClick={() => setIsOpened(prev => !prev)}
+          onClick={() => setIsOpened((prev) => !prev)}
         >
           <div>
-            <span className="venueName">{`${position +
-              1}. VC ${venue_name}`}</span>
+            <span className="venueName">{`${
+              position + 1
+            }. VC ${venue_name}`}</span>
             <div className="venueHeaderDate">
               <span className="date">{venue_date}</span>
               <span className="raceTime">{r_time}</span>
@@ -50,17 +51,15 @@ function CalendarItem({
       ) : (
         <div
           className={`header ${isOpened ? "opened" : "closed"}`}
-          onClick={() => setIsOpened(prev => !prev)}
+          onClick={() => setIsOpened((prev) => !prev)}
         >
           <Chevron isOpened={isOpened} />
-          <span className="venueName">{`${position +
-            1}. VC ${venue_name}`}</span>
+          <span className="venueName">{`${
+            position + 1
+          }. VC ${venue_name}`}</span>
           <div className="venueHeaderDate">
             <span className="date">
-              {venue_date
-                .split("-")[1]
-                .trim()
-                .replace(" 2020", "")}
+              {venue_date.split("-")[1].trim().replace(" 2020", "")}
             </span>
             <span className="raceTime">{r_time}</span>
           </div>
@@ -130,7 +129,7 @@ function CalendarItem({
           )}
         </div>
         <div className="circuitContainer">
-          <img src={circuit_map}></img>
+          <img src={circuit_map ? circuit_map : null}></img>
           <span>{circuit_name}</span>
         </div>
       </div>

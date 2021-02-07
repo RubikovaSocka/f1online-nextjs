@@ -1,5 +1,9 @@
 import TitleArticlePreview from "../TitleArticlePreview";
 import styled from "styled-components";
+import onClient from "../../utils/onClient";
+import onMobile from "../../utils/onMobile";
+import TrackedInsetPanel from "../../components/Ads/TrackedInsetPanel";
+import { POSITION } from "../../components/Ads/positions";
 
 const Container = styled.div`
   padding: 0;
@@ -54,6 +58,15 @@ const Art4 = styled.div`
   }
 `;
 
+const BContainer = styled.div`
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+  @media only screen and (min-width: 1024px) {
+    margin-bottom: 0;
+  }
+`;
+
 function TitleArea({ posts, isLoading }) {
   return (
     <Container>
@@ -69,6 +82,11 @@ function TitleArea({ posts, isLoading }) {
       <Art3>
         <TitleArticlePreview {...posts[2]} isLoading={isLoading} />
       </Art3>
+      <BContainer>
+        {onClient() & onMobile() ? (
+          <TrackedInsetPanel position={POSITION.CONTENT_HP_TITLE_AREA} />
+        ) : null}
+      </BContainer>
       <Art4>
         <TitleArticlePreview {...posts[4]} isLoading={isLoading} />
       </Art4>

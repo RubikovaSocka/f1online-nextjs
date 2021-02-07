@@ -13,8 +13,8 @@ const getPositionName = (id) => {
       return "CONTENT_ARCHIVE";
     case POSITION.CONTENT_ARTICLE:
       return "CONTENT_ARTICLE";
-    case POSITION.CONTENT_HOMEPAGE:
-      return "CONTENT_HOMEPAGE";
+    case POSITION.CONTENT_HP:
+      return "CONTENT_HP";
     case POSITION.CONTENT_ARTICLE_END:
       return "CONTENT_ARTICLE_END";
     case POSITION.CONTENT_DRIVER_DETAIL:
@@ -25,12 +25,20 @@ const getPositionName = (id) => {
       return "CONTENT_TEAM_DETAIL";
     case POSITION.CONTENT_DRIVERS_PAGE:
       return "CONTENT_DRIVERS_PAGE";
-    case POSITION.SIDEBAR_HOMEPAGE:
-      return "SIDEBAR_HOMEPAGE";
+    case POSITION.SIDEBAR_HP_TOP:
+      return "SIDEBAR_HP_TOP";
     case POSITION.SIDEBAR_ARTICLE:
       return "SIDEBAR_ARTICLE";
     case POSITION.SIDEBAR_RYCHLESPRAVY:
       return "SIDEBAR_RYCHLESPRAVY";
+    case POSITION.CONTENT_HP_TITLE_AREA:
+      return "CONTENT_HP_TITLE_AREA";
+    case POSITION.FOOTER_HP:
+      return "FOOTER_HP";
+    case POSITION.SIDEBAR_ARCHIVE_TOP:
+      return "SIDEBAR_ARCHIVE_TOP";
+    case POSITION.CONTENT_ARTICLE_COMMENTS:
+      return "CONTENT_ARTICLE_COMMENTS";
     default:
       return "Unknown";
   }
@@ -80,7 +88,9 @@ function GadsPanel({ slot, isVisible, inset }) {
     <AdSense.Google
       client="ca-pub-2681240380511410"
       slot={slot}
-      style={{ display: "block" }}
+      style={{
+        display: "block",
+      }}
       //layout="in-article"
       format="auto"
       responsive="true"

@@ -9,6 +9,7 @@ import decodeHtml from "../../../utils/decodeHtml";
 } from "../../Ads/Products";*/
 
 import onClient from "../../../utils/onClient";
+import onMobile from "../../../utils/onMobile";
 import { POSITION } from "../../Ads/positions";
 import TrackedBasicPanel from "../../Ads/TrackedBasicPanel";
 
@@ -58,6 +59,11 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
         tagID={tags[0]}
         except={id}
       />
+      <div>
+        {onClient() && onMobile() ? (
+          <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE_COMMENTS} />
+        ) : null}
+      </div>
       <Divider height="10px" />
 
       {acf.no_comments ? null : (

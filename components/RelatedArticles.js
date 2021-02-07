@@ -4,6 +4,11 @@ import { URLS } from "../redux/apis/urls";
 import fetchArchiveArticles from "../redux/apis/fetchArchiveArticlesApi";
 import SectionTitle from "./SectionTitle";
 
+import onMobile from "../utils/onMobile";
+import onClient from "../utils/onClient";
+import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
+import { POSITION } from "../components/Ads/positions";
+
 //fetch 3 articles by tag or max6 articles by ids
 function RelatedArticles({ ids, tagID, except, title }) {
   const [articles, setArticles] = useState([]);
@@ -12,23 +17,23 @@ function RelatedArticles({ ids, tagID, except, title }) {
   useEffect(() => {
     if (ids && ids.length > 0) {
       Promise.all(
-        ids.map(id =>
+        ids.map((id) =>
           fetch(
             `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}${id}?${URLS.previewFields}`
           )
         )
       )
-        .then(res => Promise.all(res.map(r => r.json())))
-        .then(res => {
+        .then((res) => Promise.all(res.map((r) => r.json())))
+        .then((res) => {
           setIsLoading(false);
           setArticles(res);
         });
     } else if (tagID) {
       fetchArchiveArticles({ pageNumber: 1, perPage: 4, tagID: tagID }).then(
-        res => {
+        (res) => {
           setArticles(
             res.articles
-              .filter(post => (except ? post.id !== except : true))
+              .filter((post) => (except ? post.id !== except : true))
               .slice(0, 3)
           );
           setIsLoading(false);

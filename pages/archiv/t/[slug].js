@@ -19,6 +19,10 @@ import {
   SIDEBAR,
 } from "../../../components/PageLayout";
 import { PAGE_MAIN_TITLE } from "../../../constants";
+import onMobile from "../../../utils/onMobile";
+import onClient from "../../../utils/onClient";
+import TrackedBasicPanel from "../../../components/Ads/TrackedBasicPanel";
+import { POSITION } from "../../../components/Ads/positions";
 
 const PER_PAGE = 12;
 
@@ -79,6 +83,11 @@ function Archiv() {
             />
           </PAGE_MAIN_COL>
           <SIDEBAR>
+            <div>
+              {onClient() && onMobile() ? (
+                <TrackedBasicPanel position={POSITION.SIDEBAR_ARCHIVE_TOP} />
+              ) : null}
+            </div>
             <Divider height="40px" />
             <PopularBox
               pickedSlug={router.query.slug ? router.query.slug : ""}

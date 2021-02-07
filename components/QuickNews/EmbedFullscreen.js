@@ -112,7 +112,7 @@ const Content = styled.div`
 
   @media only screen and (max-width: 1023px) {
     height: ${(props) =>
-      props.textOnly ? "calc(50% - 10px)" : "calc(100% - 140px)"};
+      props.textOnly ? "calc(50% - 10px)" : "calc(100% - 160px)"};
   }
 
   @media only screen and (min-width: 1024px) {
@@ -154,6 +154,15 @@ const ExorcistContainer = styled(EmbedExorcist)`
   }
 `;
 
+const BContainer = styled.div`
+  height: 80px;
+  width: 100%;
+  @media only screen and (min-width: 1024px) {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
 function EmbedFullscreen(props) {
   const { id, date, embed, image, content, hideClick, hidePopup } = props;
 
@@ -187,7 +196,9 @@ function EmbedFullscreen(props) {
         )}
       </Content>
       <RPanel>
-        <TrackedInsetPanel position={POSITION.SIDEBAR_RYCHLESPRAVY} />
+        <BContainer>
+          <TrackedInsetPanel position={POSITION.SIDEBAR_RYCHLESPRAVY} />
+        </BContainer>
       </RPanel>
       <CloseButton
         onClick={() => {
