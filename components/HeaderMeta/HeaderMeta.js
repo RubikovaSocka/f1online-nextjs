@@ -6,7 +6,7 @@ export default function HeaderMeta({ theme }) {
   return (
     <Head>
       <title key="meta_title">
-        Všetky novinky zo sveta F1 | {PAGE_MAIN_TITLE}
+        Všetky novinky zo sveta Formuly 1 | {PAGE_MAIN_TITLE}
       </title>
       <link rel="shortcut icon" href="/favicon.ico" />
       <link
