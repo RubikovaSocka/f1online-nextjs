@@ -73,6 +73,7 @@ function App({ Component, pageProps }) {
     dispatch(initializeTheme());
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
+    ReactGA.pageview(window.location.pathname);
 
     Router.events.on("routeChangeStart", () => {
       NProgress.start();

@@ -6,6 +6,7 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 100vw;
   margin-top: 10px;
+  margin-bottom: 10px;
 
   @media only screen and (min-width: 1024px) {
     width: 972px;
