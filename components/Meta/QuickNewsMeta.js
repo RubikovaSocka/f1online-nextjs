@@ -8,7 +8,9 @@ export default function QuickNewsMeta({ newsItem }) {
   const regex = /(<([^>]+)>)/gi;
   const obsah =
     newsItem && newsItem.id
-      ? decodeHtml(newsItem.acf.obsah_rychlej_spravy).replace(regex, "")
+      ? decodeHtml(newsItem.acf.obsah_rychlej_spravy)
+          .replace(regex, "")
+          .replace("\n", " ")
       : null;
 
   const title_final = `${
@@ -24,15 +26,15 @@ export default function QuickNewsMeta({ newsItem }) {
   } | ${PAGE_MAIN_TITLE}`;
   const metaUrl =
     newsItem && newsItem.id
-      ? `${URLS.FRONTEND_BASE}rychle-spravy/${newsItem.id}`
+      ? `${URLS.FRONTEND_BASE}rychle-spravy?id=${newsItem.id}`
       : null;
   const metaImage =
     newsItem && newsItem.id
-      ? `${URLS.FRONTEND_API_BASE}rp/${newsItem.id}`
-      : null;
+      ? `${URLS.FRONTEND_API_BASE}?id=${newsItem.id}`
+      : "https://wpadmin.f1online.sk/wp-content/uploads/rychle-spravy-img.jpeg";
   const date =
     newsItem && newsItem.date ? newsItem.date : `2020-05-13T09:15:00`;
-
+  console.log(metaImage, obsah);
   return (
     <Head>
       <title key="meta_title">{title_final}</title>
@@ -49,15 +51,7 @@ export default function QuickNewsMeta({ newsItem }) {
       <meta key="meta_type" property="og:type" content="article" />
       <meta key="meta_ogtitle" property="og:title" content={title_final} />
       <meta key="meta_description" property="og:description" content={obsah} />
-      <meta
-        key="meta_image"
-        property="og:image"
-        content={
-          metaImage
-            ? metaImage
-            : "https://wpadmin.f1online.sk/wp-content/uploads/rychle-spravy-img.jpeg"
-        }
-      />
+      <meta key="meta_image" property="og:image" content={metaImage} />
       <meta key="meta_image_height" property="og:image:height" content="625" />
       <meta key="meta_image_width" property="og:image:width" content="1000" />
     </Head>
