@@ -9,6 +9,7 @@ const Container = styled.div`
   top: 0;
   left: 0;
   width: 1000px;
+  //overflow: hidden;
   z-index: 500;
 `;
 const BackgroundImage = styled.img`
@@ -33,14 +34,14 @@ const Content = styled.div`
 `;
 const MessageContainer = styled.div`
   width: calc(100vw - 100px);
-  height: 510px;
+  height: 400px;
 
   padding: 0 50px;
   display: flex;
 `;
 const Message = styled.div`
   font-family: HK Grotesk;
-  font-size: ${(props) => (props.small ? "38px" : "48px")};
+  font-size: ${(props) => (props.small ? "28px" : "36px")};
   z-index: 501;
   font-weight: 600;
   display: flex;
@@ -52,7 +53,7 @@ const Message = styled.div`
   p {
     text-align: center;
     margin: 15px 0;
-    line-height: 60px;
+    line-height: 50px;
   }
 `;
 const LogoContainer = styled.div`
@@ -61,10 +62,10 @@ const LogoContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   width: calc(100% - 50px);
-  height: 115px;
+  height: 120px;
 `;
 const Logo = styled.img`
-  height: 80px;
+  height: 60px;
 `;
 
 export default function rp({ newsItem }) {

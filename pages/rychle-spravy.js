@@ -243,8 +243,6 @@ function NewsItemRendered({ newsItem, noBorder }) {
 }
 
 export default function QuickNewsPage({ newsItem, news, query }) {
-  console.log(newsItem, news, query);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [query]);

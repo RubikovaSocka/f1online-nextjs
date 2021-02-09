@@ -52,7 +52,7 @@ export default function QuickNewsMeta({ newsItem }) {
       <meta key="meta_ogtitle" property="og:title" content={title_final} />
       <meta key="meta_description" property="og:description" content={obsah} />
       <meta key="meta_image" property="og:image" content={metaImage} />
-      <meta key="meta_image_height" property="og:image:height" content="625" />
+      <meta key="meta_image_height" property="og:image:height" content="520" />
       <meta key="meta_image_width" property="og:image:width" content="1000" />
     </Head>
   );
