@@ -5,7 +5,17 @@ const TitleContainer = styled.div`
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  color: ${props => props.theme.TEXT_COLOR};
+  color: ${(props) => props.theme.TEXT_COLOR};
+`;
+
+const TopTitle = styled.h1`
+  margin: 0px;
+  padding-left: 0;
+  font-size: 24px;
+
+  @media only screen and (min-width: 1366px) {
+    font-size: 26px;
+  }
 `;
 
 const Title = styled.h2`
@@ -18,10 +28,10 @@ const Title = styled.h2`
   }
 `;
 
-function SectionTitle({ title }) {
+function SectionTitle({ title, topLevel }) {
   return (
     <TitleContainer>
-      <Title>{title}</Title>
+      {topLevel ? <TopTitle>{title}</TopTitle> : <Title>{title}</Title>}
     </TitleContainer>
   );
 }

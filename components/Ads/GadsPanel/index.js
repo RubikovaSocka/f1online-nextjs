@@ -39,6 +39,12 @@ const getPositionName = (id) => {
       return "SIDEBAR_ARCHIVE_TOP";
     case POSITION.CONTENT_ARTICLE_COMMENTS:
       return "CONTENT_ARTICLE_COMMENTS";
+    case POSITION.CONTENT_QUICKNEWS_PAGE:
+      return "CONTENT_QUICKNEWS_PAGE";
+    case POSITION.SIDEBAR_QUICKNEWS_PAGE:
+      return "SIDEBAR_QUICKNEWS_PAGE";
+    case POSITION.CONTENT_QUICKNEWS_PAGE_TOP:
+      return "CONTENT_QUICKNEWS_PAGE_TOP";
     default:
       return "Unknown";
   }

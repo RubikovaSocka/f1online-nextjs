@@ -54,10 +54,6 @@ const MessageText = styled.div`
     &:last-of-type {
       margin-bottom: 20px;
     }
-    &:first-of-type {
-      margin-bottom: 12px;
-      color: ${(props) => props.theme.SUBTITLE_COLOR};
-    }
   }
 `;
 
@@ -163,6 +159,34 @@ const BContainer = styled.div`
   }
 `;
 
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+const Date = styled.p`
+  padding: 0 8px;
+  font-family: "HK Grotesk";
+  font-size: 14px;
+  margin-bottom: 12px;
+  margin-right: 10px;
+  color: ${(props) => props.theme.SUBTITLE_COLOR};
+
+  &::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin-right: 6px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    color: #e10600;
+    content: "\f017";
+  }
+`;
+
 function EmbedFullscreen(props) {
   const { id, date, embed, image, content, hideClick, hidePopup } = props;
 
@@ -184,9 +208,25 @@ function EmbedFullscreen(props) {
   return (
     <Container>
       <Content textOnly={embed.length === 0 && !image}>
+        <Header>
+          <Date>{date}</Date>
+          <div>
+            <iframe
+              src={`https://www.facebook.com/plugins/like.php?href=${encodeURI(
+                `https://f1online.sk/rychle-spravy?id=${id}`
+              )}&width=128&layout=button_count&action=like&size=small&share=true&height=46&appId=313229599518550`}
+              width="183"
+              height="25"
+              style={{ border: "none", overflow: "hidden", paddingTop: "4px" }}
+              scrolling="no"
+              frameBorder="0"
+              allow="encrypted-media"
+            />
+          </div>
+        </Header>
         <MessageText
           dangerouslySetInnerHTML={{
-            __html: `<p>${date}</p>${content}`,
+            __html: content,
           }}
         />
         {embed ? (

@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector, useDispatch } from "react-redux";
 import SideSectionTitle from "../SideSectionTitle/SideSectionTitle";
 import OneLineNewsItem from "./OneLineNewsItem";
+import LinkAsButton from "../LinkAsButton/LinkAsButton";
 
 import { Item, Container, LoaderPanel } from "./StyledComponents";
 import { fetchQuickNewsArchive } from "../../redux/actions/quickNewsActions";
@@ -90,6 +91,20 @@ function QuickNews() {
           />
         ))}
       </InfiniteScroll>
+      <div
+        style={{
+          height: "30px",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          alignItems: "center",
+        }}
+      >
+        <LinkAsButton
+          target={"/rychle-spravy/"}
+          title={"Otvoriť všetky rýchle správy"}
+        />
+      </div>
     </Container>
   );
 }
