@@ -65,8 +65,18 @@ function PostMeta({ title, excerpt, id, date, slug, _embedded }) {
         content={_embedded["wp:featuredmedia"][0].media_details.height}
       />
       <meta
-        key="meta_image_width"
+        key="og_image_width"
         property="og:image:width"
+        content={_embedded["wp:featuredmedia"][0].media_details.width}
+      />
+      <meta
+        key="twitter_image_height"
+        property="twitter:image:height"
+        content={_embedded["wp:featuredmedia"][0].media_details.height}
+      />
+      <meta
+        key="twitter_image_width"
+        property="twitter:image:width"
         content={_embedded["wp:featuredmedia"][0].media_details.width}
       />
     </Head>
