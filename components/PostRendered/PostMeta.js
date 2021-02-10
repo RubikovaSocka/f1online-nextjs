@@ -71,12 +71,12 @@ function PostMeta({ title, excerpt, id, date, slug, _embedded }) {
       />
       <meta
         key="twitter_image_height"
-        property="twitter:image:height"
+        name="twitter:image:height"
         content={_embedded["wp:featuredmedia"][0].media_details.height}
       />
       <meta
         key="twitter_image_width"
-        property="twitter:image:width"
+        name="twitter:image:width"
         content={_embedded["wp:featuredmedia"][0].media_details.width}
       />
     </Head>
