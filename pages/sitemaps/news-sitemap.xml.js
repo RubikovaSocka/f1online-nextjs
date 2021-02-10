@@ -7,7 +7,7 @@ const buildUrlObject = (path, updatedAt, title) => {
   return {
     loc: { "#text": `${frontendUrl}${path}` },
     //lastmod: { "#text": updatedAt.split("T")[0] },
-    //changefreq: { "#text": "daily" },
+    changefreq: { "#text": "hourly" },
     //priority: { "#text": "1.0" },
     ["news:news"]: {
       ["news:publication"]: {
@@ -24,8 +24,6 @@ const Sitemap = () => null;
 
 Sitemap.getInitialProps = async ({ res }) => {
   try {
-   
-
     const articles = await fetchArchiveArticles({
       pageNumber: 1,
       perPage: "100",

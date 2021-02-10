@@ -1,3 +1,9 @@
 User-agent: *
-Sitemap: https://f1online.sk/sitemaps/sitemap.xml
+Sitemap: https://f1online.sk/sm/1
+Sitemap: https://f1online.sk/sm/2
+Sitemap: https://f1online.sk/sm/3
+Sitemap: https://f1online.sk/sm/4
+Sitemap: https://f1online.sk/sm/5
+Sitemap: https://f1online.sk/sm/6
+Sitemap: https://f1online.sk/sm/7
 Sitemap: https://f1online.sk/sitemaps/news-sitemap.xml
