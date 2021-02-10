@@ -16,9 +16,6 @@ export default async function fetchArchiveArticles({
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")}`
       : "";
-  console.log(
-    `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}?page=${pageNumber}&per_page=${perPage}&${URLS.previewFields}${TAG}${SEARCH}`
-  );
   return await axios
     .get(
       `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}?page=${pageNumber}&per_page=${perPage}&${URLS.previewFields}${TAG}${SEARCH}`

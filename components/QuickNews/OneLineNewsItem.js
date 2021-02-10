@@ -93,7 +93,7 @@ function OneLineNewsItem({
           event.preventDefault();
         }}
         role="button"
-        href={`/rychle-spravy?id=${id}`}
+        href={`/rychle-spravy/${id}`}
       >
         <MessageContainer>
           {hasVideo ? (

@@ -193,9 +193,9 @@ function EmbedFullscreen(props) {
   useEffect(() => {
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
-    ReactGA.pageview(`/rychle-spravy?id=${id}`);
+    ReactGA.pageview(`/rychle-spravy/${id}`);
     const oldPath = window.location.pathname;
-    window.history.replaceState(null, "", `/rychle-spravy?id=${id}`);
+    window.history.replaceState(null, "", `/rychle-spravy/${id}`);
     // returned function will be called on component unmount
     return () => {
       window.history.replaceState(null, "", oldPath);
@@ -210,7 +210,7 @@ function EmbedFullscreen(props) {
           <div>
             <iframe
               src={`https://www.facebook.com/plugins/like.php?href=${encodeURI(
-                `https://f1online.sk/rychle-spravy?id=${id}`
+                `https://f1online.sk/rychle-spravy/${id}`
               )}&width=128&layout=button_count&action=like&size=small&share=true&height=46&appId=2583504588587008`}
               width="183"
               height="25"

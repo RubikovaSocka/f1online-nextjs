@@ -17,7 +17,6 @@ const Sitemap = () => null;
 Sitemap.getInitialProps = async ({ res, query }) => {
   const { index } = query;
   const indexInt = parseInt(index);
-  console.log(indexInt);
   try {
     let articles = [];
     let nrPages = null;

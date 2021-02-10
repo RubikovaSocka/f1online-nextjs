@@ -69,13 +69,10 @@ const Logo = styled.img`
 `;
 
 export default function rp({ newsItem }) {
-  console.log(newsItem);
   const obsah =
     newsItem.acf.hasvideo && newsItem.acf.hasvideo === "Áno"
       ? `<p>VIDEO: ${newsItem.acf.obsah_rychlej_spravy.split("<p>")[1]}`
       : newsItem.acf.obsah_rychlej_spravy;
-  console.log(obsah);
-  console.log(obsah.length);
   const smallFont = obsah.length > 200;
   return (
     <Container>

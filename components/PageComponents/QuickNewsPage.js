@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import Router from "next/router";
-import { wrapper } from "../redux/store/store";
-import CalResWidget from "../components/CalResWidget/CalResWidget";
-import formatDate from "../utils/dateFormatter";
-import LoadingSpinner from "../components/LoadingSpinner";
+import { wrapper } from "../../redux/store/store";
+import CalResWidget from "../CalResWidget/CalResWidget";
+import formatDate from "../../utils/dateFormatter";
+import LoadingSpinner from "../LoadingSpinner";
 import Image from "next/image";
-import SectionTitle from "../components/SectionTitle/SectionTitle";
-import Divider from "../components/Divider";
-import PopularArticles from "../components/PopularArticles/PopularArticles";
+import SectionTitle from "../SectionTitle/SectionTitle";
+import Divider from "../Divider";
+import PopularArticles from "../PopularArticles/PopularArticles";
 import ReactPaginate from "react-paginate";
 import EmbedContainer from "react-oembed-container";
 import {
@@ -15,15 +15,15 @@ import {
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
   SIDEBAR,
-} from "../components/PageLayout";
-import { PAGE_MAIN_TITLE } from "../constants";
-import { URLS } from "../redux/apis/urls";
-import onMobile from "../utils/onMobile";
-import onClient from "../utils/onClient";
-import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
-import { POSITION } from "../components/Ads/positions";
-import QuickNewsMeta from "../components/Meta/QuickNewsMeta";
-import EmbedExorcist from "../components/EmbedExorcist";
+} from "../PageLayout";
+import { PAGE_MAIN_TITLE } from "../../constants";
+import { URLS } from "../../redux/apis/urls";
+import onMobile from "../../utils/onMobile";
+import onClient from "../../utils/onClient";
+import TrackedBasicPanel from "../Ads/TrackedBasicPanel";
+import { POSITION } from "../Ads/positions";
+import QuickNewsMeta from "../Meta/QuickNewsMeta";
+import EmbedExorcist from "../EmbedExorcist";
 import styled from "styled-components";
 
 const Content = styled.div`
@@ -212,7 +212,7 @@ function NewsItemRendered({ newsItem, noBorder }) {
         <div>
           <iframe
             src={`https://www.facebook.com/plugins/like.php?href=${encodeURI(
-              `https://f1online.sk/rychle-spravy/${newsItem.id}`
+              `https://f1online.sk/rychle-spravy?id=${newsItem.id}`
             )}&width=128&layout=button_count&action=like&size=small&share=true&height=46&appId=2583504588587008`}
             width="183"
             height="25"

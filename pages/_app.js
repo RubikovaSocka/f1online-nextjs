@@ -66,6 +66,7 @@ const GlobalStyle = createGlobalStyle`
 
 function App({ Component, pageProps }) {
   const dispatch = useDispatch();
+
   const theme = useSelector(({ theme }) => theme.theme);
   const [viewIndex, setViewIndex] = useState(1);
 
@@ -82,8 +83,14 @@ function App({ Component, pageProps }) {
     });
     Router.events.on("routeChangeComplete", () => {
       ReactGA.pageview(window.location.href.split("f1online.sk")[1]);
-      console.log(window.location.pathname);
+      console.log(
+        "router-app",
+        `${window.location.pathname}${
+          Router.query.id ? `?${Router.query.id}` : ""
+        }`
+      );
       console.log(window.location.href.split("f1online.sk")[1]);
+      console.log("routerr", Router.query);
       NProgress.done();
       setViewIndex((prev) => prev + 1);
     });

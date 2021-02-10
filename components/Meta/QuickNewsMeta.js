@@ -26,15 +26,14 @@ export default function QuickNewsMeta({ newsItem }) {
   } | ${PAGE_MAIN_TITLE}`;
   const metaUrl =
     newsItem && newsItem.id
-      ? `${URLS.FRONTEND_BASE}rychle-spravy?id=${newsItem.id}`
-      : null;
+      ? `${URLS.FRONTEND_BASE}rychle-spravy/${newsItem.id}`
+      : `${URLS.FRONTEND_BASE}rychle-spravy`;
   const metaImage =
     newsItem && newsItem.id
-      ? `${URLS.FRONTEND_API_BASE}?id=${newsItem.id}`
+      ? `${URLS.FRONTEND_API_BASE}/${newsItem.id}`
       : "https://wpadmin.f1online.sk/wp-content/uploads/rychle-spravy-img.jpeg";
   const date =
     newsItem && newsItem.date ? newsItem.date : `2020-05-13T09:15:00`;
-  console.log(metaImage, obsah);
   return (
     <Head>
       <title key="meta_title">{title_final}</title>

@@ -101,7 +101,7 @@ function QuickNews() {
         }}
       >
         <LinkAsButton
-          target={"/rychle-spravy/"}
+          target={"/rychle-spravy"}
           title={"Otvoriť všetky rýchle správy"}
         />
       </div>
