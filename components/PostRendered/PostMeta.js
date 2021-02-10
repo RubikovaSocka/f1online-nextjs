@@ -16,7 +16,7 @@ function PostMeta({ title, excerpt, id, date, slug, _embedded }) {
         property="article:published_time"
         content={date}
       />
-      <meta name="twitter:card" content="summary"></meta>
+      <meta name="twitter:card" content="summary_large_image"></meta>
       <meta
         name="description"
         content={`${decodeHtml(excerpt.rendered).replace(regex, "")}`}
