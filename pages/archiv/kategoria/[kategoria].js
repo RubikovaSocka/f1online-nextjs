@@ -1,29 +1,29 @@
 import Head from "next/head";
 import Router from "next/router";
-import { wrapper } from "../redux/store/store";
+import { wrapper } from "../../../redux/store/store";
 
-import SectionTitle from "../components/SectionTitle/SectionTitle.js";
-import QuickNews from "../components/QuickNews/QuickNews.js";
-import CalResWidget from "../components/CalResWidget";
-import Divider from "../components/Divider.js";
-import PopularBox from "../components/PopularBox";
-import ArchiveArticlesRenderer from "../components/ArchivArticles/ArchiveArticlesRenderer.js";
-import fetchArchiveArticlesApi from "../redux/apis/fetchArchiveArticlesApi";
-import getTagIdFromTagSlug from "../redux/apis/getTagIdFromTagSlug";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle.js";
+import QuickNews from "../../../components/QuickNews/QuickNews.js";
+import CalResWidget from "../../../components/CalResWidget";
+import Divider from "../../../components/Divider.js";
+import PopularBox from "../../../components/PopularBox";
+import ArchiveArticlesRenderer from "../../../components/ArchivArticles/ArchiveArticlesRenderer.js";
+import fetchArchiveArticlesApi from "../../../redux/apis/fetchArchiveArticlesApi";
+import getTagIdFromTagSlug from "../../../redux/apis/getTagIdFromTagSlug";
 
 import {
   MAIN,
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
   SIDEBAR,
-} from "../components/PageLayout";
-import { PAGE_MAIN_TITLE } from "../constants";
+} from "../../../components/PageLayout";
+import { PAGE_MAIN_TITLE } from "../../../constants";
 
-import onMobile from "../utils/onMobile";
-import onClient from "../utils/onClient";
-import { POSITION } from "../components/Ads/positions";
-import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
-import BContainer from "../components/BContainer";
+import onMobile from "../../../utils/onMobile";
+import onClient from "../../../utils/onClient";
+import { POSITION } from "../../../components/Ads/positions";
+import TrackedBasicPanel from "../../../components/Ads/TrackedBasicPanel";
+import BContainer from "../../../components/BContainer";
 
 const PER_PAGE = 12;
 

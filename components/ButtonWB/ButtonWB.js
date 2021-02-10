@@ -32,7 +32,7 @@ const Button = styled.a`
 
 function ButtonWB({ hrefProp, asProp, title }) {
   return (
-    <Link href={hrefProp} as={asProp}>
+    <Link href={hrefProp} as={asProp} passHref>
       <Button>{title ? title : "Pozrieť všetky"}</Button>
     </Link>
   );

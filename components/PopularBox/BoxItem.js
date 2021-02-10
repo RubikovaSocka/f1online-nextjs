@@ -145,7 +145,7 @@ function BoxItem({ title, subs, slug, pickedSlug }) {
             <Chevron isOpened={isOpened} />
           </>
         ) : (
-          <Link href={`/archiv?kategoria=${slug}`}>
+          <Link href={`/archiv/kategoria/${slug}`}>
             <a>{title}</a>
           </Link>
         )}
@@ -158,7 +158,7 @@ function BoxItem({ title, subs, slug, pickedSlug }) {
                 key={index}
                 className={item.slug === pickedSlug ? "selected" : ""}
               >
-                <Link href={`/archiv?kategoria=${item.slug}`}>
+                <Link href={`/archiv/kategoria/${item.slug}`}>
                   <a>
                     <Bullet />
                     <span>{item.title}</span>
