@@ -22,6 +22,10 @@ const Exorcist = styled.div`
 
   div {
     margin: 10px auto !important;
+
+    &.nomargins {
+      margin-left: -20px !important;
+    }
   }
 
   iframe {

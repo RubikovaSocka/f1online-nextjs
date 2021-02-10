@@ -19,7 +19,7 @@ const NAVBAR = styled.nav`
   flex-direction: column;
   justify-content: flex-start;
 
-  ${props =>
+  ${(props) =>
     props.isMenuOpened
       ? ` @media only screen and (max-width: 1023px) {
             padding-top: 85px;
@@ -135,7 +135,7 @@ const BUTTON = styled.div`
     display: none;
   }
 
-  ${props =>
+  ${(props) =>
     props.isMenuOpened
       ? `background-image: url("/images/x-button.png");`
       : `background-image: url(${props.theme.MOBILE_BURGER_BUT});`}
@@ -149,7 +149,7 @@ const links = [
   { href: "/timy", title: "Tímy" },
   { href: "/kalendar", title: "Kalendár" },
   { href: "/partneri", title: "Partneri" },
-  { href: "/archiv/t/eisking", title: "EisKing" }
+  { href: "/archiv?kategoria=eisking", title: "EisKing" },
 ];
 
 let targetElement = null;
@@ -179,7 +179,7 @@ function MyNavbar() {
         ))}
       </NAVBAR>
       <BUTTON
-        onClick={() => setIsMenuOpened(prev => !prev)}
+        onClick={() => setIsMenuOpened((prev) => !prev)}
         isMenuOpened={isMenuOpened}
       />
     </>

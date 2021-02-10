@@ -136,7 +136,7 @@ function SearchBar() {
                   Router.push({
                     pathname: "/archiv",
                     query: {
-                      search: searchPhrase,
+                      hladat: searchPhrase,
                     },
                   });
                 } else {
@@ -164,7 +164,7 @@ function SearchBar() {
               Router.push({
                 pathname: "/archiv",
                 query: {
-                  search: searchPhrase,
+                  hladat: searchPhrase,
                 },
               });
             }}

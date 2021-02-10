@@ -38,19 +38,33 @@ const Content = styled.div`
 `;
 const Header = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  > div  {
+    margin-left: 8px;
+    margin-bottom: 15px;
+  }
   ${(props) =>
     props.noBorder
       ? ""
       : `border-top: 1px solid ${props.theme.SUBTITLE_COLOR};`}
+
+  @media only screen and (min-width: 1024px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    > div  {
+      margin-left: 0;
+      margin-bottom: 0;
+    }
+  }
 `;
 const Date = styled.p`
   padding: 0 8px;
   font-family: "HK Grotesk";
   font-size: 14px;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
   margin-right: 10px;
   color: ${(props) => props.theme.SUBTITLE_COLOR};
 
@@ -65,6 +79,10 @@ const Date = styled.p`
     font-weight: 400;
     color: #e10600;
     content: "\f017";
+  }
+
+  @media only screen and (min-width: 1024px) {
+    margin-bottom: 12px;
   }
 `;
 const MessageText = styled.div`
@@ -320,6 +338,7 @@ export default function QuickNewsPage({ newsItem, news, query }) {
                 onPageChange={({ selected }) =>
                   Router.push(`/rychle-spravy?page=${selected + 1}`)
                 }
+                hrefBuilder={(pageNumber) => `rychle-spravy?page=${pageNumber}`}
                 activeClassName="active"
                 previousClassName={"enabled"}
               />

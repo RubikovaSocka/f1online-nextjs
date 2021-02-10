@@ -19,6 +19,8 @@ import {
 } from "../components/PageLayout";
 import { PAGE_MAIN_TITLE } from "../constants";
 import onClient from "../utils/onClient";
+import onMobile from "../utils/onMobile";
+import BContainer from "../components/BContainer";
 import { POSITION } from "../components/Ads/positions";
 import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
 
@@ -52,11 +54,11 @@ export default function Teams({ teamsData }) {
                 )
               )}
             </div>
-            <div>
+            <BContainer>
               {onClient() ? (
                 <TrackedBasicPanel position={POSITION.CONTENT_TEAMS_PAGE} />
               ) : null}
-            </div>
+            </BContainer>
             <div className={styles.container}>
               {teamsData.ConstructorTable.Constructors.slice(4).map(
                 (constructor) => (
@@ -64,6 +66,12 @@ export default function Teams({ teamsData }) {
                 )
               )}
             </div>
+            <Divider height="10px" />
+            <BContainer>
+              {onClient() ? (
+                <TrackedBasicPanel position={POSITION.CONTENT_TEAMS_PAGE} />
+              ) : null}
+            </BContainer>
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="50px" />

@@ -29,27 +29,30 @@ const COLUMNED_PAGE = styled.div`
 `;
 
 const PAGE_MAIN_COL = styled.div`
-  padding: 20px;
-  padding-top: 0;
+  width: calc(100% - 40px);
+  padding: 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 
   @media only screen and (min-width: 1024px) {
-    padding: 0;
+    width: 100%;
     grid-column: 2 / span 1;
+    margin: 0;
   }
 `;
 
 const SIDEBAR = styled.aside`
-  padding: 20px;
-  padding-top: 0;
+  width: calc(100% - 40px);
+  padding: 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 
   @media only screen and (min-width: 1024px) {
-    padding: 0;
+    width: 100%;
     margin-top: 0px;
     margin-bottom: 20px;
     grid-column: 4 / span 1;

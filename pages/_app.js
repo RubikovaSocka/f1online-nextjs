@@ -73,13 +73,17 @@ function App({ Component, pageProps }) {
     dispatch(initializeTheme());
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
+    console.log(window.location.pathname);
+    console.log(window.location.href);
     ReactGA.pageview(window.location.pathname);
 
     Router.events.on("routeChangeStart", () => {
       NProgress.start();
     });
     Router.events.on("routeChangeComplete", () => {
-      ReactGA.pageview(window.location.pathname);
+      ReactGA.pageview(window.location.href.split("f1online.sk")[1]);
+      console.log(window.location.pathname);
+      console.log(window.location.href.split("f1online.sk")[1]);
       NProgress.done();
       setViewIndex((prev) => prev + 1);
     });

@@ -21,6 +21,8 @@ const ImageGallery = dynamic(() =>
 );
 import { PAGE_MAIN_TITLE } from "../../constants";
 import onClient from "../../utils/onClient";
+import onMobile from "../../utils/onMobile";
+import BContainer from "../../components/BContainer";
 import { POSITION } from "../../components/Ads/positions";
 import TrackedBasicPanel from "../../components/Ads/TrackedBasicPanel";
 
@@ -203,6 +205,7 @@ function DriverPage({ driverData }) {
   let driverBioData = (
     <>
       <SectionTitle
+        topLevel={true}
         title={`${driverData.givenName} ${driverData.familyName}`}
       />
       <Divider height="20px" />
@@ -296,13 +299,13 @@ function DriverPage({ driverData }) {
                 <h2 className="title">Najnovšie články</h2>
               </div>
               {driverPosts}
-              <div>
+              <BContainer>
                 {onClient() ? (
                   <TrackedBasicPanel
                     position={POSITION.CONTENT_DRIVER_DETAIL}
                   />
                 ) : null}
-              </div>
+              </BContainer>
               {driverData.about ? (
                 <>
                   <Divider height="15px" />
@@ -334,6 +337,12 @@ function DriverPage({ driverData }) {
                 </div>
               </div>
             </Container>
+            <Divider height="10px" />
+            <BContainer>
+              {onClient() && onMobile() ? (
+                <TrackedBasicPanel position={POSITION.CONTENT_DRIVER_DETAIL} />
+              ) : null}
+            </BContainer>
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="50px" />

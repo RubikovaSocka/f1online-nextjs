@@ -211,7 +211,7 @@ function ArticlePreview(props) {
           </ImgContainer>
         </a>
       </Link>
-      <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`}>
+      <Link href={`/clanky/[id]/[slug]`} as={`/clanky/${id}/${slug}`} passHref>
         <TitleContainer>
           <Title hasVideo={tags.includes(209)} dangerouslySetInnerHTML={{ __html: title.rendered }} />
           {/*<h3 className={styles.title}>{title.rendered}</h3>*/}

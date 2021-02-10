@@ -184,11 +184,11 @@ class Results extends Component {
     return (
       <>
         <Head>
-          <title key="meta_title">{`Výsledky | ${PAGE_MAIN_TITLE}`}</title>
+          <title key="meta_title">{`Výsledky Formuly 1 | ${PAGE_MAIN_TITLE}`}</title>
           <meta
             key="meta_ogtitle"
             property="og:title"
-            content={`Výsledky | ${PAGE_MAIN_TITLE}`}
+            content={`Výsledky Formuly 1 | ${PAGE_MAIN_TITLE}`}
           />
           <meta
             key="meta_url"
@@ -199,13 +199,14 @@ class Results extends Component {
         <MAIN>
           <COLUMNED_PAGE>
             <PAGE_MAIN_COL>
-              <SectionTitle title="Výsledky" />
+              <SectionTitle topLevel={true} title="Výsledky Formuly 1" />
               <Divider height="29px" />
               {contentData}
             </PAGE_MAIN_COL>
             <SIDEBAR>
               <Divider height="50px" />
               <QuickNews />
+              <Divider height="30px" />
             </SIDEBAR>
           </COLUMNED_PAGE>
         </MAIN>

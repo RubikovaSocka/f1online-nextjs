@@ -7,7 +7,7 @@ export default async function fetchArchiveArticles({
   pageNumber,
   perPage,
   tagID,
-  searchPhrase
+  searchPhrase,
 }) {
   const TAG = tagID ? `&tags=${tagID}` : "";
   const SEARCH =
@@ -16,19 +16,21 @@ export default async function fetchArchiveArticles({
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")}`
       : "";
-
+  console.log(
+    `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}?page=${pageNumber}&per_page=${perPage}&${URLS.previewFields}${TAG}${SEARCH}`
+  );
   return await axios
     .get(
       `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}?page=${pageNumber}&per_page=${perPage}&${URLS.previewFields}${TAG}${SEARCH}`
     )
-    .then(res => {
+    .then((res) => {
       return {
         totalArticlesCount: res.headers["x-wp-total"],
         articles: res.data,
-        pageNumber: pageNumber
+        pageNumber: pageNumber,
       };
     })
-    .catch(error => {
+    .catch((error) => {
       throw new Error(error.response.data.Error);
     });
 }

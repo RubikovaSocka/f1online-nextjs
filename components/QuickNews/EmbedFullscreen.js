@@ -193,14 +193,11 @@ function EmbedFullscreen(props) {
   useEffect(() => {
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
-    ReactGA.pageview(`/rychle-spravy/${id}`);
-    console.log("RYCHLE SPRAVY OPENED");
+    ReactGA.pageview(`/rychle-spravy?id=${id}`);
     const oldPath = window.location.pathname;
-    console.log(oldPath);
-    window.history.replaceState(null, "", `/rychle-spravy/${id}`);
+    window.history.replaceState(null, "", `/rychle-spravy?id=${id}`);
     // returned function will be called on component unmount
     return () => {
-      console.log("CLOSED");
       window.history.replaceState(null, "", oldPath);
     };
   }, []);

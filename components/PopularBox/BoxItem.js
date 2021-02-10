@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   font-size: 14px;
-  background-color: ${props => props.theme.WIDGET_UNSELECT_BACK};
+  background-color: ${(props) => props.theme.WIDGET_UNSELECT_BACK};
   margin-bottom: 2px;
   margin: 2px 8px;
   cursor: pointer;
@@ -20,26 +20,26 @@ const Header = styled.div`
   font-weight: 600;
   text-transform: uppercase;
 
-  color: ${props => props.theme.TEXT_COLOR};
+  color: ${(props) => props.theme.TEXT_COLOR};
 
   span {
     padding: 6px 10px;
   }
   a {
-    color: ${props => props.theme.TEXT_COLOR};
+    color: ${(props) => props.theme.TEXT_COLOR};
     width: 100%;
     height: 100%;
     padding: 6px 10px;
   }
   i {
-    color: ${props => props.theme.TEXT_COLOR};
+    color: ${(props) => props.theme.TEXT_COLOR};
     padding: 0 10px;
   }
   &:hover,
   &:hover a,
   &.selected,
   &.selected a {
-    background-color: ${props => props.theme.TABLE_SECONDARY_COLOR};
+    background-color: ${(props) => props.theme.TABLE_SECONDARY_COLOR};
     color: white;
   }
 `;
@@ -52,34 +52,34 @@ const Body = styled.ul`
   padding-right: 8px;
   list-style: none;
 
-  display: ${props => (props.isOpened ? "flex" : "none")};
+  display: ${(props) => (props.isOpened ? "flex" : "none")};
 `;
 
 const NestedHeader = styled.li`
   height: 100%;
   padding: 1px 20px;
-  color: ${props => props.theme.TEXT_COLOR};
+  color: ${(props) => props.theme.TEXT_COLOR};
 
   i {
     padding: 0;
     font-size: 6px;
     margin-top: 3px;
-    color: ${props => props.theme.SUBTITLE_COLOR};
+    color: ${(props) => props.theme.SUBTITLE_COLOR};
   }
   a {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: row;
-    color: ${props => props.theme.TEXT_COLOR};
-    color: ${props => props.theme.SUBTITLE_COLOR};
+    color: ${(props) => props.theme.TEXT_COLOR};
+    color: ${(props) => props.theme.SUBTITLE_COLOR};
   }
   &:hover a,
   &:hover i,
   &.selected a,
   &.selected i {
     text-decoration: underline;
-    color: ${props => props.theme.TEXT_COLOR};
+    color: ${(props) => props.theme.TEXT_COLOR};
   }
 `;
 
@@ -97,7 +97,7 @@ const Chevron = styled.span`
     height: 16px;
     margin-right: 5px;
 
-    ${props => (props.isOpened ? `content: "\f077";` : `content: "\f078";`)}
+    ${(props) => (props.isOpened ? `content: "\f077";` : `content: "\f078";`)}
   }
 `;
 
@@ -122,14 +122,14 @@ function BoxItem({ title, subs, slug, pickedSlug }) {
 
   useEffect(() => {
     if (slug.length === 0) {
-      subs.forEach(item => {
+      subs.forEach((item) => {
         item.slug === pickedSlug && setIsOpened(true);
       });
     }
   }, []);
 
   const changeOpened = () => {
-    setIsOpened(prev => !prev);
+    setIsOpened((prev) => !prev);
   };
 
   return (
@@ -145,7 +145,7 @@ function BoxItem({ title, subs, slug, pickedSlug }) {
             <Chevron isOpened={isOpened} />
           </>
         ) : (
-          <Link href={`/archiv/t/${slug}`} as={`/archiv/t/${slug}`}>
+          <Link href={`/archiv?kategoria=${slug}`}>
             <a>{title}</a>
           </Link>
         )}
@@ -158,10 +158,7 @@ function BoxItem({ title, subs, slug, pickedSlug }) {
                 key={index}
                 className={item.slug === pickedSlug ? "selected" : ""}
               >
-                <Link
-                  href={`/archiv/t/${item.slug}`}
-                  as={`/archiv/t/${item.slug}`}
-                >
+                <Link href={`/archiv?kategoria=${item.slug}`}>
                   <a>
                     <Bullet />
                     <span>{item.title}</span>

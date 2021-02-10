@@ -33,6 +33,7 @@ import Product, {
   POSITIONS as PRODUCT_POSITIONS,
 } from "../components/Ads/Products";
 import RelatedArticles from "../components/RelatedArticles";
+import BContainer from "../components/BContainer";
 //import Comments from "../components/Comments";
 
 const PODCAST_TAG = 180;
@@ -72,7 +73,9 @@ function Home() {
             <div>
               {onClient() ? (
                 <>
-                  <TrackedBasicPanel position={POSITION.CONTENT_HP} />
+                  <BContainer>
+                    <TrackedBasicPanel position={POSITION.CONTENT_HP} />
+                  </BContainer>
                   <Divider height="15px" />
                   <RelatedArticles
                     title="Najnovšie podcasty"
@@ -107,7 +110,9 @@ function Home() {
             <div>
               {onClient() && onMobile() ? (
                 <>
-                  <TrackedBasicPanel position={POSITION.SIDEBAR_HP_TOP} />
+                  <BContainer>
+                    <TrackedBasicPanel position={POSITION.SIDEBAR_HP_TOP} />
+                  </BContainer>
                   <Divider height="20px" />
                 </>
               ) : null}
@@ -117,8 +122,10 @@ function Home() {
               {onClient() && onMobile() ? (
                 <>
                   <CalResWidget />
-                  <TrackedBasicPanel position={POSITION.FOOTER_HP} />
-                  <Divider height="40px" />
+                  <BContainer>
+                    <TrackedBasicPanel position={POSITION.FOOTER_HP} />
+                  </BContainer>
+                  <Divider height="50px" />
                 </>
               ) : null}
             </div>

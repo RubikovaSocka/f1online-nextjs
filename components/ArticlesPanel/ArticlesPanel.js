@@ -2,11 +2,15 @@ import ArticlePreview from "../ArticlePreview";
 import TrackedBasicPanel from "../Ads/TrackedBasicPanel";
 import { POSITION } from "../Ads/positions";
 import styled from "styled-components";
+import TrackedInsetPanel from "../Ads/TrackedInsetPanel";
+import onMobile from "../../utils/onMobile";
+import onClient from "../../utils/onClient";
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px auto;
+  //margin-top: 10px;
+  //margin-bottom: 10px;
 
   display: flex;
   flex-direction: column;
@@ -14,6 +18,7 @@ const Container = styled.div`
   flex-wrap: wrap;
 
   @media only screen and (min-width: 1024px) {
+    width: 100%;
     margin-top: 20px;
     margin-bottom: initial;
     height: initial;
@@ -55,6 +60,17 @@ const ArticleContainer = styled.div`
   }
 `;
 
+const BContainer = styled.div`
+  width: 100vw;
+  margin-left: -20px;
+  margin-bottom: 20px;
+  @media only screen and (min-width: 1024px) {
+    margin-bottom: 0;
+    margin-left: 0;
+    width: 100%;
+  }
+`;
+
 function ArticlesPanel({ posts, isLoading }) {
   if (posts.length > 6) {
     return (
@@ -69,7 +85,15 @@ function ArticlesPanel({ posts, isLoading }) {
           <i aria-hidden="true"></i>
           <i aria-hidden="true"></i>
         </Container>
-        <TrackedBasicPanel key={50522} position={POSITION.CONTENT_ARCHIVE} />
+        <BContainer>
+          {onClient() ? (
+            <TrackedBasicPanel
+              key={50522}
+              position={POSITION.CONTENT_ARCHIVE}
+            />
+          ) : null}
+        </BContainer>
+
         <Container>
           {posts.slice(6, 12).map((post, index) => (
             <ArticleContainer key={index}>

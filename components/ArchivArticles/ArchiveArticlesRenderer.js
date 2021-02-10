@@ -33,9 +33,9 @@ const Paginate = styled.div`
       font-weight: 700;
       font-size: 13px;
 
-      color: ${props => props.theme.TEXT_COLOR};
-      background-color: ${props => props.theme.PAGE_BACK_COLOR};
-      border: 1px solid ${props => props.theme.TABLE_PRIMARY_COLOR};
+      color: ${(props) => props.theme.TEXT_COLOR};
+      background-color: ${(props) => props.theme.PAGE_BACK_COLOR};
+      border: 1px solid ${(props) => props.theme.TABLE_PRIMARY_COLOR};
 
       margin-left: 2px;
       margin-right: 2px;
@@ -43,7 +43,7 @@ const Paginate = styled.div`
     &.active a,
     a:hover {
       color: white;
-      background-color: ${props => props.theme.TABLE_PRIMARY_COLOR};
+      background-color: ${(props) => props.theme.TABLE_PRIMARY_COLOR};
     }
   }
 `;
@@ -60,7 +60,8 @@ function ArchiveArticlesRenderer({
   perPage,
   showPagination,
   currentPage,
-  pageClickCallback
+  pageClickCallback,
+  getPaginateHref
 }) {
   return !isLoading && error ? (
     <TemporaryInfoPanel
@@ -93,6 +94,7 @@ function ArchiveArticlesRenderer({
           onPageChange={({ selected }) => pageClickCallback(selected + 1)}
           activeClassName="active"
           previousClassName={"enabled"}
+          hrefBuilder={(number) => getPaginateHref(number)}
         />
       </Paginate>
     </>

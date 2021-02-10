@@ -1,8 +1,5 @@
 import Head from "next/head";
-import { END } from "redux-saga";
-import { useRouter } from "next/router";
-
-import { useDispatch, useSelector } from "react-redux";
+import Router from "next/router";
 import { wrapper } from "../redux/store/store";
 
 import SectionTitle from "../components/SectionTitle/SectionTitle.js";
@@ -11,7 +8,9 @@ import CalResWidget from "../components/CalResWidget";
 import Divider from "../components/Divider.js";
 import PopularBox from "../components/PopularBox";
 import ArchiveArticlesRenderer from "../components/ArchivArticles/ArchiveArticlesRenderer.js";
-import { fetchArchiveArticles } from "../redux/actions/archiveActions";
+import fetchArchiveArticlesApi from "../redux/apis/fetchArchiveArticlesApi";
+import getTagIdFromTagSlug from "../redux/apis/getTagIdFromTagSlug";
+
 import {
   MAIN,
   COLUMNED_PAGE,
@@ -20,45 +19,51 @@ import {
 } from "../components/PageLayout";
 import { PAGE_MAIN_TITLE } from "../constants";
 
+import { URLS } from "../redux/apis/urls";
 import onMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
 import { POSITION } from "../components/Ads/positions";
 import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
+import TrackedInsetPanel from "../components/Ads/TrackedInsetPanel";
+import BContainer from "../components/BContainer";
 
 const PER_PAGE = 12;
 
-function Archiv() {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const { pageNumber } = useSelector(
-    ({ archiveArticles }) => archiveArticles.client
-  );
-  const { totalArticlesCount } = useSelector(
-    ({ archiveArticles }) => archiveArticles.server
-  );
-  const { articles, isLoading } = useSelector(({ archiveArticles }) => {
-    return pageNumber === 1 ? archiveArticles.server : archiveArticles.client;
-  });
-
+export default function Archiv({ query, news, error }) {
+  const pageNumber = query.strana;
   const onPageClicked = (pageNumber) => {
     window.scrollTo(0, 0);
-    dispatch(
-      fetchArchiveArticles({
-        pageNumber: pageNumber,
-        perPage: PER_PAGE,
-        isServer: false,
-        searchPhrase: router.query.search,
-      })
-    );
+    if (query.kategoria) {
+      Router.push({
+        pathname: "/archiv",
+        query: {
+          kategoria: query.kategoria,
+          strana: pageNumber,
+        },
+      });
+    } else if (query.hladat) {
+      Router.push({
+        pathname: "/archiv",
+        query: {
+          hladat: query.hladat,
+          strana: pageNumber,
+        },
+      });
+    } else {
+      Router.push({
+        pathname: "/archiv",
+        query: {
+          strana: pageNumber,
+        },
+      });
+    }
   };
 
   return (
-    <>
+    <div key={pageNumber}>
       <Head>
         <title key="meta_title">{`${
-          router.query.search
-            ? `Vyhľadávanie: \"${router.query.search}\"`
-            : "Správy"
+          query.hladat ? `Vyhľadávanie: \"${query.hladat}\"` : "Správy"
         } | ${PAGE_MAIN_TITLE}`}</title>
         <meta
           key="meta_ogtitle"
@@ -68,7 +73,7 @@ function Archiv() {
         <meta
           key="meta_url"
           property="og:url"
-          content={`https://f1online.sk/clanky`}
+          content={`https://f1online.sk/archiv`}
         />
       </Head>
 
@@ -76,28 +81,42 @@ function Archiv() {
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL>
             <SectionTitle
+              topLevel={true}
               title={`${
-                router.query.search
-                  ? `Vyhľadávanie: \"${router.query.search}\"`
+                query.hladat
+                  ? `Vyhľadávanie: \"${query.hladat}\"`
                   : "Všetky články"
               }`}
             />
             <ArchiveArticlesRenderer
-              articles={articles}
-              totalPosts={totalArticlesCount}
-              isLoading={isLoading}
+              key={pageNumber}
+              articles={news.articles}
+              totalPosts={news.totalArticlesCount}
+              isLoading={false}
               showPagination={true}
               currentPage={pageNumber}
               perPage={PER_PAGE}
-              pageClickCallback={(selectedPage) => onPageClicked(selectedPage)}
+              pageClickCallback={(pageNumber) => onPageClicked(pageNumber)}
+              getPaginateHref={(pageNumber) => {
+                if (query.kategoria) {
+                  return `/archiv?kategoria=${query.kategoria}&strana=${pageNumber}`;
+                } else if (query.hladat) {
+                  return `/archiv?hladat=${query.hladat}&strana=${pageNumber}`;
+                } else {
+                  return `/archiv?strana=${pageNumber}`;
+                }
+              }}
             />
           </PAGE_MAIN_COL>
           <SIDEBAR>
-            <div>
-              {onClient() && onMobile() ? (
-                <TrackedBasicPanel position={POSITION.SIDEBAR_ARCHIVE_TOP} />
+            <BContainer>
+              {onClient && onMobile() ? (
+                <TrackedBasicPanel
+                  key={50522}
+                  position={POSITION.SIDEBAR_ARCHIVE_TOP}
+                />
               ) : null}
-            </div>
+            </BContainer>
             <Divider height="15px" />
             <PopularBox />
             <Divider height="25px" />
@@ -107,17 +126,17 @@ function Archiv() {
           </SIDEBAR>
         </COLUMNED_PAGE>
       </MAIN>
-    </>
+    </div>
   );
 }
-
+/*
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, query }) => {
     store.dispatch(
       fetchArchiveArticles({
         pageNumber: 1,
         perPage: 12,
-        searchPhrase: query.search,
+        searchPhrase: query.hladat,
         isServer: true,
       })
     );
@@ -126,6 +145,57 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     await store.sagaTask.toPromise();
   }
-);
+);*/
 
-export default Archiv;
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ query }) => {
+    const pageNumber = query.strana && query.strana >= 1 ? query.strana : 1;
+    let news = null,
+      error = null,
+      tagID = null;
+    if (query.kategoria) {
+      try {
+        tagID = await getTagIdFromTagSlug(query.kategoria);
+        news = await fetchArchiveArticlesApi({
+          perPage: PER_PAGE,
+          pageNumber: pageNumber,
+          tagID: tagID,
+        });
+      } catch (error) {
+        error = "Nepodarilo sa načítať správy.";
+      }
+    } else if (query.hladat) {
+      try {
+        news = await fetchArchiveArticlesApi({
+          perPage: PER_PAGE,
+          pageNumber: pageNumber,
+          searchPhrase: query.hladat,
+        });
+      } catch (error) {
+        error = "Nepodarilo sa načítať správy.";
+      }
+    } else {
+      try {
+        news = await fetchArchiveArticlesApi({
+          perPage: PER_PAGE,
+          pageNumber: pageNumber,
+        });
+      } catch (error) {
+        error = "Nepodarilo sa načítať správy.";
+      }
+    }
+
+    return {
+      props: {
+        news: news,
+        error: error,
+        query: {
+          strana: pageNumber,
+          kategoria: query.kategoria ? query.kategoria : null,
+          hladat: query.hladat ? query.hladat : null,
+          tagID: tagID,
+        },
+      },
+    };
+  }
+);

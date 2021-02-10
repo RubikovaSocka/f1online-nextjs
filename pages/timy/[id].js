@@ -25,6 +25,8 @@ const ImageGallery = dynamic(() =>
   import("../../components/react-image-gallery/src/ImageGallery")
 );
 import onClient from "../../utils/onClient";
+import onMobile from "../../utils/onMobile";
+import BContainer from "../../components/BContainer";
 import { POSITION } from "../../components/Ads/positions";
 import TrackedBasicPanel from "../../components/Ads/TrackedBasicPanel";
 import { PAGE_MAIN_TITLE } from "../../constants";
@@ -273,7 +275,7 @@ function TeamPage({ teamData }) {
 
   let teamDataBlock = (
     <>
-      <SectionTitle title={`${teamData.name}`} />
+      <SectionTitle topLevel={true} title={`${teamData.name}`} />
       <Divider height="20px" />
       <div className="briefInfoContainer">
         <div className="imageData">
@@ -394,11 +396,11 @@ function TeamPage({ teamData }) {
             <Container>
               {teamDataBlock}
 
-              <div>
+              <BContainer>
                 {onClient() ? (
                   <TrackedBasicPanel position={POSITION.CONTENT_TEAM_DETAIL} />
                 ) : null}
-              </div>
+              </BContainer>
               <Divider height="30px" />
               <div className="titleContainer">
                 <h2 className="title">Najnovšie články</h2>
@@ -419,6 +421,12 @@ function TeamPage({ teamData }) {
                 </div>
               </div>
             </Container>
+            <Divider height="20px" />
+            <BContainer>
+              {onClient() ? (
+                <TrackedBasicPanel position={POSITION.CONTENT_TEAM_DETAIL} />
+              ) : null}
+            </BContainer>
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="50px" />

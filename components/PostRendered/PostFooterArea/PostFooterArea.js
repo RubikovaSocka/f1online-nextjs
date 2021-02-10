@@ -12,6 +12,7 @@ import onClient from "../../../utils/onClient";
 import onMobile from "../../../utils/onMobile";
 import { POSITION } from "../../Ads/positions";
 import TrackedBasicPanel from "../../Ads/TrackedBasicPanel";
+import BContainer from "../../../components/BContainer";
 
 import styled from "styled-components";
 
@@ -47,11 +48,11 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
       />
       <Divider height="10px" />
       {/*<Product position={PRODUCT_POSITIONS.MAIN} />*/}
-      <div>
+      <BContainer>
         {onClient() ? (
           <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE_END} />
         ) : null}
-      </div>
+      </BContainer>
       <Divider height="10px" />
       <RelatedArticles
         title="Možno vás zaujme"
@@ -59,11 +60,11 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
         tagID={tags[0]}
         except={id}
       />
-      <div>
+      <BContainer>
         {onClient() && onMobile() ? (
           <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE_COMMENTS} />
         ) : null}
-      </div>
+      </BContainer>
       <Divider height="10px" />
 
       {acf.no_comments ? null : (

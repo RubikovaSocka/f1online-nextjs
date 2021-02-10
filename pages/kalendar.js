@@ -16,6 +16,7 @@ import {
 } from "../components/PageLayout";
 import { PAGE_MAIN_TITLE } from "../constants";
 
+
 function Calendar() {
   const calendarData = useSelector(({ calendar }) => calendar.events);
   const dispatch = useDispatch();
@@ -38,13 +39,14 @@ function Calendar() {
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL>
-            <SectionTitle title="Kalendár F1 pre sezónu 2021" />
+            <SectionTitle topLevel={true} title="Kalendár F1 pre sezónu 2021" />
             <Divider height="28px" />
             <CalendarBox data={calendarData} />
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="50px" />
             <QuickNews />
+            <Divider height="30px" />
           </SIDEBAR>
         </COLUMNED_PAGE>
       </MAIN>

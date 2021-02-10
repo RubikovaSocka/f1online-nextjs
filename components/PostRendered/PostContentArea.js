@@ -8,6 +8,7 @@ import { Fragment } from "react";
 import onClient from "../../utils/onClient";
 import { POSITION } from "../Ads/positions";
 import TrackedBasicPanel from "../Ads/TrackedBasicPanel";
+import BContainer from "../../components/BContainer";
 
 const ArticleDiv = styled(EmbedExorcist)`
   font-family: "HK Grotesk";
@@ -39,13 +40,11 @@ function AdsInjector({ inputHtml, adsDisallowed }) {
     return inputHtml.split("</p>\n\n\n\n").map((chunk, i) => (
       <Fragment key={i}>
         {parse(chunk.concat("</p>"))}
-        <div>
-          {onClient() && (i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars ? (
+        {onClient() && (i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars ? (
+          <BContainer className="nomargins">
             <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE} />
-          ) : (
-            ""
-          )}
-        </div>
+          </BContainer>
+        ) : null}
       </Fragment>
     ));
   }

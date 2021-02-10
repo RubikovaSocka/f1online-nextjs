@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ItemContainer = styled.div`
   z-index: 5;
-  color: ${props => props.theme.SUBTITLE_COLOR};
+  color: ${(props) => props.theme.SUBTITLE_COLOR};
   padding: 0 10px;
 `;
 
@@ -20,15 +20,15 @@ const Date = styled.p`
   z-index: 3;
   font-family: "HK Grotesk";
   font-size: 12px;
-  background-color: ${props => props.theme.PAGE_BACK_COLOR};
+  background-color: ${(props) => props.theme.PAGE_BACK_COLOR};
 `;
 
 const MessageContainer = styled.div`
-  border: ${props => props.theme.QUICKNEWS_BORDER};
+  border: ${(props) => props.theme.QUICKNEWS_BORDER};
   padding-bottom: 5px;
   padding-right: 5px;
   text-decoration: none;
-  color: ${props => props.theme.TEXT_COLOR_MILD};
+  color: ${(props) => props.theme.TEXT_COLOR_MILD};
 `;
 
 const BasicMessage = styled.div`
@@ -77,28 +77,43 @@ const PostMessage = styled(BasicMessage)`
   }
 `;
 
-function OneLineNewsItem({ hasVideo, hasAttachment, content, date, callback }) {
+function OneLineNewsItem({
+  id,
+  hasVideo,
+  hasAttachment,
+  content,
+  date,
+  callback,
+}) {
   return (
     <ItemContainer>
       <Date>{date}</Date>
-      <MessageContainer>
-        {hasVideo ? (
-          <VideoMessage
-            dangerouslySetInnerHTML={{ __html: content }}
-            onClick={callback}
-          />
-        ) : hasAttachment ? (
-          <PostMessage
-            dangerouslySetInnerHTML={{ __html: content }}
-            onClick={callback}
-          />
-        ) : (
-          <BasicMessage
-            dangerouslySetInnerHTML={{ __html: content }}
-            onClick={callback}
-          />
-        )}
-      </MessageContainer>
+      <a
+        onClick={(event) => {
+          event.preventDefault();
+        }}
+        role="button"
+        href={`/rychle-spravy?id=${id}`}
+      >
+        <MessageContainer>
+          {hasVideo ? (
+            <VideoMessage
+              dangerouslySetInnerHTML={{ __html: content }}
+              onClick={callback}
+            />
+          ) : hasAttachment ? (
+            <PostMessage
+              dangerouslySetInnerHTML={{ __html: content }}
+              onClick={callback}
+            />
+          ) : (
+            <BasicMessage
+              dangerouslySetInnerHTML={{ __html: content }}
+              onClick={callback}
+            />
+          )}
+        </MessageContainer>
+      </a>
     </ItemContainer>
   );
 }

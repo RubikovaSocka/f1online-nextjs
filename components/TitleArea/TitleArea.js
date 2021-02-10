@@ -4,7 +4,6 @@ import onClient from "../../utils/onClient";
 import onMobile from "../../utils/onMobile";
 import TrackedInsetPanel from "../../components/Ads/TrackedInsetPanel";
 import { POSITION } from "../../components/Ads/positions";
-
 const Container = styled.div`
   padding: 0;
   padding: 0 20px;

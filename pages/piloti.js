@@ -20,7 +20,8 @@ import { PAGE_MAIN_TITLE } from "../constants";
 import onClient from "../utils/onClient";
 import { POSITION } from "../components/Ads/positions";
 import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
-
+import onMobile from "../utils/onMobile";
+import BContainer from "../components/BContainer";
 import styles from "../styles/piloti.module.scss";
 
 function Drivers({ teamsData }) {
@@ -42,7 +43,7 @@ function Drivers({ teamsData }) {
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL>
-            <SectionTitle title="Piloti" />
+            <SectionTitle topLevel={true} title="Piloti" />
             <Divider height="20px" />
             <div className={styles.driversContainer}>
               {teamsData.ConstructorTable.Constructors.slice(0, 4).map(
@@ -58,11 +59,11 @@ function Drivers({ teamsData }) {
                 }
               )}
             </div>
-            <div>
+            <BContainer>
               {onClient() ? (
                 <TrackedBasicPanel position={POSITION.CONTENT_DRIVERS_PAGE} />
               ) : null}
-            </div>
+            </BContainer>
             <div className={styles.driversContainer}>
               {teamsData.ConstructorTable.Constructors.slice(4).map(
                 (constructor, index) => {
@@ -77,6 +78,11 @@ function Drivers({ teamsData }) {
                 }
               )}
             </div>
+            <BContainer>
+              {onClient() && onMobile() ? (
+                <TrackedBasicPanel position={POSITION.CONTENT_DRIVERS_PAGE} />
+              ) : null}
+            </BContainer>
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <Divider height="50px" />

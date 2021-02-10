@@ -23,10 +23,14 @@ import TrackedBasicPanel from "../../../components/Ads/TrackedBasicPanel";
 
 import styled from "styled-components";
 
-const BContainer = styled.div`
+const BSideContainer = styled.div`
   margin-bottom: 40px;
+  margin-left: -20px;
+  width: 100vw;
 
   @media only screen and (min-width: 1024px) {
+    width: 100%;
+    margin-left: 0;
     margin-bottom: 0;
     position: sticky;
     top: 120px;
@@ -49,11 +53,12 @@ function Post({ postData }) {
             <QuickNews />
             <Divider height="15px" />
             <CalResWidget />
-            <BContainer>
+            <BSideContainer>
               {onClient() ? (
                 <TrackedBasicPanel position={POSITION.SIDEBAR_ARTICLE} />
               ) : null}
-            </BContainer>
+            </BSideContainer>
+            <Divider height="15px" />
           </SIDEBAR>
         </COLUMNED_PAGE>
       </MAIN>

@@ -26,13 +26,13 @@ export default function Partneri() {
         <meta
           key="meta_url"
           property="og:url"
-          content={`https://f1online.sk/clanky`}
+          content={`https://f1online.sk/archiv?kategoria=partneri`}
         />
       </Head>
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL>
-            <SectionTitle title="Ďakujeme našim partnerom" />
+            <SectionTitle topLevel={true} title="Ďakujeme našim partnerom" />
             <ArchivArticles tagSlug="partneri" asArchive={false} perpage="12" />
           </PAGE_MAIN_COL>
           <SIDEBAR>
