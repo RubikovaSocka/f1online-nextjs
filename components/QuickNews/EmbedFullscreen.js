@@ -214,7 +214,7 @@ function EmbedFullscreen(props) {
             <iframe
               src={`https://www.facebook.com/plugins/like.php?href=${encodeURI(
                 `https://f1online.sk/rychle-spravy?id=${id}`
-              )}&width=128&layout=button_count&action=like&size=small&share=true&height=46&appId=313229599518550`}
+              )}&width=128&layout=button_count&action=like&size=small&share=true&height=46&appId=2583504588587008`}
               width="183"
               height="25"
               style={{ border: "none", overflow: "hidden", paddingTop: "4px" }}
