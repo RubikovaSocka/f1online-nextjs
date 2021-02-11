@@ -98,7 +98,7 @@ export default function Archiv({ query, news, error }) {
                 if (query.kategoria) {
                   return `/archiv/kategoria/${query.kategoria}?strana=${pageNumber}`;
                 } else if (query.hladat) {
-                  return `/archiv/vyhladavanie?hladat=${query.hladat}&strana=${pageNumber}`;
+                  return `/archiv?hladat=${query.hladat}&strana=${pageNumber}`;
                 } else {
                   return `/archiv?strana=${pageNumber}`;
                 }

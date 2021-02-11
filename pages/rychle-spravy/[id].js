@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import Router from "next/router";
-import { wrapper } from "../redux/store/store";
-import CalResWidget from "../components/CalResWidget/CalResWidget";
-import formatDate from "../utils/dateFormatter";
-import LoadingSpinner from "../components/LoadingSpinner";
+import { wrapper } from "../../redux/store/store";
+import CalResWidget from "../../components/CalResWidget/CalResWidget";
+import formatDate from "../../utils/dateFormatter";
 import Image from "next/image";
-import SectionTitle from "../components/SectionTitle/SectionTitle";
-import Divider from "../components/Divider";
-import PopularArticles from "../components/PopularArticles/PopularArticles";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import Divider from "../../components/Divider";
+import PopularArticles from "../../components/PopularArticles/PopularArticles";
 import ReactPaginate from "react-paginate";
 import EmbedContainer from "react-oembed-container";
 import {
@@ -15,15 +14,14 @@ import {
   COLUMNED_PAGE,
   PAGE_MAIN_COL,
   SIDEBAR,
-} from "../components/PageLayout";
-import { PAGE_MAIN_TITLE } from "../constants";
-import { URLS } from "../redux/apis/urls";
-import onMobile from "../utils/onMobile";
-import onClient from "../utils/onClient";
-import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
-import { POSITION } from "../components/Ads/positions";
-import QuickNewsMeta from "../components/Meta/QuickNewsMeta";
-import EmbedExorcist from "../components/EmbedExorcist";
+} from "../../components/PageLayout";
+import { URLS } from "../../redux/apis/urls";
+import onMobile from "../../utils/onMobile";
+import onClient from "../../utils/onClient";
+import TrackedBasicPanel from "../../components/Ads/TrackedBasicPanel";
+import { POSITION } from "../../components/Ads/positions";
+import QuickNewsMeta from "../../components/Meta/QuickNewsMeta";
+import EmbedExorcist from "../../components/EmbedExorcist";
 import styled from "styled-components";
 
 const Content = styled.div`
@@ -271,7 +269,14 @@ export default function QuickNewsPage({ newsItem, news, query }) {
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL>
-            <SectionTitle topLevel={true} title="Rýchle správy" />
+            <SectionTitle
+              topLevel={true}
+              title={
+                newsItem && newsItem.acf.title
+                  ? newsItem.acf.title
+                  : "Rýchle správy"
+              }
+            />
             <Divider height="20px" />
             <div>
               {newsItem ? (
@@ -326,7 +331,9 @@ export default function QuickNewsPage({ newsItem, news, query }) {
             </div>
             <Paginate>
               <ReactPaginate
-                forcePage={query.page && query.page >= 1 ? query.page - 1 : 0}
+                forcePage={
+                  query.strana && query.strana >= 1 ? query.strana - 1 : 0
+                }
                 previousLabel={"<"}
                 nextLabel={">"}
                 breakLabel={"…"}
@@ -336,9 +343,11 @@ export default function QuickNewsPage({ newsItem, news, query }) {
                 pageRangeDisplayed={3}
                 //selected \in {0, 1, 2,...}, therefore pageNumber is selected + 1
                 onPageChange={({ selected }) =>
-                  Router.push(`/rychle-spravy?page=${selected + 1}`)
+                  Router.push(`/rychle-spravy?strana=${selected + 1}`)
                 }
-                hrefBuilder={(pageNumber) => `rychle-spravy?page=${pageNumber}`}
+                hrefBuilder={(pageNumber) =>
+                  `rychle-spravy?strana=${pageNumber}`
+                }
                 activeClassName="active"
                 previousClassName={"enabled"}
               />
@@ -367,7 +376,7 @@ export default function QuickNewsPage({ newsItem, news, query }) {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ query }) => {
-    const pageNumber = query.page && query.page >= 1 ? query.page : 1;
+    const pageNumber = query.strana && query.strana >= 1 ? query.strana : 1;
     const perPage = 11;
     const news = await fetch(
       `${URLS.BASE}${URLS.QUICK_NEWS_ENDPOINT}?page=${pageNumber}&per_page=10&_fields=id,type,acf,date`

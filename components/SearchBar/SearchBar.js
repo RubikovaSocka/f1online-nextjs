@@ -149,6 +149,7 @@ function SearchBar() {
             <XButton
               onClick={(e) => {
                 e.preventDefault();
+
                 if (searchPhrase.length === 0) {
                   isOpenedChange();
                 }

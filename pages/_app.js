@@ -20,7 +20,6 @@ import "../components/react-image-gallery/styles/scss/image-gallery.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { wrapper } from "../redux/store/store.js";
 import { initializeTheme } from "../redux/actions/themeActions";
-import { fetchPanels } from "../redux/actions/panelsActions";
 
 import { startQuickNewsAutoFetch } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
@@ -29,7 +28,6 @@ import { fetchProgramme } from "../redux/actions/programmeActions";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/Themes";
 import { THEMES } from "../constants";
-import { fetchProducts } from "../redux/actions/productsActions";
 
 const GlobalStyle = createGlobalStyle`
     *,
@@ -74,25 +72,15 @@ function App({ Component, pageProps }) {
     dispatch(initializeTheme());
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
-    console.log(window.location.pathname);
-    console.log(window.location.href);
     ReactGA.pageview(window.location.pathname);
 
     Router.events.on("routeChangeStart", () => {
       NProgress.start();
     });
     Router.events.on("routeChangeComplete", () => {
-      ReactGA.pageview(window.location.href.split("f1online.sk")[1]);
-      console.log(
-        "router-app",
-        `${window.location.pathname}${
-          Router.query.id ? `?${Router.query.id}` : ""
-        }`
-      );
-      console.log(window.location.href.split("f1online.sk")[1]);
-      console.log("routerr", Router.query);
-      NProgress.done();
+      ReactGA.pageview(window.location.pathname);
       setViewIndex((prev) => prev + 1);
+      NProgress.done();
     });
     Router.events.on("routeChangeError", () => NProgress.done());
 

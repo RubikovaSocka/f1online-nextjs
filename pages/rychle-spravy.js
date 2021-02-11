@@ -271,7 +271,14 @@ export default function QuickNewsPage({ newsItem, news, query }) {
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL>
-            <SectionTitle topLevel={true} title="Rýchle správy" />
+            <SectionTitle
+              topLevel={true}
+              title={
+                newsItem && newsItem.acf.title
+                  ? newsItem.acf.title
+                  : "Rýchle správy"
+              }
+            />
             <Divider height="20px" />
             <div>
               {newsItem ? (
@@ -326,7 +333,9 @@ export default function QuickNewsPage({ newsItem, news, query }) {
             </div>
             <Paginate>
               <ReactPaginate
-                forcePage={query.page && query.page >= 1 ? query.page - 1 : 0}
+                forcePage={
+                  query.strana && query.strana >= 1 ? query.strana - 1 : 0
+                }
                 previousLabel={"<"}
                 nextLabel={">"}
                 breakLabel={"…"}
@@ -336,9 +345,11 @@ export default function QuickNewsPage({ newsItem, news, query }) {
                 pageRangeDisplayed={3}
                 //selected \in {0, 1, 2,...}, therefore pageNumber is selected + 1
                 onPageChange={({ selected }) =>
-                  Router.push(`/rychle-spravy?page=${selected + 1}`)
+                  Router.push(`/rychle-spravy?strana=${selected + 1}`)
                 }
-                hrefBuilder={(pageNumber) => `rychle-spravy?page=${pageNumber}`}
+                hrefBuilder={(pageNumber) =>
+                  `rychle-spravy?strana=${pageNumber}`
+                }
                 activeClassName="active"
                 previousClassName={"enabled"}
               />
@@ -367,7 +378,7 @@ export default function QuickNewsPage({ newsItem, news, query }) {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ query }) => {
-    const pageNumber = query.page && query.page >= 1 ? query.page : 1;
+    const pageNumber = query.strana && query.strana >= 1 ? query.strana : 1;
     const perPage = 11;
     const news = await fetch(
       `${URLS.BASE}${URLS.QUICK_NEWS_ENDPOINT}?page=${pageNumber}&per_page=10&_fields=id,type,acf,date`
