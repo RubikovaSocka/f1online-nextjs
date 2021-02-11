@@ -55,7 +55,7 @@ Sitemap.getInitialProps = async ({ res, query }) => {
             ? "monthly"
             : counter < 20
             ? "hourly"
-            : counter < 80
+            : counter < 50
             ? "daily"
             : "monthly"
         )
