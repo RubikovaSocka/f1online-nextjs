@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import ReactGA from "react-ga";
+import { Crawler } from "es6-crawler-detect";
 import Header from "../components/Header";
 import HeaderMeta from "../components/HeaderMeta";
 import Footer from "../components/Footer";
@@ -70,15 +71,23 @@ function App({ Component, pageProps }) {
 
   useEffect(() => {
     dispatch(initializeTheme());
+    let CrawlerDetector = new Crawler();
+    let userAgentString = navigator.userAgent;
+    let isCrawler = CrawlerDetector.isCrawler(userAgentString);
+
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
-    ReactGA.pageview(window.location.pathname);
+    if (!isCrawler) {
+      ReactGA.pageview(window.location.pathname);
+    }
 
     Router.events.on("routeChangeStart", () => {
       NProgress.start();
     });
     Router.events.on("routeChangeComplete", () => {
-      ReactGA.pageview(window.location.pathname);
+      if (!isCrawler) {
+        ReactGA.pageview(window.location.pathname);
+      }
       setViewIndex((prev) => prev + 1);
       NProgress.done();
     });

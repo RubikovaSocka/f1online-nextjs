@@ -19,6 +19,7 @@
     "clsx": "^1.1.1",
     "cross-env": "^7.0.2",
     "emotion": "^10.0.27",
+    "es6-crawler-detect": "^3.1.2",
     "escape-html": "^1.0.3",
     "fecha": "^4.2.0",
     "fontfaceobserver": "^2.1.0",
