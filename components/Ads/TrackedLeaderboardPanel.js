@@ -7,7 +7,7 @@ const Container = styled.div`
   width: 100vw;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: yellow;
+  //background-color: yellow;
 
   @media only screen and (min-width: 1024px) {
     width: 972px;
