@@ -43,7 +43,7 @@ export default function Teams({ teamsData }) {
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL>
-            <SectionTitle title="Tímy" />
+            <SectionTitle topLevel={true} title="Tímy" />
             <Divider height="20px" />
             {/*<img className={styles.image} src='' />*/}
 

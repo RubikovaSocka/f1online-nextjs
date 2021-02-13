@@ -8,7 +8,7 @@ const Title = styled.h1`
   margin-bottom: 35px;
   font-family: "Cabin";
   font-size: 36px;
-  color: ${props => props.theme.TEXT_COLOR};
+  color: ${(props) => props.theme.TEXT_COLOR};
 `;
 
 const Figure = styled.figure`
@@ -25,14 +25,14 @@ const Figure = styled.figure`
 
     font-family: "HK Grotesk";
     font-size: 12px;
-    color: ${props => props.theme.SUBTITLE_COLOR};
+    color: ${(props) => props.theme.SUBTITLE_COLOR};
   }
 `;
 
 const PostMeta = styled.div`
   font-family: "HK Grotesk";
   font-size: 14px;
-  color: ${props => props.theme.SUBTITLE_COLOR};
+  color: ${(props) => props.theme.SUBTITLE_COLOR};
 `;
 
 const ButtonRow = styled.div`
@@ -48,7 +48,10 @@ function PostTitleArea({ title, authorName, date, imageData, id, slug }) {
     <>
       <Title>{decodeHtml(title)}</Title>
       <Figure>
-        <img src={getImageSrc(imageData, "medium_large")} />
+        <img
+          alt={imageData.title.rendered}
+          src={getImageSrc(imageData, "medium_large")}
+        />
         <figcaption>
           {`zdroj: ${imageData.caption.rendered.replace(
             /<\/?[^>]+(>|$)/g,

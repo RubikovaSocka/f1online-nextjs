@@ -9,7 +9,7 @@ const MAIN = styled.main`
   align-items: center;
 
   @media only screen and (min-width: 1024px) {
-    margin-bottom: 80px;
+    margin-bottom: 400px;
   }
 `;
 

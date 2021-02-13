@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 import MyNavbar from "../Navbar";
@@ -125,9 +126,35 @@ const Shadow = styled.div`
   }
 `;
 
+function HeaderLogo({ logoShown, themeContext }) {
+  return (
+    <Link href="/">
+      <a
+        style={{
+          display: `${logoShown ? "inline-block" : "none"}`,
+          color: "transparent",
+        }}
+      >
+        <Image
+          src={themeContext.LOGO_URL}
+          height={40}
+          width={64}
+          alt="F1online.sk"
+          style={{ display: "inline-block", color: "transparent" }}
+          loading="eager"
+          priority={true}
+        />
+        <span style={{ textIndent: "-9999px", display: "inline-block"}}>F1online.sk</span>
+      </a>
+    </Link>
+  );
+}
+
 function Header() {
   const logoShown = useSelector(({ logoTrigger }) => logoTrigger.logoShown);
   const themeContext = useContext(ThemeContext);
+  const router = useRouter();
+  const isHomepage = router.pathname === "/";
 
   return (
     <Container>
@@ -136,25 +163,13 @@ function Header() {
         <WhiteBack>
           <HeaderContents>
             <SocialMediaBasicPlugin />
-            <Link href="/">
-              <a
-                style={{
-                  display: `${logoShown ? "inline-block" : "none"}`,
-                  color: "transparent",
-                }}
-              >
-                {onClient() ? "" : ""}
-                <Image
-                  src={themeContext.LOGO_URL}
-                  height={40}
-                  width={64}
-                  alt="Logo F1online.sk"
-                  style={{ display: "inline-block", color: "transparent" }}
-                  loading="eager"
-                  priority={true}
-                />
-              </a>
-            </Link>
+            {isHomepage ? (
+              <h1>
+                <HeaderLogo logoShown={logoShown} themeContext={themeContext} />
+              </h1>
+            ) : (
+              <HeaderLogo logoShown={logoShown} themeContext={themeContext} />
+            )}
             <SearchBar />
           </HeaderContents>
         </WhiteBack>

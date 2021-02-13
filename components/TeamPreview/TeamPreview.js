@@ -146,11 +146,13 @@ const DriversRow = styled.div`
 function TeamPreview({ constructor }) {
   return (
     <Container>
-      <Link href="timy/[id]" as={`/timy/${constructor.slug}`}>
-        <a style={{ marginBottom: "5px" }}>
-          <span className="teamName">{constructor.name}</span>
-        </a>
-      </Link>
+      <h3 style={{ margin: 0 }}>
+        <Link href="timy/[id]" as={`/timy/${constructor.slug}`}>
+          <a style={{ marginBottom: "5px" }}>
+            <span className="teamName">{constructor.name}</span>
+          </a>
+        </Link>
+      </h3>
       <Link href="timy/[id]" as={`/timy/${constructor.slug}`}>
         <LogoContainer style={{ marginBottom: "5px" }}>
           <TeamLogo

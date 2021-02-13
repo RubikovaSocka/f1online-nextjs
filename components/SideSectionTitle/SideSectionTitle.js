@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Title = styled.h3`
+const Title = styled.h2`
   margin: 0;
   padding: 7px;
   padding-left: 12px;
@@ -10,8 +10,8 @@ const Title = styled.h3`
   font-family: "HK Grotesk", "Source Sans Pro";
   text-transform: uppercase;
 
-  background-color: ${props => props.theme.SIDESECTION_TITLE_BACK};
-  color: ${props => props.theme.TEXT_COLOR};
+  background-color: ${(props) => props.theme.SIDESECTION_TITLE_BACK};
+  color: ${(props) => props.theme.TEXT_COLOR};
   border-left: 5px solid #e10600;
 
   display: block;
