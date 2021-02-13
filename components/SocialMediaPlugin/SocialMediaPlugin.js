@@ -16,8 +16,7 @@ const Container = styled.div`
 const Icon = styled.a`
   font-size: 15px;
   cursor: pointer;
-  margin: 0;
-  margin-right: 7px;
+  margin: 0 5px;
 
   &::before {
     display: inline-block;
