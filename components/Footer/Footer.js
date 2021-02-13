@@ -139,6 +139,12 @@ const SOCIAL = [
     isBrand: true,
   },
   {
+    title: "Instagram",
+    code: "16d",
+    href: "https://www.instagram.com/stevoeiselef1/",
+    isBrand: true,
+  },
+  {
     title: "RSS",
     code: "09e",
     href: "https://wpadmin.f1online.sk/rss",

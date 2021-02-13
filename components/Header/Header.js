@@ -81,8 +81,14 @@ const HeaderContents = styled.div`
   flex-direction: row-reverse;
   justify-content: flex-end;
   z-index: 13;
-
-  a {
+  /*
+  a, h1 {
+    align-self: center;
+    margin: auto;
+    height: 42px;
+    z-index: 15;
+  }*/
+  .logoCenterer {
     align-self: center;
     margin: auto;
     height: 42px;
@@ -144,7 +150,9 @@ function HeaderLogo({ logoShown, themeContext }) {
           loading="eager"
           priority={true}
         />
-        <span style={{ textIndent: "-9999px", display: "inline-block"}}>F1online.sk</span>
+        <span style={{ textIndent: "-9999px", display: "inline-block" }}>
+          F1online.sk
+        </span>
       </a>
     </Link>
   );
@@ -164,11 +172,15 @@ function Header() {
           <HeaderContents>
             <SocialMediaBasicPlugin />
             {isHomepage ? (
-              <h1>
+              <h1 style={{ display: "flex" }} className="logoCenterer">
                 <HeaderLogo logoShown={logoShown} themeContext={themeContext} />
               </h1>
             ) : (
-              <HeaderLogo logoShown={logoShown} themeContext={themeContext} />
+              <HeaderLogo
+                logoShown={logoShown}
+                themeContext={themeContext}
+                className="logoCenterer"
+              />
             )}
             <SearchBar />
           </HeaderContents>

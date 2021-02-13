@@ -1,8 +1,5 @@
 const THEME = {
   LOGO_URL: "/images/logo-light.png",
-  IG_LOGO: "/images/insta-icon-light.png",
-  FB_LOGO: "/images/fb-icon-light.png",
-  YT_LOGO: "/images/youtube-icon2-light.png",
   ARR_IMG: "/images/arrow-light.png",
   MOBILE_BURGER_BUT: "/images/bbutton-black.png",
   XBUTTON: "/images/xbutton.png",

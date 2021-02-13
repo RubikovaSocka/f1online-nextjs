@@ -9,83 +9,72 @@ const Container = styled.div`
 
     display: flex;
     flex-direction: row;
-
-    .item {
-      height: 18px;
-      margin: 0 2px;
-      transition: ease 0.2s;
-
-      img {
-        position: relative;
-        height: 15px;
-        margin: 0 2px;
-        margin-top: 3px;
-        display: inline-block;
-
-        &:hover {
-          cursor: pointer;
-          margin-top: -3px;
-        }
-
-        &.fbImg {
-          content: var(--fb-img-url);
-        }
-        &.instaImg {
-          content: var(--insta-img-url);
-        }
-        &.youtubeImg {
-          content: var(--youtube-img-url);
-        }
-      }
-    }
+    justify-content: flex-start;
   }
 `;
 
-const FB_LOGO = styled.img.attrs(props => ({
-  src: props.theme.FB_LOGO,
-  alt: "Facebook logo"
-}))``;
+const Icon = styled.a`
+  font-size: 15px;
+  cursor: pointer;
+  margin: 0;
+  margin-right: 7px;
 
-const YT_LOGO = styled.img.attrs(props => ({
-  src: props.theme.YT_LOGO,
-  alt: "Youtube logo"
-}))``;
+  &::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    
+    font-family: "Font Awesome 5 Free";
+    font-weight: ${(props) => (props.brands ? "100" : "900")};
+    color: ${(props) => props.theme.TEXT_COLOR};
+    content: "\f${(props) => props.code}";
+  }
 
-const IG_LOGO = styled.img.attrs(props => ({
-  src: props.theme.IG_LOGO,
-  alt: "Instagram logo"
-}))``;
+  &:hover {
+    margin-top: -3px;
+  }
+`;
+
+const SOCIAL = [
+  {
+    title: "Facebook",
+    code: "39e",
+    href: "https://www.facebook.com/f1online.sk",
+    isBrand: true,
+  },
+  {
+    title: "Youtube",
+    code: "167",
+    href: "https://www.youtube.com/channel/UCE54uS8jp-tlGC7wjUhnt4A",
+    isBrand: true,
+  },
+  {
+    title: "Twitter",
+    code: "099",
+    href: "https://twitter.com/F1onlinesk",
+    isBrand: true,
+  },
+  {
+    title: "Instagram",
+    code: "16d",
+    href: "https://www.instagram.com/stevoeiselef1/",
+    isBrand: true,
+  },
+];
 
 function SocialMediaBasicPlugin() {
   return (
     <Container>
-      <div className="item">
-        <a
-          href="https://www.facebook.com/f1online.sk/"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <FB_LOGO />
-        </a>
-      </div>
-      <div className="item">
-        <a
-          href="https://www.instagram.com/stevoeiselef1/"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <IG_LOGO />
-        </a>
-      </div>
-      <div className="item">
-        <a
-          href="https://www.youtube.com/channel/UCE54uS8jp-tlGC7wjUhnt4A"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <YT_LOGO />
-        </a>
-      </div>
+      {SOCIAL.map((item, index) => (
+        <Icon
+          key={index}
+          code={item.code}
+          brands={item.isBrand}
+          href={item.href}
+        />
+      ))}
     </Container>
   );
 }

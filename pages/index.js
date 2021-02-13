@@ -160,7 +160,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
           "rss",
         ],
         regular: ["comments", "comment", "heart", "flag", "clock", "copyright"],
-        brands: ["facebook-f", "youtube", "twitter"],
+        brands: ["facebook-f", "youtube", "twitter", "instagram"],
       },
       "public/fonts/FontAwesome"
     );
