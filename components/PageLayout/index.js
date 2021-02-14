@@ -7,6 +7,7 @@ const MAIN = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 300px;
 
   @media only screen and (min-width: 1024px) {
     margin-bottom: 400px;

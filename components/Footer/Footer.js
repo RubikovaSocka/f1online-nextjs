@@ -4,7 +4,7 @@ import Divider from "../Divider";
 
 const Container = styled.footer`
   width: calc(100% - 20px);
-  height: 90px;
+  height: 300px;
 
   position: absolute;
   bottom: 0;
@@ -17,18 +17,17 @@ const Container = styled.footer`
   align-items: center;
 
   background-color: ${(props) => props.theme.FOOTER_COLOR};
-  //color: #f0f0f0;
 
   font: 13px "HK Grotesk";
   font-weight: 400;
 
-  @media only screen and (min-width: 375px) {
-    height: 360px;
+  @media only screen and (min-width: 400px) {
+    height: 290px;
     padding-top: 35px;
   }
 
   span {
-    padding: 0 10px;
+    //padding: 0 10px;
     //color: #f0f0f0;
   }
 `;
@@ -44,7 +43,6 @@ const Row = styled.div`
   }
 
   a {
-    color: #f0f0f0;
     cursor: pointer;
     &:hover {
       text-decoration: underline;
@@ -53,6 +51,7 @@ const Row = styled.div`
 `;
 
 const Col = styled.div`
+  margin: 0 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,12 +69,15 @@ const Logo = styled.img`
   height: 40px;
 `;
 
-const Cpr = styled.span`
+const CprRowItem = styled.span`
   font-size: 12px;
-  cursor: pointer;
   font-weight: 600;
   color: #707070;
+  margin: 0 0px;
+  padding: 0 5px;
+`;
 
+const Cpr = styled(CprRowItem)`
   &::before {
     font-size: 10px;
     display: inline-block;
@@ -91,8 +93,16 @@ const Cpr = styled.span`
   }
 `;
 
+const CprLink = styled.a`
+  font-size: 12px;
+  font-weight: 600;
+  color: #707070;
+  margin: 0 0px;
+  padding: 0 5px;
+`;
+
 const Icon = styled.a`
-  font-size: 25px;
+  font-size: 18px;
   cursor: pointer;
 
   &::before {
@@ -101,22 +111,33 @@ const Icon = styled.a`
     font-variant: normal;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
-    margin: 5px 35px;
+    margin: 5px 15px;
     font-family: "Font Awesome 5 Free";
     font-weight: ${(props) => (props.brands ? "100" : "900")};
     color: white;
     content: "\f${(props) => props.code}";
+
+    @media only screen and (min-width: 1024px) {
+      margin: 5px 25px;
+    }
   }
 
   &:hover {
     margin-top: -5px;
   }
+  @media only screen and (min-width: 1024px) {
+    font-size: 20px;
+  }
 `;
 
 const List = styled.ul`
   list-style-type: none;
+
   padding: 0;
   margin: 5px 0;
+  a {
+    color: #f0f0f0;
+  }
 `;
 
 const SOCIAL = [
@@ -166,9 +187,20 @@ const LINKS = [
     ],
   },
   {
-    title: "Kontakt",
+    title: "Podporte nás",
+    links: [
+      { link_name: "Patreon", link_href: "https://www.patreon.com/F1online" },
+      {
+        link_name: "Paypal",
+        link_href: "https://f1online.sk/chcem-vas-podporit",
+      },
+    ],
+  },
+  {
+    title: "F1online.sk",
     links: [
       { link_name: "O nás", link_href: "#" },
+      { link_name: "Autori", link_href: "#" },
       { link_name: "Reklama", link_href: "#" },
     ],
   },
@@ -177,14 +209,13 @@ const LINKS = [
 function Footer() {
   return (
     <Container>
-      <Row>
+      {/*<Row>
         <Link href="/">
           <a>
             <Logo src="/images/logo-dark.png" />
           </a>
         </Link>
-      </Row>
-      <Divider height="25px" />
+      </Row>*/}
       <Row>
         {SOCIAL.map((item, index) => (
           <Icon
@@ -195,25 +226,39 @@ function Footer() {
           />
         ))}
       </Row>
-      <Divider height="25px" />
+      <Divider height="30px" />
       <Row>
-        {LINKS.map((item, index) => (
-          <Col key={index}>
-            <Title>{item.title}</Title>
+        <>
+          {LINKS.map((item, index) => (
+            <Col key={index}>
+              <Title>{item.title}</Title>
+              <List>
+                {item.links.map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    <Link href={link.link_href}>
+                      <a>{link.link_name}</a>
+                    </Link>
+                  </li>
+                ))}
+              </List>
+            </Col>
+          ))}
+          <Col>
+            <Title>Napíšte nám</Title>
             <List>
-              {item.links.map((link, linkIndex) => (
-                <li key={linkIndex}>
-                  <Link href={link.link_href}>
-                    <a>{link.link_name}</a>
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <a href="mailto:redakcia@f1online.sk">redakcia@f1online.sk</a>
+              </li>
             </List>
           </Col>
-        ))}
+        </>
       </Row>
-      <div style={{ height: "20px" }}></div>
-      <Cpr code={COPYRIGHT}>2020-2021 F1online.sk</Cpr>
+      <Divider height="50px" />
+      <Row>
+        <Cpr code={COPYRIGHT}>2020-{new Date().getFullYear()} F1online.sk</Cpr>
+        <CprRowItem>|</CprRowItem>
+        <CprLink>Zásady ochrany osobných údajov</CprLink>
+      </Row>
     </Container>
   );
 }
