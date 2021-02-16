@@ -44,13 +44,13 @@ function Autori({ authorsData }) {
                 display: "flex",
                 flexDirection: "row",
                 flexWrap: "wrap",
-                marginTop: "25px"
+                marginTop: "25px",
               }}
             >
               {authorsData.map((author, index) => (
                 <AuthorPreview
                   key={index}
-                  subtitle="F1online.sk"
+                  subtitle={author.mail}
                   author={author}
                 />
               ))}

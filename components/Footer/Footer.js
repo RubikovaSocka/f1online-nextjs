@@ -199,9 +199,9 @@ const LINKS = [
   {
     title: "F1online.sk",
     links: [
-      { link_name: "O nás", link_href: "#" },
+      { link_name: "O nás", link_href: "/archiv/kategoria/f1online" },
       { link_name: "Autori", link_href: "/autori" },
-      { link_name: "Reklama", link_href: "#" },
+      //{ link_name: "Reklama", link_href: "#" },
     ],
   },
 ];
