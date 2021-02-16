@@ -14,6 +14,7 @@ const Container = styled.footer`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
 
   background-color: ${(props) => props.theme.FOOTER_COLOR};
@@ -38,6 +39,23 @@ const Row = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   flex-direction: row;
+
+  &.last {
+    flex-direction: column-reverse;
+    span {
+      margin-top: 5px;
+      width: calc(100% - 10px);
+      text-align: center;
+
+      @media only screen and (min-width: 400px) {
+        width: fit-content;
+        margin: 0;
+      }
+    }
+    @media only screen and (min-width: 400px) {
+      flex-direction: row;
+    }
+  }
 
   a {
     cursor: pointer;
@@ -83,8 +101,14 @@ const CprRowItem = styled.span`
   color: #707070;
   margin: 0 0px;
   padding: 0 5px;
-`;
 
+  &.mobileHide {
+    display: none;
+    @media only screen and (min-width: 400px) {
+      display: inline-block;
+    }
+  }
+`;
 
 const Cpr = styled(CprRowItem)`
   &::before {
@@ -128,7 +152,7 @@ const Icon = styled.a`
     content: "\f${(props) => props.code}";
 
     @media only screen and (min-width: 1024px) {
-      margin: 5px 25px;
+      margin: 5px 25px 20px 25px;
     }
   }
 
@@ -263,10 +287,12 @@ function Footer() {
         </>
       </Row>
       <Divider height="50px" />
-      <Row>
+      <Row className="last">
         <Cpr code={COPYRIGHT}>2020-{new Date().getFullYear()} F1online.sk</Cpr>
-        <CprRowItem>|</CprRowItem>
-        <CprLink>Zásady ochrany osobných údajov</CprLink>
+        <CprRowItem className="mobileHide">|</CprRowItem>
+        <CprLink href="/zasady-ochrany-sukromia">
+          Zásady ochrany osobných údajov
+        </CprLink>
       </Row>
     </Container>
   );
