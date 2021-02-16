@@ -4,12 +4,12 @@ import Divider from "../Divider";
 
 const Container = styled.footer`
   width: calc(100% - 20px);
-  height: 300px;
+  height: 570px;
 
   position: absolute;
   bottom: 0;
   margin-top: 30px;
-  padding: 17px 10px 13px 10px;
+  padding: 35px 10px 13px 10px;
 
   display: flex;
   flex-direction: column;
@@ -23,7 +23,6 @@ const Container = styled.footer`
 
   @media only screen and (min-width: 400px) {
     height: 290px;
-    padding-top: 35px;
   }
 
   span {
@@ -37,10 +36,8 @@ const Row = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-
-  @media only screen and (min-width: 375px) {
-    flex-direction: row;
-  }
+  flex-wrap: wrap;
+  flex-direction: row;
 
   a {
     cursor: pointer;
@@ -51,11 +48,22 @@ const Row = styled.div`
 `;
 
 const Col = styled.div`
-  margin: 0 30px;
+  margin: 15px 10% 0 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  width: 90%;
+  //border-top: 1px solid #707070;
+  text-align: center;
+
+  @media only screen and (min-width: 1024px) {
+    margin: 0 30px;
+    width: initial;
+    border: none;
+    align-items: flex-start;
+    text-align: left;
+  }
 `;
 
 const Title = styled.h3`
@@ -76,6 +84,7 @@ const CprRowItem = styled.span`
   margin: 0 0px;
   padding: 0 5px;
 `;
+
 
 const Cpr = styled(CprRowItem)`
   &::before {
@@ -104,6 +113,7 @@ const CprLink = styled.a`
 const Icon = styled.a`
   font-size: 18px;
   cursor: pointer;
+  margin-bottom: 15px;
 
   &::before {
     display: inline-block;
@@ -226,7 +236,6 @@ function Footer() {
           />
         ))}
       </Row>
-      <Divider height="30px" />
       <Row>
         <>
           {LINKS.map((item, index) => (
