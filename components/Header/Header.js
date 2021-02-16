@@ -139,6 +139,7 @@ function HeaderLogo({ logoShown, themeContext }) {
         style={{
           display: `${logoShown ? "inline-block" : "none"}`,
           color: "transparent",
+          margin: "auto",
         }}
       >
         <Image
@@ -146,7 +147,7 @@ function HeaderLogo({ logoShown, themeContext }) {
           height={40}
           width={64}
           alt="F1online.sk"
-          style={{ display: "inline-block", color: "transparent" }}
+          style={{ display: "block", color: "transparent" }}
           loading="eager"
           priority={true}
         />
