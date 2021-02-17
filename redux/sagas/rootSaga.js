@@ -14,6 +14,7 @@ import fetchTagArchiveArticlesSaga from "./handlers/fetchTagArchiveArticlesSaga"
 import liveSaga from "./handlers/liveSaga";
 import popularArticlesSaga from "./handlers/popularArticlesSaga";
 import productsSaga from "./handlers/productsSaga";
+import fetchAuthorArticlesSaga from "./handlers/fetchAuthorArticlesSaga";
 
 import { TYPES as QUICK_NEWS } from "../actions/quickNewsActions";
 import { TYPES as F1_RESULTS } from "../actions/f1ResultsActions";
@@ -25,6 +26,7 @@ import { TYPES as CATEGORIES } from "../actions/categoriesActions";
 import { TYPES as LIVE } from "../actions/liveActions";
 import { TYPES as POPULAR } from "../actions/popularActions";
 import { TYPES as PRODUCTS } from "../actions/productsActions";
+import { TYPES as AUTHOR_ARCHIVE_ARTICLES } from "../actions/authorArchiveActions";
 
 //watcher
 function* rootSaga() {
@@ -34,6 +36,7 @@ function* rootSaga() {
   yield takeLatest(QUICK_NEWS.START, quickNewsAutofetchSaga);
 
   yield takeLatest(ARCHIVE_ARTICLES.FETCH, fetchArchiveArticlesSaga);
+  yield takeLatest(AUTHOR_ARCHIVE_ARTICLES.FETCH, fetchAuthorArticlesSaga);
   yield takeLatest(F1_RESULTS.FETCH, fetchF1ResultsSaga);
   yield takeLatest(CALENDAR.FETCH, fetchCalendarSaga);
   yield takeLatest(PROGRAMME.FETCH, fetchProgrammeSaga);

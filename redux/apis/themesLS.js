@@ -1,4 +1,4 @@
-import { THEMES } from "../../constants";
+import { THEME as THEMES } from "../constants";
 
 const getTheme = () => {
   const themeFromLS = window.localStorage.getItem("theme-name");

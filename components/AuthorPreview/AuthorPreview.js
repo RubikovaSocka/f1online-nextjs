@@ -106,7 +106,7 @@ const Container = styled.div`
 export function AuthorPreview({ author, subtitle }) {
   return (
     <Container>
-      <Link href={`/autori/${author.fslug}`}>
+      <Link href={`/autor/${author.fslug}`}>
         <a>
           <img
             alt={`${author.name} portrét`}

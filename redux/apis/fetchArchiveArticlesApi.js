@@ -1,4 +1,4 @@
-import axios from "axios";
+import fetch from "isomorphic-fetch";
 
 import { URLS } from "./urls";
 const PER_PAGE = 12;
@@ -8,6 +8,7 @@ export default async function fetchArchiveArticles({
   perPage,
   tagID,
   searchPhrase,
+  authorId,
 }) {
   const TAG = tagID ? `&tags=${tagID}` : "";
   const SEARCH =
@@ -16,18 +17,27 @@ export default async function fetchArchiveArticles({
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")}`
       : "";
-  return await axios
-    .get(
-      `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}?page=${pageNumber}&per_page=${perPage}&${URLS.previewFields}${TAG}${SEARCH}`
-    )
-    .then((res) => {
-      return {
-        totalArticlesCount: res.headers["x-wp-total"],
-        articles: res.data,
+
+  const url = `${URLS.BASE}${
+    URLS.ARTICLES_ENDPOINT
+  }?page=${pageNumber}&per_page=${perPage}${
+    authorId ? `&author=${authorId}` : `&${URLS.previewFields}${TAG}${SEARCH}`
+  }`;
+
+  try {
+    return await fetch(url)
+      .then((res) =>
+        res.json().then((json) => ({
+          headers: res.headers,
+          json,
+        }))
+      )
+      .then(({ headers, json }) => ({
+        articles: json,
         pageNumber: pageNumber,
-      };
-    })
-    .catch((error) => {
-      throw new Error(error.response.data.Error);
-    });
+        totalArticlesCount: headers.get("x-wp-total"),
+      }));
+  } catch (e) {
+    throw new Error(e.response.data.Error);
+  }
 }

@@ -46,6 +46,13 @@ export default function Archiv({ query, news, error }) {
           strana: pageNumber,
         },
       });
+    } else if (query.autor) {
+      Router.push({
+        pathname: `/autor/${query.autor}`,
+        query: {
+          strana: pageNumber,
+        },
+      });
     } else {
       Router.push({
         pathname: "/archiv",
@@ -60,7 +67,11 @@ export default function Archiv({ query, news, error }) {
     <div key={pageNumber}>
       <Head>
         <title key="meta_title">{`${
-          query.hladat ? `Vyhľadávanie: \"${query.hladat}\"` : "Správy"
+          query.hladat
+            ? `Vyhľadávanie: \"${query.hladat}\"`
+            : query.autor
+            ? `Články autora ${autorData.name}`
+            : "Správy"
         } | ${PAGE_MAIN_TITLE}`}</title>
         <meta
           key="meta_ogtitle"
@@ -97,6 +108,8 @@ export default function Archiv({ query, news, error }) {
               getPaginateHref={(pageNumber) => {
                 if (query.kategoria) {
                   return `/archiv/kategoria/${query.kategoria}?strana=${pageNumber}`;
+                } else if (query.autor) {
+                  return `/archiv/autor/${query.autor}?strana=${pageNumber}`;
                 } else if (query.hladat) {
                   return `/archiv?hladat=${query.hladat}&strana=${pageNumber}`;
                 } else {
@@ -168,6 +181,19 @@ export const getServerSideProps = wrapper.getServerSideProps(
           pageNumber: pageNumber,
           searchPhrase: query.hladat,
         });
+      } catch (error) {
+        error = "Nepodarilo sa načítať správy.";
+      }
+    } else if (query.autor) {
+      try {
+        news = await fetchArchiveArticlesApi({
+          perPage: PER_PAGE,
+          pageNumber: pageNumber,
+          authorSlug: query.autor,
+        });
+
+        console.log("!!!!!");
+        console.log(news);
       } catch (error) {
         error = "Nepodarilo sa načítať správy.";
       }

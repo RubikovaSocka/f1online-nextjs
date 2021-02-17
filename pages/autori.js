@@ -8,6 +8,7 @@ import CalResWidget from "../components/CalResWidget";
 import DriverPreview from "../components/DriverPreview/DriverPreview.js";
 import SectionTitle from "../components/SectionTitle";
 import Divider from "../components/Divider.js";
+import { URLS } from "../redux/apis/urls";
 
 import {
   MAIN,
@@ -73,7 +74,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
     const response = await axios({
       method: "get",
-      url: "https://wpadmin.f1online.sk/wp-content/uploads/authors.json",
+      url: URLS.AUTHORS_DATA_ENDPOINT,
       //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
     });
 
