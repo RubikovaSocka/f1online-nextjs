@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import ReactGA from "react-ga";
 import { Crawler } from "es6-crawler-detect";
+import FacebookPixel from "../components/FacebookPixel";
+
 import Header from "../components/Header";
 import HeaderMeta from "../components/HeaderMeta";
 import Footer from "../components/Footer";
@@ -75,6 +77,11 @@ function App({ Component, pageProps }) {
     let userAgentString = navigator.userAgent;
     let isCrawler = CrawlerDetector.isCrawler(userAgentString);
 
+    const options = {
+      autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
+      debug: false, // enable logs
+    };
+
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
     if (!isCrawler) {
@@ -101,23 +108,25 @@ function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <ThemeProvider theme={theme === THEMES.DARK ? darkTheme : lightTheme}>
-      <GlobalStyle />
-      <HeaderMeta theme={theme} />
-      <Header theme={theme} />
-      <div>
-        {onClient() ? (
-          <TrackedLeaderboardPanel
-            position={POSITION.LEADERBOARD}
-            key={viewIndex}
-          />
-        ) : null}
-      </div>
-      <ThemeSwitcher />
-      <Component {...pageProps} />
-      <Footer />
-      <CookieBanner />
-    </ThemeProvider>
+    <FacebookPixel>
+      <ThemeProvider theme={theme === THEMES.DARK ? darkTheme : lightTheme}>
+        <GlobalStyle />
+        <HeaderMeta theme={theme} />
+        <Header theme={theme} />
+        <div>
+          {onClient() ? (
+            <TrackedLeaderboardPanel
+              position={POSITION.LEADERBOARD}
+              key={viewIndex}
+            />
+          ) : null}
+        </div>
+        <ThemeSwitcher />
+        <Component {...pageProps} />
+        <Footer />
+        <CookieBanner />
+      </ThemeProvider>
+    </FacebookPixel>
   );
 }
 

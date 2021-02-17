@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
-import TrackedRSpravyPanel from "../Ads/TrackedRSpravyPanel";
 import ReactGA from "react-ga";
-import AdSense from "react-adsense";
+import * as fbq from "../../lib/fpixel";
 
 import styled from "styled-components";
-import onMobile from "../../utils/onMobile";
-import onClient from "../../utils/onClient";
 import { POSITION } from "../Ads/positions";
 import TrackedInsetPanel from "../Ads/TrackedInsetPanel";
 
@@ -194,6 +191,7 @@ function EmbedFullscreen(props) {
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
     ReactGA.pageview(`/rychle-spravy/${id}`);
+
     const oldPath = window.location.pathname;
     window.history.replaceState(null, "", `/rychle-spravy/${id}`);
     // returned function will be called on component unmount
