@@ -192,9 +192,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
           pageNumber: pageNumber,
           authorSlug: query.autor,
         });
-
-        console.log("!!!!!");
-        console.log(news);
       } catch (error) {
         error = "Nepodarilo sa načítať správy.";
       }

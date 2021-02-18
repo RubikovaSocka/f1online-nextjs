@@ -11,10 +11,8 @@ const defaultState = {
 };
 
 const authorArticlesReducer = (state = defaultState, action) => {
-  console.log(action.type);
   switch (action.type) {
     case HYDRATE:
-      console.log("hydrating", action);
       //if (action.payload.authorArticles.articles.length > 0) {
         return {
           ...state,

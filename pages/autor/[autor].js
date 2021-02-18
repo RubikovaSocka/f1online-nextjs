@@ -33,7 +33,6 @@ const PER_PAGE = 12;
 
 export default function Archiv() {
   const state = useSelector((state) => state.authorArticles);
-  console.log("state", state.authorArticles);
   const {
     articles,
     author,

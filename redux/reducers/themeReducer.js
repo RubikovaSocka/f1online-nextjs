@@ -6,7 +6,6 @@ const defaultState = {
 };
 
 const themeReducer = (state = defaultState, action) => {
-  console.log(action);
   switch (action.type) {
     case TYPES.SET:
       return {

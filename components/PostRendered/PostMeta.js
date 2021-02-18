@@ -9,7 +9,6 @@ function PostMeta({ title, excerpt, id, date, slug, _embedded }) {
     metaText.length > 140 ? `${metaText.substr(0, 140)}\u2026` : metaText
   }`;
 
-  console.log(metaDesc);
   return (
     <Head>
       <title key="meta_title">{`${decodeHtml(

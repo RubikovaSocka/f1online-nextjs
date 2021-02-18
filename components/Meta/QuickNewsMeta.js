@@ -32,7 +32,6 @@ export default function QuickNewsMeta({ newsItem }) {
     newsItem && newsItem.id
       ? `${URLS.FRONTEND_API_BASE}?id=${newsItem.id}`
       : "https://wpadmin.f1online.sk/wp-content/uploads/rychle-spravy-img.jpeg";
-  console.log(metaImage);
   const date =
     newsItem && newsItem.date ? newsItem.date : `2020-05-13T09:15:00`;
   return (

@@ -19,7 +19,6 @@ import AuthorPreview from "../components/AuthorPreview";
 import getAuthorFromSlug from "../redux/apis/getAuthorFromSlug";
 
 function Autori({ authorsData }) {
-  console.log(authorsData);
   return (
     <>
       <Head>
