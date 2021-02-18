@@ -1,11 +1,10 @@
-import fetch from "isomorphic-fetch";
+import { useEffect } from "react";
 import { END } from "redux-saga";
 import { wrapper } from "../../../redux/store/store";
 
 import QuickNews from "../../../components/QuickNews";
 import CalResWidget from "../../../components/CalResWidget";
 import Divider from "../../../components/Divider.js";
-import TrackedSidePanel from "../../../components/Ads/TrackedSidePanel.js";
 import PostRendered from "../../../components/PostRendered";
 import PostMeta from "../../../components/PostRendered/PostMeta.js";
 import { URLS } from "../../../redux/apis/urls";
@@ -16,7 +15,6 @@ import {
   PAGE_MAIN_COL,
   SIDEBAR,
 } from "../../../components/PageLayout";
-import { PAGE_MAIN_TITLE } from "../../../constants";
 import onClient from "../../../utils/onClient";
 import { POSITION } from "../../../components/Ads/positions";
 import TrackedBasicPanel from "../../../components/Ads/TrackedBasicPanel";
@@ -38,6 +36,17 @@ const BSideContainer = styled.div`
 `;
 
 function Post({ postData }) {
+  useEffect(() => {
+    fetch(
+      "https://wpadmin.f1online.sk/wp-json/wordpress-popular-posts/v1/popular-posts",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ wpp_id: postData.id }),
+      }
+    );
+  }, []);
+
   return (
     <>
       <PostMeta {...postData} />
@@ -75,15 +84,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
     )
       .then((res) => res.json())
       .then((res) => res);
-
-    fetch(
-      "https://wpadmin.f1online.sk/wp-json/wordpress-popular-posts/v1/popular-posts",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ wpp_id: params.id }),
-      }
-    );
     await store.sagaTask.toPromise();
 
     return {

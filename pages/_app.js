@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import ReactGA from "react-ga";
-import { Crawler } from "es6-crawler-detect";
+import isbot from "isbot";
 import FacebookPixel from "../components/FacebookPixel";
 
 import Header from "../components/Header";
@@ -73,9 +73,8 @@ function App({ Component, pageProps }) {
 
   useEffect(() => {
     dispatch(initializeTheme());
-    let CrawlerDetector = new Crawler();
     let userAgentString = navigator.userAgent;
-    let isCrawler = CrawlerDetector.isCrawler(userAgentString);
+    let isCrawler = isbot(userAgentString);
 
     const options = {
       autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/

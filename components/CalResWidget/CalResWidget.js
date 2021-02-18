@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-//import ResultsWidget from "./ResultsWidget";
 import CalendarWidget from "./CalendarWidget";
 import SideSectionTitle from "../SideSectionTitle";
 import SideWidgetButton from "./SideWidgetButton";

@@ -46,6 +46,7 @@ const ButtonRow = styled.div`
 function PostTitleArea({ title, authorName, date, imageData, id, slug }) {
   return (
     <>
+      <PostMeta />
       <Title>{decodeHtml(title)}</Title>
       <Figure>
         <img
@@ -59,11 +60,9 @@ function PostTitleArea({ title, authorName, date, imageData, id, slug }) {
           )}`}
         </figcaption>
       </Figure>
-      <PostMeta>
-        <span>{authorName}</span>
-        <br />
-        <span>{formatDate(date)}</span>
-      </PostMeta>
+      <span>{authorName}</span>
+      <br />
+      <span>{formatDate(date)}</span>
       <ButtonRow>
         <iframe
           src={`https://www.facebook.com/plugins/like.php?href=${encodeURI(
