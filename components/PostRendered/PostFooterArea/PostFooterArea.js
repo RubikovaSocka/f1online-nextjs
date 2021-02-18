@@ -66,7 +66,7 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
       <BContainer>
         {onClient() && onMobile() ? (
           <TrackedPanel
-            type={TYPE.BASIC}
+            type={TYPES.BASIC}
             position={POSITION.CONTENT_ARTICLE_COMMENTS}
           />
         ) : null}

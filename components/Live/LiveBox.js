@@ -121,11 +121,11 @@ const CloseButton = styled.button`
   cursor: pointer;
   ${(props) => (props.isOpened ? "position: fixed;" : "display: none")};
 
-  top: 69px;
+  top: 0px;
   left: 0;
-  height: 77px;
-  width: 70px;
-  z-index: 5;
+  height: 68px;
+  width: 68px;
+  z-index: 50;
   background-color: white;
   border: none;
   padding: 0;
@@ -143,6 +143,7 @@ const CloseButton = styled.button`
   }
 
   @media only screen and (min-width: 1024px) {
+    display: none;
     top: 0;
     left: auto;
     right: calc(50vw - 515px + 340px);
