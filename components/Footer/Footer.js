@@ -243,13 +243,6 @@ const LINKS = [
 function Footer() {
   return (
     <Container>
-      {/*<Row>
-        <Link href="/">
-          <a>
-            <Logo src="/images/logo-dark.png" />
-          </a>
-        </Link>
-      </Row>*/}
       <Row>
         {SOCIAL.map((item, index) => (
           <Icon

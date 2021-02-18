@@ -29,7 +29,7 @@ const Figure = styled.figure`
   }
 `;
 
-const PostMeta = styled.div`
+const PostAuthorBlock = styled.div`
   font-family: "HK Grotesk";
   font-size: 14px;
   color: ${(props) => props.theme.SUBTITLE_COLOR};
@@ -46,7 +46,6 @@ const ButtonRow = styled.div`
 function PostTitleArea({ title, authorName, date, imageData, id, slug }) {
   return (
     <>
-      <PostMeta />
       <Title>{decodeHtml(title)}</Title>
       <Figure>
         <img
@@ -60,9 +59,11 @@ function PostTitleArea({ title, authorName, date, imageData, id, slug }) {
           )}`}
         </figcaption>
       </Figure>
-      <span>{authorName}</span>
-      <br />
-      <span>{formatDate(date)}</span>
+      <PostAuthorBlock>
+        <span>{authorName}</span>
+        <br />
+        <span>{formatDate(date)}</span>
+      </PostAuthorBlock>
       <ButtonRow>
         <iframe
           src={`https://www.facebook.com/plugins/like.php?href=${encodeURI(

@@ -76,11 +76,6 @@ function App({ Component, pageProps }) {
     let userAgentString = navigator.userAgent;
     let isCrawler = isbot(userAgentString);
 
-    const options = {
-      autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
-      debug: false, // enable logs
-    };
-
     const trackingId = "UA-166048655-1";
     ReactGA.initialize(trackingId);
     if (!isCrawler) {

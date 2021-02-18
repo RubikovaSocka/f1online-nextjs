@@ -9,7 +9,6 @@ import SearchBar from "../SearchBar";
 
 import styled, { ThemeContext } from "styled-components";
 import Image from "next/image";
-import onClient from "../../utils/onClient";
 
 const shadowMobile = "0 0px 8px rgba(0, 0, 0, 0.25);";
 

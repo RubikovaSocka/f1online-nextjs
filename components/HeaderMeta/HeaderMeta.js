@@ -1,4 +1,3 @@
-import React from "react";
 import { PAGE_MAIN_TITLE } from "../../constants";
 import Head from "next/head";
 
