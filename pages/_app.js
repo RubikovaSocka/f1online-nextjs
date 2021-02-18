@@ -12,7 +12,7 @@ import ThemeSwitcher from "../components/ThemeSwitcher";
 import CookieBanner from "../components/CookieBanner";
 import onMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
-import TrackedLeaderboardPanel from "../components/Ads/TrackedLeaderboardPanel";
+import TrackedLeaderboardPanel from "../components/Ads/TrackedLeaderboardPanel/TrackedLeaderboardPanel";
 import { POSITION } from "../components/Ads/positions";
 
 import "./index.css";

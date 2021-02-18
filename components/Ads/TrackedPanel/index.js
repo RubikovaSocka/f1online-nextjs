@@ -1,8 +1,8 @@
 import Loadable from "react-loadable";
-import Filler from "../Filler";
+import Filler from "../../Filler";
 
 const AsyncPage = Loadable({
-  loader: () => import("./CookieBanner"),
+  loader: () => import("./TrackedPanel"),
   loading: () => <Filler />,
 });
 
