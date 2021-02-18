@@ -10,17 +10,12 @@ import Divider from "../Divider";
 import PopularArticles from "../PopularArticles/PopularArticles";
 import ReactPaginate from "react-paginate";
 import EmbedContainer from "react-oembed-container";
-import {
-  MAIN,
-  COLUMNED_PAGE,
-  PAGE_MAIN_COL,
-  SIDEBAR,
-} from "../PageLayout";
+import { MAIN, COLUMNED_PAGE, PAGE_MAIN_COL, SIDEBAR } from "../PageLayout";
 import { PAGE_MAIN_TITLE } from "../../constants";
 import { URLS } from "../../redux/apis/urls";
 import onMobile from "../../utils/onMobile";
 import onClient from "../../utils/onClient";
-import TrackedBasicPanel from "../Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../Ads/TrackedPanel";
 import { POSITION } from "../Ads/positions";
 import QuickNewsMeta from "../Meta/QuickNewsMeta";
 import EmbedExorcist from "../EmbedExorcist";
@@ -279,7 +274,8 @@ export default function QuickNewsPage({ newsItem, news, query }) {
                   <NewsItemRendered noBorder={true} newsItem={newsItem} />
                   <div>
                     {onClient() ? (
-                      <TrackedBasicPanel
+                      <TrackedPanel
+                        type={TYPES.BASIC}
                         position={POSITION.CONTENT_QUICKNEWS_PAGE_TOP}
                       />
                     ) : null}
@@ -309,7 +305,8 @@ export default function QuickNewsPage({ newsItem, news, query }) {
               <div>
                 {onClient() ? (
                   <>
-                    <TrackedBasicPanel
+                    <TrackedPanel
+                      type={TYPES.BASIC}
                       position={POSITION.CONTENT_QUICKNEWS_PAGE}
                     />
                     <Divider height="30px" />
@@ -347,7 +344,10 @@ export default function QuickNewsPage({ newsItem, news, query }) {
           <SIDEBAR>
             <div>
               {onClient() && onMobile() ? (
-                <TrackedBasicPanel position={POSITION.SIDEBAR_QUICKNEWS_PAGE} />
+                <TrackedPanel
+                  type={TYPES.BASIC}
+                  position={POSITION.SIDEBAR_QUICKNEWS_PAGE}
+                />
               ) : null}
             </div>
             <PopularArticles />
@@ -355,7 +355,10 @@ export default function QuickNewsPage({ newsItem, news, query }) {
             <CalResWidget />
             <BContainer>
               {onClient() && !onMobile() ? (
-                <TrackedBasicPanel position={POSITION.SIDEBAR_QUICKNEWS_PAGE} />
+                <TrackedPanel
+                  type={TYPES.BASIC}
+                  position={POSITION.SIDEBAR_QUICKNEWS_PAGE}
+                />
               ) : null}
             </BContainer>
           </SIDEBAR>

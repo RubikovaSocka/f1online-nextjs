@@ -1,9 +1,4 @@
-import Loadable from "react-loadable";
-import Filler from "../../Filler";
+import TrackedPanel, { TYPES } from "./TrackedPanel";
 
-const AsyncPage = Loadable({
-  loader: () => import("./TrackedPanel"),
-  loading: () => <Filler />,
-});
-
-export default AsyncPage;
+export { TYPES };
+export default TrackedPanel;

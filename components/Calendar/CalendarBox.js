@@ -3,7 +3,7 @@ import CalendarItem from "./CalendarItem";
 import onClient from "../../utils/onClient";
 import BContainer from "../../components/BContainer";
 import { POSITION } from "../Ads/positions";
-import TrackedBasicPanel from "../Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../Ads/TrackedPanel";
 import Divider from "../Divider";
 
 function CalendarBox({ data }) {
@@ -14,7 +14,10 @@ function CalendarBox({ data }) {
         {onClient() && (index + 1) % 12 === 0 ? (
           <>
             <BContainer>
-              <TrackedBasicPanel position={POSITION.CONTENT_CALENDAR} />
+              <TrackedPanel
+                type={TYPES.BASIC}
+                position={POSITION.CONTENT_CALENDAR}
+              />
             </BContainer>
             <Divider height="10px" />
           </>

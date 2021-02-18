@@ -1,8 +1,7 @@
 import ArticlePreview from "../ArticlePreview";
-import TrackedBasicPanel from "../Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../Ads/TrackedPanel";
 import { POSITION } from "../Ads/positions";
 import styled from "styled-components";
-import TrackedInsetPanel from "../Ads/TrackedInsetPanel";
 import onMobile from "../../utils/onMobile";
 import onClient from "../../utils/onClient";
 
@@ -87,7 +86,8 @@ function ArticlesPanel({ posts, isLoading }) {
         </Container>
         <BContainer>
           {onClient() ? (
-            <TrackedBasicPanel
+            <TrackedPanel
+              type={TYPES.BASIC}
               key={50522}
               position={POSITION.CONTENT_ARCHIVE}
             />

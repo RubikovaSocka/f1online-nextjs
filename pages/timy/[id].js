@@ -28,7 +28,7 @@ import onClient from "../../utils/onClient";
 import onMobile from "../../utils/onMobile";
 import BContainer from "../../components/BContainer";
 import { POSITION } from "../../components/Ads/positions";
-import TrackedBasicPanel from "../../components/Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../../components/Ads/TrackedPanel";
 import { PAGE_MAIN_TITLE } from "../../constants";
 import styled from "styled-components";
 
@@ -398,7 +398,10 @@ function TeamPage({ teamData }) {
 
               <BContainer>
                 {onClient() ? (
-                  <TrackedBasicPanel position={POSITION.CONTENT_TEAM_DETAIL} />
+                  <TrackedPanel
+                    type={TYPES.BASIC}
+                    position={POSITION.CONTENT_TEAM_DETAIL}
+                  />
                 ) : null}
               </BContainer>
               <Divider height="30px" />
@@ -424,7 +427,10 @@ function TeamPage({ teamData }) {
             <Divider height="20px" />
             <BContainer>
               {onClient() ? (
-                <TrackedBasicPanel position={POSITION.CONTENT_TEAM_DETAIL} />
+                <TrackedPanel
+                  type={TYPES.BASIC}
+                  position={POSITION.CONTENT_TEAM_DETAIL}
+                />
               ) : null}
             </BContainer>
           </PAGE_MAIN_COL>

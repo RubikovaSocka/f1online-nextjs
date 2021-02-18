@@ -7,7 +7,7 @@ import { Fragment } from "react";
 
 import onClient from "../../utils/onClient";
 import { POSITION } from "../Ads/positions";
-import TrackedBasicPanel from "../Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../Ads/TrackedPanel";
 import BContainer from "../../components/BContainer";
 
 const ArticleDiv = styled(EmbedExorcist)`
@@ -42,7 +42,10 @@ function AdsInjector({ inputHtml, adsDisallowed }) {
         {parse(chunk.concat("</p>"))}
         {onClient() && (i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars ? (
           <BContainer className="nomargins">
-            <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE} />
+            <TrackedPanel
+              type={TYPES.BASIC}
+              position={POSITION.CONTENT_ARTICLE}
+            />
           </BContainer>
         ) : null}
       </Fragment>

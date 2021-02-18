@@ -12,7 +12,7 @@ import ThemeSwitcher from "../components/ThemeSwitcher";
 import CookieBanner from "../components/CookieBanner";
 import onMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
-import TrackedLeaderboardPanel from "../components/Ads/TrackedLeaderboardPanel/TrackedLeaderboardPanel";
+import TrackedPanel, { TYPES } from "../components/Ads/TrackedPanel";
 import { POSITION } from "../components/Ads/positions";
 
 import "./index.css";
@@ -109,7 +109,8 @@ function App({ Component, pageProps }) {
         <Header theme={theme} />
         <div>
           {onClient() ? (
-            <TrackedLeaderboardPanel
+            <TrackedPanel
+              type={TYPES.LEADERBOARD}
               position={POSITION.LEADERBOARD}
               key={viewIndex}
             />

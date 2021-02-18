@@ -24,7 +24,7 @@ import {
 
 import onMobile from "../utils/onMobile";
 import onClient from "../utils/onClient";
-import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../components/Ads/TrackedPanel";
 import { POSITION } from "../components/Ads/positions";
 
 //import fontawesomeSubset from "fontawesome-subset";
@@ -74,7 +74,10 @@ function Home() {
               {onClient() ? (
                 <>
                   <BContainer>
-                    <TrackedBasicPanel position={POSITION.CONTENT_HP} />
+                    <TrackedPanel
+                      type={TYPES.BASIC}
+                      position={POSITION.CONTENT_HP}
+                    />
                   </BContainer>
                   <Divider height="15px" />
                   <RelatedArticles
@@ -101,7 +104,10 @@ function Home() {
             <div>
               {onClient() && !onMobile() ? (
                 <>
-                  <TrackedBasicPanel position={POSITION.SIDEBAR_HP_TOP} />
+                  <TrackedPanel
+                    type={TYPES.BASIC}
+                    position={POSITION.SIDEBAR_HP_TOP}
+                  />
                   <Divider height="30px" />
                 </>
               ) : null}
@@ -111,7 +117,10 @@ function Home() {
               {onClient() && onMobile() ? (
                 <>
                   <BContainer>
-                    <TrackedBasicPanel position={POSITION.SIDEBAR_HP_TOP} />
+                    <TrackedPanel
+                      type={TYPES.BASIC}
+                      position={POSITION.SIDEBAR_HP_TOP}
+                    />
                   </BContainer>
                   <Divider height="20px" />
                 </>
@@ -123,7 +132,10 @@ function Home() {
                 <>
                   <CalResWidget />
                   <BContainer>
-                    <TrackedBasicPanel position={POSITION.FOOTER_HP} />
+                    <TrackedPanel
+                      type={TYPES.BASIC}
+                      position={POSITION.FOOTER_HP}
+                    />
                   </BContainer>
                   <Divider height="50px" />
                 </>

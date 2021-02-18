@@ -1,11 +1,9 @@
 import axios from "axios";
-import { END } from "redux-saga";
 import { wrapper } from "../redux/store/store";
 import Head from "next/head";
 import QuickNews from "../components/QuickNews";
 import CalResWidget from "../components/CalResWidget";
 
-import DriverPreview from "../components/DriverPreview/DriverPreview.js";
 import SectionTitle from "../components/SectionTitle";
 import Divider from "../components/Divider.js";
 import { URLS } from "../redux/apis/urls";
@@ -18,6 +16,7 @@ import {
 } from "../components/PageLayout";
 import { PAGE_MAIN_TITLE } from "../constants";
 import AuthorPreview from "../components/AuthorPreview";
+import getAuthorFromSlug from "../redux/apis/getAuthorFromSlug";
 
 function Autori({ authorsData }) {
   console.log(authorsData);
@@ -72,15 +71,13 @@ function Autori({ authorsData }) {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
-    const response = await axios({
-      method: "get",
-      url: URLS.AUTHORS_DATA_ENDPOINT,
-      //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-    });
+    const response = await fetch(URLS.AUTHORS_DATA_ENDPOINT)
+      .then((res) => res.json())
+      .then((res) => res);
 
     return {
       props: {
-        authorsData: response.data,
+        authorsData: response,
       },
     };
   }

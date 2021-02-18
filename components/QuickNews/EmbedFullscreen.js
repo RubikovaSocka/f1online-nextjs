@@ -5,7 +5,7 @@ import * as fbq from "../../lib/fpixel";
 
 import styled from "styled-components";
 import { POSITION } from "../Ads/positions";
-import TrackedInsetPanel from "../Ads/TrackedInsetPanel";
+import TrackedPanel, { TYPES } from "../Ads/TrackedPanel";
 
 import EmbedContainer from "react-oembed-container";
 import EmbedExorcist from "../EmbedExorcist";
@@ -241,7 +241,10 @@ function EmbedFullscreen(props) {
       </Content>
       <RPanel>
         <BContainer>
-          <TrackedInsetPanel position={POSITION.SIDEBAR_RYCHLESPRAVY} />
+          <TrackedPanel
+            type={TYPES.INSET}
+            position={POSITION.SIDEBAR_RYCHLESPRAVY}
+          />
         </BContainer>
       </RPanel>
       <CloseButton

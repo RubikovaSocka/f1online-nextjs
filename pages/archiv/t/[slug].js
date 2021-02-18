@@ -21,7 +21,7 @@ import {
 import { PAGE_MAIN_TITLE } from "../../../constants";
 import onMobile from "../../../utils/onMobile";
 import onClient from "../../../utils/onClient";
-import TrackedBasicPanel from "../../../components/Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../../../components/Ads/TrackedPanel";
 import { POSITION } from "../../../components/Ads/positions";
 
 const PER_PAGE = 12;
@@ -85,7 +85,10 @@ function Archiv() {
           <SIDEBAR>
             <div>
               {onClient() && onMobile() ? (
-                <TrackedBasicPanel position={POSITION.SIDEBAR_ARCHIVE_TOP} />
+                <TrackedPanel
+                  type={TYPES.BASIC}
+                  position={POSITION.SIDEBAR_ARCHIVE_TOP}
+                />
               ) : null}
             </div>
             <Divider height="40px" />

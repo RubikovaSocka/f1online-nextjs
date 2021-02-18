@@ -17,7 +17,7 @@ import {
 } from "../../../components/PageLayout";
 import onClient from "../../../utils/onClient";
 import { POSITION } from "../../../components/Ads/positions";
-import TrackedBasicPanel from "../../../components/Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../../../components/Ads/TrackedPanel";
 
 import styled from "styled-components";
 
@@ -64,7 +64,10 @@ function Post({ postData }) {
             <CalResWidget />
             <BSideContainer>
               {onClient() ? (
-                <TrackedBasicPanel position={POSITION.SIDEBAR_ARTICLE} />
+                <TrackedPanel
+                  type={TYPES.BASIC}
+                  position={POSITION.SIDEBAR_ARTICLE}
+                />
               ) : null}
             </BSideContainer>
             <Divider height="15px" />

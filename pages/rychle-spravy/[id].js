@@ -18,7 +18,7 @@ import {
 import { URLS } from "../../redux/apis/urls";
 import onMobile from "../../utils/onMobile";
 import onClient from "../../utils/onClient";
-import TrackedBasicPanel from "../../components/Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../../components/Ads/TrackedPanel";
 import { POSITION } from "../../components/Ads/positions";
 import QuickNewsMeta from "../../components/Meta/QuickNewsMeta";
 import EmbedExorcist from "../../components/EmbedExorcist";
@@ -284,7 +284,8 @@ export default function QuickNewsPage({ newsItem, news, query }) {
                   <NewsItemRendered noBorder={true} newsItem={newsItem} />
                   <div>
                     {onClient() ? (
-                      <TrackedBasicPanel
+                      <TrackedPanel
+                        type={TYPES.BASIC}
                         position={POSITION.CONTENT_QUICKNEWS_PAGE_TOP}
                       />
                     ) : null}
@@ -314,7 +315,8 @@ export default function QuickNewsPage({ newsItem, news, query }) {
               <div>
                 {onClient() ? (
                   <>
-                    <TrackedBasicPanel
+                    <TrackedPanel
+                      type={TYPES.BASIC}
                       position={POSITION.CONTENT_QUICKNEWS_PAGE}
                     />
                     <Divider height="30px" />
@@ -356,7 +358,10 @@ export default function QuickNewsPage({ newsItem, news, query }) {
           <SIDEBAR>
             <div>
               {onClient() && onMobile() ? (
-                <TrackedBasicPanel position={POSITION.SIDEBAR_QUICKNEWS_PAGE} />
+                <TrackedPanel
+                  type={TYPES.BASIC}
+                  position={POSITION.SIDEBAR_QUICKNEWS_PAGE}
+                />
               ) : null}
             </div>
             <PopularArticles />
@@ -364,7 +369,10 @@ export default function QuickNewsPage({ newsItem, news, query }) {
             <CalResWidget />
             <BContainer>
               {onClient() && !onMobile() ? (
-                <TrackedBasicPanel position={POSITION.SIDEBAR_QUICKNEWS_PAGE} />
+                <TrackedPanel
+                  type={TYPES.BASIC}
+                  position={POSITION.SIDEBAR_QUICKNEWS_PAGE}
+                />
               ) : null}
             </BContainer>
           </SIDEBAR>

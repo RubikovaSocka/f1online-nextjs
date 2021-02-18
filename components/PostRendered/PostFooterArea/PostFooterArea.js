@@ -11,7 +11,7 @@ import decodeHtml from "../../../utils/decodeHtml";
 import onClient from "../../../utils/onClient";
 import onMobile from "../../../utils/onMobile";
 import { POSITION } from "../../Ads/positions";
-import TrackedBasicPanel from "../../Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../../Ads/TrackedPanel";
 import BContainer from "../../../components/BContainer";
 
 import styled from "styled-components";
@@ -50,7 +50,10 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
       {/*<Product position={PRODUCT_POSITIONS.MAIN} />*/}
       <BContainer>
         {onClient() ? (
-          <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE_END} />
+          <TrackedPanel
+            type={TYPES.BASIC}
+            position={POSITION.CONTENT_ARTICLE_END}
+          />
         ) : null}
       </BContainer>
       <Divider height="10px" />
@@ -62,7 +65,10 @@ function PostFooterArea({ title, id, slug, acf, tags }) {
       />
       <BContainer>
         {onClient() && onMobile() ? (
-          <TrackedBasicPanel position={POSITION.CONTENT_ARTICLE_COMMENTS} />
+          <TrackedPanel
+            type={TYPE.BASIC}
+            position={POSITION.CONTENT_ARTICLE_COMMENTS}
+          />
         ) : null}
       </BContainer>
       <Divider height="10px" />

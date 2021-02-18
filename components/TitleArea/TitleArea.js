@@ -2,8 +2,9 @@ import TitleArticlePreview from "../TitleArticlePreview";
 import styled from "styled-components";
 import onClient from "../../utils/onClient";
 import onMobile from "../../utils/onMobile";
-import TrackedInsetPanel from "../../components/Ads/TrackedInsetPanel";
+import TrackedPanel, { TYPES } from "../../components/Ads/TrackedPanel";
 import { POSITION } from "../../components/Ads/positions";
+
 const Container = styled.div`
   padding: 0;
   padding: 0 20px;
@@ -83,7 +84,10 @@ function TitleArea({ posts, isLoading }) {
       </Art3>
       <BContainer>
         {onClient() & onMobile() ? (
-          <TrackedInsetPanel position={POSITION.CONTENT_HP_TITLE_AREA} />
+          <TrackedPanel
+            type={TYPES.INSET}
+            position={POSITION.CONTENT_HP_TITLE_AREA}
+          />
         ) : null}
       </BContainer>
       <Art4>

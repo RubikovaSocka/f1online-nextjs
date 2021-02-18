@@ -25,7 +25,7 @@ import { PAGE_MAIN_TITLE } from "../../constants";
 import onMobile from "../../utils/onMobile";
 import onClient from "../../utils/onClient";
 import { POSITION } from "../../components/Ads/positions";
-import TrackedBasicPanel from "../../components/Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../../components/Ads/TrackedPanel";
 import BContainer from "../../components/BContainer";
 import { fetchNewAuthorArticles } from "../../redux/actions/authorArchiveActions";
 
@@ -86,7 +86,8 @@ export default function Archiv() {
             <SIDEBAR>
               <BContainer>
                 {onClient && onMobile() ? (
-                  <TrackedBasicPanel
+                  <TrackedPanel
+                    type={TYPES.BASIC}
                     key={50522}
                     position={POSITION.SIDEBAR_ARCHIVE_TOP}
                   />
@@ -146,7 +147,8 @@ export default function Archiv() {
           <SIDEBAR>
             <BContainer>
               {onClient && onMobile() ? (
-                <TrackedBasicPanel
+                <TrackedPanel
+                  type={TYPES.BASIC}
                   key={50522}
                   position={POSITION.SIDEBAR_ARCHIVE_TOP}
                 />

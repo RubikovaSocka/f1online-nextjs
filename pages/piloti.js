@@ -19,7 +19,7 @@ import { PAGE_MAIN_TITLE } from "../constants";
 
 import onClient from "../utils/onClient";
 import { POSITION } from "../components/Ads/positions";
-import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../components/Ads/TrackedPanel";
 import onMobile from "../utils/onMobile";
 import BContainer from "../components/BContainer";
 import styles from "../styles/piloti.module.scss";
@@ -61,7 +61,10 @@ function Drivers({ teamsData }) {
             </div>
             <BContainer>
               {onClient() ? (
-                <TrackedBasicPanel position={POSITION.CONTENT_DRIVERS_PAGE} />
+                <TrackedPanel
+                  type={TYPES.BASIC}
+                  position={POSITION.CONTENT_DRIVERS_PAGE}
+                />
               ) : null}
             </BContainer>
             <div className={styles.driversContainer}>
@@ -80,7 +83,10 @@ function Drivers({ teamsData }) {
             </div>
             <BContainer>
               {onClient() && onMobile() ? (
-                <TrackedBasicPanel position={POSITION.CONTENT_DRIVERS_PAGE} />
+                <TrackedPanel
+                  type={TYPES.BASIC}
+                  position={POSITION.CONTENT_DRIVERS_PAGE}
+                />
               ) : null}
             </BContainer>
           </PAGE_MAIN_COL>
@@ -100,16 +106,17 @@ function Drivers({ teamsData }) {
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
     store.dispatch(END);
-    const response = await axios({
-      method: "get",
-      url: "https://wpadmin.f1online.sk/wp-content/uploads/teams2021.json",
-      //headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-    });
+
+    const response = await fetch(
+      "https://wpadmin.f1online.sk/wp-content/uploads/teams2021.json"
+    )
+      .then((res) => res.json())
+      .then((res) => res);
     await store.sagaTask.toPromise();
 
     return {
       props: {
-        teamsData: response.data,
+        teamsData: response,
       },
     };
   }

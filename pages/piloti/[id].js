@@ -24,7 +24,7 @@ import onClient from "../../utils/onClient";
 import onMobile from "../../utils/onMobile";
 import BContainer from "../../components/BContainer";
 import { POSITION } from "../../components/Ads/positions";
-import TrackedBasicPanel from "../../components/Ads/TrackedBasicPanel";
+import TrackedPanel, { TYPES } from "../../components/Ads/TrackedPanel";
 
 const Container = styled.div`
   .briefInfoContainer {
@@ -301,7 +301,8 @@ function DriverPage({ driverData }) {
               {driverPosts}
               <BContainer>
                 {onClient() ? (
-                  <TrackedBasicPanel
+                  <TrackedPanel
+                    type={TYPES.BASIC}
                     position={POSITION.CONTENT_DRIVER_DETAIL}
                   />
                 ) : null}
@@ -340,7 +341,10 @@ function DriverPage({ driverData }) {
             <Divider height="10px" />
             <BContainer>
               {onClient() && onMobile() ? (
-                <TrackedBasicPanel position={POSITION.CONTENT_DRIVER_DETAIL} />
+                <TrackedPanel
+                  type={TYPES.BASIC}
+                  position={POSITION.CONTENT_DRIVER_DETAIL}
+                />
               ) : null}
             </BContainer>
           </PAGE_MAIN_COL>

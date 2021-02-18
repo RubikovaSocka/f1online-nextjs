@@ -4,11 +4,6 @@ import { URLS } from "../redux/apis/urls";
 import fetchArchiveArticles from "../redux/apis/fetchArchiveArticlesApi";
 import SectionTitle from "./SectionTitle";
 
-import onMobile from "../utils/onMobile";
-import onClient from "../utils/onClient";
-import TrackedBasicPanel from "../components/Ads/TrackedBasicPanel";
-import { POSITION } from "../components/Ads/positions";
-
 //fetch 3 articles by tag or max6 articles by ids
 function RelatedArticles({ ids, tagID, except, title }) {
   const [articles, setArticles] = useState([]);
