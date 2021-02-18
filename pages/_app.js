@@ -108,8 +108,8 @@ function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <FacebookPixel>
-      <ThemeProvider theme={theme === THEMES.DARK ? darkTheme : lightTheme}>
+    <ThemeProvider theme={theme === THEMES.DARK ? darkTheme : lightTheme}>
+      <FacebookPixel>
         <GlobalStyle />
         <HeaderMeta theme={theme} />
         <Header theme={theme} />
@@ -125,8 +125,8 @@ function App({ Component, pageProps }) {
         <Component {...pageProps} />
         <Footer />
         <CookieBanner />
-      </ThemeProvider>
-    </FacebookPixel>
+      </FacebookPixel>
+    </ThemeProvider>
   );
 }
 
