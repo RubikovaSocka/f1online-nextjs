@@ -4,6 +4,12 @@ import { PAGE_MAIN_TITLE } from "../../constants";
 
 function PostMeta({ title, excerpt, id, date, slug, _embedded }) {
   const regex = /(<([^>]+)>)/gi;
+  const metaText = decodeHtml(excerpt.rendered).replace(regex, "");
+  const metaDesc = `${
+    metaText.length > 140 ? `${metaText.substr(0, 140)}\u2026` : metaText
+  }`;
+
+  console.log(metaDesc);
   return (
     <Head>
       <title key="meta_title">{`${decodeHtml(
@@ -17,10 +23,7 @@ function PostMeta({ title, excerpt, id, date, slug, _embedded }) {
         content={date}
       />
       <meta name="twitter:card" content="summary_large_image"></meta>
-      <meta
-        name="description"
-        content={`${decodeHtml(excerpt.rendered).replace(regex, "")}`}
-      />
+      <meta name="description" content={metaDesc} />
       <meta key="meta_type" property="og:type" content="article" />
       <meta
         key="meta_ogtitle"
@@ -30,7 +33,7 @@ function PostMeta({ title, excerpt, id, date, slug, _embedded }) {
       <meta
         key="meta_description"
         property="og:description"
-        content={`${decodeHtml(excerpt.rendered).replace(regex, "")}`}
+        content={metaDesc}
       />
       <meta
         key="meta_url"
