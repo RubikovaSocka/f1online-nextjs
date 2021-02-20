@@ -39,7 +39,7 @@ const MyCustomHandle = () => <Arrow />;
 export default function ImageSlider({ images }) {
   return (
     <>
-      <Hint>Čiaru potiahnite doprava alebo doľava</Hint>
+      <Hint>Slider potiahnite doprava alebo doľava</Hint>
       {images.array.map((item, index) => (
         <>
           <ReactCompareSlider
