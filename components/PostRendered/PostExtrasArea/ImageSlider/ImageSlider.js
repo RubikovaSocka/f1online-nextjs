@@ -5,6 +5,13 @@ import {
 import Divider from "../../../Divider";
 import styled from "styled-components";
 
+const Hint = styled.span`
+  font-family: HK Grotesk;
+  font-size: 13px;
+  display: block;
+  text-align: right;
+`;
+
 const Arrow = styled.div`
   color: #e10600;
   background-color: #e10600;
@@ -30,27 +37,32 @@ const Arrow = styled.div`
 const MyCustomHandle = () => <Arrow />;
 
 export default function ImageSlider({ images }) {
-  return images.array.map((item, index) => (
+  return (
     <>
-      <ReactCompareSlider
-        handle={<MyCustomHandle />}
-        key={index}
-        itemOne={
-          <ReactCompareSliderImage
-            src={item.img1}
-            //srcSet="..."
-            alt="Image one"
+      <Hint>Čiaru potiahnite doprava alebo doľava</Hint>
+      {images.array.map((item, index) => (
+        <>
+          <ReactCompareSlider
+            handle={<MyCustomHandle />}
+            key={index}
+            itemOne={
+              <ReactCompareSliderImage
+                src={item.img1}
+                //srcSet="..."
+                alt="Image one"
+              />
+            }
+            itemTwo={
+              <ReactCompareSliderImage
+                src={item.img2}
+                ///srcSet="..."
+                alt="Image two"
+              />
+            }
           />
-        }
-        itemTwo={
-          <ReactCompareSliderImage
-            src={item.img2}
-            ///srcSet="..."
-            alt="Image two"
-          />
-        }
-      />
-      <Divider height="10px" />
+          <Divider height="10px" />
+        </>
+      ))}
     </>
-  ));
+  );
 }

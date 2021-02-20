@@ -60,21 +60,7 @@ function PostExtrasArea({
           <Divider height="10px" />
         </>
       ) : null}
-      {cImages.loaded ? (
-        <>
-          <span
-            style={{
-              fontFamily: "HK Grotesk",
-              fontSize: "13px",
-              display: "block",
-              textAlign: "right",
-            }}
-          >
-            Čiaru potiahnite doprava alebo doľava
-          </span>
-          <ImageSlider images={cImages} />
-        </>
-      ) : null}
+      {cImages.loaded ? <ImageSlider images={cImages} /> : null}
       {images.loaded ? (
         <>
           <Divider height="30px" />
