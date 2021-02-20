@@ -3,9 +3,16 @@ import SectionTitle from "../../SectionTitle";
 import Divider from "../../Divider";
 import ImageGallery from "../../react-image-gallery/index";
 import Live from "../../Live";
+import ImageSlider from "./ImageSlider/ImageSlider";
 
-function PostExtrasArea({ gallery, start_time, end_time }) {
+function PostExtrasArea({
+  gallery,
+  start_time,
+  end_time,
+  images: compareImages,
+}) {
   const [images, setImages] = useState({ array: [], loaded: false });
+  const [cImages, setCImages] = useState({ array: [], loaded: false });
 
   const fetchGallery = () => {
     gallery &&
@@ -27,8 +34,16 @@ function PostExtrasArea({ gallery, start_time, end_time }) {
         });
   };
 
+  const fetchCompareImages = () => {
+    compareImages &&
+      fetch(compareImages)
+        .then((res) => res.json())
+        .then((res) => setCImages({ array: res, loaded: true }));
+  };
+
   useEffect(() => {
     fetchGallery();
+    fetchCompareImages();
   }, []);
 
   return (
@@ -44,9 +59,22 @@ function PostExtrasArea({ gallery, start_time, end_time }) {
           />
           <Divider height="10px" />
         </>
-      ) : (
-        ""
-      )}
+      ) : null}
+      {cImages.loaded ? (
+        <>
+          <span
+            style={{
+              fontFamily: "HK Grotesk",
+              fontSize: "13px",
+              display: "block",
+              textAlign: "right",
+            }}
+          >
+            Čiaru potiahnite doprava alebo doľava
+          </span>
+          <ImageSlider images={cImages} />
+        </>
+      ) : null}
       {images.loaded ? (
         <>
           <Divider height="30px" />
@@ -62,9 +90,7 @@ function PostExtrasArea({ gallery, start_time, end_time }) {
             />
           </div>
         </>
-      ) : (
-        ""
-      )}
+      ) : null}
     </>
   );
 }

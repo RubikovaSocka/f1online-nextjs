@@ -27,7 +27,7 @@ import onClient from "../utils/onClient";
 import TrackedPanel, { TYPES } from "../components/Ads/TrackedPanel";
 import { POSITION } from "../components/Ads/positions";
 
-//import fontawesomeSubset from "fontawesome-subset";
+import fontawesomeSubset from "fontawesome-subset";
 import PopularArticles from "../components/PopularArticles/PopularArticles";
 import Product, {
   POSITIONS as PRODUCT_POSITIONS,
@@ -152,7 +152,7 @@ function Home() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store }) => {
-    /*fontawesomeSubset(
+    fontawesomeSubset(
       {
         solid: [
           "circle-notch",
@@ -170,12 +170,13 @@ export const getServerSideProps = wrapper.getServerSideProps(
           "heart",
           "flag",
           "rss",
+          "arrows-alt-h",
         ],
         regular: ["comments", "comment", "heart", "flag", "clock", "copyright"],
         brands: ["facebook-f", "youtube", "twitter", "instagram"],
       },
       "public/fonts/FontAwesome"
-    );*/
+    );
     store.dispatch(fetchNewArticles());
     store.dispatch(END);
 
