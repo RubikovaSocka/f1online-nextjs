@@ -1,9 +1,7 @@
 import { URLS } from "./urls";
 
-const PANEL = "parts2.json";
-
 const fetchPanels = async () => {
-  return await fetch(`${URLS.BASE}${URLS.UPLOADS}${PANEL}`)
+  return await fetch(URLS.bannerDataLink)
     .then((res) => res.json())
     .then((res) => res);
 };
