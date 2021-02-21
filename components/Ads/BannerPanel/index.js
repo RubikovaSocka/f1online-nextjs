@@ -64,16 +64,24 @@ const countImpression = (slot) => {
   );*/
 };
 
-function GadsPanel({ slot, isVisible, inset }) {
+export default function BannerPanel({ src, link, slot, isVisible, inset }) {
   const [counted, setCounted] = useState(false);
 
   useEffect(() => {
     if (isVisible && !counted) {
-      //If recorded, do not record in the future
       countImpression(slot);
+      //If recorded, do not record in the future
       setCounted(true);
     }
   }, [isVisible]);
+
+  if (src) {
+    return (
+      <a href={link} rel="nofollow" target="_blank">
+        <img style={{ width: "100%", cursor: "pointer" }} src={src} />
+      </a>
+    );
+  }
 
   if (inset) {
     return (
@@ -103,5 +111,3 @@ function GadsPanel({ slot, isVisible, inset }) {
     />
   );
 }
-
-export default GadsPanel;

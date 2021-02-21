@@ -1,5 +1,7 @@
+import { useSelector } from "react-redux";
+
 import TrackVisibility from "react-on-screen";
-import GadsPanel from "../GadsPanel";
+import BannerPanel from "../BannerPanel";
 import styled from "styled-components";
 
 const LeaderboardContainer = styled.div`
@@ -31,12 +33,27 @@ const TYPES = {
 };
 
 function TrackedPanel({ position, type }) {
+  const state = useSelector((state) => state.panels);
+  const { json, isLoading } = state;
+  if (isLoading) return null;
+  
   switch (type) {
     case TYPES.LEADERBOARD:
+      /*return (
+        <LeaderboardContainer>
+          <TrackVisibility partialVisibility style={{ width: "100%" }}>
+            <BannerPanel slot={position} />
+          </TrackVisibility>
+        </LeaderboardContainer>
+      );*/
       return (
         <LeaderboardContainer>
           <TrackVisibility partialVisibility style={{ width: "100%" }}>
-            <GadsPanel slot={position} />
+            <BannerPanel
+              src={json.leaderboard.pc[0].banners[0].src}
+              link={json.leaderboard.pc[0].banners[0].link}
+              slot={position}
+            />
           </TrackVisibility>
         </LeaderboardContainer>
       );
@@ -44,7 +61,11 @@ function TrackedPanel({ position, type }) {
       return (
         <BasicContainer>
           <TrackVisibility partialVisibility style={{ width: "100%" }}>
-            <GadsPanel slot={position} />
+            <BannerPanel
+              src={json.content.pc[0].banners[0].src}
+              link={json.content.pc[0].banners[0].link}
+              slot={position}
+            />
           </TrackVisibility>
         </BasicContainer>
       );
@@ -55,7 +76,7 @@ function TrackedPanel({ position, type }) {
             partialVisibility
             style={{ width: "100%", height: "100%" }}
           >
-            <GadsPanel slot={position} inset={true} />
+            <BannerPanel slot={position} inset={true} />
           </TrackVisibility>
         </InsetContainer>
       );

@@ -1,0 +1,3 @@
+const getBanner = (bannerData) => {
+  return;
+};
