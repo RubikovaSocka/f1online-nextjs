@@ -73,7 +73,7 @@ function App({ Component, pageProps }) {
   const [viewIndex, setViewIndex] = useState(1);
 
   useEffect(() => {
-    dispatch(initializeTheme());
+    //dispatch(initializeTheme());
     let userAgentString = navigator.userAgent;
     let isCrawler = isbot(userAgentString);
 

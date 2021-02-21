@@ -8,7 +8,7 @@ import fetchF1ResultsSaga from "./handlers/fetchF1ResultsSaga";
 import fetchProgrammeSaga from "./handlers/fetchProgrammeSaga";
 import fetchCalendarSaga from "./handlers/fetchCalendarSaga";
 import initializeThemeSaga from "./handlers/initializeThemeSaga";
-import saveThemeSaga from "./handlers/saveThemeSaga";
+//import saveThemeSaga from "./handlers/saveThemeSaga";
 import fetchCategoriesSaga from "./handlers/fetchCategoriesSaga";
 import fetchTagArchiveArticlesSaga from "./handlers/fetchTagArchiveArticlesSaga";
 import liveSaga from "./handlers/liveSaga";
@@ -20,7 +20,7 @@ import { TYPES as QUICK_NEWS } from "../actions/quickNewsActions";
 import { TYPES as F1_RESULTS } from "../actions/f1ResultsActions";
 import { TYPES as CALENDAR } from "../actions/calendarActions";
 import { TYPES as PROGRAMME } from "../actions/programmeActions";
-import { TYPES as THEME } from "../actions/themeActions";
+//import { TYPES as THEME } from "../actions/themeActions";
 import { TYPES as TAG_ARCHIV } from "../actions/tagArchiveActions";
 import { TYPES as CATEGORIES } from "../actions/categoriesActions";
 import { TYPES as LIVE } from "../actions/liveActions";
@@ -42,8 +42,8 @@ function* rootSaga() {
   yield takeLatest(PROGRAMME.FETCH, fetchProgrammeSaga);
   yield takeLatest(CATEGORIES.FETCH, fetchCategoriesSaga);
 
-  yield takeLatest(THEME.INITIALIZE, initializeThemeSaga);
-  yield takeLatest(THEME.SET, saveThemeSaga);
+  //yield takeLatest(THEME.INITIALIZE, initializeThemeSaga);
+  //yield takeLatest(THEME.SET, saveThemeSaga);
 
   yield takeLatest(PANELS.FETCH, handleFetchPanels);
   yield takeLatest(PRODUCTS.FETCH, productsSaga);

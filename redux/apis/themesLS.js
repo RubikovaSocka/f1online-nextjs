@@ -14,7 +14,7 @@ const getTheme = () => {
 };
 
 const saveTheme = themeID => {
-  window.localStorage.setItem("theme-name", themeID);
+  //window.localStorage.setItem("theme-name", themeID);
 };
 
 export { getTheme, saveTheme };
