@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-
+import { pickPartner } from "./utils";
 import TrackVisibility from "react-on-screen";
 import BannerPanel from "../BannerPanel";
 import styled from "styled-components";
@@ -34,9 +34,14 @@ const TYPES = {
 
 function TrackedPanel({ position, type }) {
   const state = useSelector((state) => state.panels);
-  const { json, isLoading } = state;
+  const { json, isLoading, probabilites } = state;
   if (isLoading) return null;
-  
+  //todo: filter capped partners from probabilities
+  const partner = pickPartner({
+    partnersVector: probabilites,
+    partnersData: json,
+  });
+
   switch (type) {
     case TYPES.LEADERBOARD:
       /*return (
@@ -49,11 +54,7 @@ function TrackedPanel({ position, type }) {
       return (
         <LeaderboardContainer>
           <TrackVisibility partialVisibility style={{ width: "100%" }}>
-            <BannerPanel
-              src={json.leaderboard.pc[0].banners[0].src}
-              link={json.leaderboard.pc[0].banners[0].link}
-              slot={position}
-            />
+            <BannerPanel slot={position} />
           </TrackVisibility>
         </LeaderboardContainer>
       );
@@ -61,11 +62,7 @@ function TrackedPanel({ position, type }) {
       return (
         <BasicContainer>
           <TrackVisibility partialVisibility style={{ width: "100%" }}>
-            <BannerPanel
-              src={json.content.pc[0].banners[0].src}
-              link={json.content.pc[0].banners[0].link}
-              slot={position}
-            />
+            <BannerPanel slot={position} />
           </TrackVisibility>
         </BasicContainer>
       );

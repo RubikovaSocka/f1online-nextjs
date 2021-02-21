@@ -17,6 +17,8 @@ const URLS = {
 
   bannerDataLink:
     "https://wpadmin.f1online.sk/wp-content/uploads/bannerData.json",
+  bannerProbabilitiesLink:
+    "https://wpadmin.f1online.sk/wp-content/uploads/bannerAllocMock.json",
   previewFields:
     "_fields=id,type,date,title,slug,tags,better_featured_image.media_details,featured_media",
   formulastore:

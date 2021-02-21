@@ -1,21 +1,18 @@
 import { PANELS } from "../constants";
 
 const fetchPanels = () => ({
-  type: PANELS.FETCH
+  type: PANELS.FETCH,
 });
 
-const setPanels = json => ({
+const setPanels = (data) => ({
   type: PANELS.FETCH_SUCCESS,
-  json
+  json: data.panels,
+  probabilites: data.probabilites,
 });
 
-const setPanelsError = error => ({
+const setPanelsError = (error) => ({
   type: PANELS.FETCH_FAIL,
-  error
+  error,
 });
 
-export {
-  fetchPanels,
-  setPanels,
-  setPanelsError
-};
+export { fetchPanels, setPanels, setPanelsError };

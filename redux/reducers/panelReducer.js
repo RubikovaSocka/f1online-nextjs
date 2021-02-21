@@ -2,6 +2,7 @@ import { PANELS } from "../constants";
 
 const defaultState = {
   json: {},
+  probabilites: {},
   error: null,
   isLoading: true,
 };
@@ -18,6 +19,7 @@ const panelReducer = (state = defaultState, action) => {
       return {
         ...state,
         json: action.json,
+        probabilites: action.probabilites,
         isLoading: false,
       };
     case PANELS.FETCH_FAIL:
