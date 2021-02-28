@@ -8,7 +8,6 @@ import Divider from "../../../components/Divider.js";
 import PostRendered from "../../../components/PostRendered";
 import PostMeta from "../../../components/PostRendered/PostMeta.js";
 import { URLS } from "../../../redux/apis/urls";
-
 import {
   MAIN,
   COLUMNED_PAGE,

@@ -71,13 +71,14 @@ const countImpression = (partner, banner, slot) => {
       dimension2: `${getPositionName(slot)}-${
         window.innerWidth < 1024 ? "m" : "pc"
       }`,
+      dim2: window.location.href,
     });*/
     ReactGA.event({
-      category: "impression",
+      category: "impression-partner",
       action: partner.name,
       label: banner.src,
       nonInteraction: true,
-      dimension1: Router.pathname,
+      dimension1: Router.asPath,
       dimension2: `${getPositionName(slot)}-${
         window.innerWidth < 1024 ? "m" : "pc"
       }`,
@@ -85,11 +86,11 @@ const countImpression = (partner, banner, slot) => {
     return;
   }
   ReactGA.event({
-    category: "impression",
+    category: "impression-all",
     action: `${getPositionName(slot)}-${window.innerWidth < 1024 ? "m" : "pc"}`,
     label: `${window.location.href}`,
     nonInteraction: true,
-  });/*
+  }); /*
   console.log(
     "COUNT IMPRESSION",
     `${getPositionName(slot)}-${window.innerWidth < 1024 ? "m" : "pc"}`,
@@ -113,7 +114,7 @@ const countBannerClick = (partner, banner) => {
     action: partner.name,
     label: banner.src,
     nonInteraction: true,
-    dimension1: Router.pathname,
+    dimension1: Router.asPath,
     dimension2: `${getPositionName(slot)}-${
       window.innerWidth < 1024 ? "m" : "pc"
     }`,
