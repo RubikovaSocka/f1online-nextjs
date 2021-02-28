@@ -16,6 +16,7 @@ const ArticleDiv = styled(EmbedExorcist)`
   line-height: 28px;
   color: ${(props) => props.theme.TEXT_COLOR_MILD};
   overflow: hidden;
+  overflow: visible; /*updated to show banners*/
 
   p {
     padding: 3px 0;

@@ -15,4 +15,20 @@ const setPanelsError = (error) => ({
   error,
 });
 
-export { fetchPanels, setPanels, setPanelsError };
+const countImpression = (partnerName) => ({
+  type: PANELS.COUNT_IMPRESSION,
+  partnerName,
+});
+
+const resetImpressions = (currentTime) => ({
+  type: PANELS.RESET_IMPRESSIONS,
+  currentTime,
+});
+
+export {
+  fetchPanels,
+  setPanels,
+  setPanelsError,
+  countImpression,
+  resetImpressions,
+};

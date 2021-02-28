@@ -1,8 +1,13 @@
-import { useSelector } from "react-redux";
-import { pickPartner } from "./utils";
+import React from "react";
+import {
+  pickPartner,
+  filterImpressedPartners,
+  randomArrayElement,
+} from "./utils";
 import TrackVisibility from "react-on-screen";
 import BannerPanel from "../BannerPanel";
 import styled from "styled-components";
+import onMobile from "../../../utils/onMobile";
 
 const LeaderboardContainer = styled.div`
   width: 100vw;
@@ -32,13 +37,21 @@ const TYPES = {
   INSET: "INSET",
 };
 
-function TrackedPanel({ position, type }) {
-  const state = useSelector((state) => state.panels);
-  const { json, isLoading, probabilites } = state;
+function TrackedPanel({ topProps, stateProps, impressionsCounter }) {
+  const { position, type, sidebar } = topProps;
+  const { json, isLoading, probabilites } = stateProps;
+
   if (isLoading) return null;
-  //todo: filter capped partners from probabilities
+
+  //filter capped partners from partners probabilities array
+  const partnersProbabilitesFiltered = filterImpressedPartners({
+    impressionsData: impressionsCounter,
+    partnersData: probabilites,
+    cappings: json,
+  });
+  // pick randomly one not-yet-capped partner
   const partner = pickPartner({
-    partnersVector: probabilites,
+    partnersVector: partnersProbabilitesFiltered,
     partnersData: json,
   });
 
@@ -54,7 +67,17 @@ function TrackedPanel({ position, type }) {
       return (
         <LeaderboardContainer>
           <TrackVisibility partialVisibility style={{ width: "100%" }}>
-            <BannerPanel slot={position} />
+            <BannerPanel
+              partner={partner}
+              banner={
+                partner
+                  ? randomArrayElement(
+                      partner.leaderboard[`${onMobile() ? "m" : "pc"}`]
+                    )
+                  : null
+              }
+              slot={position}
+            />
           </TrackVisibility>
         </LeaderboardContainer>
       );
@@ -62,7 +85,17 @@ function TrackedPanel({ position, type }) {
       return (
         <BasicContainer>
           <TrackVisibility partialVisibility style={{ width: "100%" }}>
-            <BannerPanel slot={position} />
+            <BannerPanel
+              partner={partner}
+              banner={
+                partner
+                  ? randomArrayElement(
+                      partner.content[`${onMobile() || sidebar ? "m" : "pc"}`]
+                    )
+                  : null
+              }
+              slot={position}
+            />
           </TrackVisibility>
         </BasicContainer>
       );
@@ -73,7 +106,7 @@ function TrackedPanel({ position, type }) {
             partialVisibility
             style={{ width: "100%", height: "100%" }}
           >
-            <BannerPanel slot={position} inset={true} />
+            <BannerPanel partner={partner} slot={position} inset={true} />
           </TrackVisibility>
         </InsetContainer>
       );
@@ -81,5 +114,16 @@ function TrackedPanel({ position, type }) {
   return null;
 }
 
+function preventRerender(prevProps, nextProps) {
+  if (JSON.stringify(prevProps.topProps) === JSON.stringify(nextProps.topProps))
+    return true;
+  if (
+    JSON.stringify(prevProps.stateProps) ===
+    JSON.stringify(nextProps.stateProps)
+  )
+    return true;
+  return false;
+}
+
 export { TYPES };
-export default TrackedPanel;
+export default React.memo(TrackedPanel, preventRerender);

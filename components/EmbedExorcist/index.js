@@ -24,7 +24,9 @@ const Exorcist = styled.div`
     margin: 10px auto !important;
 
     &.nomargins {
-      margin-left: -20px !important;
+      @media only screen and (max-width: 1023px) {
+        margin-left: -20px !important;
+      }
     }
   }
 

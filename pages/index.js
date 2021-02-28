@@ -107,6 +107,7 @@ function Home() {
                   <TrackedPanel
                     type={TYPES.BASIC}
                     position={POSITION.SIDEBAR_HP_TOP}
+                    sidebar={true}
                   />
                   <Divider height="30px" />
                 </>
@@ -120,6 +121,7 @@ function Home() {
                     <TrackedPanel
                       type={TYPES.BASIC}
                       position={POSITION.SIDEBAR_HP_TOP}
+                      sidebar={true}
                     />
                   </BContainer>
                   <Divider height="20px" />
@@ -135,6 +137,7 @@ function Home() {
                     <TrackedPanel
                       type={TYPES.BASIC}
                       position={POSITION.FOOTER_HP}
+                      sidebar={true}
                     />
                   </BContainer>
                   <Divider height="50px" />

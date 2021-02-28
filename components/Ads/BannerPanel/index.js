@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import AdSense from "react-adsense";
 import ReactGA from "react-ga";
+import Router from "next/router";
 import { POSITION } from "../positions";
+import { countImpression as countImpressionRedux } from "../../../redux/actions/panelsActions";
 
 const getPositionName = (id) => {
   switch (id) {
@@ -50,35 +53,110 @@ const getPositionName = (id) => {
   }
 };
 
-const countImpression = (slot) => {
+const countImpression = (partner, banner, slot) => {
+  if (partner && banner) {
+    /*ReactGA.set({
+      dimension1: Router.pathname,
+      dimension2: `${getPositionName(slot)}-${
+        window.innerWidth < 1024 ? "m" : "pc"
+      }`,
+    });*/
+    /*
+    console.log({
+      category: "impression",
+      action: partner.name,
+      label: banner.src,
+      nonInteraction: true,
+      dimension1: Router.pathname,
+      dimension2: `${getPositionName(slot)}-${
+        window.innerWidth < 1024 ? "m" : "pc"
+      }`,
+    });*/
+    ReactGA.event({
+      category: "impression",
+      action: partner.name,
+      label: banner.src,
+      nonInteraction: true,
+      dimension1: Router.pathname,
+      dimension2: `${getPositionName(slot)}-${
+        window.innerWidth < 1024 ? "m" : "pc"
+      }`,
+    });
+    return;
+  }
   ReactGA.event({
     category: "impression",
     action: `${getPositionName(slot)}-${window.innerWidth < 1024 ? "m" : "pc"}`,
     label: `${window.location.href}`,
     nonInteraction: true,
-  });
-  /*console.log(
+  });/*
+  console.log(
     "COUNT IMPRESSION",
     `${getPositionName(slot)}-${window.innerWidth < 1024 ? "m" : "pc"}`,
     `${window.location.href}`
   );*/
 };
 
-export default function BannerPanel({ src, link, slot, isVisible, inset }) {
+const countBannerClick = (partner, banner) => {
+  /*console.log({
+    category: "click",
+    action: partner.name,
+    label: banner.src,
+    nonInteraction: true,
+    dimension1: Router.pathname,
+    dimension2: `${getPositionName(slot)}-${
+      window.innerWidth < 1024 ? "m" : "pc"
+    }`,
+  });*/
+  ReactGA.event({
+    category: "bannerClick",
+    action: partner.name,
+    label: banner.src,
+    nonInteraction: true,
+    dimension1: Router.pathname,
+    dimension2: `${getPositionName(slot)}-${
+      window.innerWidth < 1024 ? "m" : "pc"
+    }`,
+  });
+};
+
+export default function BannerPanel({
+  partner,
+  banner,
+  slot,
+  isVisible,
+  inset,
+}) {
   const [counted, setCounted] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isVisible && !counted) {
-      countImpression(slot);
-      //If recorded, do not record in the future
+      countImpression(partner, banner, slot);
+      if (partner) {
+        dispatch(countImpressionRedux(partner.name));
+      }
+      //Do not count in the future
       setCounted(true);
     }
   }, [isVisible]);
 
-  if (src) {
+  const bannerClicked = () => {
+    countBannerClick({ partner, banner });
+  };
+
+  if (partner && banner) {
     return (
-      <a href={link} rel="nofollow" target="_blank">
-        <img style={{ width: "100%", cursor: "pointer" }} src={src} />
+      <a
+        onClick={() => bannerClicked()}
+        href={banner.link}
+        rel="nofollow"
+        target="_blank"
+      >
+        <img
+          style={{ width: "100%", maxWidth: "1030px", cursor: "pointer" }}
+          src={banner.src}
+        />
       </a>
     );
   }

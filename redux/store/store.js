@@ -17,6 +17,7 @@ export const makeStore = (context) => {
 
     const persistConfig = {
       key: "root",
+      whitelist: ["theme"],
       storage,
     };
 

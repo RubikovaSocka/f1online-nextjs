@@ -1,4 +1,5 @@
-import TrackedPanel, { TYPES } from "./TrackedPanel";
+import { TYPES } from "./TrackedPanel";
+import TrackedPanelReduxWrapper from "./TrackedPanelReduxWrapper";
 
 export { TYPES };
-export default TrackedPanel;
+export default TrackedPanelReduxWrapper;

@@ -8,10 +8,29 @@ const pickPartner = ({ partnersVector, partnersData }) => {
     if (aggregator > randomNumber) break;
     i++;
   }
-  console.log("DONE", i, partnersVector, aggregator);
   return i === partnersVector.length
     ? null
-    : partnersData[`${partnersVector[i].name}`];
+    : {
+        ...partnersData[`${partnersVector[i].name}`],
+        name: partnersVector[i].name,
+      };
 };
 
-export { pickPartner };
+const filterImpressedPartners = ({
+  impressionsData,
+  partnersData,
+  cappings,
+}) => {
+  return partnersData.filter(
+    (partner) =>
+      !impressionsData[`${partner.name}`] ||
+      impressionsData[`${partner.name}`] < cappings[`${partner.name}`].capping
+  );
+};
+
+const randomArrayElement = (array) => {
+  if (!array || array.lenght === 0) return null;
+  return array[Math.floor(Math.random() * array.length)];
+};
+
+export { pickPartner, filterImpressedPartners, randomArrayElement };

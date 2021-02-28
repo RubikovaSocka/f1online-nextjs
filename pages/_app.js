@@ -27,7 +27,7 @@ import { initializeTheme } from "../redux/actions/themeActions";
 import { startQuickNewsAutoFetch } from "../redux/actions/quickNewsActions";
 import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 import { fetchProgramme } from "../redux/actions/programmeActions";
-import { fetchPanels } from "../redux/actions/panelsActions";
+import { fetchPanels, resetImpressions } from "../redux/actions/panelsActions";
 
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/Themes";
@@ -95,11 +95,10 @@ function App({ Component, pageProps }) {
     });
     Router.events.on("routeChangeError", () => NProgress.done());
 
+    dispatch(fetchPanels());
     dispatch(fetchF1Results({ perPage: 1 }));
     dispatch(fetchProgramme());
     dispatch(startQuickNewsAutoFetch());
-    dispatch(fetchPanels());
-    //dispatch(fetchProducts());
   }, []);
 
   return (

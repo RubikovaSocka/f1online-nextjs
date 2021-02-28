@@ -15,8 +15,18 @@ import popularReducer from "./popularReducer";
 import productsReducer from "./productsReducer";
 import authorArticlesReducer from "./authorArticlesReducer";
 
+//import { persistReducer } from 'redux-persist'
+const { persistReducer } = require("redux-persist");
+const storage = require("redux-persist/lib/storage").default;
+
+const panelPersistConfig = {
+  key: "panels",
+  storage: storage,
+  whitelist: ["lastReset", "impressionsCounter"],
+};
+
 export default combineReducers({
-  panels: panelReducer,
+  panels: persistReducer(panelPersistConfig, panelReducer),
   theme: themeReducer,
   articles: articlesReducer,
   quickNews: quickNewsReducer,

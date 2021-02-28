@@ -67,6 +67,7 @@ function Post({ postData }) {
                 <TrackedPanel
                   type={TYPES.BASIC}
                   position={POSITION.SIDEBAR_ARTICLE}
+                  sidebar={true}
                 />
               ) : null}
             </BSideContainer>
