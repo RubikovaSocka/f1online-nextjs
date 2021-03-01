@@ -98,22 +98,12 @@ const countImpression = (partner, banner, slot) => {
   );*/
 };
 
-const countBannerClick = (partner, banner) => {
-  /*console.log({
-    category: "click",
-    action: partner.name,
-    label: banner.src,
-    nonInteraction: true,
-    dimension1: Router.pathname,
-    dimension2: `${getPositionName(slot)}-${
-      window.innerWidth < 1024 ? "m" : "pc"
-    }`,
-  });*/
+const countBannerClick = ({ partner, banner, slot }) => {
   ReactGA.event({
-    category: "bannerClick",
+    category: "banner-click",
     action: partner.name,
     label: banner.src,
-    nonInteraction: true,
+    nonInteraction: false,
     dimension1: Router.asPath,
     dimension2: `${getPositionName(slot)}-${
       window.innerWidth < 1024 ? "m" : "pc"
@@ -143,7 +133,8 @@ export default function BannerPanel({
   }, [isVisible]);
 
   const bannerClicked = () => {
-    countBannerClick({ partner, banner });
+    console.log("PPPPPPPP");
+    countBannerClick({ partner, banner, slot });
   };
 
   if (partner && banner) {
