@@ -50,7 +50,7 @@ export default function HeaderMeta({ theme }) {
       <meta
         key="meta_ogtitle"
         property="og:title"
-        content={`Všetky správy o Formule 1 | ${{ PAGE_MAIN_TITLE }}`}
+        content={`Všetky správy o Formule 1 | ${PAGE_MAIN_TITLE}`}
       />
       <meta key="meta_type" property="og:type" content="website" />
       <meta key="meta_url" property="og:url" content={`https://f1online.sk/`} />
