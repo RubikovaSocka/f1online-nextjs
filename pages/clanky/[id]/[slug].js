@@ -19,6 +19,7 @@ import { POSITION } from "../../../components/Ads/positions";
 import TrackedPanel, { TYPES } from "../../../components/Ads/TrackedPanel";
 
 import styled from "styled-components";
+import SectionTitle from "../../../components/SectionTitle";
 
 const BSideContainer = styled.div`
   margin-bottom: 40px;
@@ -48,14 +49,20 @@ function Post({ postData }) {
 
   return (
     <>
-      <PostMeta {...postData} />
       <MAIN>
         <COLUMNED_PAGE>
           <PAGE_MAIN_COL id="cn">
-            <PostRendered
-              key={postData.id} //Why? To prevent component reuse from previous render
-              {...postData}
-            />
+            {postData.error ? (
+              <SectionTitle topLeve={true} title={postData.error} />
+            ) : (
+              <>
+                <PostMeta key={postData.id} {...postData} />
+                <PostRendered
+                  key={postData.id} //Why? To prevent component reuse from previous render
+                  {...postData}
+                />
+              </>
+            )}
           </PAGE_MAIN_COL>
           <SIDEBAR>
             <QuickNews />
@@ -81,13 +88,23 @@ function Post({ postData }) {
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, params }) => {
     store.dispatch(END);
-
     const response = await fetch(
       `${URLS.BASE}${URLS.ARTICLES_ENDPOINT}${params.id}?_embed=wp:featuredmedia,author&_fields=id,type,date,excerpt,slug,title,content,tags,acf`
     )
       .then((res) => res.json())
       .then((res) => res);
     await store.sagaTask.toPromise();
+
+    if (response.data) {
+      let message = "Pri zobrazovaní tejto stránky nastala chyba.";
+      if (response.data.status === 404) {
+        message = "Žiaľ, takýto článok sme nenašli.";
+      }
+
+      return {
+        props: { postData: { error: message } },
+      };
+    }
 
     return {
       props: {

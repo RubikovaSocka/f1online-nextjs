@@ -28,7 +28,7 @@ import TrackedPanel, { TYPES } from "../components/Ads/TrackedPanel";
 import { POSITION } from "../components/Ads/positions";
 
 //import fontawesomeSubset from "fontawesome-subset";
-import PopularArticles from "../components/PopularArticles/PopularArticles";
+import PopularArticles from "../components/PopularArticles";
 import Product, {
   POSITIONS as PRODUCT_POSITIONS,
 } from "../components/Ads/Products";
@@ -113,7 +113,7 @@ function Home() {
                 </>
               ) : null}
             </div>
-            {/*<PopularArticles />*/}
+            <div>{onClient() ? <PopularArticles /> : null}</div>
             <div>
               {onClient() && onMobile() ? (
                 <>

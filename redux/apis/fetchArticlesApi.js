@@ -22,12 +22,8 @@ export default async function fetchArticles() {
       ),
     ])
       .then((results) => Promise.all(results.map((r) => r.json())))
-      .then((results) => {
-        console.log(flatten(results));
-        return flatten(results);
-      });
+      .then((results) => flatten(results));
   } catch (e) {
-    console.log("ERROR", e);
     throw new Error(e.response.data.Error);
   }
 }

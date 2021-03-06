@@ -8,6 +8,9 @@ const WEEK = "range=custom&time_unit=day&time_quantity=7";
 const FIELDS = "_fields=id,type,title,slug";
 
 export default async function fetchPopularArticles() {
+  console.log(
+    `${URLS.BASE}${URLS.POPULAR_ENDPOINT}?${HOURS24}&${LIMIT}&${FIELDS}`
+  );
   try {
     return await Promise.all([
       fetch(
