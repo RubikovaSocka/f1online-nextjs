@@ -4,7 +4,7 @@ import { HYDRATE } from "next-redux-wrapper";
 const defaultState = {
   indexArticles: [],
   isLoading: true,
-  error: null
+  error: null,
 };
 
 const articlesReducer = (state = defaultState, action) => {
@@ -17,28 +17,28 @@ const articlesReducer = (state = defaultState, action) => {
           action.payload.articles.indexArticles.length > 0
             ? action.payload.articles.indexArticles
             : state.indexArticles,
-        isLoading: action.payload.articles.indexArticles.length === 0
+        isLoading: action.payload.articles.indexArticles.length === 0,
       };
 
     case INDEX_ARTICLES.FETCH:
       return {
         ...state,
         error: null,
-        isLoading: true
+        isLoading: true,
       };
     case INDEX_ARTICLES.FETCH_SUCCESS:
       return {
         ...state,
         isLoading: false,
         error: null,
-        indexArticles: action.articles
+        indexArticles: action.articles,
       };
     case INDEX_ARTICLES.FETCH_FAIL:
       return {
         ...state,
         isLoading: false,
-        error: action.error,
-        indexArticles: []
+        error: "Vyskytla sa chyba",
+        indexArticles: [],
       };
   }
   return state;

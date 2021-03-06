@@ -113,7 +113,7 @@ function Home() {
                 </>
               ) : null}
             </div>
-            <PopularArticles />
+            {/*<PopularArticles />*/}
             <div>
               {onClient() && onMobile() ? (
                 <>
