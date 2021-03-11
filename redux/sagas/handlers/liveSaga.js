@@ -22,14 +22,17 @@ const getLatestTime = (state) => state.live.latestItemTime;
 const getOldestTime = (state) => state.live.oldestItemTime;
 const getStartTime = (state) => state.live.start;
 const initialLoad = (state) => state.live.news.length === 0;
+const getAdsId = (state) => state.live.adsID;
 
 function* loadOlder() {
   try {
     const oldest = yield select(getOldestTime);
     const start = yield select(getStartTime);
+    const adsID = yield select(getAdsId);
     const quickNews = yield call(fetchLiveNews, {
       before: oldest,
       start: start,
+      adsID: initialLoad ? adsID : null,
     });
     yield put(addLiveNewsArchive(quickNews));
   } catch (err) {
@@ -42,10 +45,12 @@ function* bgLoader() {
     while (true) {
       const latest = yield select(getLatestTime);
       const end = yield select(getEndTime);
+      const adsID = yield select(getAdsId);
       const result = yield call(fetchLiveNews, {
         after: latest,
         end: end,
         initialLoad: initialLoad,
+        adsID: initialLoad ? adsID : null,
       });
       yield put(addLiveNews(result));
       yield delay(DELAY.LIVE_NEWS_DELAY);

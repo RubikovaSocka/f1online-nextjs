@@ -15,6 +15,7 @@ const initialize = (payload) => ({
   type: TYPES.INITIALIZE,
   start: payload.start,
   end: payload.end,
+  adsID: payload.adsID,
 });
 
 const startLiveAutofetch = () => ({
@@ -28,7 +29,8 @@ const pauseLiveAutofetch = () => ({
 const addLiveNews = (payload) => ({
   type: TYPES.AUTO_SUCCESS,
   news: payload.news,
-  totalNewsCount: payload.totalNewsCount
+  adsData: payload.adsData,
+  totalNewsCount: payload.totalNewsCount,
 });
 
 const setLiveNewsError = (error) => ({
@@ -44,6 +46,7 @@ const fetchLiveNewsArchive = () => ({
 const addLiveNewsArchive = (payload) => ({
   type: TYPES.FETCH_ARCHIVE_SUCCESS,
   news: payload.news,
+  adsData: payload.adsData,
   totalNewsCount: payload.totalNewsCount,
 });
 

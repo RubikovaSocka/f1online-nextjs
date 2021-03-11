@@ -1,21 +1,22 @@
 const TYPES = {
   FETCH: "PROGRAMME_FETCH",
   SUCCESS: "PROGRAMME_SUCCESS",
-  ERROR: "PROGRAMME_ERROR"
+  ERROR: "PROGRAMME_ERROR",
 };
 
 const fetchProgramme = () => ({
-  type: TYPES.FETCH
+  type: TYPES.FETCH,
 });
 
-const setProgramme = event => ({
+const setProgramme = ({ event, eventCalendarId }) => ({
   type: TYPES.SUCCESS,
-  event
+  event,
+  eventCalendarId,
 });
 
-const setProgrammeError = error => ({
+const setProgrammeError = (error) => ({
   type: TYPES.ERROR,
-  error
+  error,
 });
 
 export { TYPES, fetchProgramme, setProgramme, setProgrammeError };

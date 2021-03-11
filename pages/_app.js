@@ -20,8 +20,8 @@ import NProgress from "../components/nprogress";
 import "../components/nprogress/nprogress.css";
 import "../components/react-image-gallery/styles/scss/image-gallery.scss";
 
-import { useDispatch, useSelector } from "react-redux";
-import { wrapper } from "../redux/store/store.js";
+import { useSelector, useDispatch } from "react-redux";
+import { wrapper } from "../redux/store/store";
 import { initializeTheme } from "../redux/actions/themeActions";
 
 import { startQuickNewsAutoFetch } from "../redux/actions/quickNewsActions";
@@ -96,8 +96,8 @@ function App({ Component, pageProps }) {
     Router.events.on("routeChangeError", () => NProgress.done());
 
     dispatch(fetchPanels());
+    //dispatch(fetchProgramme());
     dispatch(fetchF1Results({ perPage: 1 }));
-    dispatch(fetchProgramme());
     dispatch(startQuickNewsAutoFetch());
   }, []);
 
@@ -108,13 +108,13 @@ function App({ Component, pageProps }) {
         <HeaderMeta theme={theme} />
         <Header theme={theme} />
         <div>
-          {onClient() ? (
+          {onClient() && (
             <TrackedPanel
               type={TYPES.LEADERBOARD}
               position={POSITION.LEADERBOARD}
               key={viewIndex}
             />
-          ) : null}
+          )}
         </div>
         <ThemeSwitcher />
         <Component {...pageProps} />
@@ -124,5 +124,11 @@ function App({ Component, pageProps }) {
     </ThemeProvider>
   );
 }
+
+App.getInitialProps = ({ ctx }) => {
+  ctx.store.dispatch(fetchProgramme());
+  //ctx.store.dispatch(fetchF1Results({ perPage: 1 }));
+  return {};
+};
 
 export default wrapper.withRedux(App);

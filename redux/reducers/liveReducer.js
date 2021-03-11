@@ -10,15 +10,19 @@ const defaultState = {
   error: null,
   hasMore: true,
   hasEnded: false,
+  adsData: null,
+  adsID: null,
 };
 
 const liveReducer = (state = defaultState, action) => {
+  console.log(action);
   switch (action.type) {
     case TYPES.INITIALIZE:
       return {
         ...defaultState,
         start: action.start,
         end: action.end,
+        adsID: action.adsID,
         oldestItemTime: action.end,
         latestItemTime: action.start,
         error: null,
@@ -34,6 +38,7 @@ const liveReducer = (state = defaultState, action) => {
         ...state,
         isLoading: false,
         news: newArray,
+        adsData: action.adsData ? action.adsData : null,
         latestItemTime: newArray[0] ? newArray[0].date : state.latestItemTime,
         oldestItemTime: newArray[newArray.length - 1]
           ? newArray[newArray.length - 1].date
@@ -59,6 +64,7 @@ const liveReducer = (state = defaultState, action) => {
       return {
         ...state,
         news: newArray2,
+        adsData: action.adsData ? action.adsData : null,
         isLoading: false,
         error: null,
         latestItemTime: newArray2[0] ? newArray2[0].date : state.latestItemTime,

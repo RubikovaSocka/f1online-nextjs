@@ -2,6 +2,7 @@ import { TYPES } from "../actions/programmeActions";
 import { HYDRATE } from "next-redux-wrapper";
 
 const defaultState = {
+  eventCalendarId: null,
   event: {},
   error: null,
   isLoading: true
@@ -33,7 +34,8 @@ const programmeReducer = (state = defaultState, action) => {
         ...state,
         isLoading: false,
         error: null,
-        event: action.event
+        event: action.event,
+        eventCalendarId: action.eventCalendarId
       };
     }
     case TYPES.ERROR: {

@@ -9,6 +9,7 @@ function PostExtrasArea({
   gallery,
   start_time,
   end_time,
+  reklamy,
   images: compareImages,
 }) {
   const [images, setImages] = useState({ array: [], loaded: false });
@@ -56,6 +57,7 @@ function PostExtrasArea({
           <Live
             startTime={start_time.replace(" ", "T")} //to match ISO format for subsequent saga requestss
             endTime={end_time.replace(" ", "T")}
+            adsID={reklamy && reklamy !== "" ? reklamy : null}
           />
           <Divider height="10px" />
         </>

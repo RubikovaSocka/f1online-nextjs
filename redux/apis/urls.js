@@ -14,6 +14,7 @@ const URLS = {
 
   AUTHORS_DATA_ENDPOINT:
     "https://wpadmin.f1online.sk/wp-content/uploads/authors.json",
+  LIVE_ADS_DATA_ENDPOINT: "wp-json/wp/v2/reklama_online/",
 
   bannerDataLink:
     "https://wpadmin.f1online.sk/wp-content/uploads/bannerData.json",
