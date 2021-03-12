@@ -49,7 +49,7 @@ function PostExtrasArea({
 
   return (
     <>
-      {start_time ? (
+      {/*start_time ? (
         <>
           <Divider height="10px" />
           <SectionTitle title="LIVE" />
@@ -61,7 +61,7 @@ function PostExtrasArea({
           />
           <Divider height="10px" />
         </>
-      ) : null}
+      ) : null*/}
       {cImages.loaded ? <ImageSlider images={cImages} /> : null}
       {images.loaded ? (
         <>
