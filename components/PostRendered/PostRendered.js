@@ -4,7 +4,7 @@ import PostExtrasArea from "./PostExtrasArea";
 import PostFooterArea from "./PostFooterArea";
 
 function PostRendered(props) {
-  const { title, date, id, slug, content, acf, _embedded } = props;
+  const { title, date, id, slug, content, tags, acf, _embedded } = props;
 
   return (
     <article>
@@ -20,6 +20,7 @@ function PostRendered(props) {
       <PostContentArea
         article={content.rendered}
         adsDisallowed={acf.a_disallow}
+        tags={tags}
       />
       <PostExtrasArea {...acf} />
       <PostFooterArea {...props} />

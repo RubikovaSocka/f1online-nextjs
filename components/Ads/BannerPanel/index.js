@@ -133,7 +133,6 @@ export default function BannerPanel({
   }, [isVisible]);
 
   const bannerClicked = () => {
-    console.log("PPPPPPPP");
     countBannerClick({ partner, banner, slot });
   };
 

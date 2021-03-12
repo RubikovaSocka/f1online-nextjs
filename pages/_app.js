@@ -96,7 +96,7 @@ function App({ Component, pageProps }) {
     Router.events.on("routeChangeError", () => NProgress.done());
 
     dispatch(fetchPanels());
-    //dispatch(fetchProgramme());
+    dispatch(fetchProgramme());
     dispatch(fetchF1Results({ perPage: 1 }));
     dispatch(startQuickNewsAutoFetch());
   }, []);
@@ -125,10 +125,10 @@ function App({ Component, pageProps }) {
   );
 }
 
-App.getInitialProps = ({ ctx }) => {
-  ctx.store.dispatch(fetchProgramme());
-  //ctx.store.dispatch(fetchF1Results({ perPage: 1 }));
-  return {};
-};
+// App.getInitialProps = ({ ctx }) => {
+//   ctx.store.dispatch(fetchProgramme());
+//   //ctx.store.dispatch(fetchF1Results({ perPage: 1 }));
+//   return {};
+// };
 
 export default wrapper.withRedux(App);

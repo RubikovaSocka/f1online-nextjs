@@ -1,23 +1,38 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+
 import { usePageVisibility } from "react-page-visibility";
 import Live from "./Live";
 import ChatContainer from "./ChatContainer";
+import PartnerStripe from "./PartnerStripe";
 import onMobile from "../../utils/onMobile";
 
 const Container = styled.div`
   border: 1px solid ${(props) => props.theme.BASIC_LINE_COLOR};
 
-  height: calc(100vh - 90px);
   z-index: 4;
+  /*  height: calc(100vh - 60px);
 
   @media only screen and (min-width: 1024px) {
-    height: calc(100vh - 130px);
+    height: calc(100vh - 80px);
   }
 
   .infinite-scroll-component__outerdiv {
     height: calc(100% - 37px);
+  }*/
+`;
+
+const LiveContainer = styled.div`
+  height: calc(100vh - 60px);
+  z-index: 4;
+
+  @media only screen and (min-width: 1024px) {
+    height: calc(100vh - 80px);
+  }
+
+  .infinite-scroll-component__outerdiv {
+    height: 100%;
   }
 `;
 
@@ -161,6 +176,7 @@ const CloseButton = styled.button`
 function LiveBox(props) {
   const [chatOpened, setChatOpened] = useState(false);
   const [chat, setChat] = useState(null);
+
   const state = useSelector((state) => state.live);
   const { hasEnded } = state;
 
@@ -183,10 +199,15 @@ function LiveBox(props) {
   if (chatOpened && !chat) {
     setChat(<ChatContainer isOpened={chatOpened} />);
   }
-
+  //if (!state.isLoading) console.log(state);
   return (
     <>
+      {!state.isLoading && (
+        <img style={{ width: "100%" }} src={state.adsData.acf.partner_car} />
+      )}
       <Container>
+        <PartnerStripe state={state} />
+
         <ButtonsRow>
           {hasEnded ? <span>Live sa skončil</span> : <LiveIcon> Live</LiveIcon>}
           <ChatButton onClick={chatButtonPressed} isOpened={chatOpened}>
@@ -194,7 +215,9 @@ function LiveBox(props) {
             CHAT
           </ChatButton>
         </ButtonsRow>
-        <Live isVisible={isVisible} {...props} />
+        <LiveContainer id="scrollerContainer">
+          <Live isVisible={isVisible} {...props} state={state} />
+        </LiveContainer>
       </Container>
       {chatOpened ? chat : ""}
       <CloseButton onClick={chatButtonPressed} isOpened={chatOpened} />

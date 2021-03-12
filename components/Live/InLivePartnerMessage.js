@@ -81,28 +81,28 @@ function InLivePartnerMessage({
   isVisible,
 }) {
   const containerRef = useRef();
-  const targetLink = message.split('href="')[1].split('"')[0];
+  const targetLink = message.split('href="')[1]
+    ? message.split('href="')[1].split('"')[0]
+    : "https://f1online.sk/";
 
   const handleClick = (e) => {
-    console.log("CLICKED", e.target.nodeName === "A", e.target);
     if (e.target.nodeName === "A") {
-      console.log(e.target.attributes.href.value);
       onClick(e.target.attributes.href.value);
     }
   };
 
   useEffect(() => {
     if (containerRef.current) {
-      console.log(containerRef.current);
       containerRef.current.addEventListener("click", handleClick);
     }
     return () => {
-      containerRef.current.removeEventListener("click", handleClick);
+      containerRef &&
+        containerRef.current &&
+        containerRef.current.removeEventListener("click", handleClick);
     };
   }, []);
 
   useEffect(() => {
-    console.log(index, targetLink);
     if (isVisible) {
       onImpression(index, targetLink);
     }

@@ -56,7 +56,7 @@ function Post({ postData }) {
               <SectionTitle topLeve={true} title={postData.error} />
             ) : (
               <>
-                <PostMeta key={postData.id} {...postData} />
+                <PostMeta key={postData.id + 100000} {...postData} />
                 <PostRendered
                   key={postData.id} //Why? To prevent component reuse from previous render
                   {...postData}

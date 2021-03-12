@@ -10,6 +10,49 @@ import { POSITION } from "../Ads/positions";
 import TrackedPanel, { TYPES } from "../Ads/TrackedPanel";
 import BContainer from "../../components/BContainer";
 
+import ReactGA from "react-ga";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px 25px 20px;
+
+  @media only screen and (min-width: 1024px) {
+    flex-direction: row;
+  }
+
+  color: ${(props) => props.fgColor};
+  background-color: ${(props) => props.bgColor};
+  font-family: HK Grotesk;
+  font-size: 15px;
+
+  img {
+    margin: 0;
+
+    width: auto;
+    height: 50px;
+    @media only screen and (min-width: 1024px) {
+      margin-left: 15px;
+      height: 45px;
+    }
+  }
+  a {
+    color: ${(props) => props.fgColor};
+  }
+`;
+const Message = styled.span`
+  color: white;
+  text-align: center;
+  margin: 0;
+  font-weight: 600;
+  display: inline-block;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const ArticleDiv = styled(EmbedExorcist)`
   font-family: "HK Grotesk";
   font-size: 16px;
@@ -35,31 +78,73 @@ const ArticleDiv = styled(EmbedExorcist)`
 
 const NR_PARS_BET_ADS = 4;
 
-function AdsInjector({ inputHtml, adsDisallowed }) {
-  const nrPars = inputHtml.split("</p>\n\n\n\n").length;
+function AdsInjector({ inputHtml, adsDisallowed, tags }) {
+  const stripeClick = (targetLink) => {
+    // console.log("CLICKED", {
+    //   category: "ARTICLE-STRIPE-CLICK",
+    //   action: `Predsezónne-testy:-Bonipo.sk`,
+    //   label: `${window.location.href}`,
+    //   nonInteraction: false,
+    // });
+    ReactGA.event({
+      category: "ARTICLE-STRIPE-CLICK",
+      action: `Predsezónne-testy:-Bonipo.sk`,
+      label: `${window.location.href}`,
+      nonInteraction: false,
+    });
+  };
+
+  const nrPars = inputHtml.split("\n\n\n\n").length;
+
   if (!adsDisallowed && nrPars > 5) {
-    return inputHtml.split("</p>\n\n\n\n").map((chunk, i) => (
+    return inputHtml.split("\n\n\n\n").map((chunk, i) => (
       <Fragment key={i}>
-        {parse(chunk.concat("</p>"))}
-        {onClient() && (i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars ? (
+        {parse(chunk)}
+        {onClient() && tags.includes(389) && i === 0 && (
+          <Container bgColor="#0597F2" fgColor="#ffffff">
+            <a
+              target="_blank"
+              onClick={() => stripeClick("https://bonipo.sk/")}
+              href="https://bonipo.sk/"
+            >
+              <Message>
+                Články k predsezónnym testom vznikajú vďaka podpore nášho
+                partnera Bonipo.sk. Ďakujeme za podporu formulovej komunity u
+                nás!
+              </Message>
+            </a>
+            <a
+              target="_blank"
+              onClick={() => stripeClick("https://bonipo.sk/")}
+              href="https://bonipo.sk/"
+            >
+              <img src="https://wpadmin.f1online.sk/wp-content/uploads/logo-boniposk.png" />
+            </a>
+          </Container>
+        )}
+        {onClient() && (i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars && (
           <BContainer className="nomargins">
             <TrackedPanel
               type={TYPES.BASIC}
               position={POSITION.CONTENT_ARTICLE}
             />
           </BContainer>
-        ) : null}
+        )}
       </Fragment>
     ));
   }
   return parse(inputHtml);
 }
 
-function PostContentArea({ article, adsDisallowed }) {
+function PostContentArea({ article, adsDisallowed, tags }) {
   return (
     <EmbedContainer markup={article}>
       <ArticleDiv>
-        <AdsInjector inputHtml={article} adsDisallowed={adsDisallowed} />
+        <AdsInjector
+          inputHtml={article}
+          tags={tags}
+          adsDisallowed={adsDisallowed}
+        />
       </ArticleDiv>
     </EmbedContainer>
   );
