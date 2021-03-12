@@ -113,7 +113,7 @@ function Home() {
                 </>
               ) : null}
             </div>
-            <div>{/*onClient() ? <PopularArticles /> : null*/}</div>
+            <div>{onClient() && <PopularArticles />}</div>
             <div>
               {onClient() && onMobile() ? (
                 <>

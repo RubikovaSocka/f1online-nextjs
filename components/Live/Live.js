@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import LiveNewsItem from "../LiveNewsItem";
 import Filler from "../Filler";
 import TrackVisibility from "react-on-screen";
+import ReactGA from "react-ga";
 import {
   fetchLiveNewsArchive,
   initialize,
@@ -25,7 +26,7 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
   const dispatch = useDispatch();
   const { news, isLoading, error, hasMore, hasEnded, adsData } = state;
   const ended = hasEnded || (startTime && endTime);
-console.log(state);
+
   let counter = 0;
   let partnerMessages =
     adsData && adsData.content
@@ -77,13 +78,13 @@ console.log(state);
       reportedImpressions.add(targetIndex);
       // console.log("IMPRESSION", {
       //   category: "online-impression",
-      //   action: targetIndex,
+      //   action: `${targetIndex}`,
       //   label: targetLink,
       //   nonInteraction: true,
       // });
       ReactGA.event({
         category: "online-impression",
-        action: targetIndex,
+        action: `${targetIndex}`,
         label: targetLink,
         nonInteraction: true,
       });
@@ -122,6 +123,40 @@ console.log(state);
     }
   }, [isLoading]);
 
+  const injectAd = (item) => {
+    if (Math.abs(item.adIndex) % AD_FREQUENCY === 0) {
+      let pickedIndex = null;
+      if (item.adIndex > 0) {
+        pickedIndex =
+          partnerMessages.length -
+          (Math.abs(Math.floor(item.adIndex / AD_FREQUENCY)) %
+            partnerMessages.length);
+      } else {
+        pickedIndex =
+          Math.abs(Math.floor(item.adIndex / AD_FREQUENCY)) %
+          partnerMessages.length;
+      }
+
+      return (
+        <TrackVisibility style={{ width: "100%" }} partialVisibility once>
+          <InLivePartnerMessage
+            onClick={(targetLink) =>
+              reportClick(adsData.title.rendered, targetLink)
+            }
+            onImpression={(targetIndex, targetLink) =>
+              reportImpression(adsData.title.rendered, targetIndex, targetLink)
+            }
+            message={partnerMessages[pickedIndex]}
+            index={pickedIndex}
+            {...adsData.acf}
+          />
+        </TrackVisibility>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <InfiniteScroll
       dataLength={news.length}
@@ -147,24 +182,7 @@ console.log(state);
         {news.map((item, index) => (
           <>
             <LiveNewsItem key={item.id} post={item} />
-            {(index + 1) % AD_FREQUENCY === 5 && adsData && (
-              <TrackVisibility style={{ width: "100%" }} partialVisibility once>
-                <InLivePartnerMessage
-                  onClick={(targetLink) =>
-                    reportClick(adsData.title.rendered, targetLink)
-                  }
-                  onImpression={(targetIndex, targetLink) =>
-                    reportImpression(
-                      adsData.title.rendered,
-                      targetIndex,
-                      targetLink
-                    )
-                  }
-                  {...getNextPartnerMessage(index)}
-                  {...adsData.acf}
-                />
-              </TrackVisibility>
-            )}
+            {adsData && injectAd(item)}
           </>
         ))}
         {isLoading ? Loader() : ""}

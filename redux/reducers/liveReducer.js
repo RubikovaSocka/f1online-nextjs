@@ -33,7 +33,20 @@ const liveReducer = (state = defaultState, action) => {
           action.end.length > 0,
       };
     case TYPES.AUTO_SUCCESS:
-      const newArray = [...action.news, ...state.news];
+      let newArray;
+      if (state.news.length === 0) {
+        newArray = action.news.map((item, index) => ({
+          ...item,
+          adIndex: index === 0 ? index : -index,
+        }));
+      } else {
+        const topIndex = state.news[0].adIndex;
+        const freshNews = action.news
+          .reverse()
+          .map((item, index) => ({ ...item, adIndex: topIndex + index + 1 }))
+          .reverse();
+        newArray = [...freshNews, ...state.news];
+      }
       return {
         ...state,
         isLoading: false,
@@ -60,7 +73,20 @@ const liveReducer = (state = defaultState, action) => {
         isLoading: true,
       };
     case TYPES.FETCH_ARCHIVE_SUCCESS:
-      const newArray2 = [...state.news, ...action.news];
+      let newArray2;
+      if (state.news.length === 0) {
+        newArray2 = action.news.map((item, index) => ({
+          ...item,
+          adIndex: index === 0 ? index : -index,
+        }));
+      } else {
+        const lowIndex = state.news[state.news.length - 1].adIndex;
+        const oldNews = action.news.map((item, index) => ({
+          ...item,
+          adIndex: lowIndex - index - 1,
+        }));
+        newArray2 = [...state.news, ...oldNews];
+      }
       return {
         ...state,
         news: newArray2,
