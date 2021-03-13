@@ -42,8 +42,8 @@ function ChatContainer({ isOpened }) {
         <iframe
           height="100%"
           width="100%"
-          //src={`https://www.youtube.com/live_chat?v=o0ollig71T4&embed_domain=f1online.sk`}
-          src={`https://www.youtube.com/live_chat?v=o0ollig71T4&embed_domain=localhost`}
+          src={`https://www.youtube.com/live_chat?v=o0ollig71T4&embed_domain=f1online.sk`}
+          //src={`https://www.youtube.com/live_chat?v=o0ollig71T4&embed_domain=localhost`}
           frameBorder="0"
           style={{ position: "relative", zIndex: "15" }}
         />
