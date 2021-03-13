@@ -60,7 +60,7 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
     dispatch(startLiveAutofetch());
   };
 
-  const reportClick = (title, targetLink) => {
+  const repCli = (title, targetLink) => {
     /*console.log("CLICKED", {
       category: "online-click",
       action: title.replace(" ", "-"),
@@ -75,7 +75,7 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
     });
   };
 
-  const reportImpression = (title, targetIndex, targetLink) => {
+  const repImp = (title, targetIndex, targetLink) => {
     if (!reportedImpressions.has(targetIndex)) {
       reportedImpressions.add(targetIndex);
       // console.log("IMPRESSION", {
@@ -127,39 +127,40 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
 
   const injectAd = (item) => {
     if (Math.abs(item.adIndex) % AD_FREQUENCY === 0) {
-      // if (Math.random() > 0.5) {
-      //   return (
-      //     <>
-      //       <TrackedPanel
-      //         type={TYPES.BASIC}
-      //         position={POSITION.LIVE_FEED_CONTENT}
-      //         sidebar={true}
-      //       />
-      //       <Divider height="30px" />
-      //     </>
-      //   );
-      // }
+      if (Math.random() > 0.6) {
+        return (
+          <>
+            <TrackedPanel
+              type={TYPES.BASIC}
+              position={POSITION.LIVE_FEED_CONTENT}
+              sidebar={true}
+            />
+            <Divider height="30px" />
+          </>
+        );
+      }
 
       let pickedIndex = null;
-      if (item.adIndex > 0) {
-        pickedIndex =
-          partnerMessages.length -
-          (Math.abs(Math.floor(item.adIndex / AD_FREQUENCY)) %
-            partnerMessages.length);
-      } else {
-        pickedIndex =
-          Math.abs(Math.floor(item.adIndex / AD_FREQUENCY)) %
-          partnerMessages.length;
-      }
+      // if (item.adIndex > 0) {
+      //   pickedIndex =
+      //     partnerMessages.length -
+      //     (Math.abs(Math.floor(item.adIndex / AD_FREQUENCY)) %
+      //       partnerMessages.length);
+      // } else {
+      //   pickedIndex =
+      //     Math.abs(Math.floor(item.adIndex / AD_FREQUENCY)) %
+      //     partnerMessages.length;
+      // }
+      pickedIndex = Math.floor(Math.random() * partnerMessages.length);
 
       return (
         <TrackVisibility style={{ width: "100%" }} partialVisibility once>
           <InLivePartnerMessage
             onClick={(targetLink) =>
-              reportClick(adsData.title.rendered, targetLink)
+              repCli(adsData.title.rendered, targetLink)
             }
             onImpression={(targetIndex, targetLink) =>
-              reportImpression(adsData.title.rendered, targetIndex, targetLink)
+              repImp(adsData.title.rendered, targetIndex, targetLink)
             }
             message={partnerMessages[pickedIndex]}
             index={pickedIndex}
