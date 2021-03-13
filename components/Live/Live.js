@@ -156,9 +156,7 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
       return (
         <TrackVisibility style={{ width: "100%" }} partialVisibility once>
           <InLivePartnerMessage
-            onClick={(targetLink) =>
-              repCli(adsData.title.rendered, targetLink)
-            }
+            onClick={(targetLink) => repCli(adsData.title.rendered, targetLink)}
             onImpression={(targetIndex, targetLink) =>
               repImp(adsData.title.rendered, targetIndex, targetLink)
             }
@@ -197,7 +195,7 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
         {news.map((item, index) => (
           <>
             <LiveNewsItem key={item.id} post={item} />
-            <div>{adsData && injectAd(item)}</div>
+            <div key={item.id + 10000}>{adsData && injectAd(item)}</div>
           </>
         ))}
         {isLoading ? Loader() : ""}
