@@ -48,6 +48,8 @@ const getPositionName = (id) => {
       return "SIDEBAR_QUICKNEWS_PAGE";
     case POSITION.CONTENT_QUICKNEWS_PAGE_TOP:
       return "CONTENT_QUICKNEWS_PAGE_TOP";
+    case POSITION.LIVE_FEED_CONTENT:
+      return "LIVE_FEED_CONTENT";
     default:
       return "Unknown";
   }

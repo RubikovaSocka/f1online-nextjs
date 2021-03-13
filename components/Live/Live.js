@@ -13,6 +13,8 @@ import {
 } from "../../redux/actions/liveActions";
 import Divider from "../Divider";
 import InLivePartnerMessage from "./InLivePartnerMessage";
+import TrackedPanel, { TYPES } from "../Ads/TrackedPanel";
+import { POSITION } from "../Ads/positions";
 
 const Loader = () => {
   return [0, 1, 2, 3, 4, 5, 6].map((item, i) => (
@@ -59,12 +61,12 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
   };
 
   const reportClick = (title, targetLink) => {
-    // console.log("CLICKED", {
-    //   category: "online-click",
-    //   action: title.replace(" ", "-"),
-    //   label: targetLink,
-    //   nonInteraction: false,
-    // });
+    /*console.log("CLICKED", {
+      category: "online-click",
+      action: title.replace(" ", "-"),
+      label: targetLink,
+      nonInteraction: false,
+    });*/
     ReactGA.event({
       category: "online-click",
       action: title.replace(" ", "-"),
@@ -125,6 +127,19 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
 
   const injectAd = (item) => {
     if (Math.abs(item.adIndex) % AD_FREQUENCY === 0) {
+      // if (Math.random() > 0.5) {
+      //   return (
+      //     <>
+      //       <TrackedPanel
+      //         type={TYPES.BASIC}
+      //         position={POSITION.LIVE_FEED_CONTENT}
+      //         sidebar={true}
+      //       />
+      //       <Divider height="30px" />
+      //     </>
+      //   );
+      // }
+
       let pickedIndex = null;
       if (item.adIndex > 0) {
         pickedIndex =
@@ -153,7 +168,6 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
         </TrackVisibility>
       );
     }
-
     return null;
   };
 
@@ -182,7 +196,7 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
         {news.map((item, index) => (
           <>
             <LiveNewsItem key={item.id} post={item} />
-            {adsData && injectAd(item)}
+            <div>{adsData && injectAd(item)}</div>
           </>
         ))}
         {isLoading ? Loader() : ""}
