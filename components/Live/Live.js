@@ -127,31 +127,31 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
 
   const injectAd = (item) => {
     if (Math.abs(item.adIndex) % AD_FREQUENCY === 0) {
-      if (Math.random() > 0.6) {
-        return (
-          <>
-            <TrackedPanel
-              type={TYPES.BASIC}
-              position={POSITION.LIVE_FEED_CONTENT}
-              sidebar={true}
-            />
-            <Divider height="30px" />
-          </>
-        );
-      }
+      // if (Math.random() > 0.6) {
+      //   return (
+      //     <>
+      //       <TrackedPanel
+      //         type={TYPES.BASIC}
+      //         position={POSITION.LIVE_FEED_CONTENT}
+      //         sidebar={true}
+      //       />
+      //       <Divider height="30px" />
+      //     </>
+      //   );
+      // }
 
       let pickedIndex = null;
-      // if (item.adIndex > 0) {
-      //   pickedIndex =
-      //     partnerMessages.length -
-      //     (Math.abs(Math.floor(item.adIndex / AD_FREQUENCY)) %
-      //       partnerMessages.length);
-      // } else {
-      //   pickedIndex =
-      //     Math.abs(Math.floor(item.adIndex / AD_FREQUENCY)) %
-      //     partnerMessages.length;
-      // }
-      pickedIndex = Math.floor(Math.random() * partnerMessages.length);
+      if (item.adIndex > 0) {
+        pickedIndex =
+          partnerMessages.length -
+          (Math.abs(Math.floor(item.adIndex / AD_FREQUENCY)) %
+            partnerMessages.length);
+      } else {
+        pickedIndex =
+          Math.abs(Math.floor(item.adIndex / AD_FREQUENCY)) %
+          partnerMessages.length;
+      }
+      // pickedIndex = Math.floor(Math.random() * partnerMessages.length);
 
       return (
         <TrackVisibility style={{ width: "100%" }} partialVisibility once>
@@ -195,7 +195,7 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
         {news.map((item, index) => (
           <>
             <LiveNewsItem key={item.id} post={item} />
-            <div key={item.id + 10000}>{adsData && injectAd(item)}</div>
+            <div key={item.id + 1000000}>{adsData && injectAd(item)}</div>
           </>
         ))}
         {isLoading ? Loader() : ""}
