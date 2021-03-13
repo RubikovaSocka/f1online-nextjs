@@ -11,6 +11,7 @@ import TrackedPanel, { TYPES } from "../Ads/TrackedPanel";
 import BContainer from "../../components/BContainer";
 
 import ReactGA from "react-ga";
+import Divider from "../Divider";
 
 const Container = styled.div`
   display: flex;
@@ -100,36 +101,44 @@ function AdsInjector({ inputHtml, adsDisallowed, tags }) {
     return inputHtml.split("\n\n\n\n").map((chunk, i) => (
       <Fragment key={i}>
         {parse(chunk)}
-        {onClient() && tags.includes(389) && i === 0 && (
-          <Container bgColor="#0597F2" fgColor="#ffffff">
-            <a
-              target="_blank"
-              onClick={() => stripeClick("https://bonipo.sk/")}
-              href="https://bonipo.sk/"
-            >
-              <Message>
-                Články k predsezónnym testom vznikajú vďaka podpore nášho
-                partnera Bonipo.sk. Ďakujeme za podporu formulovej komunity u
-                nás!
-              </Message>
-            </a>
-            <a
-              target="_blank"
-              onClick={() => stripeClick("https://bonipo.sk/")}
-              href="https://bonipo.sk/"
-            >
-              <img src="https://wpadmin.f1online.sk/wp-content/uploads/logo-boniposk.png" />
-            </a>
-          </Container>
-        )}
-        {onClient() && (i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars && (
-          <BContainer className="nomargins">
-            <TrackedPanel
-              type={TYPES.BASIC}
-              position={POSITION.CONTENT_ARTICLE}
-            />
-          </BContainer>
-        )}
+        <div>
+          {onClient() && tags.includes(389) && i === 0 && (
+            <Container bgColor="#0597F2" fgColor="#ffffff">
+              <a
+                target="_blank"
+                onClick={() => stripeClick("https://bonipo.sk/")}
+                href="https://bonipo.sk/"
+              >
+                <Message>
+                  Články k predsezónnym testom vznikajú vďaka podpore nášho
+                  partnera Bonipo.sk. Ďakujeme za podporu formulovej komunity u
+                  nás!
+                </Message>
+              </a>
+              <a
+                target="_blank"
+                onClick={() => stripeClick("https://bonipo.sk/")}
+                href="https://bonipo.sk/"
+              >
+                <img src="https://wpadmin.f1online.sk/wp-content/uploads/logo-boniposk.png" />
+              </a>
+            </Container>
+          )}
+          <div>
+            {onClient() && (i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars && (
+              <>
+                <Divider height="10px" />
+                <BContainer className="nomargins">
+                  <TrackedPanel
+                    type={TYPES.BASIC}
+                    position={POSITION.CONTENT_ARTICLE}
+                  />
+                </BContainer>
+                <Divider height="10px" />
+              </>
+            )}
+          </div>
+        </div>
       </Fragment>
     ));
   }
