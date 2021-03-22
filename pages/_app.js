@@ -29,7 +29,7 @@ import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 import { fetchProgramme } from "../redux/actions/programmeActions";
 import { fetchPanels, resetImpressions } from "../redux/actions/panelsActions";
 
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/Themes";
 import { THEMES } from "../constants";
 
@@ -63,6 +63,41 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     align-items: center;
     background-color: ${(props) => props.theme.PAGE_BACK_COLOR}
+  }
+`;
+
+const VideoContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+
+  margin: auto;
+  margin-top: 15px;
+  position: relative !important;
+  padding-bottom: 56.25% !important;
+  height: 0 !important;
+
+  > iframe {
+    position: absolute !important;
+    //position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    padding-bottom: 320px !important;
+    > iframe {
+      height: 320px !important;
+    }
+    width: 973px;
+  }
+  @media only screen and (min-width: 1280px) {
+    width: 1032px;
   }
 `;
 
@@ -107,13 +142,30 @@ function App({ Component, pageProps }) {
         <GlobalStyle />
         <HeaderMeta theme={theme} />
         <Header theme={theme} />
-        <div>
+        {/* <div>
           {onClient() && (
             <TrackedPanel
               type={TYPES.LEADERBOARD}
               position={POSITION.LEADERBOARD}
               key={viewIndex}
             />
+            
+          )}
+        </div> */}
+        <div style={{ width: "100%" }}>
+          {onClient() && (
+            <VideoContainer>
+              <iframe
+                width="560"
+                height="315"
+                src="https://streamable.com/e/va4hrs?autoplay=1"
+                frameborder="0"
+                width="100%"
+                height="100%"
+                allowfullscreen
+                allow="autoplay"
+              ></iframe>
+            </VideoContainer>
           )}
         </div>
         <ThemeSwitcher />

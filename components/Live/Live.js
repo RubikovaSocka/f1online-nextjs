@@ -173,7 +173,7 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
   return (
     <InfiniteScroll
       dataLength={news.length}
-      next={fetchMore}
+      //next={fetchMore}
       hasMore={hasMore}
       height="100%"
       endMessage={
@@ -198,7 +198,11 @@ function Live({ isVisible, startTime, endTime, adsID, state }) {
             <div key={item.id + 1000000}>{adsData && injectAd(item)}</div>
           </>
         ))}
-        {isLoading ? Loader() : ""}
+        {isLoading ? (
+          Loader()
+        ) : (
+          <button onClick={fetchMore}>Načítať viac</button>
+        )}
         <Divider height="10px" />
       </div>
     </InfiniteScroll>
