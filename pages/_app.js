@@ -158,7 +158,7 @@ function App({ Component, pageProps }) {
               <iframe
                 width="560"
                 height="315"
-                src="https://streamable.com/e/va4hrs?autoplay=1"
+                src="https://streamable.com/e/va4hrs?autoplay=1&muted=1"
                 frameborder="0"
                 width="100%"
                 height="100%"
