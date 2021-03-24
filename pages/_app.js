@@ -33,6 +33,8 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/Themes";
 import { THEMES } from "../constants";
 
+import ReactPlayer from "react-player/streamable";
+
 const GlobalStyle = createGlobalStyle`
     *,
   input,
@@ -72,29 +74,35 @@ const VideoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
 
-  margin: auto;
   margin-top: 15px;
-  position: relative !important;
-  padding-bottom: 56.25% !important;
-  height: 0 !important;
+  > div {
+    margin: auto;
+    position: relative !important;
+    padding-bottom: 56.25% !important;
+    height: 0 !important;
 
-  > iframe {
-    position: absolute !important;
-    //position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
+    > iframe {
+      position: absolute !important;
+      //position: relative !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
   }
 
   @media only screen and (min-width: 1024px) {
-    padding-bottom: 320px !important;
-    > iframe {
+    > div > iframe {
       height: 320px !important;
     }
+    > div {
+      padding-bottom: 320px !important;
+    }
     width: 973px;
+    background-color: black;
+    margin: auto;
+    margin-top: 15px;
   }
   @media only screen and (min-width: 1280px) {
     width: 1032px;
@@ -155,16 +163,30 @@ function App({ Component, pageProps }) {
         <div style={{ width: "100%" }}>
           {onClient() && (
             <VideoContainer>
-              <iframe
+              <ReactPlayer
+                url="https://streamable.com/va4hrs"
+                playing={false}
+                controls={false}
+                //width="560px"
+                //height="320px"
+                //muted={true}
+                volume={0.05}
+                allowfullscreen
+                allow="autoplay"
+                //height="100%"
+              />
+              {/* <iframe
                 width="560"
                 height="315"
-                src="https://streamable.com/e/va4hrs?autoplay=1&muted=1"
+                src="https://streamable.com/o/va4hrs?autoplay=0"
                 frameborder="0"
                 width="100%"
                 height="100%"
                 allowfullscreen
-                allow="autoplay"
-              ></iframe>
+                //allow="autoplay"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe> */}
             </VideoContainer>
           )}
         </div>

@@ -53,6 +53,7 @@
     "react-on-screen": "^2.1.1",
     "react-page-visibility": "^6.2.0",
     "react-paginate": "^6.3.2",
+    "react-player": "^2.9.0",
     "react-redux": "^7.2.0",
     "react-swipeable": "^5.5.1",
     "reactjs-popup": "^1.5.0",
