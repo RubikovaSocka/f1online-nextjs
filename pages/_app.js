@@ -75,7 +75,8 @@ const VideoContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-top: 15px;
+  /*margin-top: 15px;
+  
   > div {
     margin: auto;
     position: relative !important;
@@ -106,6 +107,49 @@ const VideoContainer = styled.div`
   }
   @media only screen and (min-width: 1280px) {
     width: 1032px;
+  }*/
+`;
+
+const Top = styled.img`
+  width: 100%;
+  @media only screen and (min-width: 1024px) {
+    width: 1021px;
+  }
+  @media only screen and (min-width: 1280px) {
+    width: 1064px;
+  }
+`;
+const Left = styled.img`
+  display: none;
+
+  @media only screen and (max-width: 1280px) {
+    width: 360px;
+  }
+  @media only screen and (min-width: 1024px) {
+    display: initial;
+    position: fixed;
+    top: 100px;
+    right: calc(50vw + 505px);
+  }
+
+  @media only screen and (min-width: 1280px) {
+    right: calc(50vw + 526px);
+  }
+`;
+const Right = styled.img`
+  display: none;
+
+  @media only screen and (max-width: 1280px) {
+    width: 360px;
+  }
+  @media only screen and (min-width: 1024px) {
+    display: initial;
+    position: fixed;
+    top: 100px;
+    left: calc(50vw + 505px);
+  }
+  @media only screen and (min-width: 1280px) {
+    left: calc(50vw + 526px);
   }
 `;
 
@@ -144,6 +188,36 @@ function App({ Component, pageProps }) {
     dispatch(startQuickNewsAutoFetch());
   }, []);
 
+  const handleBClick = ({ link }) => {
+    // console.log("BANNER", "CLICKED");
+    // console.log({
+    //   category: "GATE-click",
+    //   action: "AMC",
+    //   label: `${link}`,
+    //   nonInteraction: false,
+    //   dimension1: Router.asPath,
+    //   dimension2: `${window.innerWidth < 1024 ? "m" : "pc"}`,
+    // });
+    try {
+      ReactGA.event({
+        category: "GATE-click",
+        action: "AMC",
+        label: `${link}`,
+        nonInteraction: false,
+        dimension1: Router.asPath,
+        dimension2: `${window.innerWidth < 1024 ? "m" : "pc"}`,
+      });
+    } catch (e) {}
+  };
+
+  const pickedSrc = !onClient()
+    ? null
+    : window.innerWidth > 720
+    ? "/images/test/top.jpg"
+    : Math.random() > 0.5
+    ? "/images/test/top-mobileA.jpg"
+    : "/images/test/top-mobileB.jpg";
+
   return (
     <ThemeProvider theme={theme === THEMES.DARK ? darkTheme : lightTheme}>
       <FacebookPixel>
@@ -163,7 +237,7 @@ function App({ Component, pageProps }) {
         <div style={{ width: "100%" }}>
           {onClient() && (
             <VideoContainer>
-              <ReactPlayer
+              {/* <ReactPlayer
                 url="https://streamable.com/va4hrs"
                 playing={false}
                 controls={false}
@@ -174,7 +248,35 @@ function App({ Component, pageProps }) {
                 allowfullscreen
                 allow="autoplay"
                 //height="100%"
-              />
+              /> */}
+              <a
+                target="_blank"
+                rel="nofollow"
+                href="https://amcn-czsk.com/sport1tv-klub/"
+                onClick={() =>
+                  handleBClick({
+                    link: pickedSrc,
+                  })
+                }
+              >
+                <Top src={pickedSrc} />
+              </a>
+              <a
+                target="_blank"
+                rel="nofollow"
+                href="https://amcn-czsk.com/sport1tv-klub/"
+                onClick={() => handleBClick({ link: "/images/test/left.jpg" })}
+              >
+                <Left src="/images/test/left.jpg" />
+              </a>
+              <a
+                target="_blank"
+                rel="nofollow"
+                href="https://amcn-czsk.com/sport1tv-klub/"
+                onClick={() => handleBClick({ link: "/images/test/right.jpg" })}
+              >
+                <Right src="/images/test/right.jpg" />
+              </a>
               {/* <iframe
                 width="560"
                 height="315"
