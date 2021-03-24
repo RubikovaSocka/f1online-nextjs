@@ -74,9 +74,9 @@ const VideoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+/*
+  margin-top: 15px;
 
-  /*margin-top: 15px;
-  
   > div {
     margin: auto;
     position: relative !important;
@@ -213,10 +213,10 @@ function App({ Component, pageProps }) {
   const pickedSrc = !onClient()
     ? null
     : window.innerWidth > 720
-    ? "/images/test/top.jpg"
+    ? "/images/AMC/top.jpg"
     : Math.random() > 0.5
-    ? "/images/test/top-mobileA.jpg"
-    : "/images/test/top-mobileB.jpg";
+    ? "/images/AMC/top-mobileA.jpg"
+    : "/images/AMC/top-mobileB.jpg";
 
   return (
     <ThemeProvider theme={theme === THEMES.DARK ? darkTheme : lightTheme}>
@@ -237,7 +237,7 @@ function App({ Component, pageProps }) {
         <div style={{ width: "100%" }}>
           {onClient() && (
             <VideoContainer>
-              {/* <ReactPlayer
+              {/*<ReactPlayer
                 url="https://streamable.com/va4hrs"
                 playing={false}
                 controls={false}
@@ -248,7 +248,8 @@ function App({ Component, pageProps }) {
                 allowfullscreen
                 allow="autoplay"
                 //height="100%"
-              /> */}
+              />*/}
+
               <a
                 target="_blank"
                 rel="nofollow"
@@ -265,17 +266,17 @@ function App({ Component, pageProps }) {
                 target="_blank"
                 rel="nofollow"
                 href="https://amcn-czsk.com/sport1tv-klub/"
-                onClick={() => handleBClick({ link: "/images/test/left.jpg" })}
+                onClick={() => handleBClick({ link: "/images/AMC/left.jpg" })}
               >
-                <Left src="/images/test/left.jpg" />
+                <Left src="/images/AMC/left.jpg" />
               </a>
               <a
                 target="_blank"
                 rel="nofollow"
                 href="https://amcn-czsk.com/sport1tv-klub/"
-                onClick={() => handleBClick({ link: "/images/test/right.jpg" })}
+                onClick={() => handleBClick({ link: "/images/AMC/right.jpg" })}
               >
-                <Right src="/images/test/right.jpg" />
+                <Right src="/images/AMC/right.jpg" />
               </a>
               {/* <iframe
                 width="560"
