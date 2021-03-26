@@ -3,17 +3,13 @@ import SectionTitle from "../../SectionTitle";
 import Divider from "../../Divider";
 import ImageGallery from "../../react-image-gallery/index";
 import Live from "../../Live";
+import Feed from "../../Feed";
 import ImageSlider from "./ImageSlider/ImageSlider";
 
-function PostExtrasArea({
-  gallery,
-  start_time,
-  end_time,
-  reklamy,
-  images: compareImages,
-}) {
+function PostExtrasArea({ acf, id, slug }) {
   const [images, setImages] = useState({ array: [], loaded: false });
   const [cImages, setCImages] = useState({ array: [], loaded: false });
+  const { gallery, start_time, end_time, reklamy, images: compareImages } = acf;
 
   const fetchGallery = () => {
     gallery &&
@@ -54,11 +50,12 @@ function PostExtrasArea({
           <Divider height="10px" />
           <SectionTitle title="LIVE" />
           <Divider height="30px" />
-          <Live
+          {/* <Live
             startTime={start_time.replace(" ", "T")} //to match ISO format for subsequent saga requestss
             endTime={end_time.replace(" ", "T")}
             adsID={reklamy && reklamy !== "" ? reklamy : null}
-          />
+          /> */}
+          <Feed acf={acf} id={id} slug={slug} />
           <Divider height="10px" />
         </>
       )}

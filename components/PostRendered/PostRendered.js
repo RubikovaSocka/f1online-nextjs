@@ -22,7 +22,7 @@ function PostRendered(props) {
         adsDisallowed={acf.a_disallow}
         tags={tags}
       />
-      <PostExtrasArea {...acf} />
+      <PostExtrasArea acf={acf} id={id} slug={slug} />
       <PostFooterArea {...props} />
     </article>
   );
