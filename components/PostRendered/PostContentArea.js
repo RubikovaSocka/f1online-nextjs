@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import EmbedContainer from "react-oembed-container";
 import parse from "html-react-parser";
 import EmbedExorcist from "../EmbedExorcist";
@@ -27,7 +28,7 @@ const Container = styled.div`
   color: ${(props) => props.fgColor};
   background-color: ${(props) => props.bgColor};
   font-family: HK Grotesk;
-  font-size: 15px;
+  font-size: 14px;
 
   img {
     margin: 0;
@@ -36,11 +37,12 @@ const Container = styled.div`
     height: 50px;
     @media only screen and (min-width: 1024px) {
       margin-left: 15px;
-      height: 45px;
+      height: 60px;
     }
   }
   a {
     color: ${(props) => props.fgColor};
+    display: flex;
   }
 `;
 const Message = styled.span`
@@ -89,11 +91,20 @@ function AdsInjector({ inputHtml, adsDisallowed, tags }) {
     // });
     ReactGA.event({
       category: "ARTICLE-STRIPE-CLICK",
-      action: `Predsezónne-testy:-Bonipo.sk`,
+      action: `VC-Bahrajnu-2020:DIGI`,
       label: `${window.location.href}`,
       nonInteraction: false,
     });
   };
+
+  useEffect(() => {
+    ReactGA.event({
+      category: "ARTICLE-STRIPE-IMP",
+      action: `VC-Bahrajnu-2020:DIGI`,
+      label: `${window.location.href}`,
+      nonInteraction: true,
+    });
+  }, []);
 
   const nrPars = inputHtml.split("\n\n\n\n").length;
 
@@ -102,25 +113,25 @@ function AdsInjector({ inputHtml, adsDisallowed, tags }) {
       <Fragment key={i}>
         {parse(chunk)}
         <div>
-          {onClient() && tags.includes(389) && i === 0 && (
+          {onClient() && tags.includes(401) && i === 0 && (
             <Container bgColor="#0597F2" fgColor="#ffffff">
               <a
                 target="_blank"
-                onClick={() => stripeClick("https://bonipo.sk/")}
-                href="https://bonipo.sk/"
+                onClick={() => stripeClick("https://www.digislovakia.sk/")}
+                href="https://www.digislovakia.sk/"
               >
                 <Message>
-                  Články k predsezónnym testom vznikajú vďaka podpore nášho
-                  partnera Bonipo.sk. Ďakujeme za podporu formulovej komunity u
-                  nás!
+                  Články k Veľkej cene Bahrajnu 2021 vznikajú vďaka podpore
+                  nášho partnera DIGI SLOVAKIA. Ďakujeme za podporu formulovej
+                  komunity u nás!
                 </Message>
               </a>
               <a
                 target="_blank"
-                onClick={() => stripeClick("https://bonipo.sk/")}
-                href="https://bonipo.sk/"
+                onClick={() => stripeClick("https://www.digislovakia.sk/")}
+                href="https://www.digislovakia.sk/"
               >
-                <img src="https://wpadmin.f1online.sk/wp-content/uploads/logo-boniposk.png" />
+                <img src="https://wpadmin.f1online.sk/wp-content/uploads/logo-digi-blackbg.png" />
               </a>
             </Container>
           )}
