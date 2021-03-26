@@ -74,7 +74,7 @@ const VideoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-/*
+  /*
   margin-top: 15px;
 
   > div {
@@ -121,7 +121,7 @@ const Top = styled.img`
 `;
 const Left = styled.img`
   display: none;
-
+  z-index: 200;
   @media only screen and (max-width: 1280px) {
     width: 360px;
   }
@@ -138,7 +138,7 @@ const Left = styled.img`
 `;
 const Right = styled.img`
   display: none;
-
+  z-index: 200;
   @media only screen and (max-width: 1280px) {
     width: 360px;
   }
