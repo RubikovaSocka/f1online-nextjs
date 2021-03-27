@@ -45,6 +45,7 @@ const Container = styled.div`
     display: flex;
   }
 `;
+
 const Message = styled.span`
   color: white;
   text-align: center;
@@ -114,26 +115,28 @@ function AdsInjector({ inputHtml, adsDisallowed, tags }) {
         {parse(chunk)}
         <div>
           {onClient() && tags.includes(401) && i === 0 && (
-            <Container bgColor="#0597F2" fgColor="#ffffff">
-              <a
-                target="_blank"
-                onClick={() => stripeClick("https://www.digislovakia.sk/")}
-                href="https://www.digislovakia.sk/"
-              >
-                <Message>
-                  Články k Veľkej cene Bahrajnu 2021 vznikajú vďaka podpore
-                  nášho partnera DIGI SLOVAKIA. Ďakujeme za podporu formulovej
-                  komunity u nás!
-                </Message>
-              </a>
-              <a
-                target="_blank"
-                onClick={() => stripeClick("https://www.digislovakia.sk/")}
-                href="https://www.digislovakia.sk/"
-              >
-                <img src="https://wpadmin.f1online.sk/wp-content/uploads/logo-digi-blackbg.png" />
-              </a>
-            </Container>
+            <div>
+              <Container bgColor="#0597f2" fgColor="#ffffff">
+                <a
+                  target="_blank"
+                  onClick={() => stripeClick("https://www.digislovakia.sk/")}
+                  href="https://www.digislovakia.sk/"
+                >
+                  <Message>
+                    Články k VC Bahrajnu 2021 vznikajú vďaka podpore
+                    nášho partnera DIGI SLOVAKIA. Ďakujeme za podporu formulovej
+                    komunity u nás!
+                  </Message>
+                </a>
+                <a
+                  target="_blank"
+                  onClick={() => stripeClick("https://www.digislovakia.sk/")}
+                  href="https://www.digislovakia.sk/"
+                >
+                  <img src="https://wpadmin.f1online.sk/wp-content/uploads/logo-digi-blackbg.png" />
+                </a>
+              </Container>
+            </div>
           )}
           <div>
             {onClient() && (i + 1) % NR_PARS_BET_ADS === 0 && i + 1 < nrPars && (

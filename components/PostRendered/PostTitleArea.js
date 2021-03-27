@@ -10,7 +10,11 @@ const Title = styled.h1`
   font-size: 36px;
   color: ${(props) => props.theme.TEXT_COLOR};
 `;
-
+/*
+const AuthorImage = styled.img`
+  width: 100px;
+`;
+*/
 const Figure = styled.figure`
   margin: 0;
   width: 100%;
@@ -60,6 +64,8 @@ function PostTitleArea({ title, authorName, date, imageData, id, slug }) {
         </figcaption>
       </Figure>
       <PostAuthorBlock>
+        {/* <img src="https://wpadmin.f1online.sk/wp-content/uploads/kubala-200.png" /> */}
+        <br />
         <span>{authorName}</span>
         <br />
         <span>{formatDate(date)}</span>
