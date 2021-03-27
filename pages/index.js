@@ -28,10 +28,10 @@ import TrackedPanel, { TYPES } from "../components/Ads/TrackedPanel";
 import { POSITION } from "../components/Ads/positions";
 
 //import fontawesomeSubset from "fontawesome-subset";
-import PopularArticles from "../components/PopularArticles";
-import Product, {
+//import PopularArticles from "../components/PopularArticles";
+/*import Product, {
   POSITIONS as PRODUCT_POSITIONS,
-} from "../components/Ads/Products";
+} from "../components/Ads/Products";*/
 import RelatedArticles from "../components/RelatedArticles";
 import BContainer from "../components/BContainer";
 //import Comments from "../components/Comments";
@@ -113,7 +113,7 @@ function Home() {
                 </>
               ) : null}
             </div>
-            <div>{onClient() && <PopularArticles />}</div>
+            {/* <div>{onClient() && <PopularArticles />}</div> */}
             <div>
               {onClient() && onMobile() ? (
                 <>
