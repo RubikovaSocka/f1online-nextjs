@@ -29,11 +29,11 @@ import { fetchF1Results } from "../redux/actions/f1ResultsActions";
 import { fetchProgramme } from "../redux/actions/programmeActions";
 import { fetchPanels, resetImpressions } from "../redux/actions/panelsActions";
 
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/Themes";
 import { THEMES } from "../constants";
 
-import ReactPlayer from "react-player/streamable";
+import Gate from "../components/Gate";
 
 const GlobalStyle = createGlobalStyle`
     *,
@@ -65,91 +65,6 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     align-items: center;
     background-color: ${(props) => props.theme.PAGE_BACK_COLOR}
-  }
-`;
-
-const VideoContainer = styled.div`
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /*
-  margin-top: 15px;
-
-  > div {
-    margin: auto;
-    position: relative !important;
-    padding-bottom: 56.25% !important;
-    height: 0 !important;
-
-    > iframe {
-      position: absolute !important;
-      //position: relative !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
-    }
-  }
-
-  @media only screen and (min-width: 1024px) {
-    > div > iframe {
-      height: 320px !important;
-    }
-    > div {
-      padding-bottom: 320px !important;
-    }
-    width: 973px;
-    background-color: black;
-    margin: auto;
-    margin-top: 15px;
-  }
-  @media only screen and (min-width: 1280px) {
-    width: 1032px;
-  }*/
-`;
-
-const Top = styled.img`
-  width: 100%;
-  @media only screen and (min-width: 1024px) {
-    width: 1021px;
-  }
-  @media only screen and (min-width: 1280px) {
-    width: 1064px;
-  }
-`;
-const Left = styled.img`
-  display: none;
-  z-index: 200;
-  @media only screen and (max-width: 1280px) {
-    width: 360px;
-  }
-  @media only screen and (min-width: 1024px) {
-    display: initial;
-    position: fixed;
-    top: 100px;
-    right: calc(50vw + 505px);
-  }
-
-  @media only screen and (min-width: 1280px) {
-    right: calc(50vw + 526px);
-  }
-`;
-const Right = styled.img`
-  display: none;
-  z-index: 200;
-  @media only screen and (max-width: 1280px) {
-    width: 360px;
-  }
-  @media only screen and (min-width: 1024px) {
-    display: initial;
-    position: fixed;
-    top: 100px;
-    left: calc(50vw + 505px);
-  }
-  @media only screen and (min-width: 1280px) {
-    left: calc(50vw + 526px);
   }
 `;
 
@@ -210,14 +125,6 @@ function App({ Component, pageProps }) {
     } catch (e) {}
   };
 
-  const pickedSrc = !onClient()
-    ? null
-    : window.innerWidth > 720
-    ? "/images/AMC/top.jpg"
-    : Math.random() > 0.5
-    ? "/images/AMC/top-mobileA.jpg"
-    : "/images/AMC/top-mobileB.jpg";
-
   return (
     <ThemeProvider theme={theme === THEMES.DARK ? darkTheme : lightTheme}>
       <FacebookPixel>
@@ -234,65 +141,7 @@ function App({ Component, pageProps }) {
             
           )}
         </div> */}
-        <div style={{ width: "100%" }}>
-          {onClient() && (
-            <VideoContainer>
-              {/*<ReactPlayer
-                url="https://streamable.com/va4hrs"
-                playing={false}
-                controls={false}
-                //width="560px"
-                //height="320px"
-                //muted={true}
-                volume={0.05}
-                allowfullscreen
-                allow="autoplay"
-                //height="100%"
-              />*/}
-
-              <a
-                target="_blank"
-                rel="nofollow"
-                href="https://amcn-czsk.com/sport1tv-klub/"
-                onClick={() =>
-                  handleBClick({
-                    link: pickedSrc,
-                  })
-                }
-              >
-                <Top src={pickedSrc} />
-              </a>
-              <a
-                target="_blank"
-                rel="nofollow"
-                href="https://amcn-czsk.com/sport1tv-klub/"
-                onClick={() => handleBClick({ link: "/images/AMC/left.jpg" })}
-              >
-                <Left src="/images/AMC/left.jpg" />
-              </a>
-              <a
-                target="_blank"
-                rel="nofollow"
-                href="https://amcn-czsk.com/sport1tv-klub/"
-                onClick={() => handleBClick({ link: "/images/AMC/right.jpg" })}
-              >
-                <Right src="/images/AMC/right.jpg" />
-              </a>
-              {/* <iframe
-                width="560"
-                height="315"
-                src="https://streamable.com/o/va4hrs?autoplay=0"
-                frameborder="0"
-                width="100%"
-                height="100%"
-                allowfullscreen
-                //allow="autoplay"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe> */}
-            </VideoContainer>
-          )}
-        </div>
+        <Gate />
         <ThemeSwitcher />
         <Component {...pageProps} />
         <Footer />
