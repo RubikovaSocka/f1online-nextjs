@@ -12,7 +12,7 @@ export default function DriverChampResBox({ data, venueName }) {
         className={`header ${opened ? "opened" : "closed"}`}
       >
         <Chevron isOpened={opened} />
-        <span>Poradie jazdcov po VC {venueName} 2020</span>
+        <span>Poradie jazdcov po VC {venueName} 2021</span>
       </div>
       <div className={`contentBox venueResult ${opened ? "opened" : "closed"}`}>
         {onMobile() ? (

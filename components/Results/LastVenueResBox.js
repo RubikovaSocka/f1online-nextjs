@@ -23,7 +23,7 @@ export default class LastVenueResBox extends Component {
           className={`header ${this.state.opened ? "opened" : "closed"}`}
         >
           <Chevron isOpened={this.state.opened} />
-          <span>Výsledky VC {this.props.venueName} 2020</span>
+          <span>Výsledky VC {this.props.venueName} 2021</span>
         </div>
         <div
           className={`contentBox venueResult ${

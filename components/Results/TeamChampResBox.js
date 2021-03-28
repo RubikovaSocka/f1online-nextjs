@@ -8,11 +8,11 @@ export default function TeamChampResBox({ data, venueName }) {
   return (
     <Container className={opened ? "opened" : "closed"}>
       <div
-        onClick={() => setOpened(prev => !prev)}
+        onClick={() => setOpened((prev) => !prev)}
         className={`header ${opened ? "opened" : "closed"}`}
       >
         <Chevron isOpened={opened} />
-        <span>Poradie konštruktérov po VC {venueName} 2020</span>
+        <span>Poradie konštruktérov po VC {venueName} 2021</span>
       </div>
       <div className={`contentBox venueResult ${opened ? "opened" : "closed"}`}>
         {onMobile() ? (

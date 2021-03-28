@@ -69,7 +69,7 @@ class Results extends Component {
             teamChampLoaded0: true,
           });
         });
-
+/*
         if (res.data[1]) {
           axios.get(res.data[1].acf.results_json).then((res2) => {
             this.setState({
@@ -137,7 +137,7 @@ class Results extends Component {
             venueName={this.state.venueName0}
             data={this.state.teamChampResults0}
           />
-          {this.state.driverChampLoaded1 &&
+          {/* {this.state.driverChampLoaded1 &&
           this.state.teamChampLoaded1 &&
           this.state.lastVenueLoaded1 ? (
             <>
@@ -156,7 +156,7 @@ class Results extends Component {
             </>
           ) : (
             ""
-          )}
+          )} */}
           {/*this.state.driverChampLoaded2 &&
           this.state.teamChampLoaded2 &&
           this.state.lastVenueLoaded2 ? (
