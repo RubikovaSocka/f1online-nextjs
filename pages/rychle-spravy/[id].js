@@ -6,7 +6,7 @@ import formatDate from "../../utils/dateFormatter";
 import Image from "next/image";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import Divider from "../../components/Divider";
-import PopularArticles from "../../components/PopularArticles/PopularArticles";
+//import PopularArticles from "../../components/PopularArticles/PopularArticles";
 import ReactPaginate from "react-paginate";
 import EmbedContainer from "react-oembed-container";
 import {
@@ -364,7 +364,7 @@ export default function QuickNewsPage({ newsItem, news, query }) {
                 />
               ) : null}
             </div>
-            <PopularArticles />
+            {/* <PopularArticles /> */}
             <Divider height="25px" />
             <CalResWidget />
             <BContainer>

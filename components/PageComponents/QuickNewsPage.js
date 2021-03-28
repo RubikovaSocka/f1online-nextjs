@@ -7,7 +7,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import Image from "next/image";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Divider from "../Divider";
-import PopularArticles from "../PopularArticles/PopularArticles";
+//import PopularArticles from "../PopularArticles/PopularArticles";
 import ReactPaginate from "react-paginate";
 import EmbedContainer from "react-oembed-container";
 import { MAIN, COLUMNED_PAGE, PAGE_MAIN_COL, SIDEBAR } from "../PageLayout";
@@ -350,7 +350,7 @@ export default function QuickNewsPage({ newsItem, news, query }) {
                 />
               ) : null}
             </div>
-            <PopularArticles />
+            {/* <PopularArticles /> */}
             <Divider height="25px" />
             <CalResWidget />
             <BContainer>
