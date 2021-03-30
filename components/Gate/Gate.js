@@ -12,6 +12,28 @@ export default function Gate() {
     ? "/images/AMC/top-mobileA.jpg"
     : "/images/AMC/top-mobileB.jpg";
 
+  const handleBClick = ({ link }) => {
+    // console.log("BANNER", "CLICKED");
+    // console.log({
+    //   category: "GATE-click",
+    //   action: "AMC",
+    //   label: `${link}`,
+    //   nonInteraction: false,
+    //   dimension1: Router.asPath,
+    //   dimension2: `${window.innerWidth < 1024 ? "m" : "pc"}`,
+    // });
+    try {
+      ReactGA.event({
+        category: "GATE-click",
+        action: "AMC",
+        label: `${link}`,
+        nonInteraction: false,
+        dimension1: Router.asPath,
+        dimension2: `${window.innerWidth < 1024 ? "m" : "pc"}`,
+      });
+    } catch (e) {}
+  };
+
   return (
     <div style={{ width: "100%" }}>
       {onClient() && (

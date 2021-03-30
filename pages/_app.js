@@ -33,7 +33,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/Themes";
 import { THEMES } from "../constants";
 
-import Gate from "../components/Gate";
+// import Gate from "../components/Gate";
 
 const GlobalStyle = createGlobalStyle`
     *,
@@ -103,45 +103,22 @@ function App({ Component, pageProps }) {
     dispatch(startQuickNewsAutoFetch());
   }, []);
 
-  const handleBClick = ({ link }) => {
-    // console.log("BANNER", "CLICKED");
-    // console.log({
-    //   category: "GATE-click",
-    //   action: "AMC",
-    //   label: `${link}`,
-    //   nonInteraction: false,
-    //   dimension1: Router.asPath,
-    //   dimension2: `${window.innerWidth < 1024 ? "m" : "pc"}`,
-    // });
-    try {
-      ReactGA.event({
-        category: "GATE-click",
-        action: "AMC",
-        label: `${link}`,
-        nonInteraction: false,
-        dimension1: Router.asPath,
-        dimension2: `${window.innerWidth < 1024 ? "m" : "pc"}`,
-      });
-    } catch (e) {}
-  };
-
   return (
     <ThemeProvider theme={theme === THEMES.DARK ? darkTheme : lightTheme}>
       <FacebookPixel>
         <GlobalStyle />
         <HeaderMeta theme={theme} />
         <Header theme={theme} />
-        {/* <div>
+        <div>
           {onClient() && (
             <TrackedPanel
               type={TYPES.LEADERBOARD}
               position={POSITION.LEADERBOARD}
               key={viewIndex}
             />
-            
           )}
-        </div> */}
-        <Gate />
+        </div>
+        {/* <Gate /> */}
         <ThemeSwitcher />
         <Component {...pageProps} />
         <Footer />

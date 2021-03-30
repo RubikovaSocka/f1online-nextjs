@@ -1,7 +1,9 @@
 import { format, parse } from "fecha";
 
-const formatDate = dateInISO => {
-  const inputDate = parse(`${dateInISO}+01:00`, "isoDateTime");
+const POSUN_UTC = "+02:00";
+
+const formatDate = (dateInISO) => {
+  const inputDate = parse(`${dateInISO}${POSUN_UTC}`, "isoDateTime");
   const dateToday = new Date(Date.now());
   const dateYesterday = new Date(Date.now() - 864e5);
 
@@ -27,14 +29,14 @@ const formatDate = dateInISO => {
         "septembra",
         "októbra",
         "novembra",
-        "decembra"
-      ]
+        "decembra",
+      ],
     });
   }
 };
 
-const formatDateToHHmm = dateInISO => {
-  const inputDate = parse(`${dateInISO}+01:00`, "isoDateTime");
+const formatDateToHHmm = (dateInISO) => {
+  const inputDate = parse(`${dateInISO}${POSUN_UTC}`, "isoDateTime");
   return format(inputDate, "HH:mm");
 };
 export { formatDateToHHmm };
