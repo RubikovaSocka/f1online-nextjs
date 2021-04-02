@@ -7,7 +7,8 @@ import Divider from "../components/Divider.js";
 import LastVenueResBox from "../components/Results/LastVenueResBox.js";
 import DriverChampResBox from "../components/Results/DriverChampResBox.js";
 import TeamChampResBox from "../components/Results/TeamChampResBox.js";
-
+import onClient from "../utils/onClient";
+import onMobile from "../utils/onMobile";
 import {
   MAIN,
   COLUMNED_PAGE,
@@ -69,7 +70,7 @@ class Results extends Component {
             teamChampLoaded0: true,
           });
         });
-/*
+        /*
         if (res.data[1]) {
           axios.get(res.data[1].acf.results_json).then((res2) => {
             this.setState({
@@ -202,6 +203,32 @@ class Results extends Component {
               <SectionTitle topLevel={true} title="Výsledky Formuly 1" />
               <Divider height="29px" />
               {contentData}
+              <div>
+                {onClient() && (
+                  <>
+                    <a
+                      href={
+                        onMobile()
+                          ? "https://track.adform.net/C/?bn=44853234;C=0"
+                          : "https://track.adform.net/C/?bn=44853232;C=0"
+                      }
+                      target="_blank"
+                    >
+                      <img
+                        src={
+                          onMobile()
+                            ? "https://track.adform.net/adfserve/?bn=44853234;srctype=4;ord=[timestamp]"
+                            : "https://track.adform.net/adfserve/?bn=44853232;srctype=4;ord=[timestamp]"
+                        }
+                        border="0"
+                        width="100%"
+                        alt=""
+                      />
+                    </a>
+                    <Divider height="10px" />
+                  </>
+                )}
+              </div>
             </PAGE_MAIN_COL>
             <SIDEBAR>
               <Divider height="50px" />

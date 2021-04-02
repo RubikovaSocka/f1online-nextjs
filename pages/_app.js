@@ -109,6 +109,7 @@ function App({ Component, pageProps }) {
         <GlobalStyle />
         <HeaderMeta theme={theme} />
         <Header theme={theme} />
+
         <div>
           {onClient() && (
             <TrackedPanel

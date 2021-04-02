@@ -143,7 +143,7 @@ export default function BannerPanel({
       <a
         onClick={() => bannerClicked()}
         href={banner.link}
-        rel="nofollow"
+        //rel="nofollow"
         target="_blank"
       >
         <img

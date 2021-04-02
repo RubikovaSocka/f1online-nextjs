@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import {
   pickPartner,
   filterImpressedPartners,
@@ -57,27 +57,10 @@ function TrackedPanel({ topProps, stateProps, impressionsCounter }) {
 
   switch (type) {
     case TYPES.LEADERBOARD:
-      /*return (
-        <LeaderboardContainer>
-          <TrackVisibility partialVisibility style={{ width: "100%" }}>
-            <BannerPanel slot={position} />
-          </TrackVisibility>
-        </LeaderboardContainer>
-      );*/
       return (
         <LeaderboardContainer>
           <TrackVisibility partialVisibility style={{ width: "100%" }}>
-            <BannerPanel
-              partner={partner}
-              banner={
-                partner
-                  ? randomArrayElement(
-                      partner.leaderboard[`${onMobile() ? "m" : "pc"}`]
-                    )
-                  : null
-              }
-              slot={position}
-            />
+            <BannerPanel slot={position} />
           </TrackVisibility>
         </LeaderboardContainer>
       );
