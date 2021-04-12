@@ -56,9 +56,9 @@ function TrackedPanel({ topProps, stateProps, impressionsCounter }) {
   });
 
   //  if (type === TYPES.LEADERBOARD) {
-  console.log(partnersProbabilitesFiltered);
-  console.log(json);
-  console.log(partner);
+  // console.log(partnersProbabilitesFiltered);
+  // console.log(json);
+  // console.log(partner);
   //}
 
   switch (type) {

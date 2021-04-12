@@ -9,11 +9,7 @@ const pickPartner = ({ partnersVector, partnersData }) => {
     if (aggregator > randomNumber) break;
     i++;
   }
-  console.log(
-    randomNumber,
-    i,
-    i !== partnersVector.length ? partnersVector[i].name : ""
-  );
+
   return i === partnersVector.length
     ? null
     : {
