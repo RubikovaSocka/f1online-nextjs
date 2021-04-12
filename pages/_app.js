@@ -110,7 +110,7 @@ function App({ Component, pageProps }) {
         <HeaderMeta theme={theme} />
         <Header theme={theme} />
 
-        <div>
+        {/* <div>
           {onClient() && (
             <TrackedPanel
               type={TYPES.LEADERBOARD}
@@ -118,8 +118,8 @@ function App({ Component, pageProps }) {
               key={viewIndex}
             />
           )}
-        </div>
-        {/* <Gate /> */}
+        </div> */}
+        <Gate />
         <ThemeSwitcher />
         <Component {...pageProps} />
         <Footer />

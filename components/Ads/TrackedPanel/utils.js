@@ -3,11 +3,17 @@ const pickPartner = ({ partnersVector, partnersData }) => {
 
   let i = 0;
   let aggregator = 0;
+
   while (i < partnersVector.length) {
     aggregator += parseFloat(partnersVector[i].probability);
     if (aggregator > randomNumber) break;
     i++;
   }
+  console.log(
+    randomNumber,
+    i,
+    i !== partnersVector.length ? partnersVector[i].name : ""
+  );
   return i === partnersVector.length
     ? null
     : {

@@ -55,6 +55,12 @@ function TrackedPanel({ topProps, stateProps, impressionsCounter }) {
     partnersData: json,
   });
 
+  //  if (type === TYPES.LEADERBOARD) {
+  console.log(partnersProbabilitesFiltered);
+  console.log(json);
+  console.log(partner);
+  //}
+
   switch (type) {
     case TYPES.LEADERBOARD:
       /*return (

@@ -48,7 +48,7 @@ export const Top = styled.img`
     width: 1021px;
   }
   @media only screen and (min-width: 1280px) {
-    width: 1070px;
+    width: 1072px;
   }
 `;
 

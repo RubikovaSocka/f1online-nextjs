@@ -2,6 +2,7 @@ import React from "react";
 import ReactPlayer from "react-player/streamable";
 import onClient from "../../utils/onClient";
 import * as S from "./styles";
+import ReactGA from "react-ga";
 
 export default function Gate() {
   const pickedSrc = !onClient()
