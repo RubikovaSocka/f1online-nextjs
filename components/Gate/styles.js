@@ -6,6 +6,9 @@ export const VideoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  //padding-top: ${(props) => (props.videoPicked ? "10px" : "")};
+  background-color: #1d1924;
   /*
   margin-top: 15px;
 

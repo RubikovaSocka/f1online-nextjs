@@ -1,5 +1,5 @@
 import React from "react";
-import ReactPlayer from "react-player/streamable";
+import ReactPlayer from "react-player/youtube";
 import onClient from "../../utils/onClient";
 import * as S from "./styles";
 import ReactGA from "react-ga";
@@ -34,36 +34,41 @@ export default function Gate() {
       });
     } catch (e) {}
   };
+  const videoPicked = Math.random() > 0.5;
 
   return (
     <div style={{ width: "100%" }}>
       {onClient() && (
-        <S.VideoContainer>
-          {/*<ReactPlayer
-          url="https://streamable.com/va4hrs"
-          playing={false}
-          controls={false}
-          //width="560px"
-          //height="320px"
-          //muted={true}
-          volume={0.05}
-          allowfullscreen
-          allow="autoplay"
-          //height="100%"
-        />*/}
-
-          <a
-            target="_blank"
-            rel="nofollow"
-            href="https://amcn-czsk.com/sport1tv-klub/"
-            onClick={() =>
-              handleBClick({
-                link: pickedSrc,
-              })
-            }
-          >
-            <S.Top src={pickedSrc} />
-          </a>
+        <>
+          <S.VideoContainer videoPicked={videoPicked}>
+            {videoPicked ? (
+              <ReactPlayer
+                url="https://youtu.be/KUlAI3LAuVM"
+                playing={true}
+                controls={true}
+                //width="560px"
+                //height="320px"
+                muted={true}
+                //volume={0.05}
+                allowfullscreen
+                allow="autoplay"
+                //height="100%"
+              />
+            ) : (
+              <a
+                target="_blank"
+                rel="nofollow"
+                href="https://amcn-czsk.com/sport1tv-klub/"
+                onClick={() =>
+                  handleBClick({
+                    link: pickedSrc,
+                  })
+                }
+              >
+                <S.Top src={pickedSrc} />
+              </a>
+            )}
+          </S.VideoContainer>
           <a
             target="_blank"
             rel="nofollow"
@@ -80,19 +85,7 @@ export default function Gate() {
           >
             <S.Right src="/images/AMC/right.jpg" />
           </a>
-          {/* <iframe
-          width="560"
-          height="315"
-          src="https://streamable.com/o/va4hrs?autoplay=0"
-          frameborder="0"
-          width="100%"
-          height="100%"
-          allowfullscreen
-          //allow="autoplay"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe> */}
-        </S.VideoContainer>
+        </>
       )}
     </div>
   );
