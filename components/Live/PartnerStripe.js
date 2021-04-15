@@ -7,7 +7,7 @@ const Container = styled.div`
   flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 30px 25px 20px;
+  padding: 25px 30px 30px 20px;
 
   @media only screen and (min-width: 1024px) {
     flex-direction: row;
@@ -32,6 +32,7 @@ const Container = styled.div`
     color: ${(props) => props.fgColor};
   }
 `;
+
 const Message = styled.span`
   color: white;
   text-align: center;

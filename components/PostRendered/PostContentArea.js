@@ -82,8 +82,46 @@ const ArticleDiv = styled(EmbedExorcist)`
 
 const NR_PARS_BET_ADS = 4;
 
+const GPs = [
+  {
+    tagID: 401,
+    bgColor: "#0597f2",
+    fgColor: "#ffffff",
+    link: "https://www.digislovakia.sk/",
+    logo:
+      "https://wpadmin.f1online.sk/wp-content/uploads/logo-digi-blackbg.png",
+    partnerName: "DIGI SLOVAKIA",
+    gpName: "VC Bahrajnu",
+    partnerNameGA: "DIGI",
+    gpNameGA: "VC-Bahrajnu-2021",
+  },
+  {
+    tagID: 413,
+    bgColor: "#6f3ba0",
+    fgColor: "#ffffff",
+    link: "https://www.swan.sk/swan-internet",
+    logo:
+      "https://wpadmin.f1online.sk/wp-content/uploads/swan-logo-blackbg.png",
+    partnerName: "SWAN a jeho rýchleho internetu",
+    gpName: "VC Emilia Romagna",
+    partnerNameGA: "SWAN",
+    gpNameGA: "VC-Emilia-Romagna-2021",
+  },
+];
+
 function AdsInjector({ inputHtml, adsDisallowed, tags }) {
-  const stripeClick = (targetLink) => {
+  const nrPars = inputHtml.split("\n\n\n\n").length;
+  let stripe = null;
+
+  let index = 0;
+  while (index < GPs.length && !tags.includes(GPs[index].tagID)) {
+    index++;
+  }
+  if (index < GPs.length) {
+    stripe = GPs[index];
+  }
+
+  const stripeClick = (stripe) => {
     // console.log("CLICKED", {
     //   category: "ARTICLE-STRIPE-CLICK",
     //   action: `Predsezónne-testy:-Bonipo.sk`,
@@ -92,48 +130,48 @@ function AdsInjector({ inputHtml, adsDisallowed, tags }) {
     // });
     ReactGA.event({
       category: "ARTICLE-STRIPE-CLICK",
-      action: `VC-Bahrajnu-2020:DIGI`,
+      action: `${stripe.gpNameGA}:${stripe.partnerNameGA}`,
       label: `${window.location.href}`,
       nonInteraction: false,
     });
   };
 
   useEffect(() => {
-    ReactGA.event({
-      category: "ARTICLE-STRIPE-IMP",
-      action: `VC-Bahrajnu-2020:DIGI`,
-      label: `${window.location.href}`,
-      nonInteraction: true,
-    });
+    if (stripe) {
+      ReactGA.event({
+        category: "ARTICLE-STRIPE-IMP",
+        action: `${stripe.gpNameGA}:${stripe.partnerNameGA}`,
+        label: `${window.location.href}`,
+        nonInteraction: true,
+      });
+    }
   }, []);
-
-  const nrPars = inputHtml.split("\n\n\n\n").length;
 
   if (!adsDisallowed && nrPars > 5) {
     return inputHtml.split("\n\n\n\n").map((chunk, i) => (
       <Fragment key={i}>
         {parse(chunk)}
         <div>
-          {onClient() && tags.includes(401) && i === 0 && (
+          {onClient() && stripe && i === 0 && (
             <div>
-              <Container bgColor="#0597f2" fgColor="#ffffff">
+              <Container bgColor={stripe.bgColor} fgColor={stripe.fg}>
                 <a
                   target="_blank"
-                  onClick={() => stripeClick("https://www.digislovakia.sk/")}
-                  href="https://www.digislovakia.sk/"
+                  onClick={() => stripeClick(stripe)}
+                  href={stripe.link}
                 >
                   <Message>
-                    Články k VC Bahrajnu 2021 vznikajú vďaka podpore
-                    nášho partnera DIGI SLOVAKIA. Ďakujeme za podporu formulovej
-                    komunity u nás!
+                    {`Články k ${stripe.gpName} 2021 vznikajú vďaka podpore nášho
+                    partnera ${stripe.partnerName}. Ďakujeme za podporu formulovej
+                    komunity u nás!`}
                   </Message>
                 </a>
                 <a
                   target="_blank"
-                  onClick={() => stripeClick("https://www.digislovakia.sk/")}
-                  href="https://www.digislovakia.sk/"
+                  onClick={() => stripeClick(stripe)}
+                  href={stripe.link}
                 >
-                  <img src="https://wpadmin.f1online.sk/wp-content/uploads/logo-digi-blackbg.png" />
+                  <img src={stripe.logo} />
                 </a>
               </Container>
             </div>
