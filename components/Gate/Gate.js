@@ -1,10 +1,12 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import ReactPlayer from "react-player/youtube";
 import onClient from "../../utils/onClient";
 import * as S from "./styles";
 import ReactGA from "react-ga";
 
 export default function Gate() {
+  const [videoPicked, setVideoPicked] = useState(false);
+
   const pickedSrc = !onClient()
     ? null
     : window.innerWidth > 720
@@ -34,7 +36,10 @@ export default function Gate() {
       });
     } catch (e) {}
   };
-  const videoPicked = Math.random() > 0.5;
+
+  useEffect(() => {
+    setVideoPicked(Math.random() > 0.5);
+  }, []);
 
   return (
     <div style={{ width: "100%" }}>
