@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
-import ReactPlayer from "react-player/youtube";
+//import ReactPlayer from "react-player/youtube";
 import onClient from "../../utils/onClient";
 import * as S from "./styles";
 import ReactGA from "react-ga";
 
 export default function Gate() {
-  const [videoPicked, setVideoPicked] = useState(false);
-
   const pickedSrc = !onClient()
     ? null
     : window.innerWidth > 720
@@ -37,16 +34,12 @@ export default function Gate() {
     } catch (e) {}
   };
 
-  useEffect(() => {
-    setVideoPicked(Math.random() > 0.5);
-  }, []);
-
   return (
     <div style={{ width: "100%" }}>
       {onClient() && (
         <>
-          <S.VideoContainer videoPicked={videoPicked}>
-            {videoPicked ? (
+          <S.VideoContainer videoPicked={false}>
+            {/* {videoPicked ? (
               <ReactPlayer
                 url="https://youtu.be/KUlAI3LAuVM"
                 playing={true}
@@ -60,19 +53,20 @@ export default function Gate() {
                 //height="100%"
               />
             ) : (
-              <a
-                target="_blank"
-                rel="nofollow"
-                href="https://amcn-czsk.com/sport1tv-klub/"
-                onClick={() =>
-                  handleBClick({
-                    link: pickedSrc,
-                  })
-                }
-              >
-                <S.Top src={pickedSrc} />
-              </a>
-            )}
+              
+            )} */}
+            <a
+              target="_blank"
+              rel="nofollow"
+              href="https://amcn-czsk.com/sport1tv-klub/"
+              onClick={() =>
+                handleBClick({
+                  link: pickedSrc,
+                })
+              }
+            >
+              <S.Top src={pickedSrc} />
+            </a>
           </S.VideoContainer>
           <a
             target="_blank"
