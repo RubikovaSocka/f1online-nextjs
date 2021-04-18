@@ -33,7 +33,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/Themes";
 import { THEMES } from "../constants";
 
-import Gate from "../components/Gate";
+//import Gate from "../components/Gate";
 
 const GlobalStyle = createGlobalStyle`
     *,
@@ -110,7 +110,7 @@ function App({ Component, pageProps }) {
         <HeaderMeta theme={theme} />
         <Header theme={theme} />
 
-        {/* <div>
+        <div>
           {onClient() && (
             <TrackedPanel
               type={TYPES.LEADERBOARD}
@@ -118,8 +118,8 @@ function App({ Component, pageProps }) {
               key={viewIndex}
             />
           )}
-        </div> */}
-        <Gate />
+        </div>
+        {/* <Gate /> */}
         <ThemeSwitcher />
         <Component {...pageProps} />
         <Footer />
