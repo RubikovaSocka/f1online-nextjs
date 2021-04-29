@@ -107,6 +107,17 @@ const GPs = [
     partnerNameGA: "SWAN",
     gpNameGA: "VC-Emilia-Romagna-2021",
   },
+  {
+    tagID: 415,
+    bgColor: "#0597f2",
+    fgColor: "#ffffff",
+    link: "https://bonipo.sk/",
+    logo: "https://wpadmin.f1online.sk/wp-content/uploads/logo-boniposk.png",
+    partnerName: "Bonipo.sk",
+    gpName: "VC Portugalska",
+    partnerNameGA: "Bonipo.sk",
+    gpNameGA: "VC-Portugalska-2021",
+  },
 ];
 
 function AdsInjector({ inputHtml, adsDisallowed, tags }) {
@@ -120,11 +131,11 @@ function AdsInjector({ inputHtml, adsDisallowed, tags }) {
   if (index < GPs.length) {
     stripe = GPs[index];
   }
-
+  console.log(index, GPs[index]);
   const stripeClick = (stripe) => {
     // console.log("CLICKED", {
     //   category: "ARTICLE-STRIPE-CLICK",
-    //   action: `Predsezónne-testy:-Bonipo.sk`,
+    //   action: `Predsezónne-testy:-Bonipo.sk`,GPs
     //   label: `${window.location.href}`,
     //   nonInteraction: false,
     // });
