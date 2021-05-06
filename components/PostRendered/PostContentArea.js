@@ -80,6 +80,10 @@ const ArticleDiv = styled(EmbedExorcist)`
   }
 `;
 
+const CarImage = styled.img`
+  width: 100%;
+`;
+
 const NR_PARS_BET_ADS = 4;
 
 const GPs = [
@@ -117,6 +121,22 @@ const GPs = [
     gpName: "VC Portugalska",
     partnerNameGA: "Bonipo.sk",
     gpNameGA: "VC-Portugalska-2021",
+  },
+  {
+    tagID: 425,
+    bgColor: "#1f1f1f",
+    fgColor: "#ffffff",
+    link: "https://egopower.sk/",
+    logo: "https://wpadmin.f1online.sk/wp-content/uploads/ego-logo-blackbg.png",
+    partnerName: "EGO Power+, ktorého produkty nájdete na egopower.sk",
+    gpName: "VC Španielska",
+    partnerNameGA: "Egopower.sk",
+    gpNameGA: "VC-Španielska-2021",
+    cars: [
+      "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-angle.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-side.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-angle-rear.jpg",
+    ],
   },
 ];
 
@@ -185,6 +205,21 @@ function AdsInjector({ inputHtml, adsDisallowed, tags }) {
                   <img src={stripe.logo} />
                 </a>
               </Container>
+              {stripe.cars && (
+                <a
+                  target="_blank"
+                  onClick={() => stripeClick(stripe)}
+                  href={stripe.link}
+                >
+                  <CarImage
+                    src={
+                      stripe.cars[
+                        Math.floor(Math.random() * stripe.cars.length)
+                      ]
+                    }
+                  />
+                </a>
+              )}
             </div>
           )}
           <div>

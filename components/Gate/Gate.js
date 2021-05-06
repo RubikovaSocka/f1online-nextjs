@@ -1,6 +1,7 @@
-//import ReactPlayer from "react-player/youtube";
+import ReactPlayer from "react-player/youtube";
 import onClient from "../../utils/onClient";
 import * as S from "./styles";
+import Router from "next/router";
 import ReactGA from "react-ga";
 
 export default function Gate() {
@@ -38,8 +39,8 @@ export default function Gate() {
     <div style={{ width: "100%" }}>
       {onClient() && (
         <>
-          <S.VideoContainer videoPicked={false}>
-            {/* {videoPicked ? (
+          <S.VideoContainer videoPicked={true}>
+            {true ? (
               <ReactPlayer
                 url="https://youtu.be/KUlAI3LAuVM"
                 playing={true}
@@ -52,10 +53,8 @@ export default function Gate() {
                 allow="autoplay"
                 //height="100%"
               />
-            ) : (
-              
-            )} */}
-            <a
+            ) : null}
+            {/* <a
               target="_blank"
               rel="nofollow"
               href="https://amcn-czsk.com/sport1tv-klub/"
@@ -64,9 +63,9 @@ export default function Gate() {
                   link: pickedSrc,
                 })
               }
-            >
+            > 
               <S.Top src={pickedSrc} />
-            </a>
+            </a>*/}
           </S.VideoContainer>
           <a
             target="_blank"
