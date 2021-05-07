@@ -128,9 +128,9 @@ const GPs = [
     fgColor: "#ffffff",
     link: "https://egopower.sk/",
     logo: "https://wpadmin.f1online.sk/wp-content/uploads/ego-logo-blackbg.png",
-    partnerName: "EGO Power+, ktorého produkty nájdete na egopower.sk",
+    partnerName: "EGO POWER+, ktorého produkty nájdete na egopower.sk",
     gpName: "VC Španielska",
-    partnerNameGA: "Egopower.sk",
+    partnerNameGA: "EGO POWER+",
     gpNameGA: "VC-Španielska-2021",
     cars: [
       "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-angle.jpg",

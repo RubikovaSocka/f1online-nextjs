@@ -8,7 +8,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: ${props => props.backColor};
+  background-color: ${(props) => props.backColor};
 
   .textContainer {
     display: flex;
@@ -21,7 +21,7 @@ const Container = styled.div`
     font-weight: 600;
     width: 40px;
     flex-shrink: 0;
-    color: ${props => props.theme.TEXT_COLOR_MILD};
+    color: ${(props) => props.theme.TEXT_COLOR_MILD};
   }
   .postTextContent {
     width: calc(100% - 40px);
@@ -36,7 +36,7 @@ const Container = styled.div`
   a {
     font-family: "HK Grotesk";
     font-size: 14px;
-    color: ${props => props.fontColor};
+    color: ${(props) => props.fontColor};
     font-weight: 600;
   }
   a {
@@ -69,6 +69,7 @@ const Container = styled.div`
 
 function InLivePartnerMessage({
   message,
+  messageImages,
   index,
   partner_main_color,
   partner_font_color,
@@ -83,7 +84,7 @@ function InLivePartnerMessage({
     ? message.split('href="')[1].split('"')[0]
     : "https://f1online.sk/";
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     if (e.target.nodeName === "A") {
       onClick(e.target.attributes.href.value);
     }
@@ -109,6 +110,12 @@ function InLivePartnerMessage({
 
   return (
     <Container backColor={partner_main_color} fontColor={partner_font_color}>
+      <div>
+        {messageImages && (
+          <img width="100%" src={messageImages.split("\r\n")[index]} />
+        )}
+      </div>
+
       <div className="textContainer">
         <div className="postTime">
           <span></span>

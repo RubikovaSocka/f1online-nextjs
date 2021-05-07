@@ -73,6 +73,7 @@ const Container = styled.div`
 
 function InLivePartnerMessage({
   message,
+  messageImages,
   index,
   partner_main_color,
   partner_font_color,

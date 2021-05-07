@@ -27,7 +27,7 @@ const Container = styled.div`
     font-weight: 600;
     width: 40px;
     flex-shrink: 0;
-    color: ${props => props.theme.TEXT_COLOR_MILD};
+    color: ${(props) => props.theme.TEXT_COLOR_MILD};
   }
   .postTextContent {
     width: calc(100% - 40px);
@@ -44,7 +44,7 @@ const Container = styled.div`
     @media only screen and (min-width: 1440px) {
       font-size: 16px;
     }
-    color: ${props => props.theme.TEXT_COLOR_MILD};
+    color: ${(props) => props.theme.TEXT_COLOR_MILD};
   }
   .embed {
     width: 100%;
@@ -118,7 +118,6 @@ const Container = styled.div`
 
 function PostItem({ post }) {
   const { date, acf } = post;
-
   return (
     <Container>
       <div className="textContainer">
