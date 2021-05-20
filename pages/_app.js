@@ -33,7 +33,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/Themes";
 import { THEMES } from "../constants";
 
-//import Gate from "../components/Gate";
+// import Gate from "../components/Gate";
 
 const GlobalStyle = createGlobalStyle`
     *,

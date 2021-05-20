@@ -92,8 +92,7 @@ const GPs = [
     bgColor: "#0597f2",
     fgColor: "#ffffff",
     link: "https://www.digislovakia.sk/",
-    logo:
-      "https://wpadmin.f1online.sk/wp-content/uploads/logo-digi-blackbg.png",
+    logo: "https://wpadmin.f1online.sk/wp-content/uploads/logo-digi-blackbg.png",
     partnerName: "DIGI SLOVAKIA",
     gpName: "VC Bahrajnu",
     partnerNameGA: "DIGI",
@@ -104,8 +103,7 @@ const GPs = [
     bgColor: "#6f3ba0",
     fgColor: "#ffffff",
     link: "https://www.swan.sk/swan-internet",
-    logo:
-      "https://wpadmin.f1online.sk/wp-content/uploads/swan-logo-blackbg.png",
+    logo: "https://wpadmin.f1online.sk/wp-content/uploads/swan-logo-blackbg.png",
     partnerName: "SWAN a jeho rýchleho internetu",
     gpName: "VC Emilia Romagna",
     partnerNameGA: "SWAN",
@@ -136,6 +134,22 @@ const GPs = [
       "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-angle.jpg",
       "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-side.jpg",
       "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-angle-rear.jpg",
+    ],
+  },
+  {
+    tagID: 431,
+    bgColor: "#234889",
+    fgColor: "#ffffff",
+    link: "https://nabbi.sk/",
+    logo: "https://wpadmin.f1online.sk/wp-content/uploads/nabbi-bluebg.png",
+    partnerName: "nabbi.sk, najformulovejšieho eshopu s nábytkom na Slovensku",
+    gpName: "VC Monaka",
+    partnerNameGA: "nabbi.sk",
+    gpNameGA: "VC-Monaka-2021",
+    cars: [
+      "https://wpadmin.f1online.sk/wp-content/uploads/nabbi-front-angle.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/nabbi-side.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/nabbi-rear-angle.jpg",
     ],
   },
 ];
