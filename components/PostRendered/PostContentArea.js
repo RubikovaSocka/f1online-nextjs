@@ -152,6 +152,23 @@ const GPs = [
       "https://wpadmin.f1online.sk/wp-content/uploads/nabbi-rear-angle.jpg",
     ],
   },
+  {
+    tagID: 434,
+    bgColor: "#1f1f1f",
+    fgColor: "#ffffff",
+    link: "https://egopower.sk/",
+    logo: "https://wpadmin.f1online.sk/wp-content/uploads/ego-logo-blackbg.png",
+    partnerName:
+      "EGO POWER+, ktorého formulovo-vyladenú záhradnú techniku nájdete na egopower.sk",
+    gpName: "VC Azerbajdžanu",
+    partnerNameGA: "EGO POWER+",
+    gpNameGA: "VC-Azerbajdžanu-2021",
+    cars: [
+      "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-angle.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-side.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-angle-rear.jpg",
+    ],
+  },
 ];
 
 function AdsInjector({ inputHtml, adsDisallowed, tags }) {
@@ -165,7 +182,7 @@ function AdsInjector({ inputHtml, adsDisallowed, tags }) {
   if (index < GPs.length) {
     stripe = GPs[index];
   }
-  console.log(index, GPs[index]);
+  //console.log(index, GPs[index]);
   const stripeClick = (stripe) => {
     // console.log("CLICKED", {
     //   category: "ARTICLE-STRIPE-CLICK",
