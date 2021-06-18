@@ -169,6 +169,22 @@ const GPs = [
       "https://wpadmin.f1online.sk/wp-content/uploads/ego-power-angle-rear.jpg",
     ],
   },
+  {
+    tagID: 447,
+    bgColor: "#234889",
+    fgColor: "#ffffff",
+    link: "https://nabbi.sk/",
+    logo: "https://wpadmin.f1online.sk/wp-content/uploads/nabbi-bluebg.png",
+    partnerName: "nabbi.sk, najformulovejšieho eshopu s nábytkom na Slovensku",
+    gpName: "VC Monaka",
+    partnerNameGA: "nabbi.sk",
+    gpNameGA: "VC-Monaka-2021",
+    cars: [
+      "https://wpadmin.f1online.sk/wp-content/uploads/nabbi-front-angle.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/nabbi-side.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/nabbi-rear-angle.jpg",
+    ],
+  },
 ];
 
 function AdsInjector({ inputHtml, adsDisallowed, tags }) {

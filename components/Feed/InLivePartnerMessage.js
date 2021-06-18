@@ -110,11 +110,11 @@ function InLivePartnerMessage({
 
   return (
     <Container backColor={partner_main_color} fontColor={partner_font_color}>
-      <div>
+      {/* <div>
         {messageImages && (
           <img width="100%" src={messageImages.split("\r\n")[index]} />
         )}
-      </div>
+      </div> */}
 
       <div className="textContainer">
         <div className="postTime">
