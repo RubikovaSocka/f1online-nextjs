@@ -85,8 +85,11 @@ function InLivePartnerMessage({
     : "https://f1online.sk/";
 
   const handleClick = (e) => {
+    console.log("CLICKED", e);
     if (e.target.nodeName === "A") {
       onClick(e.target.attributes.href.value);
+    } else if (e.target.parentNode.nodeName === "A") {
+      onClick(e.target.parentNode.attributes.href.value);
     }
   };
 
