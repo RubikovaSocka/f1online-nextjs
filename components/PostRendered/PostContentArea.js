@@ -185,6 +185,22 @@ const GPs = [
       "https://wpadmin.f1online.sk/wp-content/uploads/nabbi-rear-angle.jpg",
     ],
   },
+  {
+    tagID: 451,
+    bgColor: "#424243",
+    fgColor: "#ffffff",
+    link: "https://fingo.sk/",
+    logo: "https://wpadmin.f1online.sk/wp-content/uploads/fingo-logo-dark.png",
+    partnerName: "FinGO.sk, experta na osobné financie, hypotéky a poistenie",
+    gpName: "VC Štajerska",
+    partnerNameGA: "FinGO.sk",
+    gpNameGA: "VC-Stajerska-2021",
+    cars: [
+      "https://wpadmin.f1online.sk/wp-content/uploads/fingo-image01e.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/fingo-image02e.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/fingo-image03e-1.jpg",
+    ],
+  },
 ];
 
 function AdsInjector({ inputHtml, adsDisallowed, tags }) {
