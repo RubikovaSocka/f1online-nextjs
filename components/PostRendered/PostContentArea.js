@@ -207,7 +207,7 @@ const GPs = [
     fgColor: "#ffffff",
     link: "https://redbull.sk/",
     logo: "https://wpadmin.f1online.sk/wp-content/uploads/Red-Bull-Logo.png",
-    partnerName: "Red Bull, opory slovenských formulových fanúšikov",
+    partnerName: "Red Bullu, opory slovenských formulových fanúšikov",
     gpName: "VC Rakúska",
     partnerNameGA: "Red Bull",
     gpNameGA: "VC-Rakuska-2021",
