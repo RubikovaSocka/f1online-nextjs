@@ -201,6 +201,22 @@ const GPs = [
       "https://wpadmin.f1online.sk/wp-content/uploads/fingo-image03e-1.jpg",
     ],
   },
+  {
+    tagID: 440,
+    bgColor: "#000b8d",
+    fgColor: "#ffffff",
+    link: "https://redbull.sk/",
+    logo: "https://wpadmin.f1online.sk/wp-content/uploads/fingo-logo-dark.png",
+    partnerName: "Red Bull, opory slovenských formulových fanúšikov",
+    gpName: "VC Rakúska",
+    partnerNameGA: "Red Bull",
+    gpNameGA: "VC-Rakuska-2021",
+    cars: [
+      "https://wpadmin.f1online.sk/wp-content/uploads/q7rk0y3hxhebvywbpx3b.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/red-bull-slovensko-01.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/red-bull-slovensko-03.jpg",
+    ],
+  },
 ];
 
 function AdsInjector({ inputHtml, adsDisallowed, tags }) {
