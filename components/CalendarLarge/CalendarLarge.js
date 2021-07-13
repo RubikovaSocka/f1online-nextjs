@@ -65,21 +65,24 @@ function CalendarLarge() {
             <TimesFirstColumn>
               {fp1_time ? (
                 <CalendarItem
-                  event={SESSION_NAMES.FP1}
+                  //event={SESSION_NAMES.FP1}
+                  event="Piatok: 1. tréning"
                   time={getSesDurationText(fp1_time, SESSION_DURATIONS.FP1)}
                   tv={getTvText(fp1_tv)}
                 />
               ) : null}
               {fp2_time ? (
                 <CalendarItem
-                  event={SESSION_NAMES.FP2}
+                  //event={SESSION_NAMES.FP2}
+                  event="Piatok: Kvalifikácia"
                   time={getSesDurationText(fp2_time, SESSION_DURATIONS.FP2)}
                   tv={getTvText(fp2_tv)}
                 />
               ) : null}
               {fp3_time ? (
                 <CalendarItem
-                  event={SESSION_NAMES.FP3}
+                  //event={SESSION_NAMES.FP3}
+                  event="Sobota: 2. tréning"
                   time={getSesDurationText(fp3_time, SESSION_DURATIONS.FP3)}
                   tv={getTvText(fp3_tv)}
                 />
@@ -88,14 +91,16 @@ function CalendarLarge() {
             <TimesSecondColumn>
               {q_time ? (
                 <CalendarItem
-                  event={SESSION_NAMES.Q}
+                  //event={SESSION_NAMES.Q}
+                  event="Sobota: Šprint"
                   time={getSesDurationText(q_time, SESSION_DURATIONS.Q)}
                   tv={getTvText(q_tv)}
                 />
               ) : null}
               {r_time ? (
                 <CalendarItem
-                  event={SESSION_NAMES.R}
+                  //event={SESSION_NAMES.R}
+                  event="Nedeľa: Preteky"
                   time={`${r_time}`}
                   tv={getTvText(r_tv)}
                 />

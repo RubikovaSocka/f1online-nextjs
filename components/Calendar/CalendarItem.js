@@ -87,7 +87,11 @@ function CalendarItem({
 
           {fp2_time ? (
             <div className="timesRow">
-              <span className="session">{SESSION_NAMES.FP2}</span>
+              <span className="session">
+                {venue_name === "Veľkej Británie"
+                  ? "Kvalifikácia"
+                  : SESSION_NAMES.FP2}
+              </span>
               <span className="sessionTime">
                 {getSesDurationText(fp2_time, SESSION_DURATIONS.FP2)}
               </span>
@@ -98,7 +102,7 @@ function CalendarItem({
           )}
           {fp3_time ? (
             <div className="timesRow">
-              <span className="session">{SESSION_NAMES.FP3}</span>
+              <span className="session">{venue_name === "Veľkej Británie" ? SESSION_NAMES.FP2 : SESSION_NAMES.FP3}</span>
               <span className="sessionTime">
                 {getSesDurationText(fp3_time, SESSION_DURATIONS.FP3)}
               </span>
@@ -109,7 +113,8 @@ function CalendarItem({
           )}
           {q_time ? (
             <div className="timesRow">
-              <span className="session">{SESSION_NAMES.Q}</span>
+              {/* <span className="session">{SESSION_NAMES.Q}</span> */}
+              <span className="session">{venue_name === "Veľkej Británie" ? "Šprint" : SESSION_NAMES.Q}</span>
               <span className="sessionTime">
                 {getSesDurationText(q_time, SESSION_DURATIONS.Q)}
               </span>

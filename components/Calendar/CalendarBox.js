@@ -13,7 +13,7 @@ function CalendarBox({ data }) {
       <CalendarItem position={index} {...calendarItem} />
 
       <div>
-        {onClient() && index === 5 ? (
+        {onClient() && index === 8 ? (
           <>
             <a
               href={
