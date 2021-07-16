@@ -217,6 +217,23 @@ const GPs = [
       "https://wpadmin.f1online.sk/wp-content/uploads/red-bull-slovensko-03.jpg",
     ],
   },
+  {
+    tagID: 456,
+    bgColor: "#ed1c24",
+    fgColor: "#ffffff",
+    link: "https://andreashop.sk/",
+    logo: "https://wpadmin.f1online.sk/wp-content/uploads/andreashop-logo.png",
+    partnerName:
+      "ANDREASHOP.SK, rýchleho, výhodného a spoľahlivého eshopu nielen s elektronikou",
+    gpName: "VC Veľkej Británie",
+    partnerNameGA: "andreashop.sk",
+    gpNameGA: "VC-Velkej-Britanie-2021",
+    cars: [
+      "https://wpadmin.f1online.sk/wp-content/uploads/andreashop01a.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/andreashop02a.jpg",
+      "https://wpadmin.f1online.sk/wp-content/uploads/andreashop03a.jpg",
+    ],
+  },
 ];
 
 function AdsInjector({ inputHtml, adsDisallowed, tags }) {
