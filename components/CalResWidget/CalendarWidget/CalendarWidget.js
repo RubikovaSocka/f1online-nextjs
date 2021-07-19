@@ -142,32 +142,32 @@ function CalendarWidget({ data }) {
         </tr>
         {data.fp1_time ? (
           <tr className="noBorder">
-            {/* <td className="event">{SESSION_NAMES.FP1}</td> */}
-            <td className="event">1. tréning</td>
+            <td className="event">{SESSION_NAMES.FP1}</td>
+            {/* <td className="event">1. tréning</td> */}
             <td>{getSesDurationText(data.fp1_time, SESSION_DURATIONS.FP1)}</td>
             <td className="tv">{getTvText(data.fp1_tv)}</td>
           </tr>
         ) : null}
         {data.fp2_time ? (
           <tr>
-            {/* <td className="event">{SESSION_NAMES.FP2}</td> */}
-            <td className="event">Kvalifikácia</td>
+            <td className="event">{SESSION_NAMES.FP2}</td>
+            {/* <td className="event">Kvalifikácia</td> */}
             <td>{getSesDurationText(data.fp2_time, SESSION_DURATIONS.FP2)}</td>
             <td className="tv">{getTvText(data.fp2_tv)}</td>
           </tr>
         ) : null}
         {data.fp3_time ? (
           <tr>
-            {/* <td className="event">{SESSION_NAMES.FP3}</td> */}
-            <td className="event">2. tréning</td>
+            <td className="event">{SESSION_NAMES.FP3}</td>
+            {/* <td className="event">2. tréning</td> */}
             <td>{getSesDurationText(data.fp3_time, SESSION_DURATIONS.FP3)}</td>
             <td className="tv">{getTvText(data.fp3_tv)}</td>
           </tr>
         ) : null}
         {data.q_time ? (
           <tr>
-            {/* <td className="event">{SESSION_NAMES.Q}</td> */}
-            <td className="event">Šprint</td>
+            <td className="event">{SESSION_NAMES.Q}</td>
+            {/* <td className="event">Šprint</td> */}
             <td>{getSesDurationText(data.q_time, SESSION_DURATIONS.Q)}</td>
             <td className="tv">{getTvText(data.q_tv)}</td>
           </tr>
